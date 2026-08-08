@@ -1,4 +1,4 @@
-import 'package:fiberchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
 import 'package:flutter/material.dart';
 
 Color pickTextColorBasedOnBgColorAdvanced(Color bgColor,
@@ -9,10 +9,10 @@ Color pickTextColorBasedOnBgColorAdvanced(Color bgColor,
       (0.299 * myColor.red) + (0.587 * myColor.green) + (0.114 * myColor.blue);
   if (grayscale > 128) {
     // color is light
-    return darkColor ?? fiberchatBlack;
+    return darkColor ?? crypterchatBlack;
   } else {
     // color is dark
-    return lightColor ?? fiberchatWhite;
+    return lightColor ?? crypterchatWhite;
   }
 }
 

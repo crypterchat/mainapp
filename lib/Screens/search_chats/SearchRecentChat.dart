@@ -4,23 +4,23 @@ import 'dart:async';
 import 'dart:core';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/messagedata.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Services/Providers/user_provider.dart';
-import 'package:fiberchat/Utils/alias.dart';
-import 'package:fiberchat/Utils/chat_controller.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/unawaited.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Services/Admob/admob.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Screens/chat_screen/utils/messagedata.dart';
+import 'package:crypterchat/Screens/call_history/callhistory.dart';
+import 'package:crypterchat/Screens/chat_screen/chat.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Services/Providers/user_provider.dart';
+import 'package:crypterchat/Utils/alias.dart';
+import 'package:crypterchat/Utils/chat_controller.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/unawaited.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
@@ -66,7 +66,7 @@ class SearchChatsState extends State<SearchChats> {
   @override
   void initState() {
     super.initState();
-    Fiberchat.internetLookUp();
+    Crypterchat.internetLookUp();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       final observer = Provider.of<Observer>(this.context, listen: false);
       if (IsBannerAdShow == true && observer.isadmobshow == true) {
@@ -122,14 +122,14 @@ class SearchChatsState extends State<SearchChats> {
                   leading: customCircleAvatar(
                       url: user[Dbkeys.photoUrl], radius: 22),
                   title: Text(
-                    Fiberchat.getNickname(user)!,
+                    Crypterchat.getNickname(user)!,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: pickTextColorBasedOnBgColorAdvanced(
                           Thm.isDarktheme(widget.prefs)
-                              ? fiberchatBACKGROUNDcolorDarkMode
-                              : fiberchatBACKGROUNDcolorLightMode),
+                              ? crypterchatBACKGROUNDcolorDarkMode
+                              : crypterchatBACKGROUNDcolorLightMode),
                       fontSize: 16.4,
                       fontWeight: FontWeight.w500,
                     ),
@@ -143,7 +143,7 @@ class SearchChatsState extends State<SearchChats> {
                           getTranslated(context, 'auth_neededchat'),
                           state: state,
                           shouldPop: false,
-                          type: Fiberchat.getAuthenticationType(
+                          type: Crypterchat.getAuthenticationType(
                               biometricEnabled, _cachedModel),
                           prefs: widget.prefs, onSuccess: () {
                         state.pushReplacement(new MaterialPageRoute(
@@ -179,7 +179,7 @@ class SearchChatsState extends State<SearchChats> {
                           decoration: new BoxDecoration(
                             shape: BoxShape.circle,
                             color: user[Dbkeys.lastSeen] == true
-                                ? fiberchatGreenColor400
+                                ? crypterchatGreenColor400
                                 : Colors.blue[300],
                           ),
                         )
@@ -189,7 +189,7 @@ class SearchChatsState extends State<SearchChats> {
                               padding: const EdgeInsets.all(7.0),
                               decoration: new BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: fiberchatGreenColor400),
+                                  color: crypterchatGreenColor400),
                             )
                           : SizedBox(
                               height: 0,
@@ -204,7 +204,7 @@ class SearchChatsState extends State<SearchChats> {
   }
 
   Stream<MessageData> getUnread(Map<String, dynamic> user) {
-    String chatId = Fiberchat.getChatId(currentUserNo!, user[Dbkeys.phone]);
+    String chatId = Crypterchat.getChatId(currentUserNo!, user[Dbkeys.phone]);
     var controller = StreamController<MessageData>.broadcast();
     unreadSubscriptions.add(FirebaseFirestore.instance
         .collection(DbPaths.collectionmessages)
@@ -304,7 +304,7 @@ class SearchChatsState extends State<SearchChats> {
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             fontSize: 18,
-                                            color: fiberchatGrey,
+                                            color: crypterchatGrey,
                                           )),
                                     ))
                               ]);
@@ -335,7 +335,7 @@ class SearchChatsState extends State<SearchChats> {
                                           style: TextStyle(
                                             fontSize: 16,
                                             height: 1.59,
-                                            color: fiberchatGrey,
+                                            color: crypterchatGrey,
                                           ))),
                                 )),
                             // will implement Google ads here in next update
@@ -352,7 +352,7 @@ class SearchChatsState extends State<SearchChats> {
   @override
   Widget build(BuildContext context) {
     final observer = Provider.of<Observer>(this.context, listen: false);
-    return Fiberchat.getNTPWrappedWidget(ScopedModel<DataModel>(
+    return Crypterchat.getNTPWrappedWidget(ScopedModel<DataModel>(
       model: getModel()!,
       child:
           ScopedModelDescendant<DataModel>(builder: (context, child, _model) {
@@ -361,7 +361,7 @@ class SearchChatsState extends State<SearchChats> {
         return Scaffold(
             key: scaffoldState,
             backgroundColor: Thm.isDarktheme(widget.prefs)
-                ? fiberchatBACKGROUNDcolorDarkMode
+                ? crypterchatBACKGROUNDcolorDarkMode
                 : Colors.white,
             bottomSheet: IsBannerAdShow == true &&
                     observer.isadmobshow == true &&

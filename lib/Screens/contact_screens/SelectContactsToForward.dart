@@ -1,19 +1,19 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
-import 'package:fiberchat/Services/Providers/GroupChatProvider.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Screens/call_history/callhistory.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_layout.dart';
+import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+import 'package:crypterchat/Services/Providers/GroupChatProvider.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -96,7 +96,7 @@ class _SelectContactsToForwardState extends State<SelectContactsToForward>
       Container(
         child: Center(
             child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(fiberchatSECONDARYolor),
+          valueColor: AlwaysStoppedAnimation<Color>(crypterchatSECONDARYolor),
         )),
       )
     ]);
@@ -107,10 +107,10 @@ class _SelectContactsToForwardState extends State<SelectContactsToForward>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    // Fiberchat.toast(widget.contentPeerNo.toString());
+    // Crypterchat.toast(widget.contentPeerNo.toString());
     return PickupLayout(
         prefs: widget.prefs,
-        scaffold: Fiberchat.getNTPWrappedWidget(ScopedModel<DataModel>(
+        scaffold: Crypterchat.getNTPWrappedWidget(ScopedModel<DataModel>(
             model: widget.model!,
             child: ScopedModelDescendant<DataModel>(
                 builder: (context, child, model) {
@@ -311,8 +311,8 @@ class _SelectContactsToForwardState extends State<SelectContactsToForward>
                               : SizedBox(),
                           key: _scaffold,
                           backgroundColor: Thm.isDarktheme(widget.prefs)
-                              ? fiberchatBACKGROUNDcolorDarkMode
-                              : fiberchatBACKGROUNDcolorLightMode,
+                              ? crypterchatBACKGROUNDcolorDarkMode
+                              : crypterchatBACKGROUNDcolorLightMode,
                           appBar: AppBar(
                             elevation: 0.4,
                             actions: <Widget>[
@@ -323,8 +323,8 @@ class _SelectContactsToForwardState extends State<SelectContactsToForward>
                                         Icons.check,
                                         color: pickTextColorBasedOnBgColorAdvanced(
                                             Thm.isDarktheme(widget.prefs)
-                                                ? fiberchatAPPBARcolorDarkMode
-                                                : fiberchatAPPBARcolorLightMode),
+                                                ? crypterchatAPPBARcolorDarkMode
+                                                : crypterchatAPPBARcolorLightMode),
                                       ),
                                       onPressed: () async {
                                         List<dynamic> finalList = [];
@@ -359,13 +359,13 @@ class _SelectContactsToForwardState extends State<SelectContactsToForward>
                                 size: 24,
                                 color: pickTextColorBasedOnBgColorAdvanced(
                                     Thm.isDarktheme(widget.prefs)
-                                        ? fiberchatAPPBARcolorDarkMode
-                                        : fiberchatAPPBARcolorLightMode),
+                                        ? crypterchatAPPBARcolorDarkMode
+                                        : crypterchatAPPBARcolorLightMode),
                               ),
                             ),
                             backgroundColor: Thm.isDarktheme(widget.prefs)
-                                ? fiberchatAPPBARcolorDarkMode
-                                : fiberchatAPPBARcolorLightMode,
+                                ? crypterchatAPPBARcolorDarkMode
+                                : crypterchatAPPBARcolorLightMode,
                             centerTitle: false,
                             // leadingWidth: 40,
                             title: Text(
@@ -375,8 +375,8 @@ class _SelectContactsToForwardState extends State<SelectContactsToForward>
                                 fontSize: 18,
                                 color: pickTextColorBasedOnBgColorAdvanced(
                                     Thm.isDarktheme(widget.prefs)
-                                        ? fiberchatAPPBARcolorDarkMode
-                                        : fiberchatAPPBARcolorLightMode),
+                                        ? crypterchatAPPBARcolorDarkMode
+                                        : crypterchatAPPBARcolorLightMode),
                               ),
                             ),
                           ),
@@ -419,7 +419,7 @@ class _SelectContactsToForwardState extends State<SelectContactsToForward>
                                                           TextAlign.center,
                                                       style: TextStyle(
                                                         fontSize: 18,
-                                                        color: fiberchatGrey,
+                                                        color: crypterchatGrey,
                                                       )),
                                                   SizedBox(
                                                     height: 40,
@@ -453,7 +453,7 @@ class _SelectContactsToForwardState extends State<SelectContactsToForward>
                                                         Icons.refresh_rounded,
                                                         size: 40,
                                                         color:
-                                                            fiberchatPRIMARYcolor,
+                                                            crypterchatPRIMARYcolor,
                                                       ))
                                                 ],
                                               ),
@@ -479,7 +479,7 @@ class _SelectContactsToForwardState extends State<SelectContactsToForward>
                                                       decoration: BoxDecoration(
                                                         border: Border.all(
                                                             color:
-                                                                fiberchatGrey,
+                                                                crypterchatGrey,
                                                             width: 1),
                                                         borderRadius:
                                                             BorderRadius
@@ -497,7 +497,7 @@ class _SelectContactsToForwardState extends State<SelectContactsToForward>
                                                               Icons.check,
                                                               size: 19.0,
                                                               color:
-                                                                  fiberchatPRIMARYcolor,
+                                                                  crypterchatPRIMARYcolor,
                                                             )
                                                           : Icon(
                                                               null,
@@ -525,15 +525,15 @@ class _SelectContactsToForwardState extends State<SelectContactsToForward>
                                                                 .isDarktheme(
                                                                     widget
                                                                         .prefs)
-                                                            ? fiberchatBACKGROUNDcolorDarkMode
-                                                            : fiberchatBACKGROUNDcolorLightMode),
+                                                            ? crypterchatBACKGROUNDcolorDarkMode
+                                                            : crypterchatBACKGROUNDcolorLightMode),
                                                         fontSize: 16,
                                                       ),
                                                     ),
                                                     subtitle: Text(
                                                       '${joinedGroupsList[i][Dbkeys.groupMEMBERSLIST].length} ${getTranslated(context, 'participants')}',
                                                       style: TextStyle(
-                                                        color: fiberchatGrey,
+                                                        color: crypterchatGrey,
                                                         fontSize: 14,
                                                       ),
                                                     ),
@@ -565,7 +565,7 @@ class _SelectContactsToForwardState extends State<SelectContactsToForward>
                                                                       .length >
                                                               observer.maxNoOfContactsSelectForForward -
                                                                   1) {
-                                                            Fiberchat.toast(
+                                                            Crypterchat.toast(
                                                                 getTranslated(
                                                                         context,
                                                                         'maxallowed') +
@@ -647,7 +647,7 @@ class _SelectContactsToForwardState extends State<SelectContactsToForward>
                                                                           BoxDecoration(
                                                                         border: Border.all(
                                                                             color:
-                                                                                fiberchatGrey,
+                                                                                crypterchatGrey,
                                                                             width:
                                                                                 1),
                                                                         borderRadius:
@@ -658,7 +658,7 @@ class _SelectContactsToForwardState extends State<SelectContactsToForward>
                                                                           ? Icon(
                                                                               Icons.check,
                                                                               size: 19.0,
-                                                                              color: fiberchatPRIMARYcolor,
+                                                                              color: crypterchatPRIMARYcolor,
                                                                             )
                                                                           : Icon(
                                                                               null,
@@ -677,13 +677,13 @@ class _SelectContactsToForwardState extends State<SelectContactsToForward>
                                                                             .name,
                                                                         style: TextStyle(
                                                                             color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs)
-                                                                                ? fiberchatBACKGROUNDcolorDarkMode
-                                                                                : fiberchatBACKGROUNDcolorLightMode))),
+                                                                                ? crypterchatBACKGROUNDcolorDarkMode
+                                                                                : crypterchatBACKGROUNDcolorLightMode))),
                                                                     subtitle: Text(
                                                                         phone,
                                                                         style: TextStyle(
                                                                             color:
-                                                                                fiberchatGrey)),
+                                                                                crypterchatGrey)),
                                                                     // contentPadding: EdgeInsets.symmetric(
                                                                     //     horizontal:
                                                                     //         10.0,
@@ -712,7 +712,7 @@ class _SelectContactsToForwardState extends State<SelectContactsToForward>
                                                                           } else {
                                                                             if (selectedDynamicListFORUSERS.length + selectedDynamicListFORGROUPS.length >
                                                                                 observer.maxNoOfContactsSelectForForward - 1) {
-                                                                              Fiberchat.toast(getTranslated(context, 'maxallowed') + ' : ${observer.maxNoOfContactsSelectForForward}');
+                                                                              Crypterchat.toast(getTranslated(context, 'maxallowed') + ' : ${observer.maxNoOfContactsSelectForForward}');
                                                                             } else {
                                                                               selectedDynamicListFORUSERS.add(snapshot.data!);
                                                                               setStateIfMounted(() {});

@@ -1,9 +1,9 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/custom_url_launcher.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/custom_url_launcher.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,8 +14,8 @@ void notificationViwer(BuildContext context, String? desc, String? title,
   var w = MediaQuery.of(context).size.width;
   showModalBottomSheet(
       backgroundColor: Thm.isDarktheme(prefs)
-          ? fiberchatDIALOGColorDarkMode
-          : fiberchatDIALOGColorLightMode,
+          ? crypterchatDIALOGColorDarkMode
+          : crypterchatDIALOGColorLightMode,
       isScrollControlled: true,
       context: context,
       builder: (builder) {
@@ -26,8 +26,8 @@ void notificationViwer(BuildContext context, String? desc, String? title,
           child: new Container(
               decoration: new BoxDecoration(
                   color: Thm.isDarktheme(prefs)
-                      ? fiberchatDIALOGColorDarkMode
-                      : fiberchatDIALOGColorLightMode,
+                      ? crypterchatDIALOGColorDarkMode
+                      : crypterchatDIALOGColorLightMode,
                   borderRadius: new BorderRadius.only(
                       topLeft: const Radius.circular(10.0),
                       topRight: const Radius.circular(10.0))),
@@ -46,7 +46,7 @@ void notificationViwer(BuildContext context, String? desc, String? title,
                             fontWeight: FontWeight.w600,
                             height: 1.25,
                             fontSize: 13.9,
-                            color: fiberchatGrey,
+                            color: crypterchatGrey,
                           ),
                         ),
                         IconButton(
@@ -55,7 +55,7 @@ void notificationViwer(BuildContext context, String? desc, String? title,
                           },
                           icon: Icon(
                             Icons.close_rounded,
-                            color: fiberchatGrey,
+                            color: crypterchatGrey,
                           ),
                           alignment: Alignment.centerRight,
                         ),
@@ -84,8 +84,8 @@ void notificationViwer(BuildContext context, String? desc, String? title,
                           fontSize: 19,
                           color: pickTextColorBasedOnBgColorAdvanced(
                               Thm.isDarktheme(prefs)
-                                  ? fiberchatDIALOGColorDarkMode
-                                  : fiberchatDIALOGColorLightMode),
+                                  ? crypterchatDIALOGColorDarkMode
+                                  : crypterchatDIALOGColorLightMode),
                           fontWeight: FontWeight.w800),
                     ),
 
@@ -97,8 +97,8 @@ void notificationViwer(BuildContext context, String? desc, String? title,
                         height: 1.4,
                         color: pickTextColorBasedOnBgColorAdvanced(
                                 Thm.isDarktheme(prefs)
-                                    ? fiberchatDIALOGColorDarkMode
-                                    : fiberchatDIALOGColorLightMode)
+                                    ? crypterchatDIALOGColorDarkMode
+                                    : crypterchatDIALOGColorLightMode)
                             .withOpacity(0.7),
                       ),
                       text: desc ?? "",

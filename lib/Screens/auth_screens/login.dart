@@ -4,29 +4,29 @@ import 'dart:async';
 import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:devicelocale/devicelocale.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Screens/homepage/homepage.dart';
-import 'package:fiberchat/Screens/privacypolicy&TnC/PdfViewFromCachedUrl.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/Providers/TimerProvider.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/custom_url_launcher.dart';
-import 'package:fiberchat/Utils/phonenumberVariantsGenerator.dart';
-import 'package:fiberchat/Utils/setStatusBarColor.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/widgets/DynamicBottomSheet/dynamic_modal_bottomsheet.dart';
-import 'package:fiberchat/widgets/PhoneField/countries.dart';
-import 'package:fiberchat/widgets/PhoneField/intl_phone_field.dart';
-import 'package:fiberchat/widgets/PhoneField/phone_number.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Screens/homepage/homepage.dart';
+import 'package:crypterchat/Screens/privacypolicy&TnC/PdfViewFromCachedUrl.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/Providers/TimerProvider.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/custom_url_launcher.dart';
+import 'package:crypterchat/Utils/phonenumberVariantsGenerator.dart';
+import 'package:crypterchat/Utils/setStatusBarColor.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/widgets/DynamicBottomSheet/dynamic_modal_bottomsheet.dart';
+import 'package:crypterchat/widgets/PhoneField/countries.dart';
+import 'package:crypterchat/widgets/PhoneField/intl_phone_field.dart';
+import 'package:crypterchat/widgets/PhoneField/phone_number.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/localization/language.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/main.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Services/localization/language.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -34,10 +34,10 @@ import 'package:flutter/services.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:fiberchat/Models/E2EE/e2ee.dart' as e2ee;
+import 'package:crypterchat/Models/E2EE/e2ee.dart' as e2ee;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Utils/unawaited.dart';
+import 'package:crypterchat/Configs/Enum.dart';
+import 'package:crypterchat/Utils/unawaited.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen(
@@ -98,14 +98,14 @@ class LoginScreenState extends State<LoginScreen>
             .indexWhere((element) => element.languageCode == langCode) >=
         0) {
       Locale _locale = await setLocale(langCode);
-      FiberchatWrapper.setLocale(context, _locale);
+      CrypterchatWrapper.setLocale(context, _locale);
     }
   }
 
   detectLocale() async {
     await Devicelocale.currentLocale.then((locale) async {
       if (locale != null) {
-        // Fiberchat.toast(locale);
+        // Crypterchat.toast(locale);
         List<dynamic> data = languagelist;
         for (final code in data) {
           if ((locale.startsWith('${code}_') || locale.startsWith('$code-')) &&
@@ -229,7 +229,7 @@ class LoginScreenState extends State<LoginScreen>
       debugPrint(
           'Authentication failed -ERROR: ${authException.message}. Try again later.');
 
-      Fiberchat.toast('Authentication failed - ${authException.message}');
+      Crypterchat.toast('Authentication failed - ${authException.message}');
     };
 
     final PhoneCodeSent codeSent =
@@ -261,7 +261,7 @@ class LoginScreenState extends State<LoginScreen>
           currentPinAttemps = 0;
         });
 
-        Fiberchat.toast('Authentication failed Timeout. please try again.');
+        Crypterchat.toast('Authentication failed Timeout. please try again.');
       }
     };
     debugPrint('Verify phone triggered');
@@ -274,7 +274,7 @@ class LoginScreenState extends State<LoginScreen>
         codeSent: codeSent,
         codeAutoRetrievalTimeout: codeAutoRetrievalTimeout);
     // } catch (e) {
-    //   Fiberchat.toast('NEW CATCH' + e.toString());
+    //   Crypterchat.toast('NEW CATCH' + e.toString());
     // }
   }
 
@@ -477,8 +477,8 @@ class LoginScreenState extends State<LoginScreen>
             unawaited(Navigator.pushReplacement(
                 this.context,
                 new MaterialPageRoute(
-                    builder: (context) => FiberchatWrapper())));
-            Fiberchat.toast(getTranslated(this.context, 'failedtologin'));
+                    builder: (context) => CrypterchatWrapper())));
+            Crypterchat.toast(getTranslated(this.context, 'failedtologin'));
           }
         } else {
           String? fcmToken = await FirebaseMessaging.instance.getToken();
@@ -554,18 +554,18 @@ class LoginScreenState extends State<LoginScreen>
             unawaited(Navigator.pushReplacement(
                 this.context,
                 new MaterialPageRoute(
-                    builder: (context) => FiberchatWrapper())));
-            Fiberchat.toast(getTranslated(this.context, 'welcomeback'));
+                    builder: (context) => CrypterchatWrapper())));
+            Crypterchat.toast(getTranslated(this.context, 'welcomeback'));
           } else {
             unawaited(Navigator.pushReplacement(
                 this.context,
                 new MaterialPageRoute(
-                    builder: (context) => FiberchatWrapper())));
-            Fiberchat.toast(getTranslated(this.context, 'failedlogin'));
+                    builder: (context) => CrypterchatWrapper())));
+            Crypterchat.toast(getTranslated(this.context, 'failedlogin'));
           }
         }
       } else {
-        Fiberchat.toast(getTranslated(this.context, 'failedlogin'));
+        Crypterchat.toast(getTranslated(this.context, 'failedlogin'));
       }
     } catch (e) {
       setState(() {
@@ -584,14 +584,14 @@ class LoginScreenState extends State<LoginScreen>
       if (e.toString().contains('invalid') ||
           e.toString().contains('code') ||
           e.toString().contains('verification')) {
-        Fiberchat.toast(getTranslated(this.context, 'makesureotp'));
+        Crypterchat.toast(getTranslated(this.context, 'makesureotp'));
       }
     }
   }
 
   void _changeLanguage(Language language) async {
     Locale _locale = await setLocale(language.languageCode);
-    FiberchatWrapper.setLocale(this.context, _locale);
+    CrypterchatWrapper.setLocale(this.context, _locale);
     setState(() {
       seletedlanguage = language;
     });
@@ -612,11 +612,11 @@ class LoginScreenState extends State<LoginScreen>
             end: Alignment.bottomCenter,
             colors: [
               Thm.isDarktheme(widget.prefs)
-                  ? fiberchatAPPBARcolorDarkMode
-                  : fiberchatAPPBARcolorLightMode,
+                  ? crypterchatAPPBARcolorDarkMode
+                  : crypterchatAPPBARcolorLightMode,
               Thm.isDarktheme(widget.prefs)
-                  ? fiberchatAPPBARcolorDarkMode
-                  : fiberchatAPPBARcolorLightMode
+                  ? crypterchatAPPBARcolorDarkMode
+                  : crypterchatAPPBARcolorLightMode
             ],
           ),
         ),
@@ -667,8 +667,8 @@ class LoginScreenState extends State<LoginScreen>
                                                 style: TextStyle(
                                                     color: Thm.isDarktheme(
                                                             widget.prefs)
-                                                        ? fiberchatWhite
-                                                        : fiberchatBlack,
+                                                        ? crypterchatWhite
+                                                        : crypterchatBlack,
                                                     fontWeight: FontWeight.w500,
                                                     fontSize: 16),
                                               ),
@@ -680,7 +680,7 @@ class LoginScreenState extends State<LoginScreen>
                                                               widget.prefs
                                                                   .getString(
                                                                       LAGUAGE_CODE)
-                                                          ? fiberchatSECONDARYolor
+                                                          ? crypterchatSECONDARYolor
                                                           : Colors.transparent,
                                                     )
                                             ],
@@ -700,8 +700,8 @@ class LoginScreenState extends State<LoginScreen>
                                   Icons.language_outlined,
                                   color: pickTextColorBasedOnBgColorAdvanced(
                                           Thm.isDarktheme(widget.prefs)
-                                              ? fiberchatAPPBARcolorDarkMode
-                                              : fiberchatAPPBARcolorLightMode)
+                                              ? crypterchatAPPBARcolorDarkMode
+                                              : crypterchatAPPBARcolorLightMode)
                                       .withOpacity(0.85),
                                 ),
                                 SizedBox(
@@ -709,13 +709,13 @@ class LoginScreenState extends State<LoginScreen>
                                   child: Icon(
                                     Icons.keyboard_arrow_down,
                                     color: Thm.isDarktheme(widget.prefs)
-                                        ? fiberchatSECONDARYolor
+                                        ? crypterchatSECONDARYolor
                                         : isDarkColor(
-                                                    fiberchatBACKGROUNDcolorLightMode) ==
+                                                    crypterchatBACKGROUNDcolorLightMode) ==
                                                 true
-                                            ? fiberchatWhite.withOpacity(0.6)
+                                            ? crypterchatWhite.withOpacity(0.6)
                                             : pickTextColorBasedOnBgColorAdvanced(
-                                                    fiberchatAPPBARcolorLightMode)
+                                                    crypterchatAPPBARcolorLightMode)
                                                 .withOpacity(0.65),
                                     size: 27,
                                   ),
@@ -747,8 +747,8 @@ class LoginScreenState extends State<LoginScreen>
                               : Icons.dark_mode_outlined,
                           color: pickTextColorBasedOnBgColorAdvanced(
                                   Thm.isDarktheme(widget.prefs)
-                                      ? fiberchatAPPBARcolorDarkMode
-                                      : fiberchatAPPBARcolorLightMode)
+                                      ? crypterchatAPPBARcolorDarkMode
+                                      : crypterchatAPPBARcolorLightMode)
                               .withOpacity(0.85),
                         )),
                 ],
@@ -760,7 +760,7 @@ class LoginScreenState extends State<LoginScreen>
             w < h
                 ? Image.asset(
                     !Thm.isDarktheme(widget.prefs)
-                        ? isDarkColor(fiberchatAPPBARcolorLightMode)
+                        ? isDarkColor(crypterchatAPPBARcolorLightMode)
                             ? AppLogoPathDarkModeLogo
                             : AppLogoPathLightModeLogo
                         : AppLogoPathDarkModeLogo,
@@ -768,7 +768,7 @@ class LoginScreenState extends State<LoginScreen>
                   )
                 : Image.asset(
                     !Thm.isDarktheme(widget.prefs)
-                        ? isDarkColor(fiberchatAPPBARcolorLightMode)
+                        ? isDarkColor(crypterchatAPPBARcolorLightMode)
                             ? AppLogoPathDarkModeLogo
                             : AppLogoPathLightModeLogo
                         : AppLogoPathDarkModeLogo,
@@ -854,8 +854,8 @@ class LoginScreenState extends State<LoginScreen>
                             child: Form(
                               // key: _enterNumberFormKey,
                               child: MobileInputWithOutline(
-                                buttonhintTextColor: fiberchatGrey,
-                                borderColor: fiberchatGrey.withOpacity(0.2),
+                                buttonhintTextColor: crypterchatGrey,
+                                borderColor: crypterchatGrey.withOpacity(0.2),
                                 controller: _phoneNo,
                                 initialCountryCode: autoDetectedCountryCode!,
                                 onSaved: (phone) async {
@@ -878,7 +878,7 @@ class LoginScreenState extends State<LoginScreen>
                               getTranslated(this.context, 'sendsmscode'),
                               // 'Send a SMS Code to verify your number',
                               textAlign: TextAlign.center,
-                              style: TextStyle(color: fiberchatBlack),
+                              style: TextStyle(color: crypterchatBlack),
                             ),
                           ),
                           Padding(
@@ -887,12 +887,12 @@ class LoginScreenState extends State<LoginScreen>
                               width: w / 1.24,
                               spacing: 0.3,
                               height: 57,
-                              buttoncolor: fiberchatSECONDARYolor,
+                              buttoncolor: crypterchatSECONDARYolor,
                               buttontext:
                                   getTranslated(this.context, 'sendverf'),
                               onpressed: widget.isblocknewlogins == true
                                   ? () {
-                                      Fiberchat.toast(
+                                      Crypterchat.toast(
                                         getTranslated(
                                             this.context, 'logindisabled'),
                                       );
@@ -933,13 +933,13 @@ class LoginScreenState extends State<LoginScreen>
                                             verifyPhoneNumber();
                                           }
                                         } else {
-                                          Fiberchat.toast(
+                                          Crypterchat.toast(
                                             getTranslated(
                                                 this.context, 'entervalidmob'),
                                           );
                                         }
                                       } else {
-                                        Fiberchat.toast(getTranslated(
+                                        Crypterchat.toast(getTranslated(
                                             this.context, 'nameem'));
                                       }
                                     },
@@ -966,8 +966,8 @@ class LoginScreenState extends State<LoginScreen>
                                 style: TextStyle(
                                     color: pickTextColorBasedOnBgColorAdvanced(
                                         Thm.isDarktheme(widget.prefs)
-                                            ? fiberchatAPPBARcolorDarkMode
-                                            : fiberchatAPPBARcolorLightMode),
+                                            ? crypterchatAPPBARcolorDarkMode
+                                            : crypterchatAPPBARcolorLightMode),
                                     fontWeight: FontWeight.w400,
                                     fontFamily: FONTFAMILY_NAME == ''
                                         ? null
@@ -979,13 +979,13 @@ class LoginScreenState extends State<LoginScreen>
                                 style: TextStyle(
                                     height: 1.7,
                                     color: Thm.isDarktheme(widget.prefs)
-                                        ? fiberchatSECONDARYolor
+                                        ? crypterchatSECONDARYolor
                                         : isDarkColor(
-                                                    fiberchatBACKGROUNDcolorLightMode) ==
+                                                    crypterchatBACKGROUNDcolorLightMode) ==
                                                 true
-                                            ? fiberchatWhite.withOpacity(0.6)
+                                            ? crypterchatWhite.withOpacity(0.6)
                                             : pickTextColorBasedOnBgColorAdvanced(
-                                                    fiberchatAPPBARcolorLightMode)
+                                                    crypterchatAPPBARcolorLightMode)
                                                 .withOpacity(0.95),
                                     fontWeight: FontWeight.w700,
                                     fontFamily: FONTFAMILY_NAME == ''
@@ -1032,8 +1032,8 @@ class LoginScreenState extends State<LoginScreen>
                                         : FONTFAMILY_NAME,
                                     color: pickTextColorBasedOnBgColorAdvanced(
                                             Thm.isDarktheme(widget.prefs)
-                                                ? fiberchatAPPBARcolorDarkMode
-                                                : fiberchatAPPBARcolorLightMode)
+                                                ? crypterchatAPPBARcolorDarkMode
+                                                : crypterchatAPPBARcolorLightMode)
                                         .withOpacity(0.79),
                                     fontWeight: FontWeight.w500,
                                     fontSize: 11.8)),
@@ -1045,13 +1045,13 @@ class LoginScreenState extends State<LoginScreen>
                                         ? null
                                         : FONTFAMILY_NAME,
                                     color: Thm.isDarktheme(widget.prefs)
-                                        ? fiberchatSECONDARYolor
+                                        ? crypterchatSECONDARYolor
                                         : isDarkColor(
-                                                    fiberchatBACKGROUNDcolorLightMode) ==
+                                                    crypterchatBACKGROUNDcolorLightMode) ==
                                                 true
-                                            ? fiberchatWhite.withOpacity(0.6)
+                                            ? crypterchatWhite.withOpacity(0.6)
                                             : pickTextColorBasedOnBgColorAdvanced(
-                                                    fiberchatAPPBARcolorLightMode)
+                                                    crypterchatAPPBARcolorLightMode)
                                                 .withOpacity(0.95),
                                     fontWeight: FontWeight.w700,
                                     fontSize: 14.8),
@@ -1099,8 +1099,8 @@ class LoginScreenState extends State<LoginScreen>
                           fontWeight: FontWeight.w500,
                           color: pickTextColorBasedOnBgColorAdvanced(
                                   Thm.isDarktheme(widget.prefs)
-                                      ? fiberchatAPPBARcolorDarkMode
-                                      : fiberchatAPPBARcolorLightMode)
+                                      ? crypterchatAPPBARcolorDarkMode
+                                      : crypterchatAPPBARcolorLightMode)
                               .withOpacity(0.6),
                         ),
                       ),
@@ -1113,8 +1113,8 @@ class LoginScreenState extends State<LoginScreen>
     return BoxShadow(
       blurRadius: 3.0,
       color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs)
-              ? fiberchatAPPBARcolorDarkMode
-              : fiberchatAPPBARcolorLightMode)
+              ? crypterchatAPPBARcolorDarkMode
+              : crypterchatAPPBARcolorLightMode)
           .withOpacity(0.1),
       spreadRadius: 1.0,
     );
@@ -1143,7 +1143,7 @@ class LoginScreenState extends State<LoginScreen>
               style: TextStyle(
                   height: 1.5,
                   fontFamily: FONTFAMILY_NAME == '' ? null : FONTFAMILY_NAME,
-                  color: fiberchatBlack),
+                  color: crypterchatBlack),
             ),
           ),
           SizedBox(
@@ -1152,7 +1152,7 @@ class LoginScreenState extends State<LoginScreen>
           Center(
             child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(
-              fiberchatSECONDARYolor,
+              crypterchatSECONDARYolor,
             )),
           ),
           SizedBox(
@@ -1214,7 +1214,7 @@ class LoginScreenState extends State<LoginScreen>
                   // controller: _code,
                   length: 6,
                   onChanged: (code) {
-                    // Fiberchat.toast(code);
+                    // Crypterchat.toast(code);
                     setState(() {
                       _code = code;
                     });
@@ -1224,7 +1224,7 @@ class LoginScreenState extends State<LoginScreen>
                       });
                       handleSignIn();
                     } else {
-                      // Fiberchat.toast(
+                      // Crypterchat.toast(
                       //     getTranslated(this.context, 'correctotp'));
                     }
                   },
@@ -1237,7 +1237,7 @@ class LoginScreenState extends State<LoginScreen>
               getTranslated(this.context, 'enter_verfcode') +
                   ' $phoneCode-${_phoneNo.text}',
               textAlign: TextAlign.center,
-              style: TextStyle(height: 1.5, color: fiberchatBlack),
+              style: TextStyle(height: 1.5, color: crypterchatBlack),
 
               // style: TextStyle(color: Mycolors.black),
             ),
@@ -1246,13 +1246,13 @@ class LoginScreenState extends State<LoginScreen>
               ? Center(
                   child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
-                          fiberchatSECONDARYolor)),
+                          crypterchatSECONDARYolor)),
                 )
               : Padding(
                   padding: EdgeInsets.fromLTRB(17, 22, 17, 5),
                   child: MySimpleButton(
                     height: 57,
-                    buttoncolor: fiberchatSECONDARYolor,
+                    buttoncolor: crypterchatSECONDARYolor,
                     buttontext: getTranslated(this.context, 'verify_otp'),
                     onpressed: () {
                       if (_code.length == 6) {
@@ -1261,7 +1261,7 @@ class LoginScreenState extends State<LoginScreen>
                         });
                         handleSignIn();
                       } else
-                        Fiberchat.toast(
+                        Crypterchat.toast(
                             getTranslated(this.context, 'correctotp'));
                     },
                   ),
@@ -1285,19 +1285,19 @@ class LoginScreenState extends State<LoginScreen>
                               TextSpan(
                                 text: getTranslated(this.context, 'resendcode'),
                                 style: TextStyle(
-                                    fontSize: 14, color: fiberchatGrey),
+                                    fontSize: 14, color: crypterchatGrey),
                               ),
                               TextSpan(
                                 text: " 00:${timeProvider.start} ",
                                 style: TextStyle(
                                     fontSize: 15,
-                                    color: fiberchatPRIMARYcolor,
+                                    color: crypterchatPRIMARYcolor,
                                     fontWeight: FontWeight.w700),
                               ),
                               TextSpan(
                                 text: getTranslated(this.context, 'seconds'),
                                 style: TextStyle(
-                                    fontSize: 14, color: fiberchatGrey),
+                                    fontSize: 14, color: crypterchatGrey),
                               ),
                             ],
                           )),
@@ -1334,14 +1334,14 @@ class LoginScreenState extends State<LoginScreen>
                                         children: [
                                           Icon(
                                             Icons.arrow_back_ios,
-                                            color: fiberchatGrey,
+                                            color: crypterchatGrey,
                                             size: 16,
                                           ),
                                           Text(
                                             getTranslated(this.context, 'back'),
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w500,
-                                                color: fiberchatGrey,
+                                                color: crypterchatGrey,
                                                 fontSize: 13),
                                           ),
                                         ],
@@ -1372,7 +1372,7 @@ class LoginScreenState extends State<LoginScreen>
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Icon(Icons.restart_alt_outlined,
-                                                  color: fiberchatPRIMARYcolor),
+                                                  color: crypterchatPRIMARYcolor),
                                               Text(
                                                 ' ' +
                                                     getTranslated(
@@ -1380,7 +1380,7 @@ class LoginScreenState extends State<LoginScreen>
                                                 style: TextStyle(
                                                     fontSize: 13,
                                                     color:
-                                                        fiberchatPRIMARYcolor,
+                                                        crypterchatPRIMARYcolor,
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
@@ -1418,7 +1418,7 @@ class LoginScreenState extends State<LoginScreen>
           Center(
             child: CircularProgressIndicator(
                 valueColor:
-                    AlwaysStoppedAnimation<Color>(fiberchatSECONDARYolor)),
+                    AlwaysStoppedAnimation<Color>(crypterchatSECONDARYolor)),
           ),
 
           InkWell(
@@ -1438,7 +1438,7 @@ class LoginScreenState extends State<LoginScreen>
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 15,
-                        color: fiberchatSECONDARYolor),
+                        color: crypterchatSECONDARYolor),
                   ),
                 )),
           ),
@@ -1457,10 +1457,10 @@ class LoginScreenState extends State<LoginScreen>
     var w = MediaQuery.of(this.context).size.width;
     var h = MediaQuery.of(this.context).size.height;
 
-    return Fiberchat.getNTPWrappedWidget(Scaffold(
+    return Crypterchat.getNTPWrappedWidget(Scaffold(
       backgroundColor: Thm.isDarktheme(widget.prefs)
-          ? fiberchatAPPBARcolorDarkMode
-          : fiberchatAPPBARcolorLightMode,
+          ? crypterchatAPPBARcolorDarkMode
+          : crypterchatAPPBARcolorLightMode,
       body: SingleChildScrollView(
           child: Column(
         children: <Widget>[
@@ -1528,7 +1528,7 @@ class _MySimpleButtonState extends State<MySimpleButton> {
               //gradient: LinearGradient(colors: [bgColor, whiteColor]),
 
               border: Border.all(
-                color: widget.buttoncolor ?? fiberchatPRIMARYcolor,
+                color: widget.buttoncolor ?? crypterchatPRIMARYcolor,
               ),
               borderRadius:
                   BorderRadius.all(Radius.circular(widget.borderradius ?? 5))),
@@ -1575,7 +1575,7 @@ class _MobileInputWithOutlineState extends State<MobileInputWithOutline> {
         boxShadow: showShadow
             ? [
                 BoxShadow(
-                    color: fiberchatSECONDARYolor,
+                    color: crypterchatSECONDARYolor,
                     blurRadius: 10,
                     spreadRadius: 2)
               ]
@@ -1621,7 +1621,7 @@ class _MobileInputWithOutlineState extends State<MobileInputWithOutline> {
                           height: 0.0,
                           fontSize: 15.5,
                           fontWeight: FontWeight.w400,
-                          color: widget.buttonhintTextColor ?? fiberchatGrey),
+                          color: widget.buttonhintTextColor ?? crypterchatGrey),
                   fillColor: Colors.white,
                   filled: true,
                   border: new OutlineInputBorder(
@@ -1864,7 +1864,7 @@ class _InpuTextBoxState extends State<InpuTextBox> {
                       borderRadius:
                           BorderRadius.circular(widget.boxcornerradius ?? 1),
                       borderSide:
-                          BorderSide(color: fiberchatSECONDARYolor, width: 1.5),
+                          BorderSide(color: crypterchatSECONDARYolor, width: 1.5),
                     ),
                     border: OutlineInputBorder(
                         borderRadius:
@@ -1876,7 +1876,7 @@ class _InpuTextBoxState extends State<InpuTextBox> {
                     // fillColor: widget.boxbcgcolor ?? Colors.white,
                     hintStyle: TextStyle(
                         letterSpacing: widget.letterspacing ?? 1.5,
-                        color: fiberchatGrey,
+                        color: crypterchatGrey,
                         fontSize: 15.5,
                         fontWeight: FontWeight.w400)),
               ),

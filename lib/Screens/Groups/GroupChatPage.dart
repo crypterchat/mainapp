@@ -2,42 +2,42 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Screens/Groups/GroupDetails.dart';
-import 'package:fiberchat/Screens/Groups/widget/groupChatBubble.dart';
-import 'package:fiberchat/Screens/auth_screens/login.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/aes_encryption.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/uploadMediaWithProgress.dart';
-import 'package:fiberchat/Screens/contact_screens/SelectContactsToForward.dart';
-import 'package:fiberchat/Screens/homepage/Setupdata.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
-import 'package:fiberchat/Services/Providers/GroupChatProvider.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/chat_controller.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/custom_url_launcher.dart';
-import 'package:fiberchat/Utils/emoji_detect.dart';
-import 'package:fiberchat/Utils/mime_type.dart';
-import 'package:fiberchat/Utils/setStatusBarColor.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/main.dart';
-import 'package:fiberchat/widgets/AllinOneCameraGalleryImageVideoPicker/AllinOneCameraGalleryImageVideoPicker.dart';
-import 'package:fiberchat/widgets/CameraGalleryImagePicker/camera_image_gallery_picker.dart';
-import 'package:fiberchat/widgets/CameraGalleryImagePicker/multiMediaPicker.dart';
-import 'package:fiberchat/widgets/CustomLoader/custom_loader.dart';
-import 'package:fiberchat/widgets/DownloadManager/download_all_file_type.dart';
-import 'package:fiberchat/widgets/DynamicBottomSheet/dynamic_modal_bottomsheet.dart';
-import 'package:fiberchat/widgets/InfiniteList/InfiniteCOLLECTIONListViewWidget.dart';
-import 'package:fiberchat/widgets/MultiDocumentPicker/multiDocumentPicker.dart';
-import 'package:fiberchat/widgets/MyElevatedButton/MyElevatedButton.dart';
-import 'package:fiberchat/widgets/VideoEditor/video_editor.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Screens/Groups/GroupDetails.dart';
+import 'package:crypterchat/Screens/Groups/widget/groupChatBubble.dart';
+import 'package:crypterchat/Screens/auth_screens/login.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_layout.dart';
+import 'package:crypterchat/Screens/chat_screen/chat.dart';
+import 'package:crypterchat/Screens/chat_screen/utils/aes_encryption.dart';
+import 'package:crypterchat/Screens/chat_screen/utils/uploadMediaWithProgress.dart';
+import 'package:crypterchat/Screens/contact_screens/SelectContactsToForward.dart';
+import 'package:crypterchat/Screens/homepage/Setupdata.dart';
+import 'package:crypterchat/Services/Admob/admob.dart';
+import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+import 'package:crypterchat/Services/Providers/GroupChatProvider.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/chat_controller.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/custom_url_launcher.dart';
+import 'package:crypterchat/Utils/emoji_detect.dart';
+import 'package:crypterchat/Utils/mime_type.dart';
+import 'package:crypterchat/Utils/setStatusBarColor.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/main.dart';
+import 'package:crypterchat/widgets/AllinOneCameraGalleryImageVideoPicker/AllinOneCameraGalleryImageVideoPicker.dart';
+import 'package:crypterchat/widgets/CameraGalleryImagePicker/camera_image_gallery_picker.dart';
+import 'package:crypterchat/widgets/CameraGalleryImagePicker/multiMediaPicker.dart';
+import 'package:crypterchat/widgets/CustomLoader/custom_loader.dart';
+import 'package:crypterchat/widgets/DownloadManager/download_all_file_type.dart';
+import 'package:crypterchat/widgets/DynamicBottomSheet/dynamic_modal_bottomsheet.dart';
+import 'package:crypterchat/widgets/InfiniteList/InfiniteCOLLECTIONListViewWidget.dart';
+import 'package:crypterchat/widgets/MultiDocumentPicker/multiDocumentPicker.dart';
+import 'package:crypterchat/widgets/MyElevatedButton/MyElevatedButton.dart';
+import 'package:crypterchat/widgets/VideoEditor/video_editor.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -56,18 +56,18 @@ import 'dart:async';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart' as emojipic;
 import 'dart:convert';
 import 'dart:io';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Screens/privacypolicy&TnC/PdfViewFromCachedUrl.dart';
-import 'package:fiberchat/widgets/SoundPlayer/SoundPlayerPro.dart';
-import 'package:fiberchat/Services/Providers/currentchat_peer.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/contact_screens/ContactsSelect.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/photo_view.dart';
-import 'package:fiberchat/Utils/save.dart';
-import 'package:fiberchat/widgets/AudioRecorder/Audiorecord.dart';
-import 'package:fiberchat/widgets/VideoPreview/VideoPreview.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Screens/privacypolicy&TnC/PdfViewFromCachedUrl.dart';
+import 'package:crypterchat/widgets/SoundPlayer/SoundPlayerPro.dart';
+import 'package:crypterchat/Services/Providers/currentchat_peer.dart';
+import 'package:crypterchat/Screens/call_history/callhistory.dart';
+import 'package:crypterchat/Screens/contact_screens/ContactsSelect.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Screens/chat_screen/utils/photo_view.dart';
+import 'package:crypterchat/Utils/save.dart';
+import 'package:crypterchat/widgets/AudioRecorder/Audiorecord.dart';
+import 'package:crypterchat/widgets/VideoPreview/VideoPreview.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:giphy_get/giphy_get.dart';
@@ -75,9 +75,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:receive_sharing_intent_plus/receive_sharing_intent_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Utils/unawaited.dart';
-import 'package:fiberchat/Models/E2EE/e2ee.dart' as e2ee;
+import 'package:crypterchat/Configs/Enum.dart';
+import 'package:crypterchat/Utils/unawaited.dart';
+import 'package:crypterchat/Models/E2EE/e2ee.dart' as e2ee;
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:video_compress/video_compress.dart' as compress;
 import 'package:path/path.dart' as p;
@@ -185,7 +185,7 @@ class _GroupChatPageState extends State<GroupChatPage>
 
   void _changeLanguage(Language language) async {
     Locale _locale = await setLocale(language.languageCode);
-    FiberchatWrapper.setLocale(this.context, _locale);
+    CrypterchatWrapper.setLocale(this.context, _locale);
 
     Future.delayed(const Duration(milliseconds: 800), () {
       FirebaseFirestore.instance
@@ -469,7 +469,7 @@ class _GroupChatPageState extends State<GroupChatPage>
           }).toString();
         });
       }).catchError((onError) {
-        Fiberchat.toast(getTranslated(this.context, 'failedsending'));
+        Crypterchat.toast(getTranslated(this.context, 'failedsending'));
         debugPrint('ERROR SENDING MEDIA: $onError');
       });
     } else {
@@ -559,8 +559,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                   ),
                   key: _keyLoader,
                   backgroundColor: Thm.isDarktheme(widget.prefs)
-                      ? fiberchatDIALOGColorDarkMode
-                      : fiberchatDIALOGColorLightMode,
+                      ? crypterchatDIALOGColorDarkMode
+                      : crypterchatDIALOGColorLightMode,
                   children: <Widget>[
                     Center(
                       child: StreamBuilder(
@@ -626,7 +626,7 @@ class _GroupChatPageState extends State<GroupChatPage>
           }).toString();
         });
       }).catchError((onError) {
-        Fiberchat.toast(getTranslated(this.context, 'failedsending'));
+        Crypterchat.toast(getTranslated(this.context, 'failedsending'));
         debugPrint('ERROR SENDING FILE: $onError');
       });
     } else {
@@ -701,8 +701,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                   ),
                   key: _keyLoader,
                   backgroundColor: Thm.isDarktheme(widget.prefs)
-                      ? fiberchatDIALOGColorDarkMode
-                      : fiberchatDIALOGColorLightMode,
+                      ? crypterchatDIALOGColorDarkMode
+                      : crypterchatDIALOGColorLightMode,
                   children: <Widget>[
                     Center(
                       child: StreamBuilder(
@@ -763,7 +763,7 @@ class _GroupChatPageState extends State<GroupChatPage>
           }).toString();
         });
       }).catchError((onError) {
-        Fiberchat.toast(getTranslated(this.context, 'failedsending'));
+        Crypterchat.toast(getTranslated(this.context, 'failedsending'));
         debugPrint('ERROR SENDING FILE: $onError');
       });
     } else {
@@ -1022,7 +1022,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                       left: 10,
                     ),
                     decoration: BoxDecoration(
-                        color: fiberchatWhite,
+                        color: crypterchatWhite,
                         borderRadius: BorderRadius.all(Radius.circular(30))),
                     child: Row(
                       children: [
@@ -1033,7 +1033,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                               refreshThisInput();
                             },
                             icon: Icon(Icons.emoji_emotions,
-                                color: fiberchatGrey, size: 23),
+                                color: crypterchatGrey, size: 23),
                           ),
                         ),
                         Flexible(
@@ -1057,7 +1057,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                             maxLines: null,
                             textCapitalization: TextCapitalization.sentences,
                             style: TextStyle(
-                                fontSize: 16.0, color: fiberchatBlack),
+                                fontSize: 16.0, color: crypterchatBlack),
                             controller: textEditingController,
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
@@ -1101,14 +1101,14 @@ class _GroupChatPageState extends State<GroupChatPage>
                                         child: IconButton(
                                           icon: new Icon(
                                             Icons.attachment_outlined,
-                                            color: fiberchatGrey,
+                                            color: crypterchatGrey,
                                           ),
                                           padding: EdgeInsets.all(0.0),
                                           onPressed:
                                               observer.ismediamessagingallowed ==
                                                       false
                                                   ? () {
-                                                      Fiberchat.showRationale(
+                                                      Crypterchat.showRationale(
                                                           getTranslated(
                                                               this.context,
                                                               'mediamssgnotallowed'));
@@ -1117,7 +1117,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                       hidekeyboard(context);
                                                       shareMedia(context);
                                                     },
-                                          color: fiberchatWhite,
+                                          color: crypterchatWhite,
                                         ),
                                       ),
                                 textEditingController.text.isNotEmpty
@@ -1128,14 +1128,14 @@ class _GroupChatPageState extends State<GroupChatPage>
                                           icon: new Icon(
                                             Icons.camera_alt_rounded,
                                             size: 20,
-                                            color: fiberchatGrey,
+                                            color: crypterchatGrey,
                                           ),
                                           padding: EdgeInsets.all(0.0),
                                           onPressed:
                                               observer.ismediamessagingallowed ==
                                                       false
                                                   ? () {
-                                                      Fiberchat.showRationale(
+                                                      Crypterchat.showRationale(
                                                           getTranslated(
                                                               this.context,
                                                               'mediamssgnotallowed'));
@@ -1221,7 +1221,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                                     },
                                                                   )));
                                                     },
-                                          color: fiberchatWhite,
+                                          color: crypterchatWhite,
                                         ),
                                       ),
                                 textEditingController.text.length != 0 ||
@@ -1235,18 +1235,18 @@ class _GroupChatPageState extends State<GroupChatPage>
                                         alignment: Alignment.topLeft,
                                         width: 40,
                                         child: IconButton(
-                                            color: fiberchatWhite,
+                                            color: crypterchatWhite,
                                             padding: EdgeInsets.all(0.0),
                                             icon: Icon(
                                               Icons.gif_rounded,
                                               size: 40,
-                                              color: fiberchatGrey,
+                                              color: crypterchatGrey,
                                             ),
                                             onPressed: observer
                                                         .ismediamessagingallowed ==
                                                     false
                                                 ? () {
-                                                    Fiberchat.showRationale(
+                                                    Crypterchat.showRationale(
                                                         getTranslated(
                                                             this.context,
                                                             'mediamssgnotallowed'));
@@ -1255,7 +1255,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                     GiphyGif? gif =
                                                         await GiphyGet.getGif(
                                                       tabColor:
-                                                          fiberchatPRIMARYcolor,
+                                                          crypterchatPRIMARYcolor,
                                                       context: context,
                                                       apiKey:
                                                           GiphyAPIKey, //YOUR API KEY HERE
@@ -1287,7 +1287,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                   // alignment: Alignment.center,
                   margin: EdgeInsets.only(left: 6, right: 10),
                   decoration: BoxDecoration(
-                      color: fiberchatSECONDARYolor,
+                      color: crypterchatSECONDARYolor,
                       borderRadius: BorderRadius.all(Radius.circular(30))),
                   child: Padding(
                     padding: const EdgeInsets.all(2.0),
@@ -1297,12 +1297,12 @@ class _GroupChatPageState extends State<GroupChatPage>
                               textEditingController.text.length == 0
                                   ? Icons.mic
                                   : Icons.send,
-                              color: fiberchatWhite.withOpacity(0.99),
+                              color: crypterchatWhite.withOpacity(0.99),
                             )
                           : textEditingController.text.length == 0
                               ? new Icon(
                                   Icons.mic,
-                                  color: fiberchatWhite.withOpacity(0.99),
+                                  color: crypterchatWhite.withOpacity(0.99),
                                 )
                               : Text(
                                   textInSendButton,
@@ -1340,7 +1340,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                 }
                               : observer.istextmessagingallowed == false
                                   ? () {
-                                      Fiberchat.showRationale(getTranslated(
+                                      Crypterchat.showRationale(getTranslated(
                                           this.context, 'textmssgnotallowed'));
                                     }
                                   : () => onSendMessage(
@@ -1351,10 +1351,10 @@ class _GroupChatPageState extends State<GroupChatPage>
                                         type: MessageType.text,
                                       )
                           : () {
-                              Fiberchat.showRationale(getTranslated(
+                              Crypterchat.showRationale(getTranslated(
                                   this.context, 'mediamssgnotallowed'));
                             },
-                      color: fiberchatWhite,
+                      color: crypterchatWhite,
                     ),
                   ),
                 ),
@@ -1404,7 +1404,7 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                 left: 10,
   //               ),
   //               decoration: BoxDecoration(
-  //                   color: fiberchatWhite,
+  //                   color: crypterchatWhite,
   //                   borderRadius: BorderRadius.all(Radius.circular(30))),
   //               child: Row(
   //                 children: [
@@ -1417,7 +1417,7 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                             },
   //                             icon: Icon(
   //                               Icons.keyboard,
-  //                               color: fiberchatGrey,
+  //                               color: crypterchatGrey,
   //                             ),
   //                           ),
   //                         )
@@ -1436,7 +1436,7 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                                   },
   //                                   icon: Icon(
   //                                     Icons.emoji_emotions,
-  //                                     color: fiberchatGrey,
+  //                                     color: crypterchatGrey,
   //                                   ),
   //                                 ),
   //                               ),
@@ -1447,18 +1447,18 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                                   : SizedBox(
   //                                       width: 50,
   //                                       child: IconButton(
-  //                                           color: fiberchatWhite,
+  //                                           color: crypterchatWhite,
   //                                           padding: EdgeInsets.all(0.0),
   //                                           icon: Icon(
   //                                             Icons.gif,
   //                                             size: 40,
-  //                                             color: fiberchatGrey,
+  //                                             color: crypterchatGrey,
   //                                           ),
   //                                           onPressed: observer
   //                                                       .ismediamessagingallowed ==
   //                                                   false
   //                                               ? () {
-  //                                                   Fiberchat.showRationale(
+  //                                                   Crypterchat.showRationale(
   //                                                       getTranslated(
   //                                                           this.context,
   //                                                           'mediamssgnotallowed'));
@@ -1466,7 +1466,7 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                                               : () async {
   //                                                   GiphyGif? gif =
   //                                                       await GiphyGet.getGif(
-  //                                                     tabColor: fiberchatgreen,
+  //                                                     tabColor: crypterchatgreen,
   //                                                     context: context,
   //                                                     apiKey:
   //                                                         GiphyAPIKey, //YOUR API KEY HERE
@@ -1493,14 +1493,14 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                                       child: IconButton(
   //                                         icon: new Icon(
   //                                           Icons.attachment_outlined,
-  //                                           color: fiberchatGrey,
+  //                                           color: crypterchatGrey,
   //                                         ),
   //                                         padding: EdgeInsets.all(0.0),
   //                                         onPressed:
   //                                             observer.ismediamessagingallowed ==
   //                                                     false
   //                                                 ? () {
-  //                                                     Fiberchat.showRationale(
+  //                                                     Crypterchat.showRationale(
   //                                                         getTranslated(
   //                                                             this.context,
   //                                                             'mediamssgnotallowed'));
@@ -1509,7 +1509,7 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                                                     hidekeyboard(context);
   //                                                     shareMedia(context);
   //                                                   },
-  //                                         color: fiberchatWhite,
+  //                                         color: crypterchatWhite,
   //                                       ),
   //                                     )
   //                             ],
@@ -1536,7 +1536,7 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                       showCursor: true,
   //                       focusNode: keyboardFocusNode,
   //                       maxLines: null,
-  //                       style: TextStyle(fontSize: 16.0, color: fiberchatBlack),
+  //                       style: TextStyle(fontSize: 16.0, color: crypterchatBlack),
   //                       controller: textEditingController,
   //                       decoration: InputDecoration(
   //                         enabledBorder: OutlineInputBorder(
@@ -1574,8 +1574,8 @@ class _GroupChatPageState extends State<GroupChatPage>
   //             margin: EdgeInsets.only(left: 6, right: 10),
   //             decoration: BoxDecoration(
   //                 color: DESIGN_TYPE == Themetype.whatsapp
-  //                     ? fiberchatgreen
-  //                     : fiberchatLightGreen,
+  //                     ? crypterchatgreen
+  //                     : crypterchatLightGreen,
   //                 // border: Border.all(
   //                 //   color: Colors.red[500],
   //                 // ),
@@ -1587,7 +1587,7 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                   textEditingController.text.isNotEmpty == true
   //                       ? Icons.send
   //                       : Icons.mic,
-  //                   color: fiberchatWhite.withOpacity(0.99),
+  //                   color: crypterchatWhite.withOpacity(0.99),
   //                 ),
   //                 onPressed: observer.ismediamessagingallowed == true
   //                     ? textEditingController.text.isNotEmpty == false
@@ -1615,7 +1615,7 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                           }
   //                         : observer.istextmessagingallowed == false
   //                             ? () {
-  //                                 Fiberchat.showRationale(getTranslated(
+  //                                 Crypterchat.showRationale(getTranslated(
   //                                     this.context, 'textmssgnotallowed'));
   //                               }
   //                             : () => onSendMessage(
@@ -1625,10 +1625,10 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                                   type: MessageType.text,
   //                                 )
   //                     : () {
-  //                         Fiberchat.showRationale(getTranslated(
+  //                         Crypterchat.showRationale(getTranslated(
   //                             this.context, 'mediamssgnotallowed'));
   //                       },
-  //                 color: fiberchatWhite,
+  //                 color: crypterchatWhite,
   //               ),
   //             ),
   //           ),
@@ -1659,11 +1659,11 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                       horizontalSpacing: 0,
   //                       initCategory: emojipic.Category.RECENT,
   //                       bgColor: Color(0xFFF2F2F2),
-  //                       indicatorColor: fiberchatgreen,
+  //                       indicatorColor: crypterchatgreen,
   //                       iconColor: Colors.grey,
-  //                       iconColorSelected: fiberchatgreen,
+  //                       iconColorSelected: crypterchatgreen,
   //                       progressIndicatorColor: Colors.blue,
-  //                       backspaceColor: fiberchatgreen,
+  //                       backspaceColor: crypterchatgreen,
   //                       showRecentsTab: true,
   //                       recentsLimit: 28,
   //                       noRecentsText: 'No Recents',
@@ -1689,7 +1689,7 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                       left: 10,
   //                     ),
   //                     decoration: BoxDecoration(
-  //                         color: fiberchatWhite,
+  //                         color: crypterchatWhite,
   //                         borderRadius: BorderRadius.all(Radius.circular(30))),
   //                     child: Row(
   //                       children: [
@@ -1698,25 +1698,25 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                           child: Row(
   //                             children: [
   //                               IconButton(
-  //                                   color: fiberchatWhite,
+  //                                   color: crypterchatWhite,
   //                                   padding: EdgeInsets.all(0.0),
   //                                   icon: Icon(
   //                                     Icons.gif,
   //                                     size: 40,
-  //                                     color: fiberchatGrey,
+  //                                     color: crypterchatGrey,
   //                                   ),
   //                                   onPressed: observer
   //                                               .ismediamessagingallowed ==
   //                                           false
   //                                       ? () {
-  //                                           Fiberchat.showRationale(
+  //                                           Crypterchat.showRationale(
   //                                               getTranslated(this.context,
   //                                                   'mediamssgnotallowed'));
   //                                         }
   //                                       : () async {
   //                                           GiphyGif? gif =
   //                                               await GiphyGet.getGif(
-  //                                             tabColor: fiberchatgreen,
+  //                                             tabColor: crypterchatgreen,
   //                                             context: context,
   //                                             apiKey:
   //                                                 GiphyAPIKey, //YOUR API KEY HERE
@@ -1736,13 +1736,13 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                               IconButton(
   //                                 icon: new Icon(
   //                                   Icons.attachment_outlined,
-  //                                   color: fiberchatGrey,
+  //                                   color: crypterchatGrey,
   //                                 ),
   //                                 padding: EdgeInsets.all(0.0),
   //                                 onPressed: observer.ismediamessagingallowed ==
   //                                         false
   //                                     ? () {
-  //                                         Fiberchat.showRationale(getTranslated(
+  //                                         Crypterchat.showRationale(getTranslated(
   //                                             this.context,
   //                                             'mediamssgnotallowed'));
   //                                       }
@@ -1750,7 +1750,7 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                                         hidekeyboard(context);
   //                                         shareMedia(context);
   //                                       },
-  //                                 color: fiberchatWhite,
+  //                                 color: crypterchatWhite,
   //                               ),
   //                             ],
   //                           ),
@@ -1761,7 +1761,7 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                             onChanged: (v) {},
   //                             maxLines: null,
   //                             style: TextStyle(
-  //                                 fontSize: 18.0, color: fiberchatBlack),
+  //                                 fontSize: 18.0, color: crypterchatBlack),
   //                             controller: textEditingController,
   //                             decoration: InputDecoration(
   //                               enabledBorder: OutlineInputBorder(
@@ -1800,8 +1800,8 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                   margin: EdgeInsets.only(left: 6, right: 10),
   //                   decoration: BoxDecoration(
   //                       color: DESIGN_TYPE == Themetype.whatsapp
-  //                           ? fiberchatgreen
-  //                           : fiberchatLightGreen,
+  //                           ? crypterchatgreen
+  //                           : crypterchatLightGreen,
   //                       // border: Border.all(
   //                       //   color: Colors.red[500],
   //                       // ),
@@ -1811,11 +1811,11 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                     child: IconButton(
   //                       icon: new Icon(
   //                         Icons.send,
-  //                         color: fiberchatWhite.withOpacity(0.99),
+  //                         color: crypterchatWhite.withOpacity(0.99),
   //                       ),
   //                       onPressed: observer.istextmessagingallowed == false
   //                           ? () {
-  //                               Fiberchat.showRationale(getTranslated(
+  //                               Crypterchat.showRationale(getTranslated(
   //                                   this.context, 'textmssgnotallowed'));
   //                             }
   //                           : () {
@@ -1826,7 +1826,7 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                                 type: MessageType.text,
   //                               );
   //                             },
-  //                       color: fiberchatWhite,
+  //                       color: crypterchatWhite,
   //                     ),
   //                   ),
   //                 ),
@@ -1849,21 +1849,21 @@ class _GroupChatPageState extends State<GroupChatPage>
           height: 80,
           margin: EdgeInsets.only(left: 15, right: 70),
           decoration: BoxDecoration(
-              color: fiberchatWhite,
+              color: crypterchatWhite,
               borderRadius: BorderRadius.all(Radius.circular(10))),
           child: Stack(
             children: [
               Container(
                   margin: EdgeInsetsDirectional.all(4),
                   decoration: BoxDecoration(
-                      color: fiberchatGrey.withOpacity(0.1),
+                      color: crypterchatGrey.withOpacity(0.1),
                       borderRadius: BorderRadius.all(Radius.circular(8))),
                   child: Row(children: [
                     Container(
                       decoration: BoxDecoration(
                         color: replyDoc![Dbkeys.groupmsgSENDBY] ==
                                 widget.currentUserno
-                            ? fiberchatPRIMARYcolor
+                            ? crypterchatPRIMARYcolor
                             : Colors.purple,
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(0),
@@ -1895,7 +1895,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                   fontWeight: FontWeight.bold,
                                   color: replyDoc![Dbkeys.groupmsgSENDBY] ==
                                           widget.currentUserno
-                                      ? fiberchatPRIMARYcolor
+                                      ? crypterchatPRIMARYcolor
                                       : Colors.purple),
                             ),
                           ),
@@ -1908,7 +1908,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                   replyDoc![Dbkeys.content],
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
-                                  style: TextStyle(color: fiberchatBlack),
+                                  style: TextStyle(color: crypterchatBlack),
                                 )
                               : replyDoc![Dbkeys.messageType] ==
                                       MessageType.doc.index
@@ -1956,7 +1956,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                                   ? 'ndm'
                                                                   : ''),
                                       overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(color: fiberchatBlack),
+                                      style: TextStyle(color: crypterchatBlack),
                                     ),
                         ],
                       ),
@@ -1985,7 +1985,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                 placeholder: (context, url) => Container(
                                   child: CircularProgressIndicator(
                                     valueColor: AlwaysStoppedAnimation<Color>(
-                                        fiberchatSECONDARYolor),
+                                        crypterchatSECONDARYolor),
                                   ),
                                   width: replyDoc![Dbkeys.content]
                                           .contains('giphy')
@@ -2054,7 +2054,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                   valueColor:
                                                       AlwaysStoppedAnimation<
                                                               Color>(
-                                                          fiberchatSECONDARYolor),
+                                                          crypterchatSECONDARYolor),
                                                 ),
                                                 width: 84,
                                                 height: 84,
@@ -2124,7 +2124,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                               ? Colors.yellow[00]
                                               : replyDoc![Dbkeys.messageType] ==
                                                       MessageType.audio.index
-                                                  ? fiberchatGreenColor400
+                                                  ? crypterchatGreenColor400
                                                   : replyDoc![Dbkeys
                                                               .messageType] ==
                                                           MessageType
@@ -2459,8 +2459,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                   fontWeight: FontWeight.bold,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatDIALOGColorDarkMode
-                          : fiberchatDIALOGColorLightMode),
+                          ? crypterchatDIALOGColorDarkMode
+                          : crypterchatDIALOGColorLightMode),
                 ),
               ),
               onTap: () async {
@@ -2535,8 +2535,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                   fontWeight: FontWeight.bold,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatDIALOGColorDarkMode
-                          : fiberchatDIALOGColorLightMode),
+                          ? crypterchatDIALOGColorDarkMode
+                          : crypterchatDIALOGColorLightMode),
                 ),
               ),
               onTap: () async {
@@ -2577,8 +2577,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                   fontWeight: FontWeight.bold,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatDIALOGColorDarkMode
-                          : fiberchatDIALOGColorLightMode),
+                          ? crypterchatDIALOGColorDarkMode
+                          : crypterchatDIALOGColorLightMode),
                 ),
               ),
               onTap: () async {
@@ -2626,7 +2626,7 @@ class _GroupChatPageState extends State<GroupChatPage>
               onTap: () async {
                 Navigator.of(popable).pop();
 
-                var v = await Fiberchat.translateString(
+                var v = await Crypterchat.translateString(
                     mssgDoc[Dbkeys.groupmsgCONTENT], widget.prefs);
                 if (v != mssgDoc[Dbkeys.groupmsgCONTENT]) {
                   await widget.prefs.setString(
@@ -2680,8 +2680,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                 e.languageNameInEnglish,
                                         style: TextStyle(
                                             color: Thm.isDarktheme(widget.prefs)
-                                                ? fiberchatWhite
-                                                : fiberchatBlack,
+                                                ? crypterchatWhite
+                                                : crypterchatBlack,
                                             fontWeight: FontWeight.w500,
                                             fontSize: 16),
                                       ),
@@ -2692,7 +2692,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                               color: e.languageCode ==
                                                       widget.prefs.getString(
                                                           LAGUAGE_CODE)
-                                                  ? fiberchatSECONDARYolor
+                                                  ? crypterchatSECONDARYolor
                                                   : Colors.transparent,
                                             )
                                     ],
@@ -2704,7 +2704,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                           .toList(),
                       title: "");
                 } catch (e) {
-                  Fiberchat.toast(e.toString());
+                  Crypterchat.toast(e.toString());
                 }
               })));
     }
@@ -2714,8 +2714,8 @@ class _GroupChatPageState extends State<GroupChatPage>
         builder: (context) {
           return SimpleDialog(
               backgroundColor: Thm.isDarktheme(widget.prefs)
-                  ? fiberchatDIALOGColorDarkMode
-                  : fiberchatDIALOGColorLightMode,
+                  ? crypterchatDIALOGColorDarkMode
+                  : crypterchatDIALOGColorLightMode,
               children: tiles);
         });
   }
@@ -2765,7 +2765,7 @@ class _GroupChatPageState extends State<GroupChatPage>
             );
           }).then((value) async {
             if (index >= list.length - 1) {
-              Fiberchat.toast(
+              Crypterchat.toast(
                 getTranslated(this.context, 'sent'),
               );
               setStateIfMounted(() {
@@ -2781,7 +2781,7 @@ class _GroupChatPageState extends State<GroupChatPage>
           setStateIfMounted(() {
             isgeneratingSomethingLoader = false;
           });
-          Fiberchat.toast(getTranslated(this.context, 'failedsending'));
+          Crypterchat.toast(getTranslated(this.context, 'failedsending'));
         }
       } else {
         try {
@@ -2802,10 +2802,10 @@ class _GroupChatPageState extends State<GroupChatPage>
                 await ChatController.request(
                     widget.currentUserno,
                     list[index][Dbkeys.phone],
-                    Fiberchat.getChatId(
+                    Crypterchat.getChatId(
                         widget.currentUserno, list[index][Dbkeys.phone]));
               }
-              var chatId = Fiberchat.getChatId(
+              var chatId = Crypterchat.getChatId(
                   widget.currentUserno, list[index][Dbkeys.phone]);
               await FirebaseFirestore.instance
                   .collection(DbPaths.collectionmessages)
@@ -2849,7 +2849,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                     list[index][Dbkeys.phone], timestamp2, messaging);
               }).then((value) async {
                 if (index >= list.length - 1) {
-                  Fiberchat.toast(
+                  Crypterchat.toast(
                     getTranslated(this.context, 'sent'),
                   );
                   setStateIfMounted(() {
@@ -2866,13 +2866,13 @@ class _GroupChatPageState extends State<GroupChatPage>
             setStateIfMounted(() {
               isgeneratingSomethingLoader = false;
             });
-            Fiberchat.toast('Nothing to send');
+            Crypterchat.toast('Nothing to send');
           }
         } catch (e) {
           setStateIfMounted(() {
             isgeneratingSomethingLoader = false;
           });
-          Fiberchat.toast('Failed to Forward message. Error:$e');
+          Crypterchat.toast('Failed to Forward message. Error:$e');
         }
       }
     }
@@ -2964,7 +2964,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                     ? Text(
                         getTranslated(context, 'msgdeleted'),
                         style: TextStyle(
-                            color: fiberchatBlack.withOpacity(0.6),
+                            color: crypterchatBlack.withOpacity(0.6),
                             fontSize: 15,
                             fontStyle: FontStyle.italic),
                       )
@@ -3041,7 +3041,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                               Icon(
                                 FontAwesomeIcons.share,
                                 size: 12,
-                                color: fiberchatGrey.withOpacity(0.5),
+                                color: crypterchatGrey.withOpacity(0.5),
                               ),
                               SizedBox(
                                 width: 5,
@@ -3049,7 +3049,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                               Text(getTranslated(this.context, 'forwarded'),
                                   maxLines: 1,
                                   style: TextStyle(
-                                      color: fiberchatGrey.withOpacity(0.7),
+                                      color: crypterchatGrey.withOpacity(0.7),
                                       fontStyle: FontStyle.italic,
                                       overflow: TextOverflow.ellipsis,
                                       fontSize: 13))
@@ -3138,7 +3138,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                             Icon(
                               FontAwesomeIcons.share,
                               size: 12,
-                              color: fiberchatGrey.withOpacity(0.5),
+                              color: crypterchatGrey.withOpacity(0.5),
                             ),
                             SizedBox(
                               width: 5,
@@ -3146,7 +3146,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                             Text(getTranslated(this.context, 'forwarded'),
                                 maxLines: 1,
                                 style: TextStyle(
-                                    color: fiberchatGrey.withOpacity(0.7),
+                                    color: crypterchatGrey.withOpacity(0.7),
                                     fontStyle: FontStyle.italic,
                                     overflow: TextOverflow.ellipsis,
                                     fontSize: 13))
@@ -3217,7 +3217,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                 Icon(
                                   FontAwesomeIcons.share,
                                   size: 12,
-                                  color: fiberchatGrey.withOpacity(0.5),
+                                  color: crypterchatGrey.withOpacity(0.5),
                                 ),
                                 SizedBox(
                                   width: 5,
@@ -3225,7 +3225,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                 Text(getTranslated(this.context, 'forwarded'),
                                     maxLines: 1,
                                     style: TextStyle(
-                                        color: fiberchatGrey.withOpacity(0.7),
+                                        color: crypterchatGrey.withOpacity(0.7),
                                         fontStyle: FontStyle.italic,
                                         overflow: TextOverflow.ellipsis,
                                         fontSize: 13))
@@ -3270,7 +3270,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                           Icon(
                             FontAwesomeIcons.share,
                             size: 12,
-                            color: fiberchatGrey.withOpacity(0.5),
+                            color: crypterchatGrey.withOpacity(0.5),
                           ),
                           SizedBox(
                             width: 5,
@@ -3278,7 +3278,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                           Text(getTranslated(this.context, 'forwarded'),
                               maxLines: 1,
                               style: TextStyle(
-                                  color: fiberchatGrey.withOpacity(0.7),
+                                  color: crypterchatGrey.withOpacity(0.7),
                                   fontStyle: FontStyle.italic,
                                   overflow: TextOverflow.ellipsis,
                                   fontSize: 13))
@@ -3330,7 +3330,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                             Icon(
                               FontAwesomeIcons.share,
                               size: 12,
-                              color: fiberchatGrey.withOpacity(0.5),
+                              color: crypterchatGrey.withOpacity(0.5),
                             ),
                             SizedBox(
                               width: 5,
@@ -3338,7 +3338,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                             Text(getTranslated(this.context, 'forwarded'),
                                 maxLines: 1,
                                 style: TextStyle(
-                                    color: fiberchatGrey.withOpacity(0.7),
+                                    color: crypterchatGrey.withOpacity(0.7),
                                     fontStyle: FontStyle.italic,
                                     overflow: TextOverflow.ellipsis,
                                     fontSize: 13))
@@ -3391,7 +3391,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                             Icon(
                               FontAwesomeIcons.share,
                               size: 12,
-                              color: fiberchatGrey.withOpacity(0.5),
+                              color: crypterchatGrey.withOpacity(0.5),
                             ),
                             SizedBox(
                               width: 5,
@@ -3399,7 +3399,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                             Text(getTranslated(this.context, 'forwarded'),
                                 maxLines: 1,
                                 style: TextStyle(
-                                    color: fiberchatGrey.withOpacity(0.7),
+                                    color: crypterchatGrey.withOpacity(0.7),
                                     fontStyle: FontStyle.italic,
                                     overflow: TextOverflow.ellipsis,
                                     fontSize: 13))
@@ -3525,7 +3525,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                             Icon(
                               FontAwesomeIcons.share,
                               size: 12,
-                              color: fiberchatGrey.withOpacity(0.5),
+                              color: crypterchatGrey.withOpacity(0.5),
                             ),
                             SizedBox(
                               width: 5,
@@ -3533,7 +3533,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                             Text(getTranslated(this.context, 'forwarded'),
                                 maxLines: 1,
                                 style: TextStyle(
-                                    color: fiberchatGrey.withOpacity(0.7),
+                                    color: crypterchatGrey.withOpacity(0.7),
                                     fontStyle: FontStyle.italic,
                                     overflow: TextOverflow.ellipsis,
                                     fontSize: 13))
@@ -3626,14 +3626,14 @@ class _GroupChatPageState extends State<GroupChatPage>
                   height: 70,
                   margin: EdgeInsets.only(left: 0, right: 0),
                   decoration: BoxDecoration(
-                      color: fiberchatWhite.withOpacity(0.55),
+                      color: crypterchatWhite.withOpacity(0.55),
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                   child: Stack(
                     children: [
                       Container(
                           margin: EdgeInsetsDirectional.all(4),
                           decoration: BoxDecoration(
-                              color: fiberchatGrey.withOpacity(0.1),
+                              color: crypterchatGrey.withOpacity(0.1),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(8))),
                           child: Row(children: [
@@ -3641,7 +3641,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                               decoration: BoxDecoration(
                                 color: doc[Dbkeys.groupmsgSENDBY] ==
                                         widget.currentUserno
-                                    ? fiberchatPRIMARYcolor
+                                    ? crypterchatPRIMARYcolor
                                     : Colors.purple,
                                 borderRadius: BorderRadius.only(
                                     topRight: Radius.circular(0),
@@ -3693,7 +3693,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                           fontWeight: FontWeight.bold,
                                           color: doc[Dbkeys.groupmsgSENDBY] ==
                                                   widget.currentUserno
-                                              ? fiberchatPRIMARYcolor
+                                              ? crypterchatPRIMARYcolor
                                               : Colors.purple),
                                     ),
                                   ),
@@ -3707,7 +3707,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 1,
                                           style:
-                                              TextStyle(color: fiberchatBlack),
+                                              TextStyle(color: crypterchatBlack),
                                         )
                                       : doc[Dbkeys.messageType] ==
                                               MessageType.doc.index
@@ -3720,7 +3720,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                 overflow: TextOverflow.ellipsis,
                                                 maxLines: 1,
                                                 style: TextStyle(
-                                                    color: fiberchatBlack),
+                                                    color: crypterchatBlack),
                                               ),
                                             )
                                           : Text(
@@ -3755,7 +3755,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                                           : ''),
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
-                                                  color: fiberchatBlack),
+                                                  color: crypterchatBlack),
                                             ),
                                 ],
                               ),
@@ -3788,7 +3788,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                           child: CircularProgressIndicator(
                                             valueColor:
                                                 AlwaysStoppedAnimation<Color>(
-                                                    fiberchatSECONDARYolor),
+                                                    crypterchatSECONDARYolor),
                                           ),
                                           width: doc[Dbkeys.content]
                                                   .contains('giphy')
@@ -3862,7 +3862,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                           valueColor:
                                                               AlwaysStoppedAnimation<
                                                                       Color>(
-                                                                  fiberchatSECONDARYolor),
+                                                                  crypterchatSECONDARYolor),
                                                         ),
                                                         width: 74,
                                                         height: 74,
@@ -3941,7 +3941,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                       : doc[Dbkeys.messageType] ==
                                                               MessageType
                                                                   .audio.index
-                                                          ? fiberchatGreenColor400
+                                                          ? crypterchatGreenColor400
                                                           : doc[Dbkeys.messageType] ==
                                                                   MessageType
                                                                       .location
@@ -4043,12 +4043,12 @@ class _GroupChatPageState extends State<GroupChatPage>
               child: Center(
                 child: CircularProgressIndicator(
                     valueColor:
-                        AlwaysStoppedAnimation<Color>(fiberchatSECONDARYolor)),
+                        AlwaysStoppedAnimation<Color>(crypterchatSECONDARYolor)),
               ),
               color: pickTextColorBasedOnBgColorAdvanced(
                       !Thm.isDarktheme(widget.prefs)
-                          ? fiberchatCONTAINERboxColorDarkMode
-                          : fiberchatCONTAINERboxColorLightMode)
+                          ? crypterchatCONTAINERboxColorDarkMode
+                          : crypterchatCONTAINERboxColorLightMode)
                   .withOpacity(0.6),
             )
           : Container(),
@@ -4058,8 +4058,8 @@ class _GroupChatPageState extends State<GroupChatPage>
   shareMedia(BuildContext context) {
     showModalBottomSheet(
         backgroundColor: Thm.isDarktheme(widget.prefs)
-            ? fiberchatDIALOGColorDarkMode
-            : fiberchatDIALOGColorLightMode,
+            ? crypterchatDIALOGColorDarkMode
+            : crypterchatDIALOGColorLightMode,
         context: context,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
@@ -4130,7 +4130,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: fiberchatGrey, fontSize: 14),
+                          style: TextStyle(color: crypterchatGrey, fontSize: 14),
                         )
                       ],
                     ),
@@ -4149,7 +4149,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                             File? selectedMedia =
                                 await pickVideoFromgallery(context)
                                     .catchError((err) {
-                              Fiberchat.toast(
+                              Crypterchat.toast(
                                   getTranslated(context, "invalidfile"));
                               return null;
                             });
@@ -4223,7 +4223,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                             },
                                             file: File(file.path))));
                               } else {
-                                Fiberchat.toast(
+                                Crypterchat.toast(
                                     "File type not supported. Please choose a valid .mp4, .mov file. \n\nSelected file was $fileExtension ");
                               }
                             }
@@ -4246,7 +4246,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: fiberchatGrey, fontSize: 14),
+                          style: TextStyle(color: crypterchatGrey, fontSize: 14),
                         )
                       ],
                     ),
@@ -4308,7 +4308,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: fiberchatGrey, fontSize: 14),
+                          style: TextStyle(color: crypterchatGrey, fontSize: 14),
                         )
                       ],
                     ),
@@ -4372,7 +4372,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: fiberchatGrey),
+                          style: TextStyle(color: crypterchatGrey),
                         )
                       ],
                     ),
@@ -4390,7 +4390,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                             Navigator.of(context).pop();
                             await checkIfLocationEnabled().then((value) async {
                               if (value == true) {
-                                Fiberchat.toast(getTranslated(
+                                Crypterchat.toast(getTranslated(
                                     this.context, 'detectingloc'));
                                 await _determinePosition().then(
                                   (location) async {
@@ -4402,13 +4402,13 @@ class _GroupChatPageState extends State<GroupChatPage>
                                       type: MessageType.location,
                                     );
                                     setStateIfMounted(() {});
-                                    Fiberchat.toast(
+                                    Crypterchat.toast(
                                       getTranslated(this.context, 'sent'),
                                     );
                                   },
                                 );
                               } else {
-                                Fiberchat.toast(getTranslated(
+                                Crypterchat.toast(getTranslated(
                                     this.context, 'locationdenied'));
                                 openAppSettings();
                               }
@@ -4432,7 +4432,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: fiberchatGrey),
+                          style: TextStyle(color: crypterchatGrey),
                         )
                       ],
                     ),
@@ -4482,7 +4482,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: fiberchatGrey),
+                          style: TextStyle(color: crypterchatGrey),
                         )
                       ],
                     ),
@@ -4526,7 +4526,7 @@ class _GroupChatPageState extends State<GroupChatPage>
 
     return PickupLayout(
         prefs: widget.prefs,
-        scaffold: Fiberchat.getNTPWrappedWidget(Consumer<List<GroupModel>>(
+        scaffold: Crypterchat.getNTPWrappedWidget(Consumer<List<GroupModel>>(
             builder: (context, groupList, _child) => PopScope(
                   onPopInvoked: isgeneratingSomethingLoader == true
                       ? (v) async {
@@ -4557,8 +4557,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                       Scaffold(
                           key: _scaffold,
                           backgroundColor: Thm.isDarktheme(widget.prefs)
-                              ? fiberchatCHATBACKGROUNDDarkMode
-                              : fiberchatCHATBACKGROUNDLightMode,
+                              ? crypterchatCHATBACKGROUNDDarkMode
+                              : crypterchatCHATBACKGROUNDLightMode,
                           appBar: AppBar(
                             elevation: 0.4,
                             titleSpacing: -10,
@@ -4571,15 +4571,15 @@ class _GroupChatPageState extends State<GroupChatPage>
                                   size: 20,
                                   color: pickTextColorBasedOnBgColorAdvanced(
                                       Thm.isDarktheme(widget.prefs)
-                                          ? fiberchatAPPBARcolorDarkMode
-                                          : fiberchatAPPBARcolorLightMode),
+                                          ? crypterchatAPPBARcolorDarkMode
+                                          : crypterchatAPPBARcolorLightMode),
                                 ),
                                 onPressed: onWillPop,
                               ),
                             ),
                             backgroundColor: Thm.isDarktheme(widget.prefs)
-                                ? fiberchatAPPBARcolorDarkMode
-                                : fiberchatAPPBARcolorLightMode,
+                                ? crypterchatAPPBARcolorDarkMode
+                                : crypterchatAPPBARcolorLightMode,
                             title: InkWell(
                               onTap: () {
                                 Navigator.push(
@@ -4630,8 +4630,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                 color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                         .isDarktheme(
                                                             widget.prefs)
-                                                    ? fiberchatAPPBARcolorDarkMode
-                                                    : fiberchatAPPBARcolorLightMode),
+                                                    ? crypterchatAPPBARcolorDarkMode
+                                                    : crypterchatAPPBARcolorLightMode),
                                                 fontSize: 17.0,
                                                 fontWeight: FontWeight.w500),
                                           ),
@@ -4646,8 +4646,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                                 .isDarktheme(
                                                                     widget
                                                                         .prefs)
-                                                            ? fiberchatAPPBARcolorDarkMode
-                                                            : fiberchatAPPBARcolorLightMode)
+                                                            ? crypterchatAPPBARcolorDarkMode
+                                                            : crypterchatAPPBARcolorLightMode)
                                                         .withOpacity(0.5),
                                                     size: 17,
                                                   ),
@@ -4671,8 +4671,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                                               color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                           .isDarktheme(
                                                               widget.prefs)
-                                                      ? fiberchatAPPBARcolorDarkMode
-                                                      : fiberchatAPPBARcolorLightMode)
+                                                      ? crypterchatAPPBARcolorDarkMode
+                                                      : crypterchatAPPBARcolorLightMode)
                                                   .withOpacity(0.9),
                                               fontSize: 12,
                                               fontWeight: FontWeight.w400),
@@ -4694,13 +4694,13 @@ class _GroupChatPageState extends State<GroupChatPage>
                                         Icons.more_vert_outlined,
                                         color: pickTextColorBasedOnBgColorAdvanced(
                                             Thm.isDarktheme(widget.prefs)
-                                                ? fiberchatAPPBARcolorDarkMode
-                                                : fiberchatAPPBARcolorLightMode),
+                                                ? crypterchatAPPBARcolorDarkMode
+                                                : crypterchatAPPBARcolorLightMode),
                                       ),
                                     ),
                                     color: Thm.isDarktheme(widget.prefs)
-                                        ? fiberchatDIALOGColorDarkMode
-                                        : fiberchatDIALOGColorLightMode,
+                                        ? crypterchatDIALOGColorDarkMode
+                                        : crypterchatDIALOGColorLightMode,
                                     onSelected: (dynamic val) {
                                       switch (val) {
                                         case 'mute':
@@ -4779,8 +4779,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                                           showModalBottomSheet(
                                               backgroundColor: Thm.isDarktheme(
                                                       widget.prefs)
-                                                  ? fiberchatDIALOGColorDarkMode
-                                                  : fiberchatDIALOGColorLightMode,
+                                                  ? crypterchatDIALOGColorDarkMode
+                                                  : crypterchatDIALOGColorLightMode,
                                               isScrollControlled: true,
                                               context: context,
                                               shape: RoundedRectangleBorder(
@@ -4836,8 +4836,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                                 style: TextStyle(
                                                                     color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget
                                                                             .prefs)
-                                                                        ? fiberchatDIALOGColorDarkMode
-                                                                        : fiberchatDIALOGColorLightMode),
+                                                                        ? crypterchatDIALOGColorDarkMode
+                                                                        : crypterchatDIALOGColorLightMode),
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold,
@@ -4895,7 +4895,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                             ),
                                                             myElevatedButton(
                                                                 color:
-                                                                    fiberchatPRIMARYcolor,
+                                                                    crypterchatPRIMARYcolor,
                                                                 child: Padding(
                                                                   padding:
                                                                       const EdgeInsets
@@ -4957,8 +4957,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                                           (value) async {
                                                                     showModalBottomSheet(
                                                                         backgroundColor: Thm.isDarktheme(widget.prefs)
-                                                                            ? fiberchatDIALOGColorDarkMode
-                                                                            : fiberchatDIALOGColorLightMode,
+                                                                            ? crypterchatDIALOGColorDarkMode
+                                                                            : crypterchatDIALOGColorLightMode,
                                                                         isScrollControlled:
                                                                             true,
                                                                         context:
@@ -4980,7 +4980,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                                               child: Column(
                                                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                                                 children: [
-                                                                                  Icon(Icons.check, color: fiberchatGreenColor400, size: 40),
+                                                                                  Icon(Icons.check, color: crypterchatGreenColor400, size: 40),
                                                                                   SizedBox(
                                                                                     height: 30,
                                                                                   ),
@@ -4988,7 +4988,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                                                     getTranslated(context, 'reportsuccess'),
                                                                                     textAlign: TextAlign.center,
                                                                                     style: TextStyle(
-                                                                                      color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs) ? fiberchatDIALOGColorDarkMode : fiberchatDIALOGColorLightMode),
+                                                                                      color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs) ? crypterchatDIALOGColorDarkMode : crypterchatDIALOGColorLightMode),
                                                                                     ),
                                                                                   )
                                                                                 ],
@@ -5002,8 +5002,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                                           (err) {
                                                                     showModalBottomSheet(
                                                                         backgroundColor: Thm.isDarktheme(widget.prefs)
-                                                                            ? fiberchatDIALOGColorDarkMode
-                                                                            : fiberchatDIALOGColorLightMode,
+                                                                            ? crypterchatDIALOGColorDarkMode
+                                                                            : crypterchatDIALOGColorLightMode,
                                                                         isScrollControlled:
                                                                             true,
                                                                         context:
@@ -5026,7 +5026,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                                               child: Column(
                                                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                                                 children: [
-                                                                                  Icon(Icons.check, color: fiberchatGreenColor400, size: 40),
+                                                                                  Icon(Icons.check, color: crypterchatGreenColor400, size: 40),
                                                                                   SizedBox(
                                                                                     height: 30,
                                                                                   ),
@@ -5034,7 +5034,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                                                     getTranslated(context, 'reportsuccess'),
                                                                                     textAlign: TextAlign.center,
                                                                                     style: TextStyle(
-                                                                                      color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs) ? fiberchatDIALOGColorDarkMode : fiberchatDIALOGColorLightMode),
+                                                                                      color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs) ? crypterchatDIALOGColorDarkMode : crypterchatDIALOGColorLightMode),
                                                                                     ),
                                                                                   )
                                                                                 ],
@@ -5064,8 +5064,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                 color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                         .isDarktheme(
                                                             widget.prefs)
-                                                    ? fiberchatDIALOGColorDarkMode
-                                                    : fiberchatDIALOGColorLightMode),
+                                                    ? crypterchatDIALOGColorDarkMode
+                                                    : crypterchatDIALOGColorLightMode),
                                               ),
                                             ),
                                           ),
@@ -5077,8 +5077,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                 color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                         .isDarktheme(
                                                             widget.prefs)
-                                                    ? fiberchatDIALOGColorDarkMode
-                                                    : fiberchatDIALOGColorLightMode),
+                                                    ? crypterchatDIALOGColorDarkMode
+                                                    : crypterchatDIALOGColorLightMode),
                                               ),
                                             ),
                                           ),
@@ -5091,8 +5091,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                             new Container(
                               decoration: new BoxDecoration(
                                 color: Thm.isDarktheme(widget.prefs)
-                                    ? fiberchatCHATBACKGROUNDDarkMode
-                                    : fiberchatCHATBACKGROUNDLightMode,
+                                    ? crypterchatCHATBACKGROUNDDarkMode
+                                    : crypterchatCHATBACKGROUNDLightMode,
                                 image: new DecorationImage(
                                     image: AssetImage(Thm.isDarktheme(
                                             widget.prefs)
@@ -5211,7 +5211,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                             widget.prefs.getString('$timestamp-trns') ?? "",
                             style: TextStyle(
                                 fontStyle: FontStyle.italic,
-                                color: fiberchatGrey),
+                                color: crypterchatGrey),
                           ),
                         )
 //-pprefs
@@ -5232,7 +5232,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                 ['$timestamp-trns'],
                             style: TextStyle(
                                 fontStyle: FontStyle.italic,
-                                color: fiberchatGrey),
+                                color: crypterchatGrey),
                           ),
                         )
             ],

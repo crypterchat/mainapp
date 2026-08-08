@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:fiberchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class _AnsiColor {
@@ -233,7 +233,7 @@ void printGreen(
     printColor(
       object,
       PrintColorStyle(
-        foreground: fiberchatGreenColorAccent,
+        foreground: crypterchatGreenColorAccent,
         bold: bold,
         prefix: prefix,
         underline: underline,

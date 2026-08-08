@@ -6,45 +6,45 @@ import 'dart:io';
 import 'package:async/async.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Screens/Broadcast/AddContactsToBroadcast.dart';
-import 'package:fiberchat/Screens/Groups/AddContactsToGroup.dart';
-import 'package:fiberchat/Screens/SettingsOption/settingsOption.dart';
-import 'package:fiberchat/Screens/homepage/Setupdata.dart';
-import 'package:fiberchat/Screens/notifications/AllNotifications.dart';
-import 'package:fiberchat/Screens/recent_chats/RecentChatsWithoutLastMessage.dart';
-import 'package:fiberchat/Screens/search_chats/SearchRecentChat.dart';
-import 'package:fiberchat/Screens/sharing_intent/SelectContactToShare.dart';
-import 'package:fiberchat/Screens/splash_screen/splash_screen.dart';
-import 'package:fiberchat/Screens/status/status.dart';
-import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/Providers/StatusProvider.dart';
-import 'package:fiberchat/Services/Providers/call_history_provider.dart';
-import 'package:fiberchat/Services/localization/language.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/custom_url_launcher.dart';
-import 'package:fiberchat/Utils/error_codes.dart';
-import 'package:fiberchat/Utils/phonenumberVariantsGenerator.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/widgets/DynamicBottomSheet/dynamic_modal_bottomsheet.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Screens/Broadcast/AddContactsToBroadcast.dart';
+import 'package:crypterchat/Screens/Groups/AddContactsToGroup.dart';
+import 'package:crypterchat/Screens/SettingsOption/settingsOption.dart';
+import 'package:crypterchat/Screens/homepage/Setupdata.dart';
+import 'package:crypterchat/Screens/notifications/AllNotifications.dart';
+import 'package:crypterchat/Screens/recent_chats/RecentChatsWithoutLastMessage.dart';
+import 'package:crypterchat/Screens/search_chats/SearchRecentChat.dart';
+import 'package:crypterchat/Screens/sharing_intent/SelectContactToShare.dart';
+import 'package:crypterchat/Screens/splash_screen/splash_screen.dart';
+import 'package:crypterchat/Screens/status/status.dart';
+import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/Providers/StatusProvider.dart';
+import 'package:crypterchat/Services/Providers/call_history_provider.dart';
+import 'package:crypterchat/Services/localization/language.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/custom_url_launcher.dart';
+import 'package:crypterchat/Utils/error_codes.dart';
+import 'package:crypterchat/Utils/phonenumberVariantsGenerator.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/widgets/DynamicBottomSheet/dynamic_modal_bottomsheet.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart'
     as local;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/auth_screens/login.dart';
-import 'package:fiberchat/Services/Providers/currentchat_peer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/profile_settings/profileSettings.dart';
-import 'package:fiberchat/main.dart';
-import 'package:fiberchat/Screens/recent_chats/RecentsChats.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Services/Providers/user_provider.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Screens/auth_screens/login.dart';
+import 'package:crypterchat/Services/Providers/currentchat_peer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Screens/profile_settings/profileSettings.dart';
+import 'package:crypterchat/main.dart';
+import 'package:crypterchat/Screens/recent_chats/RecentsChats.dart';
+import 'package:crypterchat/Screens/call_history/callhistory.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Services/Providers/user_provider.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_layout.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -55,7 +55,7 @@ import 'package:receive_sharing_intent_plus/receive_sharing_intent_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:fiberchat/Utils/unawaited.dart';
+import 'package:crypterchat/Utils/unawaited.dart';
 
 class Homepage extends StatefulWidget {
   Homepage(
@@ -162,7 +162,7 @@ class HomepageState extends State<Homepage>
         TabController(length: IsShowSearchTab ? 3 : 2, vsync: this);
     controllerIfcallNotallowed!.index = IsShowSearchTab ? 1 : 0;
 
-    Fiberchat.internetLookUp();
+    Crypterchat.internetLookUp();
     WidgetsBinding.instance.addObserver(this);
 
     LocalAuthentication().canCheckBiometrics.then((res) {
@@ -233,11 +233,11 @@ class HomepageState extends State<Homepage>
   //         (widget.prefs.getBool('islanguageselected') == false ||
   //             widget.prefs.getBool('islanguageselected') == null)) {
   //       Locale _locale = await setLocale('ja');
-  //       FiberchatWrapper.setLocale(context, _locale);
+  //       CrypterchatWrapper.setLocale(context, _locale);
   //       setState(() {});
   //     }
   //   }).catchError((onError) {
-  //     Fiberchat.toast(
+  //     Crypterchat.toast(
   //       'Error occured while fetching Locale :$onError',
   //     );
   //   });
@@ -319,7 +319,7 @@ class HomepageState extends State<Homepage>
                   sharedText: _sharedText)));
     } else if (_sharedFiles != null) {
       if (_sharedFiles!.length > observer.maxNoOfFilesInMultiSharing) {
-        Fiberchat.toast(getTranslated(context, 'maxnooffiles') +
+        Crypterchat.toast(getTranslated(context, 'maxnooffiles') +
             ' ' +
             '${observer.maxNoOfFilesInMultiSharing}');
       } else {
@@ -466,7 +466,7 @@ class HomepageState extends State<Homepage>
     await widget.prefs.setBool(Dbkeys.isTokenGenerated, false);
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
-        builder: (BuildContext context) => FiberchatWrapper(),
+        builder: (BuildContext context) => CrypterchatWrapper(),
       ),
       (Route route) => false,
     );
@@ -509,7 +509,7 @@ class HomepageState extends State<Homepage>
           message.data['title'] != 'Incoming Audio Call...' &&
           message.data['title'] != 'Incoming Call ended' &&
           message.data['title'] != 'New message in Group') {
-        Fiberchat.toast(getTranslated(this.context, 'newnotifications'));
+        Crypterchat.toast(getTranslated(this.context, 'newnotifications'));
       } else {
         if (message.data['title'] == 'New message in Group') {
           // var currentpeer =
@@ -765,15 +765,15 @@ class HomepageState extends State<Homepage>
                     onPopInvoked: (v) async => false,
                     child: AlertDialog(
                       backgroundColor: Thm.isDarktheme(widget.prefs)
-                          ? fiberchatDIALOGColorDarkMode
-                          : fiberchatDIALOGColorLightMode,
+                          ? crypterchatDIALOGColorDarkMode
+                          : crypterchatDIALOGColorLightMode,
                       title: Text(
                         title,
                         style: TextStyle(
                           color: pickTextColorBasedOnBgColorAdvanced(
                               Thm.isDarktheme(widget.prefs)
-                                  ? fiberchatDIALOGColorDarkMode
-                                  : fiberchatDIALOGColorLightMode),
+                                  ? crypterchatDIALOGColorDarkMode
+                                  : crypterchatDIALOGColorLightMode),
                         ),
                       ),
                       content: Text(message),
@@ -781,7 +781,7 @@ class HomepageState extends State<Homepage>
                         TextButton(
                             child: Text(
                               btnLabel,
-                              style: TextStyle(color: fiberchatPRIMARYcolor),
+                              style: TextStyle(color: crypterchatPRIMARYcolor),
                             ),
                             onPressed: () => custom_url_launcher(
                                 widget.doc[Platform.isAndroid
@@ -918,7 +918,7 @@ class HomepageState extends State<Homepage>
       new StreamController<String>.broadcast();
   void _changeLanguage(Language language) async {
     Locale _locale = await setLocale(language.languageCode);
-    FiberchatWrapper.setLocale(context, _locale);
+    CrypterchatWrapper.setLocale(context, _locale);
     if (widget.currentUserNo != null) {
       Future.delayed(const Duration(milliseconds: 800), () {
         FirebaseFirestore.instance
@@ -942,7 +942,7 @@ class HomepageState extends State<Homepage>
     DateTime now = DateTime.now();
     if (now.difference(currentBackPressTime!) > Duration(seconds: 3)) {
       currentBackPressTime = now;
-      Fiberchat.toast(getTranslated(this.context, 'doubletaptogoback'));
+      Crypterchat.toast(getTranslated(this.context, 'doubletaptogoback'));
       return Future.value(false);
     } else {
       if (!isAuthenticating) setLastSeen();
@@ -968,26 +968,26 @@ class HomepageState extends State<Homepage>
                       )
                     : PickupLayout(
                         prefs: widget.prefs,
-                        scaffold: Fiberchat.getNTPWrappedWidget(PopScope(
+                        scaffold: Crypterchat.getNTPWrappedWidget(PopScope(
                           onPopInvoked: (v) => onWillPop,
                           child: Scaffold(
                               backgroundColor: Thm.isDarktheme(widget.prefs)
-                                  ? fiberchatBACKGROUNDcolorDarkMode
-                                  : fiberchatBACKGROUNDcolorLightMode,
+                                  ? crypterchatBACKGROUNDcolorDarkMode
+                                  : crypterchatBACKGROUNDcolorLightMode,
                               appBar: AppBar(
                                   centerTitle: false,
                                   elevation: 0.4,
                                   backgroundColor: Thm.isDarktheme(widget.prefs)
-                                      ? fiberchatAPPBARcolorDarkMode
-                                      : fiberchatAPPBARcolorLightMode,
+                                      ? crypterchatAPPBARcolorDarkMode
+                                      : crypterchatAPPBARcolorLightMode,
                                   title: IsShowAppLogoInHomepage == false
                                       ? Text(
                                           Appname,
                                           style: TextStyle(
                                               color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                       .isDarktheme(widget.prefs)
-                                                  ? fiberchatAPPBARcolorDarkMode
-                                                  : fiberchatAPPBARcolorLightMode),
+                                                  ? crypterchatAPPBARcolorDarkMode
+                                                  : crypterchatAPPBARcolorLightMode),
                                               fontSize: 20.0,
                                               fontWeight: FontWeight.bold,
                                               fontFamily:
@@ -999,7 +999,7 @@ class HomepageState extends State<Homepage>
                                       : Image.asset(
                                           !Thm.isDarktheme(widget.prefs)
                                               ? isDarkColor(
-                                                      fiberchatAPPBARcolorLightMode)
+                                                      crypterchatAPPBARcolorLightMode)
                                                   ? AppLogoPathDarkModeLogo
                                                   : AppLogoPathLightModeLogo
                                               : AppLogoPathDarkModeLogo,
@@ -1055,8 +1055,8 @@ class HomepageState extends State<Homepage>
                                                                             : e.flag + ' ' + '    ' + e.languageNameInEnglish,
                                                                         style: TextStyle(
                                                                             color: Thm.isDarktheme(widget.prefs)
-                                                                                ? fiberchatWhite
-                                                                                : fiberchatBlack,
+                                                                                ? crypterchatWhite
+                                                                                : crypterchatBlack,
                                                                             fontWeight:
                                                                                 FontWeight.w500,
                                                                             fontSize: 16),
@@ -1066,7 +1066,7 @@ class HomepageState extends State<Homepage>
                                                                           ? SizedBox()
                                                                           : Icon(
                                                                               Icons.done,
-                                                                              color: e.languageCode == widget.prefs.getString(LAGUAGE_CODE) ? fiberchatSECONDARYolor : Colors.transparent,
+                                                                              color: e.languageCode == widget.prefs.getString(LAGUAGE_CODE) ? crypterchatSECONDARYolor : Colors.transparent,
                                                                             )
                                                                     ],
                                                                   ),
@@ -1088,8 +1088,8 @@ class HomepageState extends State<Homepage>
                                                       color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                               .isDarktheme(
                                                                   widget.prefs)
-                                                          ? fiberchatAPPBARcolorDarkMode
-                                                          : fiberchatAPPBARcolorLightMode),
+                                                          ? crypterchatAPPBARcolorDarkMode
+                                                          : crypterchatAPPBARcolorLightMode),
                                                       size: 22,
                                                     ),
                                                     SizedBox(
@@ -1099,15 +1099,15 @@ class HomepageState extends State<Homepage>
                                                       Icons.keyboard_arrow_down,
                                                       color: Thm.isDarktheme(
                                                               widget.prefs)
-                                                          ? fiberchatSECONDARYolor
+                                                          ? crypterchatSECONDARYolor
                                                           : isDarkColor(
-                                                                      fiberchatBACKGROUNDcolorLightMode) ==
+                                                                      crypterchatBACKGROUNDcolorLightMode) ==
                                                                   true
-                                                              ? fiberchatWhite
+                                                              ? crypterchatWhite
                                                                   .withOpacity(
                                                                       0.6)
                                                               : pickTextColorBasedOnBgColorAdvanced(
-                                                                      fiberchatAPPBARcolorLightMode)
+                                                                      crypterchatAPPBARcolorLightMode)
                                                                   .withOpacity(
                                                                       0.65),
                                                       size: 27,
@@ -1126,13 +1126,13 @@ class HomepageState extends State<Homepage>
                                             Icons.more_vert_outlined,
                                             color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                     .isDarktheme(widget.prefs)
-                                                ? fiberchatAPPBARcolorDarkMode
-                                                : fiberchatAPPBARcolorLightMode),
+                                                ? crypterchatAPPBARcolorDarkMode
+                                                : crypterchatAPPBARcolorLightMode),
                                           ),
                                         ),
                                         color: Thm.isDarktheme(widget.prefs)
-                                            ? fiberchatDIALOGColorDarkMode
-                                            : fiberchatDIALOGColorLightMode,
+                                            ? crypterchatDIALOGColorDarkMode
+                                            : crypterchatDIALOGColorLightMode,
                                         onSelected: (dynamic val) async {
                                           switch (val) {
                                             case 'rate':
@@ -1145,8 +1145,8 @@ class HomepageState extends State<Homepage>
                                                       backgroundColor: Thm
                                                               .isDarktheme(
                                                                   widget.prefs)
-                                                          ? fiberchatDIALOGColorDarkMode
-                                                          : fiberchatDIALOGColorLightMode,
+                                                          ? crypterchatDIALOGColorDarkMode
+                                                          : crypterchatDIALOGColorLightMode,
                                                       contentPadding:
                                                           EdgeInsets.all(20),
                                                       children: <Widget>[
@@ -1160,8 +1160,8 @@ class HomepageState extends State<Homepage>
                                                                       .isDarktheme(
                                                                           widget
                                                                               .prefs)
-                                                                  ? fiberchatDIALOGColorDarkMode
-                                                                  : fiberchatDIALOGColorLightMode),
+                                                                  ? crypterchatDIALOGColorDarkMode
+                                                                  : crypterchatDIALOGColorLightMode),
                                                             ),
                                                           ),
                                                         ),
@@ -1177,8 +1177,8 @@ class HomepageState extends State<Homepage>
                                                                     .isDarktheme(
                                                                         widget
                                                                             .prefs)
-                                                                ? fiberchatDIALOGColorDarkMode
-                                                                : fiberchatDIALOGColorLightMode),
+                                                                ? crypterchatDIALOGColorDarkMode
+                                                                : crypterchatDIALOGColorLightMode),
                                                           ),
                                                         )),
                                                         SizedBox(
@@ -1193,8 +1193,8 @@ class HomepageState extends State<Homepage>
                                                                     .isDarktheme(
                                                                         widget
                                                                             .prefs)
-                                                                ? fiberchatDIALOGColorDarkMode
-                                                                : fiberchatDIALOGColorLightMode),
+                                                                ? crypterchatDIALOGColorDarkMode
+                                                                : crypterchatDIALOGColorLightMode),
                                                           ),
                                                         ))
                                                       ],
@@ -1243,7 +1243,7 @@ class HomepageState extends State<Homepage>
                                                                           builder: (context) => ProfileSetting(
                                                                                 prefs: widget.prefs,
                                                                                 biometricEnabled: biometricEnabled,
-                                                                                type: Fiberchat.getAuthenticationType(biometricEnabled, _cachedModel),
+                                                                                type: Crypterchat.getAuthenticationType(biometricEnabled, _cachedModel),
                                                                               )));
                                                                 },
                                                                 currentUserNo:
@@ -1251,7 +1251,7 @@ class HomepageState extends State<Homepage>
                                                                         .currentUserNo!,
                                                                 biometricEnabled:
                                                                     biometricEnabled,
-                                                                type: Fiberchat
+                                                                type: Crypterchat
                                                                     .getAuthenticationType(
                                                                         biometricEnabled,
                                                                         _cachedModel),
@@ -1262,7 +1262,7 @@ class HomepageState extends State<Homepage>
                                               if (observer
                                                       .isAllowCreatingGroups ==
                                                   false) {
-                                                Fiberchat.showRationale(
+                                                Crypterchat.showRationale(
                                                     getTranslated(this.context,
                                                         'disabled'));
                                               } else {
@@ -1302,7 +1302,7 @@ class HomepageState extends State<Homepage>
                                               if (observer
                                                       .isAllowCreatingBroadcasts ==
                                                   false) {
-                                                Fiberchat.showRationale(
+                                                Crypterchat.showRationale(
                                                     getTranslated(this.context,
                                                         'disabled'));
                                               } else {
@@ -1350,8 +1350,8 @@ class HomepageState extends State<Homepage>
                                                       color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                               .isDarktheme(
                                                                   widget.prefs)
-                                                          ? fiberchatDIALOGColorDarkMode
-                                                          : fiberchatDIALOGColorLightMode),
+                                                          ? crypterchatDIALOGColorDarkMode
+                                                          : crypterchatDIALOGColorLightMode),
                                                     ),
                                                   )),
                                               PopupMenuItem<String>(
@@ -1363,8 +1363,8 @@ class HomepageState extends State<Homepage>
                                                       color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                               .isDarktheme(
                                                                   widget.prefs)
-                                                          ? fiberchatDIALOGColorDarkMode
-                                                          : fiberchatDIALOGColorLightMode),
+                                                          ? crypterchatDIALOGColorDarkMode
+                                                          : crypterchatDIALOGColorLightMode),
                                                     ),
                                                   )),
                                               PopupMenuItem<String>(
@@ -1376,8 +1376,8 @@ class HomepageState extends State<Homepage>
                                                     color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                             .isDarktheme(
                                                                 widget.prefs)
-                                                        ? fiberchatDIALOGColorDarkMode
-                                                        : fiberchatDIALOGColorLightMode),
+                                                        ? crypterchatDIALOGColorDarkMode
+                                                        : crypterchatDIALOGColorLightMode),
                                                   ),
                                                 ),
                                               ),
@@ -1390,8 +1390,8 @@ class HomepageState extends State<Homepage>
                                                       color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                               .isDarktheme(
                                                                   widget.prefs)
-                                                          ? fiberchatDIALOGColorDarkMode
-                                                          : fiberchatDIALOGColorLightMode),
+                                                          ? crypterchatDIALOGColorDarkMode
+                                                          : crypterchatDIALOGColorLightMode),
                                                     ),
                                                   )),
                                             ]),
@@ -1464,22 +1464,22 @@ class HomepageState extends State<Homepage>
                                     labelColor:
                                         pickTextColorBasedOnBgColorAdvanced(Thm
                                                 .isDarktheme(widget.prefs)
-                                            ? fiberchatAPPBARcolorDarkMode
-                                            : fiberchatAPPBARcolorLightMode),
+                                            ? crypterchatAPPBARcolorDarkMode
+                                            : crypterchatAPPBARcolorLightMode),
                                     unselectedLabelColor:
                                         pickTextColorBasedOnBgColorAdvanced(Thm
                                                     .isDarktheme(widget.prefs)
-                                                ? fiberchatAPPBARcolorDarkMode
-                                                : fiberchatAPPBARcolorLightMode)
+                                                ? crypterchatAPPBARcolorDarkMode
+                                                : crypterchatAPPBARcolorLightMode)
                                             .withOpacity(0.6),
                                     indicatorWeight: 3,
                                     indicatorColor:
                                         Thm.isDarktheme(widget.prefs)
-                                            ? fiberchatSECONDARYolor
-                                            : fiberchatAPPBARcolorLightMode ==
+                                            ? crypterchatSECONDARYolor
+                                            : crypterchatAPPBARcolorLightMode ==
                                                     Colors.white
-                                                ? fiberchatSECONDARYolor
-                                                : fiberchatWhite,
+                                                ? crypterchatSECONDARYolor
+                                                : crypterchatWhite,
                                     controller:
                                         observer.isCallFeatureTotallyHide ==
                                                 false
@@ -1747,7 +1747,7 @@ Future showNotificationWithDefaultSound(String? title, String? message,
 
 Widget errorScreen(String? title, String? subtitle) {
   return Scaffold(
-    backgroundColor: fiberchatPRIMARYcolor,
+    backgroundColor: crypterchatPRIMARYcolor,
     body: Center(
       child: Padding(
         padding: const EdgeInsets.all(30.0),
@@ -1768,7 +1768,7 @@ Widget errorScreen(String? title, String? subtitle) {
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 20,
-                  color: fiberchatWhite,
+                  color: crypterchatWhite,
                   fontWeight: FontWeight.w700),
             ),
             SizedBox(
@@ -1779,7 +1779,7 @@ Widget errorScreen(String? title, String? subtitle) {
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 17,
-                  color: fiberchatWhite.withOpacity(0.7),
+                  color: crypterchatWhite.withOpacity(0.7),
                   fontWeight: FontWeight.w400),
             )
           ],

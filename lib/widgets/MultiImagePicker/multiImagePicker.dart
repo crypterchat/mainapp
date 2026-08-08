@@ -1,14 +1,14 @@
 // //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 // import 'dart:io';
-// import 'package:fiberchat/Configs/app_constants.dart';
-// import 'package:fiberchat/Screens/status/components/status_video_caption_editor.dart';
-// import 'package:fiberchat/Services/Providers/Observer.dart';
-// import 'package:fiberchat/Services/localization/language_constants.dart';
-// import 'package:fiberchat/Utils/color_detector.dart';
-// import 'package:fiberchat/Utils/open_settings.dart';
-// import 'package:fiberchat/Utils/theme_management.dart';
-// import 'package:fiberchat/Utils/utils.dart';
+// import 'package:crypterchat/Configs/app_constants.dart';
+// import 'package:crypterchat/Screens/status/components/status_video_caption_editor.dart';
+// import 'package:crypterchat/Services/Providers/Observer.dart';
+// import 'package:crypterchat/Services/localization/language_constants.dart';
+// import 'package:crypterchat/Utils/color_detector.dart';
+// import 'package:crypterchat/Utils/open_settings.dart';
+// import 'package:crypterchat/Utils/theme_management.dart';
+// import 'package:crypterchat/Utils/utils.dart';
 // import 'package:flutter/material.dart';
 // import 'package:image_picker/image_picker.dart';
 // import 'package:permission_handler/permission_handler.dart';
@@ -147,7 +147,7 @@
 //       return new Text(getTranslated(context, 'takeimage'),
 //           style: new TextStyle(
 //             fontSize: 18.0,
-//             color: fiberchatGrey,
+//             color: crypterchatGrey,
 //           ));
 //     }
 //   }
@@ -164,7 +164,7 @@
 //             style: TextStyle(
 //                 fontWeight: FontWeight.w800,
 //                 fontSize: 26,
-//                 color: fiberchatPRIMARYcolor),
+//                 color: crypterchatPRIMARYcolor),
 //           ),
 //           SizedBox(
 //             height: 20,
@@ -176,14 +176,14 @@
 //                 fontSize: 17,
 //                 color: pickTextColorBasedOnBgColorAdvanced(
 //                     Thm.isDarktheme(widget.prefs)
-//                         ? fiberchatAPPBARcolorDarkMode
-//                         : fiberchatAPPBARcolorLightMode)),
+//                         ? crypterchatAPPBARcolorDarkMode
+//                         : crypterchatAPPBARcolorLightMode)),
 //           )
 //         ],
 //       )),
 //       color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs)
-//               ? fiberchatAPPBARcolorDarkMode
-//               : fiberchatAPPBARcolorLightMode)
+//               ? crypterchatAPPBARcolorDarkMode
+//               : crypterchatAPPBARcolorLightMode)
 //           .withOpacity(0.8),
 //     );
 //   }
@@ -206,7 +206,7 @@
 //                   Container(
 //                     height: (MediaQuery.of(context).size.width / 2) - 20,
 //                     width: (MediaQuery.of(context).size.width / 2) - 20,
-//                     color: fiberchatGrey.withOpacity(0.4),
+//                     color: crypterchatGrey.withOpacity(0.4),
 //                   ),
 //                   new Image.file(
 //                     File(selectedImages[i].path),
@@ -227,7 +227,7 @@
 //                                 '${getTranslated(this.context, 'maxfilesize')} ${observer.maxFileSizeAllowedInMB}MB\n${getTranslated(this.context, 'selectedfilesize')} ${(File(selectedImages[i].path).lengthSync() / 1000000).round()}MB',
 //                                 style: TextStyle(
 //                                     fontSize: 12,
-//                                     color: fiberchatREDbuttonColor,
+//                                     color: crypterchatREDbuttonColor,
 //                                     fontWeight: FontWeight.w700),
 //                                 textAlign: TextAlign.center,
 //                                 overflow: TextOverflow.ellipsis,
@@ -274,7 +274,7 @@
 //       return new Text(getTranslated(context, 'takeimage'),
 //           style: new TextStyle(
 //             fontSize: 18.0,
-//             color: fiberchatGrey,
+//             color: crypterchatGrey,
 //           ));
 //     }
 //   }
@@ -282,11 +282,11 @@
 //   @override
 //   Widget build(BuildContext context) {
 //     final observer = Provider.of<Observer>(this.context, listen: false);
-//     return Fiberchat.getNTPWrappedWidget(WillPopScope(
+//     return Crypterchat.getNTPWrappedWidget(WillPopScope(
 //       child: Scaffold(
 //         backgroundColor: Thm.isDarktheme(widget.prefs)
-//             ? fiberchatBACKGROUNDcolorDarkMode
-//             : fiberchatBACKGROUNDcolorLightMode,
+//             ? crypterchatBACKGROUNDcolorDarkMode
+//             : crypterchatBACKGROUNDcolorLightMode,
 //         appBar: new AppBar(
 //             elevation: 0.4,
 //             leading: IconButton(
@@ -300,8 +300,8 @@
 //                 size: 30,
 //                 color: pickTextColorBasedOnBgColorAdvanced(
 //                     Thm.isDarktheme(widget.prefs)
-//                         ? fiberchatAPPBARcolorDarkMode
-//                         : fiberchatAPPBARcolorLightMode),
+//                         ? crypterchatAPPBARcolorDarkMode
+//                         : crypterchatAPPBARcolorLightMode),
 //               ),
 //             ),
 //             title: new Text(
@@ -312,14 +312,14 @@
 //                 fontSize: 18,
 //                 color: pickTextColorBasedOnBgColorAdvanced(
 //                     Thm.isDarktheme(widget.prefs)
-//                         ? fiberchatAPPBARcolorDarkMode
-//                         : fiberchatAPPBARcolorLightMode),
+//                         ? crypterchatAPPBARcolorDarkMode
+//                         : crypterchatAPPBARcolorLightMode),
 //               ),
 //             ),
 //             backgroundColor: pickTextColorBasedOnBgColorAdvanced(
 //                 Thm.isDarktheme(widget.prefs)
-//                     ? fiberchatAPPBARcolorDarkMode
-//                     : fiberchatAPPBARcolorLightMode),
+//                     ? crypterchatAPPBARcolorDarkMode
+//                     : crypterchatAPPBARcolorLightMode),
 //             actions: selectedImages.length != 0 && !isLoading
 //                 ? <Widget>[
 //                     IconButton(
@@ -327,8 +327,8 @@
 //                           Icons.check,
 //                           color: pickTextColorBasedOnBgColorAdvanced(
 //                               Thm.isDarktheme(widget.prefs)
-//                                   ? fiberchatAPPBARcolorDarkMode
-//                                   : fiberchatAPPBARcolorLightMode),
+//                                   ? crypterchatAPPBARcolorDarkMode
+//                                   : crypterchatAPPBARcolorLightMode),
 //                         ),
 //                         onPressed: checkTotalNoOfFilesIfExceeded() == false
 //                             ? (checkIfAnyFileSizeExceeded() == false
@@ -343,12 +343,12 @@
 //                                     final observer = Provider.of<Observer>(
 //                                         this.context,
 //                                         listen: false);
-//                                     Fiberchat.toast(getTranslated(
+//                                     Crypterchat.toast(getTranslated(
 //                                             context, 'filesizeexceeded') +
 //                                         ': ${observer.maxFileSizeAllowedInMB}MB');
 //                                   })
 //                             : () {
-//                                 Fiberchat.toast(
+//                                 Crypterchat.toast(
 //                                     '${getTranslated(this.context, 'maxnooffiles')}: ${observer.maxNoOfFilesInMultiSharing}');
 //                               }),
 //                     SizedBox(
@@ -378,12 +378,12 @@
 //                         child: Center(
 //                           child: CircularProgressIndicator(
 //                               valueColor: AlwaysStoppedAnimation<Color>(
-//                                   fiberchatSECONDARYolor)),
+//                                   crypterchatSECONDARYolor)),
 //                         ),
 //                         color: pickTextColorBasedOnBgColorAdvanced(
 //                                 !Thm.isDarktheme(widget.prefs)
-//                                     ? fiberchatAPPBARcolorDarkMode
-//                                     : fiberchatAPPBARcolorLightMode)
+//                                     ? crypterchatAPPBARcolorDarkMode
+//                                     : crypterchatAPPBARcolorLightMode)
 //                             .withOpacity(0.6),
 //                       )
 //                 : Container(),
@@ -430,19 +430,19 @@
 //                   Icons.photo_library,
 //                   checkTotalNoOfFilesIfExceeded() == false
 //                       ? () {
-//                           Fiberchat.checkAndRequestPermission(
+//                           Crypterchat.checkAndRequestPermission(
 //                                   Permission.storage)
 //                               .then((res) {
 //                             if (res == true) {
 //                               captureMultiPageImage(false);
 //                             } else if (res == false) {
-//                               Fiberchat.checkAndRequestPermission(
+//                               Crypterchat.checkAndRequestPermission(
 //                                       Permission.mediaLibrary)
 //                                   .then((res2) {
 //                                 if (res2 == true) {
 //                                   captureMultiPageImage(false);
 //                                 } else if (res2 == false) {
-//                                   Fiberchat.showRationale(
+//                                   Crypterchat.showRationale(
 //                                       getTranslated(context, 'pgi'));
 //                                   Navigator.pushReplacement(
 //                                       context,
@@ -456,7 +456,7 @@
 //                           });
 //                         }
 //                       : () {
-//                           Fiberchat.toast(
+//                           Crypterchat.toast(
 //                               '${getTranslated(this.context, 'maxnooffiles')}: ${observer.maxNoOfFilesInMultiSharing}');
 //                         }),
 //               selectedImages.length < 1
@@ -466,19 +466,19 @@
 //                       Icons.add,
 //                       checkTotalNoOfFilesIfExceeded() == false
 //                           ? () {
-//                               Fiberchat.checkAndRequestPermission(
+//                               Crypterchat.checkAndRequestPermission(
 //                                       Permission.storage)
 //                                   .then((res) {
 //                                 if (res == true) {
 //                                   captureMultiPageImage(true);
 //                                 } else if (res == false) {
-//                                   Fiberchat.checkAndRequestPermission(
+//                                   Crypterchat.checkAndRequestPermission(
 //                                           Permission.mediaLibrary)
 //                                       .then((res2) {
 //                                     if (res2 == true) {
 //                                       captureMultiPageImage(true);
 //                                     } else if (res2 == false) {
-//                                       Fiberchat.showRationale(
+//                                       Crypterchat.showRationale(
 //                                           getTranslated(context, 'pgi'));
 //                                       Navigator.pushReplacement(
 //                                           context,
@@ -493,7 +493,7 @@
 //                               });
 //                             }
 //                           : () {
-//                               Fiberchat.toast(
+//                               Crypterchat.toast(
 //                                   '${getTranslated(this.context, 'maxnooffiles')}: ${observer.maxNoOfFilesInMultiSharing}');
 //                             }),
 //               _buildActionButton(
@@ -501,7 +501,7 @@
 //                   Icons.photo_camera,
 //                   checkTotalNoOfFilesIfExceeded() == false
 //                       ? () {
-//                           Fiberchat.checkAndRequestPermission(Permission.camera)
+//                           Crypterchat.checkAndRequestPermission(Permission.camera)
 //                               .then((res) {
 //                             if (res == true) {
 //                               captureSingleImage(ImageSource.camera);
@@ -517,7 +517,7 @@
 //                           });
 //                         }
 //                       : () {
-//                           Fiberchat.toast(
+//                           Crypterchat.toast(
 //                               '${getTranslated(this.context, 'maxnooffiles')}: ${observer.maxNoOfFilesInMultiSharing}');
 //                         }),
 //             ]));
@@ -528,7 +528,7 @@
 //       child: new IconButton(
 //           key: key,
 //           icon: Icon(icon, size: 30.0),
-//           color: fiberchatSECONDARYolor,
+//           color: crypterchatSECONDARYolor,
 //           onPressed: onPressed as void Function()?),
 //     );
 //   }

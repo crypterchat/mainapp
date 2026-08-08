@@ -1,31 +1,31 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/auth_screens/login.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/aes_encryption.dart';
-import 'package:fiberchat/Screens/contact_screens/contacts.dart';
-import 'package:fiberchat/Screens/status/components/formatStatusTime.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Screens/chat_screen/pre_chat.dart';
-import 'package:fiberchat/Screens/contact_screens/AddunsavedContact.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Utils/chat_controller.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Screens/auth_screens/login.dart';
+import 'package:crypterchat/Screens/call_history/callhistory.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_layout.dart';
+import 'package:crypterchat/Screens/chat_screen/utils/aes_encryption.dart';
+import 'package:crypterchat/Screens/contact_screens/contacts.dart';
+import 'package:crypterchat/Screens/status/components/formatStatusTime.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Screens/chat_screen/chat.dart';
+import 'package:crypterchat/Screens/chat_screen/pre_chat.dart';
+import 'package:crypterchat/Screens/contact_screens/AddunsavedContact.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Utils/chat_controller.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:fiberchat/Models/E2EE/e2ee.dart' as e2ee;
+import 'package:crypterchat/Models/E2EE/e2ee.dart' as e2ee;
 
 class SmartContactsPage extends StatefulWidget {
   final String currentUserNo;
@@ -104,7 +104,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
     final observer = Provider.of<Observer>(this.context, listen: false);
     return PickupLayout(
         prefs: widget.prefs,
-        scaffold: Fiberchat.getNTPWrappedWidget(ScopedModel<DataModel>(
+        scaffold: Crypterchat.getNTPWrappedWidget(ScopedModel<DataModel>(
             model: widget.model,
             child: ScopedModelDescendant<DataModel>(
                 builder: (context, child, model) {
@@ -113,8 +113,8 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                 // _filtered = availableContacts.filtered;
                 return Scaffold(
                     backgroundColor: Thm.isDarktheme(widget.prefs)
-                        ? fiberchatBACKGROUNDcolorDarkMode
-                        : fiberchatBACKGROUNDcolorLightMode,
+                        ? crypterchatBACKGROUNDcolorDarkMode
+                        : crypterchatBACKGROUNDcolorLightMode,
                     appBar: AppBar(
                       elevation: 0.4,
                       titleSpacing: 5,
@@ -125,8 +125,8 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                           fontWeight: FontWeight.w600,
                           color: pickTextColorBasedOnBgColorAdvanced(
                               Thm.isDarktheme(widget.prefs)
-                                  ? fiberchatAPPBARcolorDarkMode
-                                  : fiberchatAPPBARcolorLightMode),
+                                  ? crypterchatAPPBARcolorDarkMode
+                                  : crypterchatAPPBARcolorLightMode),
                         ),
                       ),
                       leading: IconButton(
@@ -138,13 +138,13 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                           size: 24,
                           color: pickTextColorBasedOnBgColorAdvanced(
                               Thm.isDarktheme(widget.prefs)
-                                  ? fiberchatAPPBARcolorDarkMode
-                                  : fiberchatAPPBARcolorLightMode),
+                                  ? crypterchatAPPBARcolorDarkMode
+                                  : crypterchatAPPBARcolorLightMode),
                         ),
                       ),
                       backgroundColor: Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode,
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode,
                       centerTitle: false,
                       actions: <Widget>[
                         IconButton(
@@ -152,8 +152,8 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                             Icons.sync,
                             color: pickTextColorBasedOnBgColorAdvanced(
                                 Thm.isDarktheme(widget.prefs)
-                                    ? fiberchatAPPBARcolorDarkMode
-                                    : fiberchatAPPBARcolorLightMode),
+                                    ? crypterchatAPPBARcolorDarkMode
+                                    : crypterchatAPPBARcolorLightMode),
                           ),
                           onPressed: () async {
                             final SmartContactProviderWithLocalStoreData
@@ -163,7 +163,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                     listen: false);
                             if (widget.prefs.getBool('allowed-contacts') ==
                                 true) {
-                              Fiberchat.toast(
+                              Crypterchat.toast(
                                   getTranslated(context, "loading"));
                             }
 
@@ -186,8 +186,8 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                             Icons.person_add,
                             color: pickTextColorBasedOnBgColorAdvanced(
                                 Thm.isDarktheme(widget.prefs)
-                                    ? fiberchatAPPBARcolorDarkMode
-                                    : fiberchatAPPBARcolorLightMode),
+                                    ? crypterchatAPPBARcolorDarkMode
+                                    : crypterchatAPPBARcolorLightMode),
                           ),
                           onPressed: () {
                             final SmartContactProviderWithLocalStoreData
@@ -205,7 +205,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                 false,
                               );
                             }
-                            // Fiberchat.toast(getTranslated(context, "loading"));
+                            // Crypterchat.toast(getTranslated(context, "loading"));
 
                             Navigator.pushReplacement(context,
                                 new MaterialPageRoute(builder: (context) {
@@ -222,8 +222,8 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                               Icons.search,
                               color: pickTextColorBasedOnBgColorAdvanced(
                                   Thm.isDarktheme(widget.prefs)
-                                      ? fiberchatAPPBARcolorDarkMode
-                                      : fiberchatAPPBARcolorLightMode),
+                                      ? crypterchatAPPBARcolorDarkMode
+                                      : crypterchatAPPBARcolorLightMode),
                             ),
                             onPressed: () {
                               final SmartContactProviderWithLocalStoreData
@@ -231,7 +231,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                           SmartContactProviderWithLocalStoreData>(
                                       context,
                                       listen: false);
-                              // Fiberchat.toast(
+                              // Crypterchat.toast(
                               //     getTranslated(this.context, "loading"));
                               contactsProvider.fetchContacts(
                                 context,
@@ -298,7 +298,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                           style: TextStyle(
                                                             fontSize: 18,
                                                             color:
-                                                                fiberchatGrey,
+                                                                crypterchatGrey,
                                                           )),
                                                       SizedBox(
                                                         height: 40,
@@ -337,7 +337,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                                 .refresh_rounded,
                                                             size: 40,
                                                             color:
-                                                                fiberchatPRIMARYcolor,
+                                                                crypterchatPRIMARYcolor,
                                                           ))
                                                     ],
                                                   ),
@@ -352,11 +352,11 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                               ListTile(
                                                 tileColor: Thm.isDarktheme(
                                                         widget.prefs)
-                                                    ? fiberchatCONTAINERboxColorDarkMode
-                                                    : fiberchatCONTAINERboxColorLightMode,
+                                                    ? crypterchatCONTAINERboxColorDarkMode
+                                                    : crypterchatCONTAINERboxColorLightMode,
                                                 leading: CircleAvatar(
                                                     backgroundColor:
-                                                        fiberchatSECONDARYolor,
+                                                        crypterchatSECONDARYolor,
                                                     radius: 22.5,
                                                     child: Icon(
                                                       Icons.share_rounded,
@@ -369,8 +369,8 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                     color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                             .isDarktheme(
                                                                 widget.prefs)
-                                                        ? fiberchatCONTAINERboxColorDarkMode
-                                                        : fiberchatCONTAINERboxColorLightMode),
+                                                        ? crypterchatCONTAINERboxColorDarkMode
+                                                        : crypterchatCONTAINERboxColorLightMode),
                                                   ),
                                                 ),
                                                 contentPadding:
@@ -378,17 +378,17 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                         horizontal: 22.0,
                                                         vertical: 11.0),
                                                 onTap: () {
-                                                  Fiberchat.invite(context);
+                                                  Crypterchat.invite(context);
                                                 },
                                               ),
                                               ListTile(
                                                 tileColor: Thm.isDarktheme(
                                                         widget.prefs)
-                                                    ? fiberchatCONTAINERboxColorDarkMode
-                                                    : fiberchatCONTAINERboxColorLightMode,
+                                                    ? crypterchatCONTAINERboxColorDarkMode
+                                                    : crypterchatCONTAINERboxColorLightMode,
                                                 leading: CircleAvatar(
                                                     backgroundColor:
-                                                        fiberchatSECONDARYolor,
+                                                        crypterchatSECONDARYolor,
                                                     radius: 22.5,
                                                     child: Icon(
                                                       Icons.group,
@@ -401,8 +401,8 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                     color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                             .isDarktheme(
                                                                 widget.prefs)
-                                                        ? fiberchatCONTAINERboxColorDarkMode
-                                                        : fiberchatCONTAINERboxColorLightMode),
+                                                        ? crypterchatCONTAINERboxColorDarkMode
+                                                        : crypterchatCONTAINERboxColorLightMode),
                                                   ),
                                                 ),
                                                 contentPadding:
@@ -416,11 +416,11 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                               ListTile(
                                                 tileColor: Thm.isDarktheme(
                                                         widget.prefs)
-                                                    ? fiberchatCONTAINERboxColorDarkMode
-                                                    : fiberchatCONTAINERboxColorLightMode,
+                                                    ? crypterchatCONTAINERboxColorDarkMode
+                                                    : crypterchatCONTAINERboxColorLightMode,
                                                 leading: CircleAvatar(
                                                     backgroundColor:
-                                                        fiberchatSECONDARYolor,
+                                                        crypterchatSECONDARYolor,
                                                     radius: 22.5,
                                                     child: Icon(
                                                       Icons.campaign,
@@ -433,8 +433,8 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                     color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                             .isDarktheme(
                                                                 widget.prefs)
-                                                        ? fiberchatCONTAINERboxColorDarkMode
-                                                        : fiberchatCONTAINERboxColorLightMode),
+                                                        ? crypterchatCONTAINERboxColorDarkMode
+                                                        : crypterchatCONTAINERboxColorLightMode),
                                                   ),
                                                 ),
                                                 contentPadding:
@@ -450,11 +450,11 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                 ListTile(
                                                   tileColor: Thm.isDarktheme(
                                                           widget.prefs)
-                                                      ? fiberchatCONTAINERboxColorDarkMode
-                                                      : fiberchatCONTAINERboxColorLightMode,
+                                                      ? crypterchatCONTAINERboxColorDarkMode
+                                                      : crypterchatCONTAINERboxColorLightMode,
                                                   leading: CircleAvatar(
                                                       backgroundColor:
-                                                          fiberchatSECONDARYolor,
+                                                          crypterchatSECONDARYolor,
                                                       radius: 22.5,
                                                       child: Icon(
                                                         Icons.devices,
@@ -467,8 +467,8 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                       color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                               .isDarktheme(
                                                                   widget.prefs)
-                                                          ? fiberchatCONTAINERboxColorDarkMode
-                                                          : fiberchatCONTAINERboxColorLightMode),
+                                                          ? crypterchatCONTAINERboxColorDarkMode
+                                                          : crypterchatCONTAINERboxColorLightMode),
                                                     ),
                                                   ),
                                                   contentPadding:
@@ -481,8 +481,8 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                                 .isDarktheme(
                                                                     widget
                                                                         .prefs)
-                                                            ? fiberchatDIALOGColorDarkMode
-                                                            : fiberchatDIALOGColorLightMode,
+                                                            ? crypterchatDIALOGColorDarkMode
+                                                            : crypterchatDIALOGColorLightMode,
                                                         isScrollControlled:
                                                             true,
                                                         context: this.context,
@@ -533,8 +533,8 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                                           style:
                                                                               TextStyle(
                                                                             color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs)
-                                                                                ? fiberchatDIALOGColorDarkMode
-                                                                                : fiberchatDIALOGColorLightMode),
+                                                                                ? crypterchatDIALOGColorDarkMode
+                                                                                : crypterchatDIALOGColorLightMode),
                                                                           ),
                                                                         )
                                                                       ],
@@ -571,7 +571,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                                           textAlign:
                                                                               TextAlign.center,
                                                                           style: TextStyle(
-                                                                              color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs) ? fiberchatDIALOGColorDarkMode : fiberchatDIALOGColorLightMode),
+                                                                              color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs) ? crypterchatDIALOGColorDarkMode : crypterchatDIALOGColorLightMode),
                                                                               height: 1.3),
                                                                         ),
                                                                         SizedBox(
@@ -587,7 +587,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                                             textAlign:
                                                                                 TextAlign.center,
                                                                             style:
-                                                                                TextStyle(color: fiberchatGrey, fontSize: 11),
+                                                                                TextStyle(color: crypterchatGrey, fontSize: 11),
                                                                           ),
                                                                         SizedBox(
                                                                           height:
@@ -598,7 +598,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                                               context,
                                                                               'syncnow'),
                                                                           buttoncolor:
-                                                                              fiberchatPRIMARYcolor,
+                                                                              crypterchatPRIMARYcolor,
                                                                           onpressed:
                                                                               () async {
                                                                             try {
@@ -618,16 +618,16 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                                                     Dbkeys.lastSyncedTime: t,
                                                                                     Dbkeys.lastSyncedID: sharedSecret
                                                                                   }, SetOptions(merge: true)).then((value) {
-                                                                                    Fiberchat.toast(getTranslated(this.context, 'syncsuccess'));
+                                                                                    Crypterchat.toast(getTranslated(this.context, 'syncsuccess'));
                                                                                   }).catchError((e) {
-                                                                                    Fiberchat.toast("${getTranslated(this.context, 'failedtosync')}\n\n $e");
+                                                                                    Crypterchat.toast("${getTranslated(this.context, 'failedtosync')}\n\n $e");
                                                                                   });
                                                                                 });
                                                                               } else {
-                                                                                Fiberchat.toast("Failed ! Please try again .");
+                                                                                Crypterchat.toast("Failed ! Please try again .");
                                                                               }
                                                                             } catch (e) {
-                                                                              Fiberchat.toast("${getTranslated(this.context, 'failedtosync')} \n\n- $e");
+                                                                              Crypterchat.toast("${getTranslated(this.context, 'failedtosync')} \n\n- $e");
                                                                             }
                                                                           },
                                                                         ),
@@ -648,9 +648,9 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                                                     Dbkeys.lastSyncedTime: FieldValue.delete(),
                                                                                     Dbkeys.lastSyncedID: FieldValue.delete(),
                                                                                   }, SetOptions(merge: true)).then((value) {
-                                                                                    Fiberchat.toast(getTranslated(this.context, 'syncdeleted'));
+                                                                                    Crypterchat.toast(getTranslated(this.context, 'syncdeleted'));
                                                                                   }).catchError((e) {
-                                                                                    Fiberchat.toast("Failed !\n\n $e");
+                                                                                    Crypterchat.toast("Failed !\n\n $e");
                                                                                   });
                                                                                 });
                                                                               },
@@ -727,16 +727,16 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                                           )
                                                                         : ListTile(
                                                                             tileColor: Thm.isDarktheme(widget.prefs)
-                                                                                ? fiberchatCONTAINERboxColorDarkMode
-                                                                                : fiberchatCONTAINERboxColorLightMode,
+                                                                                ? crypterchatCONTAINERboxColorDarkMode
+                                                                                : crypterchatCONTAINERboxColorLightMode,
                                                                             leading:
                                                                                 customCircleAvatar(url: snapshot.data!.photoURL, radius: 22),
                                                                             title: Text(snapshot.data!.name,
                                                                                 style: TextStyle(
-                                                                                  color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs) ? fiberchatCONTAINERboxColorDarkMode : fiberchatCONTAINERboxColorLightMode),
+                                                                                  color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs) ? crypterchatCONTAINERboxColorDarkMode : crypterchatCONTAINERboxColorLightMode),
                                                                                 )),
                                                                             subtitle:
-                                                                                Text(phone, style: TextStyle(color: fiberchatGrey)),
+                                                                                Text(phone, style: TextStyle(color: crypterchatGrey)),
                                                                             contentPadding:
                                                                                 EdgeInsets.symmetric(horizontal: 22.0, vertical: 0.0),
                                                                             onTap:
@@ -745,7 +745,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                                               dynamic wUser = model.userData[phone];
                                                                               if (wUser != null && wUser[Dbkeys.chatStatus] != null) {
                                                                                 if (model.currentUser![Dbkeys.locked] != null && model.currentUser![Dbkeys.locked].contains(phone)) {
-                                                                                  ChatController.authenticate(model, getTranslated(context, 'auth_neededchat'), prefs: widget.prefs, shouldPop: false, state: Navigator.of(context), type: Fiberchat.getAuthenticationType(widget.biometricEnabled, model), onSuccess: () {
+                                                                                  ChatController.authenticate(model, getTranslated(context, 'auth_neededchat'), prefs: widget.prefs, shouldPop: false, state: Navigator.of(context), type: Crypterchat.getAuthenticationType(widget.biometricEnabled, model), onSuccess: () {
                                                                                     Navigator.pushAndRemoveUntil(context, new MaterialPageRoute(builder: (context) => new ChatScreen(isSharingIntentForwarded: false, prefs: widget.prefs, model: model, currentUserNo: widget.currentUserNo, peerNo: phone, unread: 0)), (Route r) => r.isFirst);
                                                                                   });
                                                                                 } else {
@@ -767,18 +767,18 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                                         )
                                                                       : ListTile(
                                                                           tileColor: Thm.isDarktheme(widget.prefs)
-                                                                              ? fiberchatCONTAINERboxColorDarkMode
-                                                                              : fiberchatCONTAINERboxColorLightMode,
+                                                                              ? crypterchatCONTAINERboxColorDarkMode
+                                                                              : crypterchatCONTAINERboxColorLightMode,
                                                                           leading:
                                                                               customCircleAvatar(radius: 22),
                                                                           title: Text(
                                                                               name,
                                                                               style: TextStyle(
-                                                                                color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs) ? fiberchatCONTAINERboxColorDarkMode : fiberchatCONTAINERboxColorLightMode),
+                                                                                color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs) ? crypterchatCONTAINERboxColorDarkMode : crypterchatCONTAINERboxColorLightMode),
                                                                               )),
                                                                           subtitle: Text(
                                                                               phone,
-                                                                              style: TextStyle(color: fiberchatGrey)),
+                                                                              style: TextStyle(color: crypterchatGrey)),
                                                                           contentPadding: EdgeInsets.symmetric(
                                                                               horizontal: 22.0,
                                                                               vertical: 0.0),
@@ -791,7 +791,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                                             if (wUser != null &&
                                                                                 wUser[Dbkeys.chatStatus] != null) {
                                                                               if (model.currentUser![Dbkeys.locked] != null && model.currentUser![Dbkeys.locked].contains(phone)) {
-                                                                                ChatController.authenticate(model, getTranslated(context, 'auth_neededchat'), prefs: widget.prefs, shouldPop: false, state: Navigator.of(context), type: Fiberchat.getAuthenticationType(widget.biometricEnabled, model), onSuccess: () {
+                                                                                ChatController.authenticate(model, getTranslated(context, 'auth_neededchat'), prefs: widget.prefs, shouldPop: false, state: Navigator.of(context), type: Crypterchat.getAuthenticationType(widget.biometricEnabled, model), onSuccess: () {
                                                                                   Navigator.pushAndRemoveUntil(context, new MaterialPageRoute(builder: (context) => new ChatScreen(isSharingIntentForwarded: false, prefs: widget.prefs, model: model, currentUserNo: widget.currentUserNo, peerNo: phone, unread: 0)), (Route r) => r.isFirst);
                                                                                 });
                                                                               } else {
@@ -821,8 +821,8 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                     color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                             .isDarktheme(
                                                                 widget.prefs)
-                                                        ? fiberchatCONTAINERboxColorDarkMode
-                                                        : fiberchatCONTAINERboxColorLightMode),
+                                                        ? crypterchatCONTAINERboxColorDarkMode
+                                                        : crypterchatCONTAINERboxColorLightMode),
                                                   ),
                                                 ),
                                               ),
@@ -863,21 +863,21 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                                       .isDarktheme(
                                                                           widget
                                                                               .prefs)
-                                                                  ? fiberchatCONTAINERboxColorDarkMode
-                                                                  : fiberchatCONTAINERboxColorLightMode,
+                                                                  ? crypterchatCONTAINERboxColorDarkMode
+                                                                  : crypterchatCONTAINERboxColorLightMode,
                                                               leading:
                                                                   CircleAvatar(
                                                                       backgroundColor:
-                                                                          fiberchatPRIMARYcolor,
+                                                                          crypterchatPRIMARYcolor,
                                                                       radius:
                                                                           22.5,
                                                                       child:
                                                                           Text(
-                                                                        Fiberchat.getInitials(
+                                                                        Crypterchat.getInitials(
                                                                             user.value),
                                                                         style: TextStyle(
                                                                             color:
-                                                                                fiberchatWhite),
+                                                                                crypterchatWhite),
                                                                       )),
                                                               title: Text(
                                                                   user.value,
@@ -885,14 +885,14 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                                       TextStyle(
                                                                     color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(
                                                                             widget.prefs)
-                                                                        ? fiberchatCONTAINERboxColorDarkMode
-                                                                        : fiberchatCONTAINERboxColorLightMode),
+                                                                        ? crypterchatCONTAINERboxColorDarkMode
+                                                                        : crypterchatCONTAINERboxColorLightMode),
                                                                   )),
                                                               subtitle: Text(
                                                                   phone,
                                                                   style: TextStyle(
                                                                       color:
-                                                                          fiberchatGrey)),
+                                                                          crypterchatGrey)),
                                                               contentPadding:
                                                                   EdgeInsets.symmetric(
                                                                       horizontal:
@@ -902,7 +902,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                               onTap: () {
                                                                 hidekeyboard(
                                                                     context);
-                                                                Fiberchat.invite(
+                                                                Crypterchat.invite(
                                                                     context);
                                                               },
                                                             ),
@@ -913,7 +913,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                                   onTap: () {
                                                                     hidekeyboard(
                                                                         context);
-                                                                    Fiberchat
+                                                                    Crypterchat
                                                                         .invite(
                                                                             context);
                                                                   },
@@ -921,7 +921,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                                     Icons
                                                                         .person_add_alt,
                                                                     color:
-                                                                        fiberchatPRIMARYcolor,
+                                                                        crypterchatPRIMARYcolor,
                                                                   )),
                                                             )
                                                           ],
@@ -939,7 +939,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
       Container(
         child: Center(
             child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(fiberchatSECONDARYolor),
+          valueColor: AlwaysStoppedAnimation<Color>(crypterchatSECONDARYolor),
         )),
       )
     ]);

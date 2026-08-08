@@ -2,13 +2,13 @@
 
 // import 'dart:io';
 // import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:fiberchat/Configs/Dbkeys.dart';
-// import 'package:fiberchat/Configs/Dbpaths.dart';
-// import 'package:fiberchat/Configs/optional_constants.dart';
-// import 'package:fiberchat/Screens/status/components/VideoPicker/VideoPicker.dart';
-// import 'package:fiberchat/Services/Providers/StatusProvider.dart';
-// import 'package:fiberchat/Services/Providers/Observer.dart';
-// import 'package:fiberchat/Services/localization/language_constants.dart';
+// import 'package:crypterchat/Configs/Dbkeys.dart';
+// import 'package:crypterchat/Configs/Dbpaths.dart';
+// import 'package:crypterchat/Configs/optional_constants.dart';
+// import 'package:crypterchat/Screens/status/components/VideoPicker/VideoPicker.dart';
+// import 'package:crypterchat/Services/Providers/StatusProvider.dart';
+// import 'package:crypterchat/Services/Providers/Observer.dart';
+// import 'package:crypterchat/Services/localization/language_constants.dart';
 // import 'package:firebase_storage/firebase_storage.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_image_compress/flutter_image_compress.dart';

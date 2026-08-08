@@ -1,20 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Screens/Groups/GroupChatPage.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/recent_chats/RecentsChats.dart';
-import 'package:fiberchat/Screens/recent_chats/widgets/getLastMessageTime.dart';
-import 'package:fiberchat/Screens/recent_chats/widgets/getMediaMessage.dart';
-import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/unawaited.dart';
-import 'package:fiberchat/Utils/late_load.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/Enum.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Screens/Groups/GroupChatPage.dart';
+import 'package:crypterchat/Screens/call_history/callhistory.dart';
+import 'package:crypterchat/Screens/recent_chats/RecentsChats.dart';
+import 'package:crypterchat/Screens/recent_chats/widgets/getLastMessageTime.dart';
+import 'package:crypterchat/Screens/recent_chats/widgets/getMediaMessage.dart';
+import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/unawaited.dart';
+import 'package:crypterchat/Utils/late_load.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -37,8 +37,8 @@ Widget groupMessageTile(
             leading: Icon(isGroupChatMuted ? Icons.volume_up : Icons.volume_off,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(prefs)
-                        ? fiberchatDIALOGColorDarkMode
-                        : fiberchatDIALOGColorLightMode),
+                        ? crypterchatDIALOGColorDarkMode
+                        : crypterchatDIALOGColorLightMode),
                 size: 22),
             title: Text(
               getTranslated(
@@ -51,8 +51,8 @@ Widget groupMessageTile(
                 fontWeight: FontWeight.bold,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(prefs)
-                        ? fiberchatDIALOGColorDarkMode
-                        : fiberchatDIALOGColorLightMode),
+                        ? crypterchatDIALOGColorDarkMode
+                        : crypterchatDIALOGColorLightMode),
               ),
             ),
             onTap: () async {
@@ -106,8 +106,8 @@ Widget groupMessageTile(
                 size: 22,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(prefs)
-                        ? fiberchatDIALOGColorDarkMode
-                        : fiberchatDIALOGColorLightMode),
+                        ? crypterchatDIALOGColorDarkMode
+                        : crypterchatDIALOGColorLightMode),
               ),
               title: Text(
                 getTranslated(context, 'deletegroup'),
@@ -116,8 +116,8 @@ Widget groupMessageTile(
                   fontWeight: FontWeight.bold,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(prefs)
-                          ? fiberchatDIALOGColorDarkMode
-                          : fiberchatDIALOGColorLightMode),
+                          ? crypterchatDIALOGColorDarkMode
+                          : crypterchatDIALOGColorLightMode),
                 ),
               ),
               onTap: () async {
@@ -127,15 +127,15 @@ Widget groupMessageTile(
                     return Builder(
                         builder: (BuildContext dialogcontext) => AlertDialog(
                               backgroundColor: Thm.isDarktheme(prefs)
-                                  ? fiberchatDIALOGColorDarkMode
-                                  : fiberchatDIALOGColorLightMode,
+                                  ? crypterchatDIALOGColorDarkMode
+                                  : crypterchatDIALOGColorLightMode,
                               title: new Text(
                                 getTranslated(dialogcontext, 'deletegroup'),
                                 style: TextStyle(
                                   color: pickTextColorBasedOnBgColorAdvanced(
                                       Thm.isDarktheme(prefs)
-                                          ? fiberchatDIALOGColorDarkMode
-                                          : fiberchatDIALOGColorLightMode),
+                                          ? crypterchatDIALOGColorDarkMode
+                                          : crypterchatDIALOGColorLightMode),
                                 ),
                               ),
                               actions: [
@@ -147,7 +147,7 @@ Widget groupMessageTile(
                                   child: Text(
                                     getTranslated(dialogcontext, 'cancel'),
                                     style: TextStyle(
-                                        color: fiberchatPRIMARYcolor,
+                                        color: crypterchatPRIMARYcolor,
                                         fontSize: 18),
                                   ),
                                   onPressed: () {
@@ -162,7 +162,7 @@ Widget groupMessageTile(
                                   child: Text(
                                     getTranslated(dialogcontext, 'delete'),
                                     style: TextStyle(
-                                        color: fiberchatREDbuttonColor,
+                                        color: crypterchatREDbuttonColor,
                                         fontSize: 18),
                                   ),
                                   onPressed: () async {
@@ -204,8 +204,8 @@ Widget groupMessageTile(
                 size: 22,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(prefs)
-                        ? fiberchatDIALOGColorDarkMode
-                        : fiberchatDIALOGColorLightMode),
+                        ? crypterchatDIALOGColorDarkMode
+                        : crypterchatDIALOGColorLightMode),
               ),
               title: Text(
                 getTranslated(popable, 'leavegroup'),
@@ -214,8 +214,8 @@ Widget groupMessageTile(
                   fontWeight: FontWeight.bold,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(prefs)
-                          ? fiberchatDIALOGColorDarkMode
-                          : fiberchatDIALOGColorLightMode),
+                          ? crypterchatDIALOGColorDarkMode
+                          : crypterchatDIALOGColorLightMode),
                 ),
               ),
               onTap: () async {
@@ -225,15 +225,15 @@ Widget groupMessageTile(
                     return Builder(
                         builder: (BuildContext dialogcontext) => AlertDialog(
                               backgroundColor: Thm.isDarktheme(prefs)
-                                  ? fiberchatDIALOGColorDarkMode
-                                  : fiberchatDIALOGColorLightMode,
+                                  ? crypterchatDIALOGColorDarkMode
+                                  : crypterchatDIALOGColorLightMode,
                               title: new Text(
                                 getTranslated(dialogcontext, 'leavegroup'),
                                 style: TextStyle(
                                   color: pickTextColorBasedOnBgColorAdvanced(
                                       Thm.isDarktheme(prefs)
-                                          ? fiberchatDIALOGColorDarkMode
-                                          : fiberchatDIALOGColorLightMode),
+                                          ? crypterchatDIALOGColorDarkMode
+                                          : crypterchatDIALOGColorLightMode),
                                 ),
                               ),
                               actions: [
@@ -245,7 +245,7 @@ Widget groupMessageTile(
                                   child: Text(
                                     getTranslated(dialogcontext, 'cancel'),
                                     style: TextStyle(
-                                        color: fiberchatPRIMARYcolor,
+                                        color: crypterchatPRIMARYcolor,
                                         fontSize: 18),
                                   ),
                                   onPressed: () {
@@ -260,7 +260,7 @@ Widget groupMessageTile(
                                   child: Text(
                                     getTranslated(dialogcontext, 'leave'),
                                     style: TextStyle(
-                                        color: fiberchatREDbuttonColor,
+                                        color: crypterchatREDbuttonColor,
                                         fontSize: 18),
                                   ),
                                   onPressed: () async {
@@ -349,7 +349,7 @@ Widget groupMessageTile(
                                               .delete();
                                         } catch (err) {}
                                       }).catchError((err) {
-                                        // Fiberchat.toast(
+                                        // Crypterchat.toast(
                                         //     getTranslated(context,
                                         //         'unabletoleavegrp'));
                                       });
@@ -368,8 +368,8 @@ Widget groupMessageTile(
         builder: (contextForDialog) {
           return SimpleDialog(
               backgroundColor: Thm.isDarktheme(prefs)
-                  ? fiberchatDIALOGColorDarkMode
-                  : fiberchatDIALOGColorLightMode,
+                  ? crypterchatDIALOGColorDarkMode
+                  : crypterchatDIALOGColorLightMode,
               children: tiles);
         });
   }
@@ -407,8 +407,8 @@ Widget groupMessageTile(
               style: TextStyle(
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(prefs)
-                        ? fiberchatBACKGROUNDcolorDarkMode
-                        : fiberchatBACKGROUNDcolorLightMode),
+                        ? crypterchatBACKGROUNDcolorDarkMode
+                        : crypterchatBACKGROUNDcolorLightMode),
                 fontWeight: FontWeight.w500,
                 fontSize: 16.4,
               ),
@@ -449,7 +449,7 @@ Widget groupMessageTile(
                         padding: const EdgeInsets.all(7.0),
                         decoration: new BoxDecoration(
                           shape: BoxShape.circle,
-                          color: fiberchatGreenColor400,
+                          color: crypterchatGreenColor400,
                         ),
                       ),
                 SizedBox(
@@ -479,8 +479,8 @@ Widget groupMessageTile(
               style: TextStyle(
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(prefs)
-                        ? fiberchatBACKGROUNDcolorDarkMode
-                        : fiberchatBACKGROUNDcolorLightMode),
+                        ? crypterchatBACKGROUNDcolorDarkMode
+                        : crypterchatBACKGROUNDcolorLightMode),
                 fontWeight: FontWeight.w500,
                 fontSize: 16.4,
               ),
@@ -521,7 +521,7 @@ Widget groupMessageTile(
                         padding: const EdgeInsets.all(7.0),
                         decoration: new BoxDecoration(
                           shape: BoxShape.circle,
-                          color: fiberchatGreenColor400,
+                          color: crypterchatGreenColor400,
                         ),
                       ),
                 SizedBox(
@@ -554,8 +554,8 @@ Widget groupMessageTile(
                 style: TextStyle(
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(prefs)
-                          ? fiberchatBACKGROUNDcolorDarkMode
-                          : fiberchatBACKGROUNDcolorLightMode),
+                          ? crypterchatBACKGROUNDcolorDarkMode
+                          : crypterchatBACKGROUNDcolorLightMode),
                   fontWeight: FontWeight.w500,
                   fontSize: 16.4,
                 ),
@@ -659,7 +659,7 @@ Widget groupMessageTile(
                                 lastMessage[Dbkeys.timestamp]),
                             style: TextStyle(
                                 color: unRead != 0
-                                    ? fiberchatGreenColor500
+                                    ? crypterchatGreenColor500
                                     : lightGrey,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12),
@@ -697,7 +697,7 @@ Widget groupMessageTile(
                               padding: const EdgeInsets.all(7.0),
                               decoration: new BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: fiberchatGreenColor400,
+                                color: crypterchatGreenColor400,
                               ),
                             ),
                     ],

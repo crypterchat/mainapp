@@ -1,16 +1,16 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Services/Admob/admob.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_layout.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
@@ -55,7 +55,7 @@ class EditBroadcastDetailsState extends State<EditBroadcastDetails> {
   @override
   void initState() {
     super.initState();
-    Fiberchat.internetLookUp();
+    Crypterchat.internetLookUp();
     broadcastDesc = widget.broadcastDesc;
     broadcastTitle = widget.broadcastName;
     controllerName!.text = broadcastTitle!;
@@ -113,7 +113,7 @@ class EditBroadcastDetailsState extends State<EditBroadcastDetails> {
         isLoading = false;
       });
 
-      Fiberchat.toast(err.toString());
+      Crypterchat.toast(err.toString());
     });
   }
 
@@ -130,10 +130,10 @@ class EditBroadcastDetailsState extends State<EditBroadcastDetails> {
     final observer = Provider.of<Observer>(this.context, listen: false);
     return PickupLayout(
         prefs: widget.prefs,
-        scaffold: Fiberchat.getNTPWrappedWidget(Scaffold(
+        scaffold: Crypterchat.getNTPWrappedWidget(Scaffold(
             backgroundColor: Thm.isDarktheme(widget.prefs)
-                ? fiberchatBACKGROUNDcolorDarkMode
-                : fiberchatBACKGROUNDcolorLightMode,
+                ? crypterchatBACKGROUNDcolorDarkMode
+                : crypterchatBACKGROUNDcolorLightMode,
             appBar: new AppBar(
               elevation: 0.4,
               leading: IconButton(
@@ -145,22 +145,22 @@ class EditBroadcastDetailsState extends State<EditBroadcastDetails> {
                   size: 24,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode),
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode),
                 ),
               ),
               titleSpacing: 0,
               backgroundColor: Thm.isDarktheme(widget.prefs)
-                  ? fiberchatAPPBARcolorDarkMode
-                  : fiberchatAPPBARcolorLightMode,
+                  ? crypterchatAPPBARcolorDarkMode
+                  : crypterchatAPPBARcolorLightMode,
               title: new Text(
                 getTranslated(context, 'editbroadcast'),
                 style: TextStyle(
                   fontSize: 20.0,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode),
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode),
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -172,9 +172,9 @@ class EditBroadcastDetailsState extends State<EditBroadcastDetails> {
                     style: TextStyle(
                       fontSize: 16,
                       color: Thm.isDarktheme(widget.prefs)
-                          ? fiberchatPRIMARYcolor
+                          ? crypterchatPRIMARYcolor
                           : pickTextColorBasedOnBgColorAdvanced(
-                              fiberchatAPPBARcolorLightMode),
+                              crypterchatAPPBARcolorLightMode),
                     ),
                   ),
                 )
@@ -245,12 +245,12 @@ class EditBroadcastDetailsState extends State<EditBroadcastDetails> {
                           child: Center(
                             child: CircularProgressIndicator(
                                 valueColor: AlwaysStoppedAnimation<Color>(
-                                    fiberchatSECONDARYolor)),
+                                    crypterchatSECONDARYolor)),
                           ),
                           color: pickTextColorBasedOnBgColorAdvanced(
                                   !Thm.isDarktheme(widget.prefs)
-                                      ? fiberchatCONTAINERboxColorDarkMode
-                                      : fiberchatCONTAINERboxColorLightMode)
+                                      ? crypterchatCONTAINERboxColorDarkMode
+                                      : crypterchatCONTAINERboxColorLightMode)
                               .withOpacity(0.6))
                       : Container(),
                 ),

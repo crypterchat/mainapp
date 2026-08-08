@@ -1,15 +1,15 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:core';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Screens/auth_screens/authentication.dart';
-import 'package:fiberchat/Models/DataModel.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Screens/auth_screens/authentication.dart';
+import 'package:crypterchat/Models/DataModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:fiberchat/Configs/Enum.dart';
+import 'package:crypterchat/Configs/Enum.dart';
 
 class ChatController {
   static request(currentUserNo, peerNo, chatid) async {
@@ -70,10 +70,10 @@ class ChatController {
         .set({'$peerNo': ChatStatus.blocked.index}, SetOptions(merge: true));
     FirebaseFirestore.instance
         .collection(DbPaths.collectionmessages)
-        .doc(Fiberchat.getChatId(currentUserNo, peerNo))
+        .doc(Crypterchat.getChatId(currentUserNo, peerNo))
         .set({'$currentUserNo': DateTime.now().millisecondsSinceEpoch},
             SetOptions(merge: true));
-    // Fiberchat.toast('Blocked.');
+    // Crypterchat.toast('Blocked.');
   }
 
   static Future<ChatStatus> getStatus(currentUserNo, peerNo) async {
@@ -93,7 +93,7 @@ class ChatController {
         .set({
       Dbkeys.hidden: FieldValue.arrayUnion([peerNo])
     }, SetOptions(merge: true));
-    // Fiberchat.toast(  'Chat hidden.');
+    // Crypterchat.toast(  'Chat hidden.');
   }
 
   static unhideChat(currentUserNo, peerNo) {
@@ -103,7 +103,7 @@ class ChatController {
         .set({
       Dbkeys.hidden: FieldValue.arrayRemove([peerNo])
     }, SetOptions(merge: true));
-    // Fiberchat.toast('Chat is visible.');
+    // Crypterchat.toast('Chat is visible.');
   }
 
   static lockChat(currentUserNo, peerNo) {
@@ -113,7 +113,7 @@ class ChatController {
         .set({
       Dbkeys.locked: FieldValue.arrayUnion([peerNo])
     }, SetOptions(merge: true));
-    // Fiberchat.toast('Chat locked.');
+    // Crypterchat.toast('Chat locked.');
   }
 
   static unlockChat(currentUserNo, peerNo) {
@@ -123,7 +123,7 @@ class ChatController {
         .set({
       Dbkeys.locked: FieldValue.arrayRemove([peerNo])
     }, SetOptions(merge: true));
-    // Fiberchat.toast('Chat unlocked.');
+    // Crypterchat.toast('Chat unlocked.');
   }
 
   static void authenticate(DataModel model, String caption,

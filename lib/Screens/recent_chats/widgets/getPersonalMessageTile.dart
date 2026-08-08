@@ -1,24 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Screens/recent_chats/RecentsChats.dart';
-import 'package:fiberchat/Screens/recent_chats/widgets/getLastMessageTime.dart';
-import 'package:fiberchat/Screens/recent_chats/widgets/getMediaMessage.dart';
-import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/alias.dart';
-import 'package:fiberchat/Utils/chat_controller.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/unawaited.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/Utils/late_load.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/Enum.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Screens/call_history/callhistory.dart';
+import 'package:crypterchat/Screens/chat_screen/chat.dart';
+import 'package:crypterchat/Screens/recent_chats/RecentsChats.dart';
+import 'package:crypterchat/Screens/recent_chats/widgets/getLastMessageTime.dart';
+import 'package:crypterchat/Screens/recent_chats/widgets/getMediaMessage.dart';
+import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/alias.dart';
+import 'package:crypterchat/Utils/chat_controller.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/unawaited.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/Utils/late_load.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -51,8 +51,8 @@ Widget getPersonalMessageTile(
                 fontWeight: FontWeight.bold,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(prefs)
-                        ? fiberchatDIALOGColorDarkMode
-                        : fiberchatDIALOGColorLightMode),
+                        ? crypterchatDIALOGColorDarkMode
+                        : crypterchatDIALOGColorLightMode),
               ),
             ),
             onTap: () async {
@@ -77,8 +77,8 @@ Widget getPersonalMessageTile(
                 fontWeight: FontWeight.bold,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(prefs)
-                        ? fiberchatDIALOGColorDarkMode
-                        : fiberchatDIALOGColorLightMode),
+                        ? crypterchatDIALOGColorDarkMode
+                        : crypterchatDIALOGColorLightMode),
               ),
             ),
             onTap: () async {
@@ -86,7 +86,7 @@ Widget getPersonalMessageTile(
 
               FirebaseFirestore.instance
                   .collection(DbPaths.collectionmessages)
-                  .doc(Fiberchat.getChatId(currentUserNo, peer[Dbkeys.phone]))
+                  .doc(Crypterchat.getChatId(currentUserNo, peer[Dbkeys.phone]))
                   .update({
                 "$currentUserNo-muted": !isMuted,
               });
@@ -103,8 +103,8 @@ Widget getPersonalMessageTile(
                   fontWeight: FontWeight.bold,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(prefs)
-                          ? fiberchatDIALOGColorDarkMode
-                          : fiberchatDIALOGColorLightMode),
+                          ? crypterchatDIALOGColorDarkMode
+                          : crypterchatDIALOGColorLightMode),
                 ),
               ),
               onTap: () async {
@@ -114,15 +114,15 @@ Widget getPersonalMessageTile(
                     return Builder(
                         builder: (BuildContext popable) => AlertDialog(
                               backgroundColor: Thm.isDarktheme(prefs)
-                                  ? fiberchatDIALOGColorDarkMode
-                                  : fiberchatDIALOGColorLightMode,
+                                  ? crypterchatDIALOGColorDarkMode
+                                  : crypterchatDIALOGColorLightMode,
                               title: new Text(
                                 getTranslated(popable, 'deletethischat'),
                                 style: TextStyle(
                                   color: pickTextColorBasedOnBgColorAdvanced(
                                       Thm.isDarktheme(prefs)
-                                          ? fiberchatDIALOGColorDarkMode
-                                          : fiberchatDIALOGColorLightMode),
+                                          ? crypterchatDIALOGColorDarkMode
+                                          : crypterchatDIALOGColorLightMode),
                                 ),
                               ),
                               content: new Text(
@@ -130,8 +130,8 @@ Widget getPersonalMessageTile(
                                 style: TextStyle(
                                   color: pickTextColorBasedOnBgColorAdvanced(
                                           Thm.isDarktheme(prefs)
-                                              ? fiberchatDIALOGColorDarkMode
-                                              : fiberchatDIALOGColorLightMode)
+                                              ? crypterchatDIALOGColorDarkMode
+                                              : crypterchatDIALOGColorLightMode)
                                       .withOpacity(0.6),
                                 ),
                               ),
@@ -144,7 +144,7 @@ Widget getPersonalMessageTile(
                                   child: Text(
                                     getTranslated(popable, 'cancel'),
                                     style: TextStyle(
-                                        color: fiberchatPRIMARYcolor,
+                                        color: crypterchatPRIMARYcolor,
                                         fontSize: 18),
                                   ),
                                   onPressed: () {
@@ -159,17 +159,17 @@ Widget getPersonalMessageTile(
                                   child: Text(
                                     getTranslated(popable, 'delete'),
                                     style: TextStyle(
-                                        color: fiberchatREDbuttonColor,
+                                        color: crypterchatREDbuttonColor,
                                         fontSize: 18),
                                   ),
                                   onPressed: () async {
                                     Navigator.of(popable).pop();
-                                    String chatId = Fiberchat.getChatId(
+                                    String chatId = Crypterchat.getChatId(
                                         currentUserNo,
                                         targetUser[Dbkeys.phone]);
 
                                     if (targetUser[Dbkeys.phone] != null) {
-                                      // Fiberchat.toast(
+                                      // Crypterchat.toast(
                                       //     getTranslated(context, 'plswait'));
                                       await FirebaseFirestore.instance
                                           .collection(
@@ -198,7 +198,7 @@ Widget getPersonalMessageTile(
                                         }, SetOptions(merge: true));
                                       }).then((value) {});
                                     } else {
-                                      Fiberchat.toast(
+                                      Crypterchat.toast(
                                           'Error Occured. Could not delete !');
                                     }
                                   },
@@ -215,8 +215,8 @@ Widget getPersonalMessageTile(
         builder: (contextForDialog) {
           return SimpleDialog(
               backgroundColor: Thm.isDarktheme(prefs)
-                  ? fiberchatDIALOGColorDarkMode
-                  : fiberchatDIALOGColorLightMode,
+                  ? crypterchatDIALOGColorDarkMode
+                  : crypterchatDIALOGColorLightMode,
               children: tiles);
         });
   }
@@ -238,11 +238,11 @@ Widget getPersonalMessageTile(
                       right: 0,
                       child: CircleAvatar(
                         backgroundColor: Thm.isDarktheme(prefs)
-                            ? fiberchatCONTAINERboxColorDarkMode
+                            ? crypterchatCONTAINERboxColorDarkMode
                             : Colors.white,
                         radius: 8,
                         child: CircleAvatar(
-                          backgroundColor: fiberchatGreenColor400,
+                          backgroundColor: crypterchatGreenColor400,
                           radius: 6,
                         ),
                       ))
@@ -370,14 +370,14 @@ Widget getPersonalMessageTile(
               padding: const EdgeInsets.only(bottom: 4),
               child: IsShowUserFullNameAsSavedInYourContacts == false
                   ? Text(
-                      Fiberchat.getNickname(peer) ?? "",
+                      Crypterchat.getNickname(peer) ?? "",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: pickTextColorBasedOnBgColorAdvanced(
                             Thm.isDarktheme(prefs)
-                                ? fiberchatBACKGROUNDcolorDarkMode
-                                : fiberchatBACKGROUNDcolorLightMode),
+                                ? crypterchatBACKGROUNDcolorDarkMode
+                                : crypterchatBACKGROUNDcolorLightMode),
                         fontWeight: FontWeight.w500,
                         fontSize: 16.4,
                       ),
@@ -399,22 +399,22 @@ Widget getPersonalMessageTile(
                                 style: TextStyle(
                                   color: pickTextColorBasedOnBgColorAdvanced(
                                       Thm.isDarktheme(prefs)
-                                          ? fiberchatBACKGROUNDcolorDarkMode
-                                          : fiberchatBACKGROUNDcolorLightMode),
+                                          ? crypterchatBACKGROUNDcolorDarkMode
+                                          : crypterchatBACKGROUNDcolorLightMode),
                                   fontWeight: FontWeight.w500,
                                   fontSize: 16.4,
                                 ),
                               );
                             }
                             return Text(
-                              Fiberchat.getNickname(peer) ?? "",
+                              Crypterchat.getNickname(peer) ?? "",
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 color: pickTextColorBasedOnBgColorAdvanced(
                                     Thm.isDarktheme(prefs)
-                                        ? fiberchatBACKGROUNDcolorDarkMode
-                                        : fiberchatBACKGROUNDcolorLightMode),
+                                        ? crypterchatBACKGROUNDcolorDarkMode
+                                        : crypterchatBACKGROUNDcolorLightMode),
                                 fontWeight: FontWeight.w500,
                                 fontSize: 16.4,
                               ),
@@ -445,7 +445,7 @@ Widget getPersonalMessageTile(
                     cachedModel, getTranslated(context, 'auth_neededchat'),
                     state: state,
                     shouldPop: false,
-                    type: Fiberchat.getAuthenticationType(false, cachedModel),
+                    type: Crypterchat.getAuthenticationType(false, cachedModel),
                     prefs: prefs, onSuccess: () {
                   state.pushReplacement(new MaterialPageRoute(
                       builder: (context) => new ChatScreen(
@@ -484,7 +484,7 @@ Widget getPersonalMessageTile(
                             lastMessage[Dbkeys.timestamp]),
                         style: TextStyle(
                             color: unRead != 0
-                                ? fiberchatGreenColor500
+                                ? crypterchatGreenColor500
                                 : lightGrey,
                             fontWeight: FontWeight.w400,
                             fontSize: 12),
@@ -522,7 +522,7 @@ Widget getPersonalMessageTile(
                           padding: const EdgeInsets.all(7.0),
                           decoration: new BoxDecoration(
                             shape: BoxShape.circle,
-                            color: fiberchatGreenColor400,
+                            color: crypterchatGreenColor400,
                           ),
                         ),
                 ],

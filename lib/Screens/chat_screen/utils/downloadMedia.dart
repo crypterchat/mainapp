@@ -2,11 +2,11 @@
 
 // import 'dart:io';
 // import 'package:dio/dio.dart';
-// import 'package:fiberchat/Configs/app_constants.dart';
-// import 'package:fiberchat/Services/localization/language_constants.dart';
-// import 'package:fiberchat/Services/Providers/DownloadInfoProvider.dart';
-// import 'package:fiberchat/Utils/open_settings.dart';
-// import 'package:fiberchat/Utils/utils.dart';
+// import 'package:crypterchat/Configs/app_constants.dart';
+// import 'package:crypterchat/Services/localization/language_constants.dart';
+// import 'package:crypterchat/Services/Providers/DownloadInfoProvider.dart';
+// import 'package:crypterchat/Utils/open_settings.dart';
+// import 'package:crypterchat/Utils/utils.dart';
 // import 'package:flutter/material.dart';
 // import 'package:path_provider/path_provider.dart';
 // import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -26,7 +26,7 @@
 //   try {
 //     final downloadinfo =
 //         Provider.of<DownloadInfoprovider>(context, listen: false);
-//     Fiberchat.checkAndRequestPermission(
+//     Crypterchat.checkAndRequestPermission(
 //             Platform.isIOS ? Permission.storage : Permission.storage)
 //         .then((res) async {
 //       if (res) {
@@ -37,7 +37,7 @@
 //         File outputFile = File('${knockDir!.path}/$fileName');
 //         bool fileExists = await outputFile.exists();
 //         if (fileExists == true) {
-//           Fiberchat.toast(
+//           Crypterchat.toast(
 //             getTranslated(context, 'fileexists') + ' $Appname',
 //           );
 //         } else {
@@ -119,24 +119,24 @@
 //             Navigator.of(keyloader!.currentContext!, rootNavigator: true)
 //                 .pop(); //
 //             downloadinfo.calculatedownloaded(0.00, 0);
-//             Fiberchat.toast(
+//             Crypterchat.toast(
 //               getTranslated(context, 'fileexists') + ' $Appname',
 //             );
 //           }).onError((err, er) {
 //             print('ERROR OCCURED WHILE DOWNLOADING MEDIA: ' + err.toString());
 //             Navigator.of(keyloader!.currentContext!, rootNavigator: true)
 //                 .pop(); //
-//             Fiberchat.toast(getTranslated(context, 'eps'));
+//             Crypterchat.toast(getTranslated(context, 'eps'));
 //           });
 //         }
 //       } else {
-//         Fiberchat.showRationale(getTranslated(context, 'ps'));
+//         Crypterchat.showRationale(getTranslated(context, 'ps'));
 //         Navigator.pushReplacement(context,
 //             new MaterialPageRoute(builder: (context) => OpenSettings()));
 //       }
 //     });
 //   } catch (e) {
-//     Fiberchat.toast(
+//     Crypterchat.toast(
 //       getTranslated(context, 'alreadydeleted'),
 //     );
 //   }

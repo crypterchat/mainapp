@@ -2,15 +2,15 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Screens/profile_settings/profile_view.dart';
-import 'package:fiberchat/Screens/status/components/formatStatusTime.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Screens/profile_settings/profile_view.dart';
+import 'package:crypterchat/Screens/status/components/formatStatusTime.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -25,8 +25,8 @@ showViewers(BuildContext context, DocumentSnapshot myStatusDoc, var filtered,
 
   showModalBottomSheet(
       backgroundColor: Thm.isDarktheme(prefs)
-          ? fiberchatDIALOGColorDarkMode
-          : fiberchatDIALOGColorLightMode,
+          ? crypterchatDIALOGColorDarkMode
+          : crypterchatDIALOGColorLightMode,
       context: context,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
@@ -56,14 +56,14 @@ showViewers(BuildContext context, DocumentSnapshot myStatusDoc, var filtered,
                           fontSize: 16,
                           color: pickTextColorBasedOnBgColorAdvanced(
                               Thm.isDarktheme(prefs)
-                                  ? fiberchatDIALOGColorDarkMode
-                                  : fiberchatDIALOGColorLightMode),
+                                  ? crypterchatDIALOGColorDarkMode
+                                  : crypterchatDIALOGColorLightMode),
                         ),
                       ),
                     ),
                     Row(
                       children: [
-                        Icon(Icons.visibility, color: fiberchatGrey),
+                        Icon(Icons.visibility, color: crypterchatGrey),
                         SizedBox(
                           width: 2,
                         ),
@@ -74,8 +74,8 @@ showViewers(BuildContext context, DocumentSnapshot myStatusDoc, var filtered,
                             fontWeight: FontWeight.normal,
                             color: pickTextColorBasedOnBgColorAdvanced(
                                 Thm.isDarktheme(prefs)
-                                    ? fiberchatDIALOGColorDarkMode
-                                    : fiberchatDIALOGColorLightMode),
+                                    ? crypterchatDIALOGColorDarkMode
+                                    : crypterchatDIALOGColorLightMode),
                           ),
                         ),
                         SizedBox(
@@ -156,8 +156,8 @@ showViewers(BuildContext context, DocumentSnapshot myStatusDoc, var filtered,
                                       fontWeight: FontWeight.bold,
                                       color: pickTextColorBasedOnBgColorAdvanced(
                                           Thm.isDarktheme(prefs)
-                                              ? fiberchatDIALOGColorDarkMode
-                                              : fiberchatDIALOGColorLightMode),
+                                              ? crypterchatDIALOGColorDarkMode
+                                              : crypterchatDIALOGColorLightMode),
                                     ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -165,7 +165,7 @@ showViewers(BuildContext context, DocumentSnapshot myStatusDoc, var filtered,
                                     getStatusTime(
                                         viewerslist[i]['time'], context),
                                     style: TextStyle(
-                                        height: 1.4, color: fiberchatGrey),
+                                        height: 1.4, color: crypterchatGrey),
                                   ),
                                 );
                               } else if (snapshot.hasData &&
@@ -264,15 +264,15 @@ showViewers(BuildContext context, DocumentSnapshot myStatusDoc, var filtered,
                                       fontWeight: FontWeight.bold,
                                       color: pickTextColorBasedOnBgColorAdvanced(
                                           Thm.isDarktheme(prefs)
-                                              ? fiberchatDIALOGColorDarkMode
-                                              : fiberchatDIALOGColorLightMode),
+                                              ? crypterchatDIALOGColorDarkMode
+                                              : crypterchatDIALOGColorLightMode),
                                     ),
                                   ),
                                   subtitle: Text(
                                     getStatusTime(
                                         viewerslist[i]['time'], context),
                                     style: TextStyle(
-                                        height: 1.4, color: fiberchatGrey),
+                                        height: 1.4, color: crypterchatGrey),
                                   ),
                                 );
                               }
@@ -312,15 +312,15 @@ showViewers(BuildContext context, DocumentSnapshot myStatusDoc, var filtered,
                                     fontWeight: FontWeight.bold,
                                     color: pickTextColorBasedOnBgColorAdvanced(
                                         Thm.isDarktheme(prefs)
-                                            ? fiberchatDIALOGColorDarkMode
-                                            : fiberchatDIALOGColorLightMode),
+                                            ? crypterchatDIALOGColorDarkMode
+                                            : crypterchatDIALOGColorLightMode),
                                   ),
                                 ),
                                 subtitle: Text(
                                   getStatusTime(
                                       viewerslist[i]['time'], context),
                                   style: TextStyle(
-                                      height: 1.4, color: fiberchatGrey),
+                                      height: 1.4, color: crypterchatGrey),
                                 ),
                               );
                             });

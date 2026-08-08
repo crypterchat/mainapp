@@ -1,10 +1,10 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/main.dart';
-import 'package:fiberchat/widgets/MyElevatedButton/MyElevatedButton.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/main.dart';
+import 'package:crypterchat/widgets/MyElevatedButton/MyElevatedButton.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,8 +28,8 @@ class _OpenSettingsState extends State<OpenSettings> {
 
   @override
   Widget build(BuildContext context) {
-    return Fiberchat.getNTPWrappedWidget(Material(
-        color: fiberchatPRIMARYcolor,
+    return Crypterchat.getNTPWrappedWidget(Material(
+        color: crypterchatPRIMARYcolor,
         child: Center(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -65,7 +65,7 @@ class _OpenSettingsState extends State<OpenSettings> {
             Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.0),
                 child: myElevatedButton(
-                    color: fiberchatSECONDARYolor,
+                    color: crypterchatSECONDARYolor,
                     onPressed: () {
                       openAppSettings();
                     },
@@ -73,21 +73,21 @@ class _OpenSettingsState extends State<OpenSettings> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         "Manage Permission",
-                        style: TextStyle(color: fiberchatWhite),
+                        style: TextStyle(color: crypterchatWhite),
                       ),
                     ))),
             if (widget.permtype == 'contact')
               Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20),
                   child: myElevatedButton(
-                      color: fiberchatWhite,
+                      color: crypterchatWhite,
                       onPressed: () {
                         Navigator.of(context).pop();
                         Navigator.of(context).pushAndRemoveUntil(
                           // the new route
                           MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                FiberchatWrapper(),
+                                CrypterchatWrapper(),
                           ),
 
                           (Route route) => false,
@@ -97,7 +97,7 @@ class _OpenSettingsState extends State<OpenSettings> {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           "Back",
-                          style: TextStyle(color: fiberchatBlack),
+                          style: TextStyle(color: crypterchatBlack),
                         ),
                       ))),
             SizedBox(height: 20),

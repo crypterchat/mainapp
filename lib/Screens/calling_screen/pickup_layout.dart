@@ -1,14 +1,14 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Screens/splash_screen/splash_screen.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Screens/splash_screen/splash_screen.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:fiberchat/Models/call.dart';
-import 'package:fiberchat/Services/Providers/user_provider.dart';
-import 'package:fiberchat/Models/call_methods.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_screen.dart';
+import 'package:crypterchat/Models/call.dart';
+import 'package:crypterchat/Services/Providers/user_provider.dart';
+import 'package:crypterchat/Models/call_methods.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PickupLayout extends StatelessWidget {

@@ -1,4 +1,4 @@
-name: fiberchat #changing it will force you to change appname in import statement inside every .dart file.
+name: crypterchat #changing it will force you to change appname in import statement inside every .dart file.
 description: Chats & Calling app
 
 version: 2.0.14+88

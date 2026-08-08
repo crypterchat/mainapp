@@ -3,26 +3,26 @@
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Screens/Broadcast/AddContactsToBroadcast.dart';
-import 'package:fiberchat/Screens/Groups/AddContactsToGroup.dart';
-import 'package:fiberchat/Screens/contact_screens/SmartContactsPage.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/call_history/utils/InfiniteListView.dart';
-import 'package:fiberchat/Services/Providers/call_history_provider.dart';
-import 'package:fiberchat/Utils/call_utilities.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/permissions.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Screens/Broadcast/AddContactsToBroadcast.dart';
+import 'package:crypterchat/Screens/Groups/AddContactsToGroup.dart';
+import 'package:crypterchat/Screens/contact_screens/SmartContactsPage.dart';
+import 'package:crypterchat/Services/Admob/admob.dart';
+import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Screens/call_history/utils/InfiniteListView.dart';
+import 'package:crypterchat/Services/Providers/call_history_provider.dart';
+import 'package:crypterchat/Utils/call_utilities.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/permissions.dart';
+import 'package:crypterchat/Utils/open_settings.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:jiffy/jiffy.dart';
@@ -71,7 +71,7 @@ class _CallHistoryState extends State<CallHistory> {
   @override
   void initState() {
     super.initState();
-    Fiberchat.internetLookUp();
+    Crypterchat.internetLookUp();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       final observer = Provider.of<Observer>(this.context, listen: false);
       if (IsBannerAdShow == true && observer.isadmobshow == true) {
@@ -97,7 +97,7 @@ class _CallHistoryState extends State<CallHistory> {
       builder: (context, firestoreDataProvider, _) => Scaffold(
         key: _scaffold,
         backgroundColor: Thm.isDarktheme(widget.prefs)
-            ? fiberchatCONTAINERboxColorDarkMode
+            ? crypterchatCONTAINERboxColorDarkMode
             : Colors.white,
         bottomSheet: IsBannerAdShow == true &&
                 observer.isadmobshow == true &&
@@ -120,11 +120,11 @@ class _CallHistoryState extends State<CallHistory> {
                             : 0),
                 child: FloatingActionButton(
                     heroTag: "dfsf4e8t4yaddweqewt834",
-                    backgroundColor: fiberchatSECONDARYolor,
+                    backgroundColor: crypterchatSECONDARYolor,
                     child: Icon(
                       Icons.add_call,
                       size: 30.0,
-                      color: fiberchatWhite,
+                      color: crypterchatWhite,
                     ),
                     onPressed: () {
                       Navigator.push(
@@ -134,7 +134,7 @@ class _CallHistoryState extends State<CallHistory> {
                                   onTapCreateGroup: () {
                                     if (observer.isAllowCreatingGroups ==
                                         false) {
-                                      Fiberchat.showRationale(getTranslated(
+                                      Crypterchat.showRationale(getTranslated(
                                           this.context, 'disabled'));
                                     } else {
                                       Navigator.pushReplacement(
@@ -155,7 +155,7 @@ class _CallHistoryState extends State<CallHistory> {
                                   onTapCreateBroadcast: () {
                                     if (observer.isAllowCreatingBroadcasts ==
                                         false) {
-                                      Fiberchat.showRationale(getTranslated(
+                                      Crypterchat.showRationale(getTranslated(
                                           this.context, 'disabled'));
                                     } else {
                                       Navigator.pushReplacement(
@@ -187,11 +187,11 @@ class _CallHistoryState extends State<CallHistory> {
                             : 0),
                 child: FloatingActionButton(
                     heroTag: "dfsf4e8t4yt834",
-                    backgroundColor: fiberchatWhite,
+                    backgroundColor: crypterchatWhite,
                     child: Icon(
                       Icons.delete,
                       size: 30.0,
-                      color: fiberchatREDbuttonColor,
+                      color: crypterchatREDbuttonColor,
                     ),
                     onPressed: () {
                       showDialog(
@@ -200,15 +200,15 @@ class _CallHistoryState extends State<CallHistory> {
                               builder: (BuildContext popable) => AlertDialog(
                                     backgroundColor:
                                         Thm.isDarktheme(widget.prefs)
-                                            ? fiberchatDIALOGColorDarkMode
-                                            : fiberchatDIALOGColorLightMode,
+                                            ? crypterchatDIALOGColorDarkMode
+                                            : crypterchatDIALOGColorLightMode,
                                     title: new Text(
                                       getTranslated(popable, 'clearlog'),
                                       style: TextStyle(
                                         color: pickTextColorBasedOnBgColorAdvanced(
                                             Thm.isDarktheme(widget.prefs)
-                                                ? fiberchatDIALOGColorDarkMode
-                                                : fiberchatDIALOGColorLightMode),
+                                                ? crypterchatDIALOGColorDarkMode
+                                                : crypterchatDIALOGColorLightMode),
                                       ),
                                     ),
                                     content: new Text(
@@ -216,8 +216,8 @@ class _CallHistoryState extends State<CallHistory> {
                                       style: TextStyle(
                                         color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                     .isDarktheme(widget.prefs)
-                                                ? fiberchatDIALOGColorDarkMode
-                                                : fiberchatDIALOGColorLightMode)
+                                                ? crypterchatDIALOGColorDarkMode
+                                                : crypterchatDIALOGColorLightMode)
                                             .withOpacity(0.6),
                                       ),
                                     ),
@@ -230,7 +230,7 @@ class _CallHistoryState extends State<CallHistory> {
                                         child: Text(
                                           getTranslated(popable, 'cancel'),
                                           style: TextStyle(
-                                              color: fiberchatPRIMARYcolor,
+                                              color: crypterchatPRIMARYcolor,
                                               fontSize: 18),
                                         ),
                                         onPressed: () {
@@ -245,12 +245,12 @@ class _CallHistoryState extends State<CallHistory> {
                                         child: Text(
                                           getTranslated(popable, 'delete'),
                                           style: TextStyle(
-                                              color: fiberchatREDbuttonColor,
+                                              color: crypterchatREDbuttonColor,
                                               fontSize: 18),
                                         ),
                                         onPressed: () async {
                                           Navigator.of(popable).pop();
-                                          Fiberchat.toast(getTranslated(
+                                          Crypterchat.toast(getTranslated(
                                               context, 'plswait'));
                                           FirebaseFirestore.instance
                                               .collection(
@@ -324,8 +324,8 @@ class _CallHistoryState extends State<CallHistory> {
                                             fontWeight: FontWeight.bold,
                                             color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                     .isDarktheme(widget.prefs)
-                                                ? fiberchatDIALOGColorDarkMode
-                                                : fiberchatDIALOGColorLightMode),
+                                                ? crypterchatDIALOGColorDarkMode
+                                                : crypterchatDIALOGColorLightMode),
                                           ),
                                         ),
                                         onTap: () async {
@@ -339,7 +339,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                   DbPaths.collectioncallhistory)
                                               .doc(dc['TIME'].toString())
                                               .delete();
-                                          Fiberchat.toast('Deleted!');
+                                          Crypterchat.toast('Deleted!');
                                           firestoreDataProvider
                                               .deleteSingle(dc);
                                         }));
@@ -350,8 +350,8 @@ class _CallHistoryState extends State<CallHistory> {
                                           return SimpleDialog(
                                               backgroundColor: Thm.isDarktheme(
                                                       widget.prefs)
-                                                  ? fiberchatDIALOGColorDarkMode
-                                                  : fiberchatDIALOGColorLightMode,
+                                                  ? crypterchatDIALOGColorDarkMode
+                                                  : crypterchatDIALOGColorLightMode,
                                               children: tiles);
                                         });
                                   },
@@ -374,7 +374,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                     6, 2, 6, 2),
                                                 decoration: BoxDecoration(
                                                     color:
-                                                        fiberchatPRIMARYcolor,
+                                                        crypterchatPRIMARYcolor,
                                                     borderRadius:
                                                         BorderRadius.all(
                                                             Radius.circular(
@@ -417,8 +417,8 @@ class _CallHistoryState extends State<CallHistory> {
                                     style: TextStyle(
                                         color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                 .isDarktheme(widget.prefs)
-                                            ? fiberchatBACKGROUNDcolorDarkMode
-                                            : fiberchatBACKGROUNDcolorLightMode),
+                                            ? crypterchatBACKGROUNDcolorDarkMode
+                                            : crypterchatBACKGROUNDcolorLightMode),
                                         height: 1.4,
                                         fontWeight: FontWeight.w500),
                                   ),
@@ -438,10 +438,10 @@ class _CallHistoryState extends State<CallHistory> {
                                           color: dc['TYPE'] == 'INCOMING'
                                               ? (dc['STARTED'] == null
                                                   ? Colors.redAccent
-                                                  : fiberchatGreenColorAccent)
+                                                  : crypterchatGreenColorAccent)
                                               : (dc['STARTED'] == null
                                                   ? Colors.redAccent
-                                                  : fiberchatGreenColorAccent),
+                                                  : crypterchatGreenColorAccent),
                                         ),
                                         SizedBox(
                                           width: 7,
@@ -469,7 +469,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                         .Hm
                                                         .toString(),
                                                 style: TextStyle(
-                                                    color: fiberchatGrey),
+                                                    color: crypterchatGrey),
                                               )
                                             : Text(
                                                 Jiffy.parseFromDateTime(DateTime
@@ -484,7 +484,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                         .Hm
                                                         .toString(),
                                                 style: TextStyle(
-                                                    color: fiberchatGrey),
+                                                    color: crypterchatGrey),
                                               ),
                                         // Text(time)
                                       ],
@@ -497,7 +497,7 @@ class _CallHistoryState extends State<CallHistory> {
                                               dc['ISVIDEOCALL'] == true
                                                   ? Icons.video_call
                                                   : Icons.call,
-                                              color: fiberchatPRIMARYcolor,
+                                              color: crypterchatPRIMARYcolor,
                                               size: 24),
                                           onPressed:
                                               OnlyPeerWhoAreSavedInmyContactCanMessageOrCallMe ==
@@ -506,7 +506,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                   : observer.iscallsallowed ==
                                                           false
                                                       ? () {
-                                                          Fiberchat.showRationale(
+                                                          Crypterchat.showRationale(
                                                               getTranslated(
                                                                   this.context,
                                                                   'callnotallowed'));
@@ -524,7 +524,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                                 call(context,
                                                                     true, user);
                                                               } else {
-                                                                Fiberchat
+                                                                Crypterchat
                                                                     .showRationale(
                                                                   getTranslated(
                                                                       context,
@@ -541,7 +541,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                               }
                                                             }).catchError(
                                                                     (onError) {
-                                                              Fiberchat
+                                                              Crypterchat
                                                                   .showRationale(
                                                                 getTranslated(
                                                                     context,
@@ -573,7 +573,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                                     false,
                                                                     user);
                                                               } else {
-                                                                Fiberchat
+                                                                Crypterchat
                                                                     .showRationale(
                                                                   getTranslated(
                                                                       context,
@@ -590,7 +590,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                               }
                                                             }).catchError(
                                                                     (onError) {
-                                                              Fiberchat
+                                                              Crypterchat
                                                                   .showRationale(
                                                                 getTranslated(
                                                                     context,
@@ -626,7 +626,7 @@ class _CallHistoryState extends State<CallHistory> {
                                       ),
                                       onTap: () async {
                                         Navigator.of(context).pop();
-                                        Fiberchat.toast(
+                                        Crypterchat.toast(
                                             getTranslated(context, 'plswait'));
                                         FirebaseFirestore.instance
                                             .collection(DbPaths.collectionusers)
@@ -635,7 +635,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                 DbPaths.collectioncallhistory)
                                             .doc(dc['TIME'].toString())
                                             .delete();
-                                        Fiberchat.toast('Deleted!');
+                                        Crypterchat.toast('Deleted!');
                                         firestoreDataProvider.deleteSingle(dc);
                                       }));
 
@@ -662,7 +662,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                   6, 2, 6, 2),
                                               decoration: BoxDecoration(
                                                   color:
-                                                      fiberchatGreenColorAccent,
+                                                      crypterchatGreenColorAccent,
                                                   borderRadius:
                                                       BorderRadius.all(
                                                           Radius.circular(20))),
@@ -718,8 +718,8 @@ class _CallHistoryState extends State<CallHistory> {
                                   style: TextStyle(
                                       color: pickTextColorBasedOnBgColorAdvanced(
                                           Thm.isDarktheme(widget.prefs)
-                                              ? fiberchatBACKGROUNDcolorDarkMode
-                                              : fiberchatBACKGROUNDcolorLightMode),
+                                              ? crypterchatBACKGROUNDcolorDarkMode
+                                              : crypterchatBACKGROUNDcolorLightMode),
                                       height: 1.4,
                                       fontWeight: FontWeight.w500),
                                 ),
@@ -739,10 +739,10 @@ class _CallHistoryState extends State<CallHistory> {
                                         color: dc['TYPE'] == 'INCOMING'
                                             ? (dc['STARTED'] == null
                                                 ? Colors.redAccent
-                                                : fiberchatGreenColorAccent)
+                                                : crypterchatGreenColorAccent)
                                             : (dc['STARTED'] == null
                                                 ? Colors.redAccent
-                                                : fiberchatGreenColorAccent),
+                                                : crypterchatGreenColorAccent),
                                       ),
                                       SizedBox(
                                         width: 7,
@@ -770,7 +770,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                       .Hm
                                                       .toString(),
                                               style: TextStyle(
-                                                  color: fiberchatGrey),
+                                                  color: crypterchatGrey),
                                             )
                                           : Text(
                                               Jiffy.parseFromDateTime(DateTime
@@ -785,7 +785,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                       .Hm
                                                       .toString(),
                                               style: TextStyle(
-                                                  color: fiberchatGrey),
+                                                  color: crypterchatGrey),
                                             ),
                                       // Text(time)
                                     ],
@@ -798,7 +798,7 @@ class _CallHistoryState extends State<CallHistory> {
                                             dc['ISVIDEOCALL'] == true
                                                 ? Icons.video_call
                                                 : Icons.call,
-                                            color: fiberchatPRIMARYcolor,
+                                            color: crypterchatPRIMARYcolor,
                                             size: 24),
                                         onPressed: null),
                               );

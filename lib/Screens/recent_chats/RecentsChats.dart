@@ -4,35 +4,35 @@ import 'dart:async';
 import 'dart:core';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/Broadcast/AddContactsToBroadcast.dart';
-import 'package:fiberchat/Screens/Groups/AddContactsToGroup.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/aes_encryption.dart';
-import 'package:fiberchat/Screens/contact_screens/SmartContactsPage.dart';
-import 'package:fiberchat/Screens/recent_chats/widgets/getBroadcastMessageTile.dart';
-import 'package:fiberchat/Screens/recent_chats/widgets/getGroupMessageTile.dart';
-import 'package:fiberchat/Screens/recent_chats/widgets/getPersonalMessageTile.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/BroadcastProvider.dart';
-import 'package:fiberchat/Services/Providers/GroupChatProvider.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Services/Providers/user_provider.dart';
-import 'package:fiberchat/Utils/crc.dart';
-import 'package:fiberchat/Utils/setStatusBarColor.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/Utils/late_load.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Screens/Broadcast/AddContactsToBroadcast.dart';
+import 'package:crypterchat/Screens/Groups/AddContactsToGroup.dart';
+import 'package:crypterchat/Screens/chat_screen/utils/aes_encryption.dart';
+import 'package:crypterchat/Screens/contact_screens/SmartContactsPage.dart';
+import 'package:crypterchat/Screens/recent_chats/widgets/getBroadcastMessageTile.dart';
+import 'package:crypterchat/Screens/recent_chats/widgets/getGroupMessageTile.dart';
+import 'package:crypterchat/Screens/recent_chats/widgets/getPersonalMessageTile.dart';
+import 'package:crypterchat/Services/Admob/admob.dart';
+import 'package:crypterchat/Services/Providers/BroadcastProvider.dart';
+import 'package:crypterchat/Services/Providers/GroupChatProvider.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Services/Providers/user_provider.dart';
+import 'package:crypterchat/Utils/crc.dart';
+import 'package:crypterchat/Utils/setStatusBarColor.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/Utils/late_load.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:fiberchat/Models/E2EE/e2ee.dart' as e2ee;
+import 'package:crypterchat/Models/E2EE/e2ee.dart' as e2ee;
 import 'package:encrypt/encrypt.dart' as encrypt;
 
 Color darkGrey = Colors.blueGrey[700]!;
@@ -113,14 +113,14 @@ class RecentChatsState extends State<RecentChats> {
     } on FormatException {
       return '';
     }
-    // Fiberchat.toast(getTranslated(this.context, 'msgnotload'));
+    // Crypterchat.toast(getTranslated(this.context, 'msgnotload'));
     return '';
   }
 
   @override
   void initState() {
     super.initState();
-    Fiberchat.internetLookUp();
+    Crypterchat.internetLookUp();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       final observer = Provider.of<Observer>(this.context, listen: false);
       if (IsBannerAdShow == true && observer.isadmobshow == true) {
@@ -165,7 +165,7 @@ class RecentChatsState extends State<RecentChats> {
     Map<String, dynamic> realTimePeerData,
   ) {
     String chatId =
-        Fiberchat.getChatId(currentUserNo!, realTimePeerData[Dbkeys.phone]);
+        Crypterchat.getChatId(currentUserNo!, realTimePeerData[Dbkeys.phone]);
     return streamLoad(
         stream: FirebaseFirestore.instance
             .collection(DbPaths.collectionmessages)
@@ -366,7 +366,7 @@ class RecentChatsState extends State<RecentChats> {
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontSize: 18,
-                                                      color: fiberchatGrey,
+                                                      color: crypterchatGrey,
                                                     )),
                                               ))
                                         ]);
@@ -497,7 +497,7 @@ class RecentChatsState extends State<RecentChats> {
                                                 style: TextStyle(
                                                   fontSize: 16,
                                                   height: 1.59,
-                                                  color: fiberchatGrey,
+                                                  color: crypterchatGrey,
                                                 ))),
                                       ))
                                 ])),
@@ -532,7 +532,7 @@ class RecentChatsState extends State<RecentChats> {
   Widget build(BuildContext context) {
     final observer = Provider.of<Observer>(this.context, listen: false);
     setStatusBarColor(widget.prefs);
-    return Fiberchat.getNTPWrappedWidget(ScopedModel<DataModel>(
+    return Crypterchat.getNTPWrappedWidget(ScopedModel<DataModel>(
       model: getModel()!,
       child:
           ScopedModelDescendant<DataModel>(builder: (context, child, _model) {
@@ -551,7 +551,7 @@ class RecentChatsState extends State<RecentChats> {
                   height: 0,
                 ),
           backgroundColor: Thm.isDarktheme(widget.prefs)
-              ? fiberchatCONTAINERboxColorDarkMode
+              ? crypterchatCONTAINERboxColorDarkMode
               : Colors.white,
           floatingActionButton: Padding(
             padding: EdgeInsets.only(
@@ -560,7 +560,7 @@ class RecentChatsState extends State<RecentChats> {
                     : 0),
             child: FloatingActionButton(
                 heroTag: "dfsf4e8t4yaddweqewt834",
-                backgroundColor: fiberchatSECONDARYolor,
+                backgroundColor: crypterchatSECONDARYolor,
                 child: Icon(
                   Icons.chat,
                   color: Colors.white,
@@ -573,7 +573,7 @@ class RecentChatsState extends State<RecentChats> {
                           builder: (context) => new SmartContactsPage(
                               onTapCreateGroup: () {
                                 if (observer.isAllowCreatingGroups == false) {
-                                  Fiberchat.showRationale(
+                                  Crypterchat.showRationale(
                                       getTranslated(this.context, 'disabled'));
                                 } else {
                                   Navigator.pushReplacement(
@@ -594,7 +594,7 @@ class RecentChatsState extends State<RecentChats> {
                               onTapCreateBroadcast: () {
                                 if (observer.isAllowCreatingBroadcasts ==
                                     false) {
-                                  Fiberchat.showRationale(
+                                  Crypterchat.showRationale(
                                       getTranslated(this.context, 'disabled'));
                                 } else {
                                   Navigator.pushReplacement(

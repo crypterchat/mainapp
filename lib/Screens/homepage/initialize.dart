@@ -3,18 +3,18 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/homepage/homepage.dart';
-import 'package:fiberchat/Screens/splash_screen/splash_screen.dart';
-import 'package:fiberchat/Utils/batch_write_component.dart';
-import 'package:fiberchat/Utils/custom_url_launcher.dart';
-import 'package:fiberchat/Utils/error_codes.dart';
-import 'package:fiberchat/Utils/setStatusBarColor.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/unawaited.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/main.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Screens/homepage/homepage.dart';
+import 'package:crypterchat/Screens/splash_screen/splash_screen.dart';
+import 'package:crypterchat/Utils/batch_write_component.dart';
+import 'package:crypterchat/Utils/custom_url_launcher.dart';
+import 'package:crypterchat/Utils/error_codes.dart';
+import 'package:crypterchat/Utils/setStatusBarColor.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/unawaited.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -51,7 +51,7 @@ class _InitializeState extends State<Initialize> {
   String? deviceid;
   bool isemulator = false;
   DocumentSnapshot<Map<String, dynamic>>? doc;
-  Color mycolor = fiberchatAPPBARcolorDarkMode;
+  Color mycolor = crypterchatAPPBARcolorDarkMode;
   String platform = "";
   bool isDocHave = false;
   initialise() async {
@@ -604,8 +604,8 @@ class _InitializeState extends State<Initialize> {
     return isSecuritySetupPending == true
         ? Scaffold(
             backgroundColor: Thm.isDarktheme(widget.prefs)
-                ? fiberchatBACKGROUNDcolorDarkMode
-                : fiberchatBACKGROUNDcolorLightMode,
+                ? crypterchatBACKGROUNDcolorDarkMode
+                : crypterchatBACKGROUNDcolorLightMode,
             body: Padding(
               padding: const EdgeInsets.all(25.0),
               child: Column(
@@ -789,7 +789,7 @@ class _InitializeState extends State<Initialize> {
                                                     this.context,
                                                     MaterialPageRoute(
                                                         builder: (newContext) =>
-                                                            FiberchatWrapper())));
+                                                            CrypterchatWrapper())));
                                               },
                                             ),
                                           ]
@@ -946,7 +946,7 @@ class _InitializeState extends State<Initialize> {
                                                                     false;
                                                               });
                                                             }
-                                                            Fiberchat.toast(
+                                                            Crypterchat.toast(
                                                                 'Kindly Paste the correct Purchase Code');
                                                           }
                                                         },
@@ -958,7 +958,7 @@ class _InitializeState extends State<Initialize> {
                                                     width: w * 0.95,
                                                     child: SelectableLinkify(
                                                       style: TextStyle(
-                                                          color: fiberchatGrey),
+                                                          color: crypterchatGrey),
                                                       textAlign:
                                                           TextAlign.center,
                                                       text: isDocHave == true

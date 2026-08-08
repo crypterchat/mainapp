@@ -2,18 +2,18 @@ import 'dart:io';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Models/call.dart';
-import 'package:fiberchat/Screens/homepage/homepage.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/Providers/call_history_provider.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/call_utilities.dart';
-import 'package:fiberchat/Utils/setStatusBarColor.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Models/call.dart';
+import 'package:crypterchat/Screens/homepage/homepage.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/Providers/call_history_provider.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/call_utilities.dart';
+import 'package:crypterchat/Utils/setStatusBarColor.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:logger/logger.dart';
@@ -131,7 +131,7 @@ class _VideoCallState extends State<VideoCall> {
           _mPlayer = null;
         }
       } catch (e) {
-        Fiberchat.toast("Failed to stop calling sound.  Error $e");
+        Crypterchat.toast("Failed to stop calling sound.  Error $e");
       }
     }
   }
@@ -155,7 +155,7 @@ class _VideoCallState extends State<VideoCall> {
     _engine.registerEventHandler(
       RtcEngineEventHandler(
         onError: (err, mssg) {
-          Fiberchat.toast('$err- $mssg');
+          Crypterchat.toast('$err- $mssg');
           debugPrint('$err- $mssg');
         },
         onJoinChannelSuccess: (RtcConnection conn, int elapsed) async {
@@ -209,7 +209,7 @@ class _VideoCallState extends State<VideoCall> {
                 WakelockPlus.enable();
                 flutterLocalNotificationsPlugin.cancelAll();
               }).catchError((e) {
-                Fiberchat.toast(e.toString());
+                Crypterchat.toast(e.toString());
               });
             });
           }
@@ -271,7 +271,7 @@ class _VideoCallState extends State<VideoCall> {
               setState(() {});
             });
           }
-          // Fiberchat.toast('joined - ${connection.localUid}');
+          // Crypterchat.toast('joined - ${connection.localUid}');
           WakelockPlus.enable();
           flutterLocalNotificationsPlugin.cancelAll();
         },
@@ -309,7 +309,7 @@ class _VideoCallState extends State<VideoCall> {
         onTokenPrivilegeWillExpire: (RtcConnection connection, String token) {
           debugPrint(
               '[onTokenPrivilegeWillExpire] connection: ${connection.toJson()}, token: $token');
-          Fiberchat.toast("Failed to Call. Please try calling again !");
+          Crypterchat.toast("Failed to Call. Please try calling again !");
           flutterLocalNotificationsPlugin.cancelAll();
         },
       ),
@@ -435,7 +435,7 @@ class _VideoCallState extends State<VideoCall> {
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 13,
-                              color: fiberchatREDbuttonColor,
+                              color: crypterchatREDbuttonColor,
                             ))),
                   )
                 : SizedBox(
@@ -458,7 +458,7 @@ class _VideoCallState extends State<VideoCall> {
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 13,
-                              color: fiberchatREDbuttonColor),
+                              color: crypterchatREDbuttonColor),
                         )),
                   )
                 : SizedBox(

@@ -5,16 +5,16 @@ import 'dart:typed_data';
 import 'package:async/async.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:contacts_service/contacts_service.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/DynamicBottomSheet/dynamic_modal_bottomsheet.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/open_settings.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/widgets/DynamicBottomSheet/dynamic_modal_bottomsheet.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -308,7 +308,7 @@ class SmartContactProviderWithLocalStoreData with ChangeNotifier {
                 child: Text(
                   getTranslated(popable, 'usecontactsdesc'),
                   textAlign: TextAlign.center,
-                  style: TextStyle(height: 1.3, color: fiberchatGrey),
+                  style: TextStyle(height: 1.3, color: crypterchatGrey),
                 ),
               ),
               Padding(
@@ -322,11 +322,11 @@ class SmartContactProviderWithLocalStoreData with ChangeNotifier {
                         style: ElevatedButton.styleFrom(
                             side: BorderSide(
                                 color: Thm.isDarktheme(prefs)
-                                    ? fiberchatWhite
-                                    : fiberchatGrey.withOpacity(0.3),
+                                    ? crypterchatWhite
+                                    : crypterchatGrey.withOpacity(0.3),
                                 width: 1),
                             elevation: 0.44,
-                            backgroundColor: fiberchatWhite),
+                            backgroundColor: crypterchatWhite),
                         onPressed: () async {
                           Navigator.of(popable).pop();
                           await prefs.setBool('allowed-contacts', false);
@@ -335,12 +335,12 @@ class SmartContactProviderWithLocalStoreData with ChangeNotifier {
                         },
                         child: Text(
                           getTranslated(popable, 'declinebutton'),
-                          style: TextStyle(color: fiberchatBlack),
+                          style: TextStyle(color: crypterchatBlack),
                         )),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             elevation: 0.4,
-                            backgroundColor: fiberchatSECONDARYolor),
+                            backgroundColor: crypterchatSECONDARYolor),
                         onPressed: () async {
                           Navigator.of(popable).pop();
                           await prefs.setBool('allowed-contacts', true);
@@ -351,7 +351,7 @@ class SmartContactProviderWithLocalStoreData with ChangeNotifier {
                         },
                         child: Text(
                           getTranslated(popable, 'agreebutton'),
-                          style: TextStyle(color: fiberchatWhite),
+                          style: TextStyle(color: crypterchatWhite),
                         )),
                   ],
                 ),
@@ -394,7 +394,7 @@ class SmartContactProviderWithLocalStoreData with ChangeNotifier {
       }
     });
 
-    Fiberchat.checkAndRequestPermission(Permission.contacts).then((res) {
+    Crypterchat.checkAndRequestPermission(Permission.contacts).then((res) {
       if (res) {
         storage.ready.then((ready) async {
           if (ready) {
@@ -428,7 +428,7 @@ class SmartContactProviderWithLocalStoreData with ChangeNotifier {
           // }
         });
       } else {
-        Fiberchat.showRationale(getTranslated(context, 'perm_contact'));
+        Crypterchat.showRationale(getTranslated(context, 'perm_contact'));
         Navigator.pushReplacement(
             context,
             new MaterialPageRoute(
@@ -438,7 +438,7 @@ class SmartContactProviderWithLocalStoreData with ChangeNotifier {
                     )));
       }
     }).catchError((onError) {
-      Fiberchat.showRationale('Error occured: $onError');
+      Crypterchat.showRationale('Error occured: $onError');
     });
     notifyListeners();
     return completer.future;
@@ -508,9 +508,9 @@ class SmartContactProviderWithLocalStoreData with ChangeNotifier {
           .toList()
           .map((e) => e.key.toString())
           .toList();
-      List<List<String>> chunkList = Fiberchat.divideIntoChuncks(myArray, 10);
+      List<List<String>> chunkList = Crypterchat.divideIntoChuncks(myArray, 10);
 
-      List<List<List<String>>> chunkgroups = Fiberchat.divideIntoChuncksGroup(
+      List<List<List<String>>> chunkgroups = Crypterchat.divideIntoChuncksGroup(
           chunkList, ContactsSearchCountBatchSize);
 
       for (var chunks in chunkgroups) {

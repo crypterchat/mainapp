@@ -3,25 +3,25 @@
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Screens/Groups/AddContactsToGroup.dart';
-import 'package:fiberchat/Screens/Groups/EditGroupDetails.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Screens/profile_settings/profile_view.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
-import 'package:fiberchat/Services/Providers/GroupChatProvider.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/CameraGalleryImagePicker/camera_image_gallery_picker.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Screens/Groups/AddContactsToGroup.dart';
+import 'package:crypterchat/Screens/Groups/EditGroupDetails.dart';
+import 'package:crypterchat/Screens/call_history/callhistory.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_layout.dart';
+import 'package:crypterchat/Screens/profile_settings/profile_view.dart';
+import 'package:crypterchat/Services/Admob/admob.dart';
+import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+import 'package:crypterchat/Services/Providers/GroupChatProvider.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/widgets/CameraGalleryImagePicker/camera_image_gallery_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
@@ -131,15 +131,15 @@ class _GroupDetailsState extends State<GroupDetails> {
         builder: (BuildContext context) {
           return AlertDialog(
             backgroundColor: Thm.isDarktheme(widget.prefs)
-                ? fiberchatDIALOGColorDarkMode
-                : fiberchatDIALOGColorLightMode,
+                ? crypterchatDIALOGColorDarkMode
+                : crypterchatDIALOGColorLightMode,
             title: new Text(
               getTranslated(context, 'removeasadmin'),
               style: TextStyle(
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(widget.prefs)
-                        ? fiberchatDIALOGColorDarkMode
-                        : fiberchatDIALOGColorLightMode),
+                        ? crypterchatDIALOGColorDarkMode
+                        : crypterchatDIALOGColorLightMode),
               ),
             ),
             actions: [
@@ -151,7 +151,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                   child: Text(
                     getTranslated(context, 'cancel'),
                     style:
-                        TextStyle(color: fiberchatPRIMARYcolor, fontSize: 18),
+                        TextStyle(color: crypterchatPRIMARYcolor, fontSize: 18),
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -164,7 +164,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                 child: Text(
                   getTranslated(context, 'confirm'),
                   style:
-                      TextStyle(color: fiberchatREDbuttonColor, fontSize: 18),
+                      TextStyle(color: crypterchatREDbuttonColor, fontSize: 18),
                 ),
                 onPressed: () async {
                   Navigator.of(context).pop();
@@ -204,7 +204,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                     setStateIfMounted(() {
                       isloading = false;
                     });
-                    Fiberchat.toast(
+                    Crypterchat.toast(
                         'Failed to set as Admin ! \nError occured -$onError');
                   });
                 },
@@ -219,15 +219,15 @@ class _GroupDetailsState extends State<GroupDetails> {
         builder: (BuildContext context) {
           return AlertDialog(
             backgroundColor: Thm.isDarktheme(widget.prefs)
-                ? fiberchatDIALOGColorDarkMode
-                : fiberchatDIALOGColorLightMode,
+                ? crypterchatDIALOGColorDarkMode
+                : crypterchatDIALOGColorLightMode,
             title: new Text(
               getTranslated(context, 'setasadmin'),
               style: TextStyle(
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(widget.prefs)
-                        ? fiberchatDIALOGColorDarkMode
-                        : fiberchatDIALOGColorLightMode),
+                        ? crypterchatDIALOGColorDarkMode
+                        : crypterchatDIALOGColorLightMode),
               ),
             ),
             actions: [
@@ -239,7 +239,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                   child: Text(
                     getTranslated(context, 'cancel'),
                     style:
-                        TextStyle(color: fiberchatPRIMARYcolor, fontSize: 18),
+                        TextStyle(color: crypterchatPRIMARYcolor, fontSize: 18),
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -252,7 +252,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                 child: Text(
                   getTranslated(context, 'confirm'),
                   style:
-                      TextStyle(color: fiberchatREDbuttonColor, fontSize: 18),
+                      TextStyle(color: crypterchatREDbuttonColor, fontSize: 18),
                 ),
                 onPressed: () async {
                   Navigator.of(context).pop();
@@ -291,7 +291,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                     setStateIfMounted(() {
                       isloading = false;
                     });
-                    Fiberchat.toast(
+                    Crypterchat.toast(
                         'Failed to set as Admin ! \nError occured -$onError');
                   });
                 },
@@ -306,15 +306,15 @@ class _GroupDetailsState extends State<GroupDetails> {
         builder: (BuildContext context) {
           return AlertDialog(
             backgroundColor: Thm.isDarktheme(widget.prefs)
-                ? fiberchatDIALOGColorDarkMode
-                : fiberchatDIALOGColorLightMode,
+                ? crypterchatDIALOGColorDarkMode
+                : crypterchatDIALOGColorLightMode,
             title: new Text(
               getTranslated(context, 'removefromgroup'),
               style: TextStyle(
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(widget.prefs)
-                        ? fiberchatDIALOGColorDarkMode
-                        : fiberchatDIALOGColorLightMode),
+                        ? crypterchatDIALOGColorDarkMode
+                        : crypterchatDIALOGColorLightMode),
               ),
             ),
             actions: [
@@ -326,7 +326,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                   child: Text(
                     getTranslated(context, 'cancel'),
                     style:
-                        TextStyle(color: fiberchatPRIMARYcolor, fontSize: 18),
+                        TextStyle(color: crypterchatPRIMARYcolor, fontSize: 18),
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -416,7 +416,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                     setStateIfMounted(() {
                       isloading = false;
                     });
-                    // Fiberchat.toast(
+                    // Crypterchat.toast(
                     //     'Failed to remove ! \nError occured -$onError');
                   });
                 },
@@ -444,7 +444,7 @@ class _GroupDetailsState extends State<GroupDetails> {
     final observer = Provider.of<Observer>(context, listen: false);
     return PickupLayout(
         prefs: widget.prefs,
-        scaffold: Fiberchat.getNTPWrappedWidget(
+        scaffold: Crypterchat.getNTPWrappedWidget(
             Consumer<List<GroupModel>>(builder: (context, groupList, _child) {
           Map<dynamic, dynamic> groupDoc = groupList.indexWhere((element) =>
                       element.docmap[Dbkeys.groupID] == widget.groupID) <
@@ -470,8 +470,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                             height: 0,
                           ),
                     backgroundColor: Thm.isDarktheme(widget.prefs)
-                        ? fiberchatBACKGROUNDcolorDarkMode
-                        : fiberchatBACKGROUNDcolorLightMode,
+                        ? crypterchatBACKGROUNDcolorDarkMode
+                        : crypterchatBACKGROUNDcolorLightMode,
                     appBar: AppBar(
                       elevation: 0.4,
                       titleSpacing: -5,
@@ -484,8 +484,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                             size: 24,
                             color: pickTextColorBasedOnBgColorAdvanced(
                                 Thm.isDarktheme(widget.prefs)
-                                    ? fiberchatAPPBARcolorDarkMode
-                                    : fiberchatAPPBARcolorLightMode),
+                                    ? crypterchatAPPBARcolorDarkMode
+                                    : crypterchatAPPBARcolorLightMode),
                           ),
                           onPressed: () {
                             Navigator.of(context).pop();
@@ -522,14 +522,14 @@ class _GroupDetailsState extends State<GroupDetails> {
                                   size: 21,
                                   color: pickTextColorBasedOnBgColorAdvanced(
                                       Thm.isDarktheme(widget.prefs)
-                                          ? fiberchatAPPBARcolorDarkMode
-                                          : fiberchatAPPBARcolorLightMode),
+                                          ? crypterchatAPPBARcolorDarkMode
+                                          : crypterchatAPPBARcolorLightMode),
                                 ))
                             : SizedBox()
                       ],
                       backgroundColor: Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode,
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode,
                       title: InkWell(
                         onTap: () {
                           // Navigator.push(
@@ -549,8 +549,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                               style: TextStyle(
                                   color: pickTextColorBasedOnBgColorAdvanced(
                                       Thm.isDarktheme(widget.prefs)
-                                          ? fiberchatAPPBARcolorDarkMode
-                                          : fiberchatAPPBARcolorLightMode),
+                                          ? crypterchatAPPBARcolorDarkMode
+                                          : crypterchatAPPBARcolorLightMode),
                                   fontSize: 17.0,
                                   fontWeight: FontWeight.w500),
                             ),
@@ -565,8 +565,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                               style: TextStyle(
                                   color: pickTextColorBasedOnBgColorAdvanced(
                                           Thm.isDarktheme(widget.prefs)
-                                              ? fiberchatAPPBARcolorDarkMode
-                                              : fiberchatAPPBARcolorLightMode)
+                                              ? crypterchatAPPBARcolorDarkMode
+                                              : crypterchatAPPBARcolorLightMode)
                                       .withOpacity(0.9),
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400),
@@ -609,7 +609,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                         shape: BoxShape.rectangle,
                                       ),
                                       child: Icon(Icons.people,
-                                          color: fiberchatGrey.withOpacity(0.5),
+                                          color: crypterchatGrey.withOpacity(0.5),
                                           size: 75),
                                     ),
                                     errorWidget: (context, url, error) =>
@@ -621,7 +621,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                         shape: BoxShape.rectangle,
                                       ),
                                       child: Icon(Icons.people,
-                                          color: fiberchatGrey.withOpacity(0.5),
+                                          color: crypterchatGrey.withOpacity(0.5),
                                           size: 75),
                                     ),
                                   ),
@@ -717,7 +717,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                   },
                                                   icon: Icon(
                                                       Icons.camera_alt_rounded,
-                                                      color: fiberchatWhite,
+                                                      color: crypterchatWhite,
                                                       size: 35),
                                                 )
                                               : SizedBox(),
@@ -732,7 +732,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                           widget.currentUserno)
                                                   ? IconButton(
                                                       onPressed: () async {
-                                                        Fiberchat.toast(
+                                                        Crypterchat.toast(
                                                             getTranslated(
                                                                 context,
                                                                 'plswait'));
@@ -823,7 +823,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                       icon: Icon(
                                                           Icons
                                                               .delete_outline_rounded,
-                                                          color: fiberchatWhite,
+                                                          color: crypterchatWhite,
                                                           size: 35),
                                                     )
                                                   : SizedBox(),
@@ -835,8 +835,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                               ),
                               Container(
                                 color: Thm.isDarktheme(widget.prefs)
-                                    ? fiberchatCONTAINERboxColorDarkMode
-                                    : fiberchatCONTAINERboxColorLightMode,
+                                    ? crypterchatCONTAINERboxColorDarkMode
+                                    : crypterchatCONTAINERboxColorLightMode,
                                 padding: EdgeInsets.all(12),
                                 child: Column(
                                   crossAxisAlignment:
@@ -852,7 +852,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              color: fiberchatPRIMARYcolor,
+                                              color: crypterchatPRIMARYcolor,
                                               fontSize: 16),
                                         ),
                                         groupDoc[Dbkeys.groupADMINLIST]
@@ -889,7 +889,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                 },
                                                 icon: Icon(
                                                   Icons.edit,
-                                                  color: fiberchatGrey,
+                                                  color: crypterchatGrey,
                                                 ))
                                             : SizedBox()
                                       ],
@@ -913,8 +913,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                                           fontWeight: FontWeight.normal,
                                           color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                   .isDarktheme(widget.prefs)
-                                              ? fiberchatCONTAINERboxColorDarkMode
-                                              : fiberchatCONTAINERboxColorLightMode),
+                                              ? crypterchatCONTAINERboxColorDarkMode
+                                              : crypterchatCONTAINERboxColorLightMode),
                                           fontSize: 15.3),
                                     ),
                                     SizedBox(
@@ -928,8 +928,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                               ),
                               Container(
                                 color: Thm.isDarktheme(widget.prefs)
-                                    ? fiberchatCONTAINERboxColorDarkMode
-                                    : fiberchatCONTAINERboxColorLightMode,
+                                    ? crypterchatCONTAINERboxColorDarkMode
+                                    : crypterchatCONTAINERboxColorLightMode,
                                 padding: EdgeInsets.all(12),
                                 child: Column(
                                   crossAxisAlignment:
@@ -945,7 +945,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              color: fiberchatPRIMARYcolor,
+                                              color: crypterchatPRIMARYcolor,
                                               fontSize: 16),
                                         ),
                                         groupDoc[Dbkeys.groupADMINLIST]
@@ -982,7 +982,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                 },
                                                 icon: Icon(
                                                   Icons.edit,
-                                                  color: fiberchatGrey,
+                                                  color: crypterchatGrey,
                                                 ))
                                             : SizedBox()
                                       ],
@@ -1004,8 +1004,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                                           fontWeight: FontWeight.normal,
                                           color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                   .isDarktheme(widget.prefs)
-                                              ? fiberchatCONTAINERboxColorDarkMode
-                                              : fiberchatCONTAINERboxColorLightMode),
+                                              ? crypterchatCONTAINERboxColorDarkMode
+                                              : crypterchatCONTAINERboxColorLightMode),
                                           fontSize: 15.3),
                                     ),
                                     SizedBox(
@@ -1019,8 +1019,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                               ),
                               Container(
                                 color: Thm.isDarktheme(widget.prefs)
-                                    ? fiberchatCONTAINERboxColorDarkMode
-                                    : fiberchatCONTAINERboxColorLightMode,
+                                    ? crypterchatCONTAINERboxColorDarkMode
+                                    : crypterchatCONTAINERboxColorLightMode,
                                 padding: EdgeInsets.all(12),
                                 child: Column(
                                   crossAxisAlignment:
@@ -1047,7 +1047,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     color:
-                                                        fiberchatPRIMARYcolor,
+                                                        crypterchatPRIMARYcolor,
                                                     fontSize: 16),
                                               ),
                                             ],
@@ -1112,7 +1112,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                         child: Icon(Icons.add,
                                                             size: 19,
                                                             color:
-                                                                fiberchatPRIMARYcolor),
+                                                                crypterchatPRIMARYcolor),
                                                       ),
                                                     ],
                                                   ),
@@ -1134,8 +1134,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                                             return AlertDialog(
                                               backgroundColor: Thm.isDarktheme(
                                                       widget.prefs)
-                                                  ? fiberchatDIALOGColorDarkMode
-                                                  : fiberchatDIALOGColorLightMode,
+                                                  ? crypterchatDIALOGColorDarkMode
+                                                  : crypterchatDIALOGColorLightMode,
                                               title: new Text(getTranslated(
                                                   context, 'deletegroup')),
                                               actions: [
@@ -1151,7 +1151,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                         context, 'cancel'),
                                                     style: TextStyle(
                                                         color:
-                                                            fiberchatPRIMARYcolor,
+                                                            crypterchatPRIMARYcolor,
                                                         fontSize: 18),
                                                   ),
                                                   onPressed: () {
@@ -1170,7 +1170,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                         context, 'delete'),
                                                     style: TextStyle(
                                                         color:
-                                                            fiberchatREDbuttonColor,
+                                                            crypterchatREDbuttonColor,
                                                         fontSize: 18),
                                                   ),
                                                   onPressed: () async {
@@ -1217,7 +1217,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                               MediaQuery.of(context).size.width,
                                           height: 48.0,
                                           decoration: new BoxDecoration(
-                                            color: fiberchatREDbuttonColor,
+                                            color: crypterchatREDbuttonColor,
                                             borderRadius:
                                                 new BorderRadius.circular(5.0),
                                           ),
@@ -1237,8 +1237,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                                             return AlertDialog(
                                               backgroundColor: Thm.isDarktheme(
                                                       widget.prefs)
-                                                  ? fiberchatDIALOGColorDarkMode
-                                                  : fiberchatDIALOGColorLightMode,
+                                                  ? crypterchatDIALOGColorDarkMode
+                                                  : crypterchatDIALOGColorLightMode,
                                               title: new Text(
                                                 getTranslated(
                                                     context, 'leavegroup'),
@@ -1246,8 +1246,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                   color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                           .isDarktheme(
                                                               widget.prefs)
-                                                      ? fiberchatDIALOGColorDarkMode
-                                                      : fiberchatDIALOGColorLightMode),
+                                                      ? crypterchatDIALOGColorDarkMode
+                                                      : crypterchatDIALOGColorLightMode),
                                                 ),
                                               ),
                                               actions: [
@@ -1263,7 +1263,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                         context, 'cancel'),
                                                     style: TextStyle(
                                                         color:
-                                                            fiberchatPRIMARYcolor,
+                                                            crypterchatPRIMARYcolor,
                                                         fontSize: 18),
                                                   ),
                                                   onPressed: () {
@@ -1282,7 +1282,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                         context, 'leave'),
                                                     style: TextStyle(
                                                         color:
-                                                            fiberchatREDbuttonColor,
+                                                            crypterchatREDbuttonColor,
                                                         fontSize: 18),
                                                   ),
                                                   onPressed: () async {
@@ -1406,7 +1406,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                               .delete();
                                                         } catch (err) {}
                                                       }).catchError((err) {
-                                                        // Fiberchat.toast(
+                                                        // Crypterchat.toast(
                                                         //     getTranslated(context,
                                                         //         'unabletoleavegrp'));
                                                       });
@@ -1449,12 +1449,12 @@ class _GroupDetailsState extends State<GroupDetails> {
                                       child: CircularProgressIndicator(
                                           valueColor:
                                               AlwaysStoppedAnimation<Color>(
-                                                  fiberchatSECONDARYolor)),
+                                                  crypterchatSECONDARYolor)),
                                     ),
                                     color: pickTextColorBasedOnBgColorAdvanced(!Thm
                                                 .isDarktheme(widget.prefs)
-                                            ? fiberchatCONTAINERboxColorDarkMode
-                                            : fiberchatCONTAINERboxColorLightMode)
+                                            ? crypterchatCONTAINERboxColorDarkMode
+                                            : crypterchatCONTAINERboxColorLightMode)
                                         .withOpacity(0.6))
                                 : Container(),
                           )
@@ -1656,8 +1656,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                                             : PopupMenuButton<String>(
                                                 color: Thm.isDarktheme(
                                                         widget.prefs)
-                                                    ? fiberchatDIALOGColorDarkMode
-                                                    : fiberchatDIALOGColorLightMode,
+                                                    ? crypterchatDIALOGColorDarkMode
+                                                    : crypterchatDIALOGColorLightMode,
                                                 itemBuilder:
                                                     (BuildContext context) =>
                                                         <PopupMenuEntry<
@@ -1673,8 +1673,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                                   color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(
                                                                           widget
                                                                               .prefs)
-                                                                      ? fiberchatDIALOGColorDarkMode
-                                                                      : fiberchatDIALOGColorLightMode)),
+                                                                      ? crypterchatDIALOGColorDarkMode
+                                                                      : crypterchatDIALOGColorLightMode)),
                                                             ),
                                                           ),
                                                           PopupMenuItem<String>(
@@ -1688,8 +1688,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                                 style: TextStyle(
                                                                     color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(
                                                                             widget.prefs)
-                                                                        ? fiberchatDIALOGColorDarkMode
-                                                                        : fiberchatDIALOGColorLightMode))),
+                                                                        ? crypterchatDIALOGColorDarkMode
+                                                                        : crypterchatDIALOGColorLightMode))),
                                                           ),
                                                         ],
                                                 onSelected:
@@ -1711,7 +1711,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                 child: Icon(
                                                   Icons.more_vert_outlined,
                                                   size: 20,
-                                                  color: fiberchatGrey,
+                                                  color: crypterchatGrey,
                                                 ))
                                         : null,
                                   ),
@@ -1752,8 +1752,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                                         fontWeight: FontWeight.normal,
                                         color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                 .isDarktheme(widget.prefs)
-                                            ? fiberchatCONTAINERboxColorDarkMode
-                                            : fiberchatCONTAINERboxColorLightMode)),
+                                            ? crypterchatCONTAINERboxColorDarkMode
+                                            : crypterchatCONTAINERboxColorLightMode)),
                                   ),
                                   enabled: true,
                                   subtitle: Text(
@@ -1762,7 +1762,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
-                                        height: 1.4, color: fiberchatGrey),
+                                        height: 1.4, color: crypterchatGrey),
                                   ),
                                   onTap: widget.currentUserno ==
                                           snapshot.data!.id
@@ -1799,14 +1799,14 @@ class _GroupDetailsState extends State<GroupDetails> {
                                           height: 18.0,
                                           decoration: new BoxDecoration(
                                             color: Thm.isDarktheme(widget.prefs)
-                                                ? fiberchatCONTAINERboxColorDarkMode
-                                                : fiberchatCONTAINERboxColorLightMode,
+                                                ? crypterchatCONTAINERboxColorDarkMode
+                                                : crypterchatCONTAINERboxColorLightMode,
                                             border: new Border.all(
                                                 color: adminlist[i] ==
                                                         groupDoc[Dbkeys
                                                             .groupCREATEDBY]
                                                     ? Colors.purple[400]!
-                                                    : fiberchatGreenColor400,
+                                                    : crypterchatGreenColor400,
                                                 width: 1.0),
                                             borderRadius:
                                                 new BorderRadius.circular(5.0),
@@ -1820,7 +1820,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                         groupDoc[Dbkeys
                                                             .groupCREATEDBY]
                                                     ? Colors.purple[400]
-                                                    : fiberchatGreenColor400,
+                                                    : crypterchatGreenColor400,
                                               ),
                                             ),
                                           ),
@@ -1875,8 +1875,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                                       fontWeight: FontWeight.normal,
                                       color: pickTextColorBasedOnBgColorAdvanced(Thm
                                               .isDarktheme(widget.prefs)
-                                          ? fiberchatCONTAINERboxColorDarkMode
-                                          : fiberchatCONTAINERboxColorLightMode)),
+                                          ? crypterchatCONTAINERboxColorDarkMode
+                                          : crypterchatCONTAINERboxColorLightMode)),
                                 ),
                                 subtitle: Text(
                                   '',
@@ -1897,14 +1897,14 @@ class _GroupDetailsState extends State<GroupDetails> {
                                         height: 18.0,
                                         decoration: new BoxDecoration(
                                           color: Thm.isDarktheme(widget.prefs)
-                                              ? fiberchatCONTAINERboxColorDarkMode
-                                              : fiberchatCONTAINERboxColorLightMode,
+                                              ? crypterchatCONTAINERboxColorDarkMode
+                                              : crypterchatCONTAINERboxColorLightMode,
                                           border: new Border.all(
                                               color: adminlist[i] ==
                                                       groupDoc[
                                                           Dbkeys.groupCREATEDBY]
                                                   ? Colors.purple[400]!
-                                                  : fiberchatGreenColor400,
+                                                  : crypterchatGreenColor400,
                                               width: 1.0),
                                           borderRadius:
                                               new BorderRadius.circular(5.0),
@@ -1918,7 +1918,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                       groupDoc[
                                                           Dbkeys.groupCREATEDBY]
                                                   ? Colors.purple[400]
-                                                  : fiberchatGreenColor400,
+                                                  : crypterchatGreenColor400,
                                             ),
                                           ),
                                         ),
@@ -2110,8 +2110,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                                           : PopupMenuButton<String>(
                                               color: Thm.isDarktheme(
                                                       widget.prefs)
-                                                  ? fiberchatDIALOGColorDarkMode
-                                                  : fiberchatDIALOGColorLightMode,
+                                                  ? crypterchatDIALOGColorDarkMode
+                                                  : crypterchatDIALOGColorLightMode,
                                               itemBuilder:
                                                   (BuildContext context) =>
                                                       <PopupMenuEntry<String>>[
@@ -2126,8 +2126,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                                 color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                                         .isDarktheme(
                                                                             widget.prefs)
-                                                                    ? fiberchatDIALOGColorDarkMode
-                                                                    : fiberchatDIALOGColorLightMode)),
+                                                                    ? crypterchatDIALOGColorDarkMode
+                                                                    : crypterchatDIALOGColorLightMode)),
                                                           ),
                                                         ),
                                                         PopupMenuItem<String>(
@@ -2144,8 +2144,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                                 color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                                         .isDarktheme(
                                                                             widget.prefs)
-                                                                    ? fiberchatDIALOGColorDarkMode
-                                                                    : fiberchatDIALOGColorLightMode)),
+                                                                    ? crypterchatDIALOGColorDarkMode
+                                                                    : crypterchatDIALOGColorLightMode)),
                                                           ),
                                                         ),
                                                       ],
@@ -2167,7 +2167,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                               child: Icon(
                                                 Icons.more_vert_outlined,
                                                 size: 20,
-                                                color: fiberchatGrey,
+                                                color: crypterchatGrey,
                                               ))
                                       : null,
                                 ),
@@ -2207,8 +2207,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                                       fontWeight: FontWeight.normal,
                                       color: pickTextColorBasedOnBgColorAdvanced(Thm
                                               .isDarktheme(widget.prefs)
-                                          ? fiberchatCONTAINERboxColorDarkMode
-                                          : fiberchatCONTAINERboxColorLightMode)),
+                                          ? crypterchatCONTAINERboxColorDarkMode
+                                          : crypterchatCONTAINERboxColorLightMode)),
                                 ),
                                 subtitle: Text(
                                   //-- or about me
@@ -2216,7 +2216,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                      height: 1.4, color: fiberchatGrey),
+                                      height: 1.4, color: crypterchatGrey),
                                 ),
                                 onTap: widget.currentUserno == snapshot.data!.id
                                     ? () {}
@@ -2286,15 +2286,15 @@ class _GroupDetailsState extends State<GroupDetails> {
                                     fontWeight: FontWeight.normal,
                                     color: pickTextColorBasedOnBgColorAdvanced(Thm
                                             .isDarktheme(widget.prefs)
-                                        ? fiberchatCONTAINERboxColorDarkMode
-                                        : fiberchatCONTAINERboxColorLightMode)),
+                                        ? crypterchatCONTAINERboxColorDarkMode
+                                        : crypterchatCONTAINERboxColorLightMode)),
                               ),
                               subtitle: Text(
                                 '',
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                    height: 1.4, color: fiberchatGrey),
+                                    height: 1.4, color: crypterchatGrey),
                               ),
                             ),
                             groupDoc[Dbkeys.groupADMINLIST]
@@ -2308,10 +2308,10 @@ class _GroupDetailsState extends State<GroupDetails> {
                                       height: 18.0,
                                       decoration: new BoxDecoration(
                                         color: Thm.isDarktheme(widget.prefs)
-                                            ? fiberchatCONTAINERboxColorDarkMode
-                                            : fiberchatCONTAINERboxColorLightMode,
+                                            ? crypterchatCONTAINERboxColorDarkMode
+                                            : crypterchatCONTAINERboxColorLightMode,
                                         border: new Border.all(
-                                            color: fiberchatGreenColor400,
+                                            color: crypterchatGreenColor400,
                                             width: 1.0),
                                         borderRadius:
                                             new BorderRadius.circular(5.0),
@@ -2321,7 +2321,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                           getTranslated(context, 'admin'),
                                           style: new TextStyle(
                                             fontSize: 11.0,
-                                            color: fiberchatGreenColor400,
+                                            color: crypterchatGreenColor400,
                                           ),
                                         ),
                                       ),

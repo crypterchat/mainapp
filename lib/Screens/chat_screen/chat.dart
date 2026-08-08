@@ -4,65 +4,65 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'dart:io';
-import 'package:fiberchat/Screens/homepage/Setupdata.dart';
-import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
-import 'package:fiberchat/Services/localization/language.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/custom_url_launcher.dart';
-import 'package:fiberchat/Utils/setStatusBarColor.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/widgets/AllinOneCameraGalleryImageVideoPicker/AllinOneCameraGalleryImageVideoPicker.dart';
-import 'package:fiberchat/widgets/CameraGalleryImagePicker/camera_image_gallery_picker.dart';
-import 'package:fiberchat/widgets/CameraGalleryImagePicker/multiMediaPicker.dart';
-import 'package:fiberchat/widgets/CustomLoader/custom_loader.dart';
-import 'package:fiberchat/widgets/DownloadManager/download_all_file_type.dart';
-import 'package:fiberchat/widgets/DynamicBottomSheet/dynamic_modal_bottomsheet.dart';
-import 'package:fiberchat/widgets/VideoEditor/video_editor.dart';
+import 'package:crypterchat/Screens/homepage/Setupdata.dart';
+import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+import 'package:crypterchat/Services/localization/language.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/custom_url_launcher.dart';
+import 'package:crypterchat/Utils/setStatusBarColor.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/widgets/AllinOneCameraGalleryImageVideoPicker/AllinOneCameraGalleryImageVideoPicker.dart';
+import 'package:crypterchat/widgets/CameraGalleryImagePicker/camera_image_gallery_picker.dart';
+import 'package:crypterchat/widgets/CameraGalleryImagePicker/multiMediaPicker.dart';
+import 'package:crypterchat/widgets/CustomLoader/custom_loader.dart';
+import 'package:crypterchat/widgets/DownloadManager/download_all_file_type.dart';
+import 'package:crypterchat/widgets/DynamicBottomSheet/dynamic_modal_bottomsheet.dart';
+import 'package:crypterchat/widgets/VideoEditor/video_editor.dart';
 import 'package:path/path.dart' as p;
 import 'package:collection/collection.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Screens/auth_screens/login.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/aes_encryption.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/uploadMediaWithProgress.dart';
-import 'package:fiberchat/Screens/contact_screens/SelectContactsToForward.dart';
-import 'package:fiberchat/Screens/security_screens/security.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Utils/emoji_detect.dart';
-import 'package:fiberchat/Utils/mime_type.dart';
-import 'package:fiberchat/main.dart';
-import 'package:fiberchat/widgets/CountryPicker/CountryCode.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/deleteChatMedia.dart';
-import 'package:fiberchat/Screens/privacypolicy&TnC/PdfViewFromCachedUrl.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/widgets/MultiDocumentPicker/multiDocumentPicker.dart';
-import 'package:fiberchat/widgets/MyElevatedButton/MyElevatedButton.dart';
-import 'package:fiberchat/widgets/SoundPlayer/SoundPlayerPro.dart';
-import 'package:fiberchat/Services/Providers/currentchat_peer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/audioPlayback.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/message.dart';
-import 'package:fiberchat/Screens/contact_screens/ContactsSelect.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/photo_view.dart';
-import 'package:fiberchat/Screens/profile_settings/profile_view.dart';
-import 'package:fiberchat/Services/Providers/seen_provider.dart';
-import 'package:fiberchat/Services/Providers/seen_state.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Utils/call_utilities.dart';
-import 'package:fiberchat/Utils/permissions.dart';
-import 'package:fiberchat/Utils/chat_controller.dart';
-import 'package:fiberchat/Utils/crc.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/save.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/AudioRecorder/Audiorecord.dart';
-import 'package:fiberchat/widgets/VideoPreview/VideoPreview.dart';
-import 'package:fiberchat/Screens/chat_screen/Widget/bubble.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Screens/auth_screens/login.dart';
+import 'package:crypterchat/Screens/chat_screen/utils/aes_encryption.dart';
+import 'package:crypterchat/Screens/chat_screen/utils/uploadMediaWithProgress.dart';
+import 'package:crypterchat/Screens/contact_screens/SelectContactsToForward.dart';
+import 'package:crypterchat/Screens/security_screens/security.dart';
+import 'package:crypterchat/Services/Admob/admob.dart';
+import 'package:crypterchat/Utils/emoji_detect.dart';
+import 'package:crypterchat/Utils/mime_type.dart';
+import 'package:crypterchat/main.dart';
+import 'package:crypterchat/widgets/CountryPicker/CountryCode.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Screens/chat_screen/utils/deleteChatMedia.dart';
+import 'package:crypterchat/Screens/privacypolicy&TnC/PdfViewFromCachedUrl.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/widgets/MultiDocumentPicker/multiDocumentPicker.dart';
+import 'package:crypterchat/widgets/MyElevatedButton/MyElevatedButton.dart';
+import 'package:crypterchat/widgets/SoundPlayer/SoundPlayerPro.dart';
+import 'package:crypterchat/Services/Providers/currentchat_peer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Screens/call_history/callhistory.dart';
+import 'package:crypterchat/Screens/chat_screen/utils/audioPlayback.dart';
+import 'package:crypterchat/Screens/chat_screen/utils/message.dart';
+import 'package:crypterchat/Screens/contact_screens/ContactsSelect.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Screens/chat_screen/utils/photo_view.dart';
+import 'package:crypterchat/Screens/profile_settings/profile_view.dart';
+import 'package:crypterchat/Services/Providers/seen_provider.dart';
+import 'package:crypterchat/Services/Providers/seen_state.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_layout.dart';
+import 'package:crypterchat/Utils/call_utilities.dart';
+import 'package:crypterchat/Utils/permissions.dart';
+import 'package:crypterchat/Utils/chat_controller.dart';
+import 'package:crypterchat/Utils/crc.dart';
+import 'package:crypterchat/Utils/open_settings.dart';
+import 'package:crypterchat/Utils/save.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/widgets/AudioRecorder/Audiorecord.dart';
+import 'package:crypterchat/widgets/VideoPreview/VideoPreview.dart';
+import 'package:crypterchat/Screens/chat_screen/Widget/bubble.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -82,8 +82,8 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:receive_sharing_intent_plus/receive_sharing_intent_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:fiberchat/Models/E2EE/e2ee.dart' as e2ee;
-import 'package:fiberchat/Utils/unawaited.dart';
+import 'package:crypterchat/Models/E2EE/e2ee.dart' as e2ee;
+import 'package:crypterchat/Utils/unawaited.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/services.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
@@ -91,7 +91,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart' as emojipic;
 import 'package:video_compress/video_compress.dart' as compress;
 import 'package:video_thumbnail/video_thumbnail.dart';
-import 'package:fiberchat/Configs/Enum.dart';
+import 'package:crypterchat/Configs/Enum.dart';
 
 hidekeyboard(BuildContext context) {
   FocusScope.of(context).requestFocus(FocusNode());
@@ -205,7 +205,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
     unread = widget.unread;
     // initAudioPlayer();
     // _load();
-    Fiberchat.internetLookUp();
+    Crypterchat.internetLookUp();
 
     updateLocalUserData(_cachedModel);
 
@@ -415,7 +415,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
       int crc = CRC32.compute(input);
       return '$encrypted${Dbkeys.crcSeperator}$crc';
     } catch (e) {
-      Fiberchat.toast(
+      Crypterchat.toast(
         getTranslated(this.context, 'waitingpeer'),
       );
       return false;
@@ -439,7 +439,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
     } catch (e) {
       return '';
     }
-    // Fiberchat.toast(getTranslated(this.context, 'msgnotload'));
+    // Crypterchat.toast(getTranslated(this.context, 'msgnotload'));
     return '';
   }
 
@@ -487,7 +487,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
     } catch (e) {
       seenState!.value = false;
     }
-    chatId = Fiberchat.getChatId(currentUserNo!, peerNo!);
+    chatId = Crypterchat.getChatId(currentUserNo!, peerNo!);
     textEditingController.addListener(() {
       if (textEditingController.text.isNotEmpty && typing == false) {
         lastSeen = peerNo;
@@ -651,7 +651,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           }).toString();
         });
       }).catchError((onError) {
-        Fiberchat.toast(getTranslated(this.context, 'failedsending'));
+        Crypterchat.toast(getTranslated(this.context, 'failedsending'));
         debugPrint('ERROR SENDING FILE: $onError');
       });
     } else {
@@ -741,8 +741,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                   ),
                   key: _keyLoader34,
                   backgroundColor: Thm.isDarktheme(widget.prefs)
-                      ? fiberchatDIALOGColorDarkMode
-                      : fiberchatDIALOGColorLightMode,
+                      ? crypterchatDIALOGColorDarkMode
+                      : crypterchatDIALOGColorLightMode,
                   children: <Widget>[
                     Center(
                       child: StreamBuilder(
@@ -808,7 +808,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           }).toString();
         });
       }).catchError((onError) {
-        Fiberchat.toast(getTranslated(this.context, 'failedsending'));
+        Crypterchat.toast(getTranslated(this.context, 'failedsending'));
         debugPrint('ERROR SENDING FILE: $onError');
       });
     } else {
@@ -847,7 +847,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
 
   void _changeLanguage(Language language) async {
     Locale _locale = await setLocale(language.languageCode);
-    FiberchatWrapper.setLocale(this.context, _locale);
+    CrypterchatWrapper.setLocale(this.context, _locale);
 
     Future.delayed(const Duration(milliseconds: 800), () {
       FirebaseFirestore.instance
@@ -1007,11 +1007,11 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           }
           // _playPopSound();
         } else {
-          Fiberchat.toast('Nothing to encrypt');
+          Crypterchat.toast('Nothing to encrypt');
         }
       } on Exception catch (_) {
         // debugPrint('Exception caught!');
-        Fiberchat.toast("Exception: $_");
+        Crypterchat.toast("Exception: $_");
       }
     }
   }
@@ -1068,8 +1068,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                   fontWeight: FontWeight.bold,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatDIALOGColorDarkMode
-                          : fiberchatDIALOGColorLightMode),
+                          ? crypterchatDIALOGColorDarkMode
+                          : crypterchatDIALOGColorLightMode),
                 ),
               ),
               onTap: () async {
@@ -1084,7 +1084,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                     .get()
                     .then((chatDoc) async {
                   if (!chatDoc.exists) {
-                    Fiberchat.toast('Please reload this screen !');
+                    Crypterchat.toast('Please reload this screen !');
                   } else if (chatDoc.exists) {
                     Map<String, dynamic> realtimeDoc = chatDoc.data()!;
                     if (realtimeDoc[Dbkeys.hasRecipientDeleted] == true) {
@@ -1111,7 +1111,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                         await deleteMsgMedia(realtimeDoc, chatId!)
                             .then((isDeleted) async {
                           if (isDeleted == false || isDeleted == null) {
-                            Fiberchat.toast(
+                            Crypterchat.toast(
                                 'Could not delete. Please try again!');
                           } else {
                             await FirebaseFirestore.instance
@@ -1170,8 +1170,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                   fontWeight: FontWeight.bold,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatDIALOGColorDarkMode
-                          : fiberchatDIALOGColorLightMode),
+                          ? crypterchatDIALOGColorDarkMode
+                          : crypterchatDIALOGColorLightMode),
                 ),
               ),
               onTap: () async {
@@ -1201,7 +1201,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                   await deleteMsgMedia(mssgDoc, chatId!)
                       .then((isDeleted) async {
                     if (isDeleted == false || isDeleted == null) {
-                      Fiberchat.toast('Could not delete. Please try again!');
+                      Crypterchat.toast('Could not delete. Please try again!');
                     } else {
                       await FirebaseFirestore.instance
                           .collection(DbPaths.collectionmessages)
@@ -1236,8 +1236,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                   fontWeight: FontWeight.bold,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatDIALOGColorDarkMode
-                          : fiberchatDIALOGColorLightMode),
+                          ? crypterchatDIALOGColorDarkMode
+                          : crypterchatDIALOGColorLightMode),
                 ),
               ),
               onTap: () async {
@@ -1251,7 +1251,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                     .get()
                     .then((chatDoc) async {
                   if (!chatDoc.exists) {
-                    Fiberchat.toast('Please reload this screen !');
+                    Crypterchat.toast('Please reload this screen !');
                   } else if (chatDoc.exists) {
                     Map<String, dynamic> realtimeDoc = chatDoc.data()!;
                     if (realtimeDoc[Dbkeys.hasSenderDeleted] == true) {
@@ -1278,7 +1278,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                         await deleteMsgMedia(realtimeDoc, chatId!)
                             .then((isDeleted) async {
                           if (isDeleted == false || isDeleted == null) {
-                            Fiberchat.toast(
+                            Crypterchat.toast(
                                 'Could not delete. Please try again!');
                           } else {
                             await FirebaseFirestore.instance
@@ -1340,8 +1340,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                   fontWeight: FontWeight.bold,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatDIALOGColorDarkMode
-                          : fiberchatDIALOGColorLightMode),
+                          ? crypterchatDIALOGColorDarkMode
+                          : crypterchatDIALOGColorLightMode),
                 ),
               ),
               onTap: () {
@@ -1358,7 +1358,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                     Dbkeys.broadcastBLACKLISTED:
                         FieldValue.arrayUnion([widget.currentUserNo]),
                   }).catchError((error) {
-                    Fiberchat.toast(error.toString());
+                    Crypterchat.toast(error.toString());
                   });
                 });
               })));
@@ -1379,14 +1379,14 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                   fontWeight: FontWeight.bold,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatDIALOGColorDarkMode
-                          : fiberchatDIALOGColorLightMode),
+                          ? crypterchatDIALOGColorDarkMode
+                          : crypterchatDIALOGColorLightMode),
                 ),
               ),
               onTap: () {
                 Clipboard.setData(ClipboardData(text: mssgDoc[Dbkeys.content]));
 
-                Fiberchat.toast(getTranslated(popable, 'copied'));
+                Crypterchat.toast(getTranslated(popable, 'copied'));
                 Navigator.of(popable).pop();
               })));
     }
@@ -1406,8 +1406,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                   fontWeight: FontWeight.bold,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatDIALOGColorDarkMode
-                          : fiberchatDIALOGColorLightMode),
+                          ? crypterchatDIALOGColorDarkMode
+                          : crypterchatDIALOGColorLightMode),
                 ),
               ),
               onTap: () async {
@@ -1447,8 +1447,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                   fontWeight: FontWeight.bold,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatDIALOGColorDarkMode
-                          : fiberchatDIALOGColorLightMode),
+                          ? crypterchatDIALOGColorDarkMode
+                          : crypterchatDIALOGColorLightMode),
                 ),
               ),
               onTap: () async {
@@ -1476,7 +1476,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
               onTap: () async {
                 Navigator.of(popable).pop();
                 try {
-                  var v = await Fiberchat.translateString(
+                  var v = await Crypterchat.translateString(
                       mssgDoc[Dbkeys.content], widget.prefs);
                   if (v != mssgDoc[Dbkeys.content]) {
                     await widget.prefs.setString(
@@ -1507,7 +1507,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                     }
                   }
                 } catch (e) {
-                  Fiberchat.toast(e.toString());
+                  Crypterchat.toast(e.toString());
                 }
               })));
     }
@@ -1554,8 +1554,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                 e.languageNameInEnglish,
                                         style: TextStyle(
                                             color: Thm.isDarktheme(widget.prefs)
-                                                ? fiberchatWhite
-                                                : fiberchatBlack,
+                                                ? crypterchatWhite
+                                                : crypterchatBlack,
                                             fontWeight: FontWeight.w500,
                                             fontSize: 16),
                                       ),
@@ -1566,7 +1566,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                               color: e.languageCode ==
                                                       widget.prefs.getString(
                                                           LAGUAGE_CODE)
-                                                  ? fiberchatSECONDARYolor
+                                                  ? crypterchatSECONDARYolor
                                                   : Colors.transparent,
                                             )
                                     ],
@@ -1578,7 +1578,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                           .toList(),
                       title: "");
                 } catch (e) {
-                  Fiberchat.toast(e.toString());
+                  Crypterchat.toast(e.toString());
                 }
               })));
     }
@@ -1588,8 +1588,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
         builder: (contextForDialog) {
           return SimpleDialog(
               backgroundColor: Thm.isDarktheme(widget.prefs)
-                  ? fiberchatDIALOGColorDarkMode
-                  : fiberchatDIALOGColorLightMode,
+                  ? crypterchatDIALOGColorDarkMode
+                  : crypterchatDIALOGColorLightMode,
               children: tiles);
         });
   }
@@ -1642,7 +1642,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
             );
           }).then((value) async {
             if (index >= list.length - 1) {
-              Fiberchat.toast(
+              Crypterchat.toast(
                 getTranslated(this.context, 'sent'),
               );
               setStateIfMounted(() {
@@ -1658,7 +1658,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           setStateIfMounted(() {
             isgeneratingSomethingLoader = false;
           });
-          Fiberchat.toast('Failed to send $e');
+          Crypterchat.toast('Failed to send $e');
         }
       } else {
         try {
@@ -1674,7 +1674,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
 
           if (encrypted is String) {
             int timestamp2 = DateTime.now().millisecondsSinceEpoch;
-            var chatId = Fiberchat.getChatId(
+            var chatId = Crypterchat.getChatId(
                 widget.currentUserNo!, list[index][Dbkeys.phone]);
             if (content.trim() != '') {
               Map<String, dynamic>? targetPeer =
@@ -1683,7 +1683,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                 await ChatController.request(
                     currentUserNo,
                     list[index][Dbkeys.phone],
-                    Fiberchat.getChatId(
+                    Crypterchat.getChatId(
                         widget.currentUserNo!, list[index][Dbkeys.phone]));
               }
 
@@ -1729,7 +1729,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                     list[index][Dbkeys.phone], timestamp2, messaging);
               }).then((value) async {
                 if (index >= list.length - 1) {
-                  Fiberchat.toast(
+                  Crypterchat.toast(
                     getTranslated(this.context, 'sent'),
                   );
                   setStateIfMounted(() {
@@ -1746,13 +1746,13 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
             setStateIfMounted(() {
               isgeneratingSomethingLoader = false;
             });
-            Fiberchat.toast('Nothing to send');
+            Crypterchat.toast('Nothing to send');
           }
         } catch (e) {
           setStateIfMounted(() {
             isgeneratingSomethingLoader = false;
           });
-          Fiberchat.toast('Failed to Forward message. Error:$e');
+          Crypterchat.toast('Failed to Forward message. Error:$e');
         }
       }
     }
@@ -1773,8 +1773,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
               fontWeight: FontWeight.bold,
               color: pickTextColorBasedOnBgColorAdvanced(
                   Thm.isDarktheme(widget.prefs)
-                      ? fiberchatDIALOGColorDarkMode
-                      : fiberchatDIALOGColorLightMode),
+                      ? crypterchatDIALOGColorDarkMode
+                      : crypterchatDIALOGColorLightMode),
             ),
           ),
           onTap: () async {
@@ -1793,7 +1793,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
 
             Future.delayed(const Duration(milliseconds: 300), () {
               Navigator.maybePop(context);
-              Fiberchat.toast(
+              Crypterchat.toast(
                 getTranslated(this.context, 'deleted'),
               );
             });
@@ -1811,14 +1811,14 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
               fontWeight: FontWeight.bold,
               color: pickTextColorBasedOnBgColorAdvanced(
                   Thm.isDarktheme(widget.prefs)
-                      ? fiberchatDIALOGColorDarkMode
-                      : fiberchatDIALOGColorLightMode),
+                      ? crypterchatDIALOGColorDarkMode
+                      : crypterchatDIALOGColorLightMode),
             ),
           ),
           onTap: () {
             Clipboard.setData(ClipboardData(text: doc[Dbkeys.content]));
             Navigator.pop(context);
-            Fiberchat.toast(
+            Crypterchat.toast(
               getTranslated(this.context, 'copied'),
             );
           }));
@@ -1835,11 +1835,11 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                 fontWeight: FontWeight.bold,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(widget.prefs)
-                        ? fiberchatDIALOGColorDarkMode
-                        : fiberchatDIALOGColorLightMode)),
+                        ? crypterchatDIALOGColorDarkMode
+                        : crypterchatDIALOGColorLightMode)),
           ),
           onTap: () {
-            Fiberchat.toast(
+            Crypterchat.toast(
               getTranslated(this.context, 'plswait'),
             );
             Future.delayed(const Duration(milliseconds: 500), () {
@@ -1852,13 +1852,13 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                 Dbkeys.broadcastBLACKLISTED:
                     FieldValue.arrayUnion([widget.currentUserNo]),
               }).then((value) {
-                Fiberchat.toast(
+                Crypterchat.toast(
                   getTranslated(this.context, 'blockedbroadcast'),
                 );
                 hidekeyboard(context);
                 Navigator.pop(context);
               }).catchError((error) {
-                Fiberchat.toast(
+                Crypterchat.toast(
                   getTranslated(this.context, 'blockedbroadcast'),
                 );
                 Navigator.pop(context);
@@ -1872,14 +1872,14 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
         builder: (context) {
           return SimpleDialog(
               backgroundColor: Thm.isDarktheme(widget.prefs)
-                  ? fiberchatDIALOGColorDarkMode
-                  : fiberchatDIALOGColorLightMode,
+                  ? crypterchatDIALOGColorDarkMode
+                  : crypterchatDIALOGColorLightMode,
               children: tiles);
         });
   }
 
   save(Map<String, dynamic> doc) async {
-    Fiberchat.toast(
+    Crypterchat.toast(
       getTranslated(this.context, 'saved'),
     );
     if (!_savedMessageDocs
@@ -1941,7 +1941,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                               widget.prefs.getString('$timestamp-trns') ?? "",
                               style: TextStyle(
                                   fontStyle: FontStyle.italic,
-                                  color: fiberchatGrey),
+                                  color: crypterchatGrey),
                             ),
                           )
 //-pprefs
@@ -1962,7 +1962,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                   ['$timestamp-trns'],
                               style: TextStyle(
                                   fontStyle: FontStyle.italic,
-                                  color: fiberchatGrey),
+                                  color: crypterchatGrey),
                             ),
                           )
               ])
@@ -2044,7 +2044,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                 Icon(
                                   FontAwesomeIcons.share,
                                   size: 12,
-                                  color: fiberchatGrey.withOpacity(0.5),
+                                  color: crypterchatGrey.withOpacity(0.5),
                                 ),
                                 SizedBox(
                                   width: 5,
@@ -2052,7 +2052,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                 Text(getTranslated(this.context, 'forwarded'),
                                     maxLines: 1,
                                     style: TextStyle(
-                                        color: fiberchatGrey.withOpacity(0.7),
+                                        color: crypterchatGrey.withOpacity(0.7),
                                         fontStyle: FontStyle.italic,
                                         overflow: TextOverflow.ellipsis,
                                         fontSize: 13))
@@ -2109,7 +2109,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                 Icon(
                                   FontAwesomeIcons.share,
                                   size: 12,
-                                  color: fiberchatGrey.withOpacity(0.5),
+                                  color: crypterchatGrey.withOpacity(0.5),
                                 ),
                                 SizedBox(
                                   width: 5,
@@ -2117,7 +2117,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                 Text(getTranslated(this.context, 'forwarded'),
                                     maxLines: 1,
                                     style: TextStyle(
-                                        color: fiberchatGrey.withOpacity(0.7),
+                                        color: crypterchatGrey.withOpacity(0.7),
                                         fontStyle: FontStyle.italic,
                                         overflow: TextOverflow.ellipsis,
                                         fontSize: 13))
@@ -2158,7 +2158,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                           Icon(
                             FontAwesomeIcons.share,
                             size: 12,
-                            color: fiberchatGrey.withOpacity(0.5),
+                            color: crypterchatGrey.withOpacity(0.5),
                           ),
                           SizedBox(
                             width: 5,
@@ -2166,7 +2166,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                           Text(getTranslated(this.context, 'forwarded'),
                               maxLines: 1,
                               style: TextStyle(
-                                  color: fiberchatGrey.withOpacity(0.7),
+                                  color: crypterchatGrey.withOpacity(0.7),
                                   fontStyle: FontStyle.italic,
                                   overflow: TextOverflow.ellipsis,
                                   fontSize: 13))
@@ -2212,7 +2212,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             Icon(
                               FontAwesomeIcons.share,
                               size: 12,
-                              color: fiberchatGrey.withOpacity(0.5),
+                              color: crypterchatGrey.withOpacity(0.5),
                             ),
                             SizedBox(
                               width: 5,
@@ -2220,7 +2220,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             Text(getTranslated(this.context, 'forwarded'),
                                 maxLines: 1,
                                 style: TextStyle(
-                                    color: fiberchatGrey.withOpacity(0.7),
+                                    color: crypterchatGrey.withOpacity(0.7),
                                     fontStyle: FontStyle.italic,
                                     overflow: TextOverflow.ellipsis,
                                     fontSize: 13))
@@ -2274,7 +2274,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             Icon(
                               FontAwesomeIcons.share,
                               size: 12,
-                              color: fiberchatGrey.withOpacity(0.5),
+                              color: crypterchatGrey.withOpacity(0.5),
                             ),
                             SizedBox(
                               width: 5,
@@ -2282,7 +2282,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             Text(getTranslated(this.context, 'forwarded'),
                                 maxLines: 1,
                                 style: TextStyle(
-                                    color: fiberchatGrey.withOpacity(0.7),
+                                    color: crypterchatGrey.withOpacity(0.7),
                                     fontStyle: FontStyle.italic,
                                     overflow: TextOverflow.ellipsis,
                                     fontSize: 13))
@@ -2409,7 +2409,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             Icon(
                               FontAwesomeIcons.share,
                               size: 12,
-                              color: fiberchatGrey.withOpacity(0.5),
+                              color: crypterchatGrey.withOpacity(0.5),
                             ),
                             SizedBox(
                               width: 5,
@@ -2417,7 +2417,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             Text(getTranslated(this.context, 'forwarded'),
                                 maxLines: 1,
                                 style: TextStyle(
-                                    color: fiberchatGrey.withOpacity(0.7),
+                                    color: crypterchatGrey.withOpacity(0.7),
                                     fontStyle: FontStyle.italic,
                                     overflow: TextOverflow.ellipsis,
                                     fontSize: 13))
@@ -2533,7 +2533,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             Icon(
                               FontAwesomeIcons.share,
                               size: 12,
-                              color: fiberchatGrey.withOpacity(0.5),
+                              color: crypterchatGrey.withOpacity(0.5),
                             ),
                             SizedBox(
                               width: 5,
@@ -2541,7 +2541,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             Text(getTranslated(this.context, 'forwarded'),
                                 maxLines: 1,
                                 style: TextStyle(
-                                    color: fiberchatGrey.withOpacity(0.7),
+                                    color: crypterchatGrey.withOpacity(0.7),
                                     fontStyle: FontStyle.italic,
                                     overflow: TextOverflow.ellipsis,
                                     fontSize: 13))
@@ -2628,7 +2628,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             Icon(
                               FontAwesomeIcons.share,
                               size: 12,
-                              color: fiberchatGrey.withOpacity(0.5),
+                              color: crypterchatGrey.withOpacity(0.5),
                             ),
                             SizedBox(
                               width: 5,
@@ -2636,7 +2636,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             Text(getTranslated(this.context, 'forwarded'),
                                 maxLines: 1,
                                 style: TextStyle(
-                                    color: fiberchatGrey.withOpacity(0.7),
+                                    color: crypterchatGrey.withOpacity(0.7),
                                     fontStyle: FontStyle.italic,
                                     overflow: TextOverflow.ellipsis,
                                     fontSize: 13))
@@ -2792,7 +2792,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
 
                 // ignore: unnecessary_null_comparison
                 if (isUser == null || isUser == false) {
-                  Fiberchat.toast(getTranslated(this.context, 'usernotjoined') +
+                  Crypterchat.toast(getTranslated(this.context, 'usernotjoined') +
                       ' $Appname');
                 }
               },
@@ -2924,20 +2924,20 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           height: 70,
           margin: EdgeInsets.only(left: 0, right: 0),
           decoration: BoxDecoration(
-              color: fiberchatWhite.withOpacity(0.55),
+              color: crypterchatWhite.withOpacity(0.55),
               borderRadius: BorderRadius.all(Radius.circular(10))),
           child: Stack(
             children: [
               Container(
                   margin: EdgeInsetsDirectional.all(4),
                   decoration: BoxDecoration(
-                      color: fiberchatGrey.withOpacity(0.1),
+                      color: crypterchatGrey.withOpacity(0.1),
                       borderRadius: BorderRadius.all(Radius.circular(8))),
                   child: Row(children: [
                     Container(
                       decoration: BoxDecoration(
                         color: doc[Dbkeys.from] == currentUserNo
-                            ? fiberchatPRIMARYcolor
+                            ? crypterchatPRIMARYcolor
                             : Colors.purple,
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(0),
@@ -2962,12 +2962,12 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             child: Text(
                               doc[Dbkeys.from] == currentUserNo
                                   ? getTranslated(this.context, 'you')
-                                  : Fiberchat.getNickname(peer!)!,
+                                  : Crypterchat.getNickname(peer!)!,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: doc[Dbkeys.from] == currentUserNo
-                                      ? fiberchatPRIMARYcolor
+                                      ? crypterchatPRIMARYcolor
                                       : Colors.purple),
                             ),
                           ),
@@ -2980,7 +2980,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                   overflow: TextOverflow.ellipsis,
                                   // textAlign:  doc[Dbkeys.from] == currentUserNo? TextAlign.end: TextAlign.start,
                                   maxLines: 1,
-                                  style: TextStyle(color: fiberchatBlack),
+                                  style: TextStyle(color: crypterchatBlack),
                                 )
                               : doc[Dbkeys.messageType] == MessageType.doc.index
                                   ? Container(
@@ -2989,7 +2989,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                         doc[Dbkeys.content].split('-BREAK-')[1],
                                         overflow: TextOverflow.ellipsis,
                                         maxLines: 1,
-                                        style: TextStyle(color: fiberchatBlack),
+                                        style: TextStyle(color: crypterchatBlack),
                                       ),
                                     )
                                   : Text(
@@ -3021,7 +3021,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                   ? 'ndm'
                                                                   : ''),
                                       overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(color: fiberchatBlack),
+                                      style: TextStyle(color: crypterchatBlack),
                                     ),
                         ],
                       ),
@@ -3051,7 +3051,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                 placeholder: (context, url) => Container(
                                   child: CircularProgressIndicator(
                                     valueColor: AlwaysStoppedAnimation<Color>(
-                                        fiberchatSECONDARYolor),
+                                        crypterchatSECONDARYolor),
                                   ),
                                   width: doc[Dbkeys.content].contains('giphy')
                                       ? 60
@@ -3118,7 +3118,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                   valueColor:
                                                       AlwaysStoppedAnimation<
                                                               Color>(
-                                                          fiberchatSECONDARYolor),
+                                                          crypterchatSECONDARYolor),
                                                 ),
                                                 width: 74,
                                                 height: 74,
@@ -3186,7 +3186,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                               ? Colors.yellow[800]
                                               : doc[Dbkeys.messageType] ==
                                                       MessageType.audio.index
-                                                  ? fiberchatGreenColor400
+                                                  ? crypterchatGreenColor400
                                                   : doc[Dbkeys.messageType] ==
                                                           MessageType
                                                               .location.index
@@ -3233,20 +3233,20 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           height: 80,
           margin: EdgeInsets.only(left: 15, right: 70),
           decoration: BoxDecoration(
-              color: fiberchatWhite,
+              color: crypterchatWhite,
               borderRadius: BorderRadius.all(Radius.circular(10))),
           child: Stack(
             children: [
               Container(
                   margin: EdgeInsetsDirectional.all(4),
                   decoration: BoxDecoration(
-                      color: fiberchatGrey.withOpacity(0.1),
+                      color: crypterchatGrey.withOpacity(0.1),
                       borderRadius: BorderRadius.all(Radius.circular(8))),
                   child: Row(children: [
                     Container(
                       decoration: BoxDecoration(
                         color: replyDoc![Dbkeys.from] == currentUserNo
-                            ? fiberchatPRIMARYcolor
+                            ? crypterchatPRIMARYcolor
                             : Colors.purple,
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(0),
@@ -3271,12 +3271,12 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             child: Text(
                               replyDoc![Dbkeys.from] == currentUserNo
                                   ? getTranslated(this.context, 'you')
-                                  : Fiberchat.getNickname(peer!)!,
+                                  : Crypterchat.getNickname(peer!)!,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: replyDoc![Dbkeys.from] == currentUserNo
-                                      ? fiberchatPRIMARYcolor
+                                      ? crypterchatPRIMARYcolor
                                       : Colors.purple),
                             ),
                           ),
@@ -3289,7 +3289,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                   replyDoc![Dbkeys.content],
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
-                                  style: TextStyle(color: fiberchatBlack),
+                                  style: TextStyle(color: crypterchatBlack),
                                 )
                               : replyDoc![Dbkeys.messageType] ==
                                       MessageType.doc.index
@@ -3302,7 +3302,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                             .split('-BREAK-')[1],
                                         overflow: TextOverflow.ellipsis,
                                         maxLines: 2,
-                                        style: TextStyle(color: fiberchatBlack),
+                                        style: TextStyle(color: crypterchatBlack),
                                       ),
                                     )
                                   : Text(
@@ -3339,7 +3339,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                   : ''),
                                       overflow: TextOverflow.ellipsis,
                                       maxLines: 2,
-                                      style: TextStyle(color: fiberchatBlack),
+                                      style: TextStyle(color: crypterchatBlack),
                                     ),
                         ],
                       ),
@@ -3368,7 +3368,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                 placeholder: (context, url) => Container(
                                   child: CircularProgressIndicator(
                                     valueColor: AlwaysStoppedAnimation<Color>(
-                                        fiberchatSECONDARYolor),
+                                        crypterchatSECONDARYolor),
                                   ),
                                   width: replyDoc![Dbkeys.content]
                                           .contains('giphy')
@@ -3437,7 +3437,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                   valueColor:
                                                       AlwaysStoppedAnimation<
                                                               Color>(
-                                                          fiberchatSECONDARYolor),
+                                                          crypterchatSECONDARYolor),
                                                 ),
                                                 width: 84,
                                                 height: 84,
@@ -3507,7 +3507,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                               ? Colors.yellow[800]
                                               : replyDoc![Dbkeys.messageType] ==
                                                       MessageType.audio.index
-                                                  ? fiberchatGreenColor400
+                                                  ? crypterchatGreenColor400
                                                   : replyDoc![Dbkeys
                                                               .messageType] ==
                                                           MessageType
@@ -3584,12 +3584,12 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
               child: Center(
                 child: CircularProgressIndicator(
                     valueColor:
-                        AlwaysStoppedAnimation<Color>(fiberchatPRIMARYcolor)),
+                        AlwaysStoppedAnimation<Color>(crypterchatPRIMARYcolor)),
               ),
               color: pickTextColorBasedOnBgColorAdvanced(
                       !Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode)
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode)
                   .withOpacity(0.6),
             )
           : Container(),
@@ -3599,8 +3599,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
   shareMedia(BuildContext context) {
     showModalBottomSheet(
         backgroundColor: Thm.isDarktheme(widget.prefs)
-            ? fiberchatDIALOGColorDarkMode
-            : fiberchatDIALOGColorLightMode,
+            ? crypterchatDIALOGColorDarkMode
+            : crypterchatDIALOGColorLightMode,
         context: context,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
@@ -3671,7 +3671,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: fiberchatGrey, fontSize: 14),
+                          style: TextStyle(color: crypterchatGrey, fontSize: 14),
                         )
                       ],
                     ),
@@ -3690,7 +3690,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             File? selectedMedia =
                                 await pickVideoFromgallery(context)
                                     .catchError((err) {
-                              Fiberchat.toast(
+                              Crypterchat.toast(
                                   getTranslated(context, "invalidfile"));
                               return null;
                             });
@@ -3768,7 +3768,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                             },
                                             file: File(file.path))));
                               } else {
-                                Fiberchat.toast(
+                                Crypterchat.toast(
                                     "File type not supported. Please choose a valid .mp4, .mov. \n\nSelected file was $fileExtension ");
                               }
                             }
@@ -3791,7 +3791,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: fiberchatGrey, fontSize: 14),
+                          style: TextStyle(color: crypterchatGrey, fontSize: 14),
                         )
                       ],
                     ),
@@ -3852,7 +3852,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: fiberchatGrey, fontSize: 14),
+                          style: TextStyle(color: crypterchatGrey, fontSize: 14),
                         )
                       ],
                     ),
@@ -3916,7 +3916,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: fiberchatGrey),
+                          style: TextStyle(color: crypterchatGrey),
                         )
                       ],
                     ),
@@ -3934,7 +3934,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             Navigator.of(context).pop();
                             await checkIfLocationEnabled().then((value) async {
                               if (value == true) {
-                                Fiberchat.toast(getTranslated(
+                                Crypterchat.toast(getTranslated(
                                     this.context, 'detectingloc'));
                                 await _determinePosition().then(
                                   (location) async {
@@ -3946,13 +3946,13 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                         MessageType.location,
                                         DateTime.now().millisecondsSinceEpoch);
                                     setStateIfMounted(() {});
-                                    Fiberchat.toast(
+                                    Crypterchat.toast(
                                       getTranslated(this.context, 'sent'),
                                     );
                                   },
                                 );
                               } else {
-                                Fiberchat.toast(getTranslated(
+                                Crypterchat.toast(getTranslated(
                                     this.context, 'locationdenied'));
                                 openAppSettings();
                               }
@@ -3976,7 +3976,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: fiberchatGrey),
+                          style: TextStyle(color: crypterchatGrey),
                         )
                       ],
                     ),
@@ -4027,7 +4027,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: fiberchatGrey),
+                          style: TextStyle(color: crypterchatGrey),
                         )
                       ],
                     ),
@@ -4099,8 +4099,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                   ),
                   key: _keyLoader34,
                   backgroundColor: Thm.isDarktheme(widget.prefs)
-                      ? fiberchatDIALOGColorDarkMode
-                      : fiberchatDIALOGColorLightMode,
+                      ? crypterchatDIALOGColorDarkMode
+                      : crypterchatDIALOGColorLightMode,
                   children: <Widget>[
                     Center(
                       child: StreamBuilder(
@@ -4161,7 +4161,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           }).toString();
         });
       }).catchError((onError) {
-        Fiberchat.toast(getTranslated(this.context, 'failedsending'));
+        Crypterchat.toast(getTranslated(this.context, 'failedsending'));
         debugPrint('ERROR SENDING FILE: $onError');
       });
     } else {
@@ -4189,16 +4189,16 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
     if (chatStatus == ChatStatus.requested.index) {
       return AlertDialog(
         backgroundColor: Thm.isDarktheme(widget.prefs)
-            ? fiberchatDIALOGColorDarkMode
-            : fiberchatDIALOGColorLightMode,
+            ? crypterchatDIALOGColorDarkMode
+            : crypterchatDIALOGColorLightMode,
         elevation: 10.0,
         title: Text(
           getTranslated(this.context, 'accept') + '${peer![Dbkeys.nickname]} ?',
           style: TextStyle(
             color: pickTextColorBasedOnBgColorAdvanced(
                 Thm.isDarktheme(widget.prefs)
-                    ? fiberchatDIALOGColorDarkMode
-                    : fiberchatDIALOGColorLightMode),
+                    ? crypterchatDIALOGColorDarkMode
+                    : crypterchatDIALOGColorLightMode),
           ),
         ),
         actions: <Widget>[
@@ -4212,8 +4212,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                 style: TextStyle(
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatDIALOGColorDarkMode
-                          : fiberchatDIALOGColorLightMode),
+                          ? crypterchatDIALOGColorDarkMode
+                          : crypterchatDIALOGColorLightMode),
                 ),
               ),
               onPressed: () {
@@ -4228,7 +4228,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                 backgroundColor: Colors.transparent,
               ),
               child: Text(getTranslated(this.context, 'acpt'),
-                  style: TextStyle(color: fiberchatPRIMARYcolor)),
+                  style: TextStyle(color: crypterchatPRIMARYcolor)),
               onPressed: () {
                 ChatController.accept(currentUserNo, peerNo);
                 setStateIfMounted(() {
@@ -4257,7 +4257,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                       left: 10,
                     ),
                     decoration: BoxDecoration(
-                        color: fiberchatWhite,
+                        color: crypterchatWhite,
                         borderRadius: BorderRadius.all(Radius.circular(30))),
                     child: Row(
                       children: [
@@ -4272,7 +4272,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             icon: Icon(
                               Icons.emoji_emotions,
                               size: 23,
-                              color: fiberchatGrey,
+                              color: crypterchatGrey,
                             ),
                           ),
                         ),
@@ -4291,7 +4291,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             //   debugPrint(string);
 
                             //   if (string.substring(string.length - 1) == '/') {
-                            //     Fiberchat.toast(string);
+                            //     Crypterchat.toast(string);
                             //   }
                             //   //  setStateIfMounted(() {});
                             // },
@@ -4300,7 +4300,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             maxLines: null,
                             textCapitalization: TextCapitalization.sentences,
                             style: TextStyle(
-                                fontSize: 16.0, color: fiberchatBlack),
+                                fontSize: 16.0, color: crypterchatBlack),
                             controller: textEditingController,
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
@@ -4344,7 +4344,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                         child: IconButton(
                                           icon: new Icon(
                                             Icons.attachment_outlined,
-                                            color: fiberchatGrey,
+                                            color: crypterchatGrey,
                                           ),
                                           padding: EdgeInsets.all(0.0),
                                           onPressed: isMessageLoading == true
@@ -4352,7 +4352,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                               : observer.ismediamessagingallowed ==
                                                       false
                                                   ? () {
-                                                      Fiberchat.showRationale(
+                                                      Crypterchat.showRationale(
                                                           getTranslated(
                                                               this.context,
                                                               'mediamssgnotallowed'));
@@ -4361,7 +4361,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                           ChatStatus
                                                               .blocked.index
                                                       ? () {
-                                                          Fiberchat.toast(
+                                                          Crypterchat.toast(
                                                               getTranslated(
                                                                   this.context,
                                                                   'unlck'));
@@ -4370,7 +4370,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                           hidekeyboard(context);
                                                           shareMedia(context);
                                                         },
-                                          color: fiberchatWhite,
+                                          color: crypterchatWhite,
                                         ),
                                       ),
                                 textEditingController.text.isNotEmpty
@@ -4381,7 +4381,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                           icon: new Icon(
                                             Icons.camera_alt_rounded,
                                             size: 20,
-                                            color: fiberchatGrey,
+                                            color: crypterchatGrey,
                                           ),
                                           padding: EdgeInsets.all(0.0),
                                           onPressed: isMessageLoading == true
@@ -4389,7 +4389,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                               : observer.ismediamessagingallowed ==
                                                       false
                                                   ? () {
-                                                      Fiberchat.showRationale(
+                                                      Crypterchat.showRationale(
                                                           getTranslated(
                                                               this.context,
                                                               'mediamssgnotallowed'));
@@ -4398,7 +4398,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                           ChatStatus
                                                               .blocked.index
                                                       ? () {
-                                                          Fiberchat.toast(
+                                                          Crypterchat.toast(
                                                               getTranslated(
                                                                   this.context,
                                                                   'unlck'));
@@ -4443,7 +4443,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                             },
                                                                           )));
                                                         },
-                                          color: fiberchatWhite,
+                                          color: crypterchatWhite,
                                         ),
                                       ),
                                 textEditingController.text.length != 0 ||
@@ -4457,19 +4457,19 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                         alignment: Alignment.topLeft,
                                         width: 40,
                                         child: IconButton(
-                                            color: fiberchatWhite,
+                                            color: crypterchatWhite,
                                             padding: EdgeInsets.all(0.0),
                                             icon: Icon(
                                               Icons.gif_rounded,
                                               size: 40,
-                                              color: fiberchatGrey,
+                                              color: crypterchatGrey,
                                             ),
                                             onPressed: isMessageLoading == true
                                                 ? null
                                                 : observer.ismediamessagingallowed ==
                                                         false
                                                     ? () {
-                                                        Fiberchat.showRationale(
+                                                        Crypterchat.showRationale(
                                                             getTranslated(
                                                                 this.context,
                                                                 'mediamssgnotallowed'));
@@ -4479,7 +4479,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                             await GiphyGet
                                                                 .getGif(
                                                           tabColor:
-                                                              fiberchatPRIMARYcolor,
+                                                              crypterchatPRIMARYcolor,
 
                                                           context: context,
                                                           apiKey:
@@ -4517,7 +4517,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                   // alignment: Alignment.center,
                   margin: EdgeInsets.only(left: 6, right: 10),
                   decoration: BoxDecoration(
-                      color: fiberchatSECONDARYolor,
+                      color: crypterchatSECONDARYolor,
                       borderRadius: BorderRadius.all(Radius.circular(30))),
                   child: Padding(
                     padding: const EdgeInsets.all(2.0),
@@ -4527,12 +4527,12 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                               textEditingController.text.length == 0
                                   ? Icons.mic
                                   : Icons.send,
-                              color: fiberchatWhite.withOpacity(0.99),
+                              color: crypterchatWhite.withOpacity(0.99),
                             )
                           : textEditingController.text.length == 0
                               ? new Icon(
                                   Icons.mic,
-                                  color: fiberchatWhite.withOpacity(0.99),
+                                  color: crypterchatWhite.withOpacity(0.99),
                                 )
                               : Text(
                                   textInSendButton,
@@ -4572,7 +4572,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                     }
                                   : observer.istextmessagingallowed == false
                                       ? () {
-                                          Fiberchat.showRationale(getTranslated(
+                                          Crypterchat.showRationale(getTranslated(
                                               this.context,
                                               'textmssgnotallowed'));
                                         }
@@ -4585,10 +4585,10 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                               DateTime.now()
                                                   .millisecondsSinceEpoch)
                               : () {
-                                  Fiberchat.showRationale(getTranslated(
+                                  Crypterchat.showRationale(getTranslated(
                                       this.context, 'mediamssgnotallowed'));
                                 },
-                      color: fiberchatWhite,
+                      color: crypterchatWhite,
                     ),
                   ),
                 ),
@@ -4699,7 +4699,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
             }
           } catch (e) {
             if (e.toString().contains('range')) {
-              Fiberchat.toast(getTranslated(this.context, 'failedtoloadchat'));
+              Crypterchat.toast(getTranslated(this.context, 'failedtoloadchat'));
               Navigator.of(this.context).pop();
             }
           }
@@ -5083,15 +5083,15 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                           ? Center(
                               child: CircularProgressIndicator(
                                   valueColor: AlwaysStoppedAnimation<Color>(
-                                      fiberchatSECONDARYolor)),
+                                      crypterchatSECONDARYolor)),
                             )
                           : Text(getTranslated(this.context, 'sayhi'),
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: pickTextColorBasedOnBgColorAdvanced(
                                           !Thm.isDarktheme(widget.prefs)
-                                              ? fiberchatAPPBARcolorDarkMode
-                                              : fiberchatAPPBARcolorLightMode)
+                                              ? crypterchatAPPBARcolorDarkMode
+                                              : crypterchatAPPBARcolorLightMode)
                                       .withOpacity(0.6),
                                   fontSize: 18))),
                 ],
@@ -5178,8 +5178,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
   showDialOptions(BuildContext context) {
     showModalBottomSheet(
         backgroundColor: Thm.isDarktheme(widget.prefs)
-            ? fiberchatDIALOGColorDarkMode
-            : fiberchatDIALOGColorLightMode,
+            ? crypterchatDIALOGColorDarkMode
+            : crypterchatDIALOGColorLightMode,
         context: context,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
@@ -5198,13 +5198,13 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                           onTap: observer.iscallsallowed == false
                               ? () {
                                   Navigator.of(this.context).pop();
-                                  Fiberchat.showRationale(getTranslated(
+                                  Crypterchat.showRationale(getTranslated(
                                       this.context, 'callnotallowed'));
                                 }
                               : hasPeerBlockedMe == true
                                   ? () {
                                       Navigator.of(this.context).pop();
-                                      Fiberchat.toast(
+                                      Crypterchat.toast(
                                         getTranslated(
                                             context, 'userhasblocked'),
                                       );
@@ -5224,7 +5224,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                           call(this.context, false);
                                         } else {
                                           Navigator.of(this.context).pop();
-                                          Fiberchat.showRationale(getTranslated(
+                                          Crypterchat.showRationale(getTranslated(
                                               this.context, 'pmc'));
                                           Navigator.push(
                                               context,
@@ -5236,7 +5236,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                       )));
                                         }
                                       }).catchError((onError) {
-                                        // Fiberchat.showRationale(
+                                        // Crypterchat.showRationale(
                                         //     "sdasddsadasdadsd");
                                         Navigator.push(
                                             context,
@@ -5257,7 +5257,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                 Icon(
                                   Icons.local_phone,
                                   size: 35,
-                                  color: fiberchatPRIMARYcolor,
+                                  color: crypterchatPRIMARYcolor,
                                 ),
                                 SizedBox(height: 13),
                                 Text(
@@ -5268,8 +5268,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                       fontSize: 14,
                                       color: pickTextColorBasedOnBgColorAdvanced(
                                           Thm.isDarktheme(widget.prefs)
-                                              ? fiberchatDIALOGColorDarkMode
-                                              : fiberchatDIALOGColorLightMode)),
+                                              ? crypterchatDIALOGColorDarkMode
+                                              : crypterchatDIALOGColorLightMode)),
                                 ),
                               ],
                             ),
@@ -5279,13 +5279,13 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             onTap: observer.iscallsallowed == false
                                 ? () {
                                     Navigator.of(this.context).pop();
-                                    Fiberchat.showRationale(getTranslated(
+                                    Crypterchat.showRationale(getTranslated(
                                         this.context, 'callnotallowed'));
                                   }
                                 : hasPeerBlockedMe == true
                                     ? () {
                                         Navigator.of(this.context).pop();
-                                        Fiberchat.toast(
+                                        Crypterchat.toast(
                                           getTranslated(
                                               context, 'userhasblocked'),
                                         );
@@ -5306,7 +5306,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                             call(this.context, true);
                                           } else {
                                             Navigator.of(this.context).pop();
-                                            Fiberchat.showRationale(
+                                            Crypterchat.showRationale(
                                                 getTranslated(
                                                     this.context, 'pmc'));
                                             Navigator.push(
@@ -5319,7 +5319,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                         )));
                                           }
                                         }).catchError((onError) {
-                                          Fiberchat.showRationale(getTranslated(
+                                          Crypterchat.showRationale(getTranslated(
                                               this.context, 'pmc'));
                                           Navigator.push(
                                               context,
@@ -5340,7 +5340,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                   Icon(
                                     Icons.videocam,
                                     size: 39,
-                                    color: fiberchatPRIMARYcolor,
+                                    color: crypterchatPRIMARYcolor,
                                   ),
                                   SizedBox(height: 13),
                                   Text(
@@ -5351,8 +5351,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                         fontSize: 14,
                                         color: pickTextColorBasedOnBgColorAdvanced(
                                             Thm.isDarktheme(widget.prefs)
-                                                ? fiberchatDIALOGColorDarkMode
-                                                : fiberchatDIALOGColorLightMode)),
+                                                ? crypterchatDIALOGColorDarkMode
+                                                : crypterchatDIALOGColorLightMode)),
                                   ),
                                 ],
                               ),
@@ -5368,7 +5368,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
 
     return PickupLayout(
       prefs: widget.prefs,
-      scaffold: Fiberchat.getNTPWrappedWidget(PopScope(
+      scaffold: Crypterchat.getNTPWrappedWidget(PopScope(
           onPopInvoked: isgeneratingSomethingLoader == true
               ? (v) async {
                   return Future.value(false);
@@ -5410,12 +5410,12 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                     ? peer![Dbkeys.accountstatus] == Dbkeys.sTATUSdeleted
                         ? Scaffold(
                             backgroundColor: Thm.isDarktheme(widget.prefs)
-                                ? fiberchatCHATBACKGROUNDDarkMode
-                                : fiberchatCHATBACKGROUNDLightMode,
+                                ? crypterchatCHATBACKGROUNDDarkMode
+                                : crypterchatCHATBACKGROUNDLightMode,
                             appBar: AppBar(
                               backgroundColor: Thm.isDarktheme(widget.prefs)
-                                  ? fiberchatAPPBARcolorDarkMode
-                                  : fiberchatAPPBARcolorLightMode,
+                                  ? crypterchatAPPBARcolorDarkMode
+                                  : crypterchatAPPBARcolorLightMode,
                               elevation: 0,
                               leading: Container(
                                 margin: EdgeInsets.only(right: 0),
@@ -5426,8 +5426,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                     size: 20,
                                     color: pickTextColorBasedOnBgColorAdvanced(
                                         Thm.isDarktheme(widget.prefs)
-                                            ? fiberchatAPPBARcolorDarkMode
-                                            : fiberchatAPPBARcolorLightMode),
+                                            ? crypterchatAPPBARcolorDarkMode
+                                            : crypterchatAPPBARcolorLightMode),
                                   ),
                                   onPressed: () {
                                     Navigator.of(this.context).pop();
@@ -5453,8 +5453,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                     " User Account Deleted",
                                     style: TextStyle(
                                         color: Thm.isDarktheme(widget.prefs)
-                                            ? fiberchatWhite
-                                            : fiberchatBlack),
+                                            ? crypterchatWhite
+                                            : crypterchatBlack),
                                   ),
                                 ],
                               ),
@@ -5476,8 +5476,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                           size: 20,
                                           color: pickTextColorBasedOnBgColorAdvanced(
                                               Thm.isDarktheme(widget.prefs)
-                                                  ? fiberchatAPPBARcolorDarkMode
-                                                  : fiberchatAPPBARcolorLightMode),
+                                                  ? crypterchatAPPBARcolorDarkMode
+                                                  : crypterchatAPPBARcolorLightMode),
                                         ),
                                         onPressed: () {
                                           if (isDeletedDoc == true) {
@@ -5486,7 +5486,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                               MaterialPageRoute(
                                                 builder:
                                                     (BuildContext context) =>
-                                                        FiberchatWrapper(),
+                                                        CrypterchatWrapper(),
                                               ),
                                               (Route route) => false,
                                             );
@@ -5498,8 +5498,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                     ),
                                     backgroundColor:
                                         Thm.isDarktheme(widget.prefs)
-                                            ? fiberchatAPPBARcolorDarkMode
-                                            : fiberchatAPPBARcolorLightMode,
+                                            ? crypterchatAPPBARcolorDarkMode
+                                            : crypterchatAPPBARcolorLightMode,
                                     title: InkWell(
                                       onTap: () {
                                         Navigator.push(
@@ -5544,16 +5544,16 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                   .hasData &&
                                                               snapshot.data !=
                                                                   null) {
-                                                            return Fiberchat.avatar(
+                                                            return Crypterchat.avatar(
                                                                 peer,
                                                                 radius: 20,
                                                                 predefinedinitials:
-                                                                    Fiberchat.getInitials(
+                                                                    Crypterchat.getInitials(
                                                                         snapshot
                                                                             .data!
                                                                             .name));
                                                           }
-                                                          return Fiberchat
+                                                          return Crypterchat
                                                               .avatar(peer,
                                                                   radius: 20);
                                                         }),
@@ -5561,7 +5561,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                 : Padding(
                                                     padding: const EdgeInsets
                                                         .fromLTRB(0, 7, 0, 7),
-                                                    child: Fiberchat.avatar(
+                                                    child: Crypterchat.avatar(
                                                         peer,
                                                         radius: 20),
                                                   ),
@@ -5613,8 +5613,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                     maxLines: 1,
                                                                     style: TextStyle(
                                                                         color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs)
-                                                                            ? fiberchatAPPBARcolorDarkMode
-                                                                            : fiberchatAPPBARcolorLightMode),
+                                                                            ? crypterchatAPPBARcolorDarkMode
+                                                                            : crypterchatAPPBARcolorLightMode),
                                                                         fontSize:
                                                                             17.0,
                                                                         fontWeight:
@@ -5622,7 +5622,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                   );
                                                                 }
                                                                 return Text(
-                                                                  Fiberchat
+                                                                  Crypterchat
                                                                       .getNickname(
                                                                           peer!)!,
                                                                   overflow:
@@ -5632,8 +5632,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                   style: TextStyle(
                                                                       color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget
                                                                               .prefs)
-                                                                          ? fiberchatAPPBARcolorDarkMode
-                                                                          : fiberchatAPPBARcolorLightMode),
+                                                                          ? crypterchatAPPBARcolorDarkMode
+                                                                          : crypterchatAPPBARcolorLightMode),
                                                                       fontSize:
                                                                           17.0,
                                                                       fontWeight:
@@ -5642,7 +5642,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                 );
                                                               })
                                                           : Text(
-                                                              Fiberchat
+                                                              Crypterchat
                                                                   .getNickname(
                                                                       peer!)!,
                                                               overflow:
@@ -5653,8 +5653,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                   color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(
                                                                           widget
                                                                               .prefs)
-                                                                      ? fiberchatAPPBARcolorDarkMode
-                                                                      : fiberchatAPPBARcolorLightMode),
+                                                                      ? crypterchatAPPBARcolorDarkMode
+                                                                      : crypterchatAPPBARcolorLightMode),
                                                                   fontSize:
                                                                       17.0,
                                                                   fontWeight:
@@ -5673,8 +5673,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                     .volume_off,
                                                                 color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget
                                                                             .prefs)
-                                                                        ? fiberchatAPPBARcolorDarkMode
-                                                                        : fiberchatAPPBARcolorLightMode)
+                                                                        ? crypterchatAPPBARcolorDarkMode
+                                                                        : crypterchatAPPBARcolorLightMode)
                                                                     .withOpacity(
                                                                         0.5),
                                                                 size: 17,
@@ -5695,8 +5695,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                             color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                                         .isDarktheme(widget
                                                                             .prefs)
-                                                                    ? fiberchatAPPBARcolorDarkMode
-                                                                    : fiberchatAPPBARcolorLightMode)
+                                                                    ? crypterchatAPPBARcolorDarkMode
+                                                                    : crypterchatAPPBARcolorLightMode)
                                                                 .withOpacity(
                                                                     0.9),
                                                             fontSize: 12,
@@ -5712,8 +5712,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                             color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                                         .isDarktheme(widget
                                                                             .prefs)
-                                                                    ? fiberchatAPPBARcolorDarkMode
-                                                                    : fiberchatAPPBARcolorLightMode)
+                                                                    ? crypterchatAPPBARcolorDarkMode
+                                                                    : crypterchatAPPBARcolorLightMode)
                                                                 .withOpacity(
                                                                     0.9),
                                                             fontSize: 12,
@@ -5739,25 +5739,25 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                     Icons.add_call,
                                                     color: Thm.isDarktheme(
                                                             widget.prefs)
-                                                        ? fiberchatPRIMARYcolor
-                                                        : fiberchatAPPBARcolorLightMode ==
+                                                        ? crypterchatPRIMARYcolor
+                                                        : crypterchatAPPBARcolorLightMode ==
                                                                 Colors.white
-                                                            ? fiberchatPRIMARYcolor
+                                                            ? crypterchatPRIMARYcolor
                                                             : pickTextColorBasedOnBgColorAdvanced(
-                                                                fiberchatAPPBARcolorLightMode),
+                                                                crypterchatAPPBARcolorLightMode),
                                                   ),
                                                   onPressed: observer
                                                               .iscallsallowed ==
                                                           false
                                                       ? () {
-                                                          Fiberchat.showRationale(
+                                                          Crypterchat.showRationale(
                                                               getTranslated(
                                                                   this.context,
                                                                   'callnotallowed'));
                                                         }
                                                       : hasPeerBlockedMe == true
                                                           ? () {
-                                                              Fiberchat.toast(
+                                                              Crypterchat.toast(
                                                                 getTranslated(
                                                                     context,
                                                                     'userhasblocked'),
@@ -5784,13 +5784,13 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                 color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                         .isDarktheme(
                                                             widget.prefs)
-                                                    ? fiberchatAPPBARcolorDarkMode
-                                                    : fiberchatAPPBARcolorLightMode),
+                                                    ? crypterchatAPPBARcolorDarkMode
+                                                    : crypterchatAPPBARcolorLightMode),
                                               ),
                                             ),
                                             color: Thm.isDarktheme(widget.prefs)
-                                                ? fiberchatDIALOGColorDarkMode
-                                                : fiberchatDIALOGColorLightMode,
+                                                ? crypterchatDIALOGColorDarkMode
+                                                : crypterchatDIALOGColorLightMode,
                                             onSelected: (dynamic val) {
                                               switch (val) {
                                                 case 'report':
@@ -5798,8 +5798,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                       backgroundColor: Thm
                                                               .isDarktheme(
                                                                   widget.prefs)
-                                                          ? fiberchatDIALOGColorDarkMode
-                                                          : fiberchatDIALOGColorLightMode,
+                                                          ? crypterchatDIALOGColorDarkMode
+                                                          : crypterchatDIALOGColorLightMode,
                                                       isScrollControlled: true,
                                                       context: context,
                                                       shape:
@@ -5861,8 +5861,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                             TextAlign.left,
                                                                         style: TextStyle(
                                                                             color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs)
-                                                                                ? fiberchatDIALOGColorDarkMode
-                                                                                : fiberchatDIALOGColorLightMode),
+                                                                                ? crypterchatDIALOGColorDarkMode
+                                                                                : crypterchatDIALOGColorLightMode),
                                                                             fontWeight:
                                                                                 FontWeight.bold,
                                                                             fontSize: 16.5),
@@ -5920,7 +5920,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                     ),
                                                                     myElevatedButton(
                                                                         color:
-                                                                            fiberchatPRIMARYcolor,
+                                                                            crypterchatPRIMARYcolor,
                                                                         child:
                                                                             Padding(
                                                                           padding: const EdgeInsets
@@ -5960,7 +5960,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                             'time':
                                                                                 time.millisecondsSinceEpoch,
                                                                             'id':
-                                                                                Fiberchat.getChatId(currentUserNo!, peerNo!),
+                                                                                Crypterchat.getChatId(currentUserNo!, peerNo!),
                                                                           };
 
                                                                           await FirebaseFirestore
@@ -5970,7 +5970,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                               .set(mapdata)
                                                                               .then((value) async {
                                                                             showModalBottomSheet(
-                                                                                backgroundColor: Thm.isDarktheme(widget.prefs) ? fiberchatDIALOGColorDarkMode : fiberchatDIALOGColorLightMode,
+                                                                                backgroundColor: Thm.isDarktheme(widget.prefs) ? crypterchatDIALOGColorDarkMode : crypterchatDIALOGColorLightMode,
                                                                                 isScrollControlled: true,
                                                                                 context: context,
                                                                                 shape: RoundedRectangleBorder(
@@ -5984,7 +5984,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                                       child: Column(
                                                                                         mainAxisAlignment: MainAxisAlignment.center,
                                                                                         children: [
-                                                                                          Icon(Icons.check, color: fiberchatGreenColor400, size: 40),
+                                                                                          Icon(Icons.check, color: crypterchatGreenColor400, size: 40),
                                                                                           SizedBox(
                                                                                             height: 30,
                                                                                           ),
@@ -5992,7 +5992,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                                             getTranslated(context, 'reportsuccess'),
                                                                                             textAlign: TextAlign.center,
                                                                                             style: TextStyle(
-                                                                                              color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs) ? fiberchatDIALOGColorDarkMode : fiberchatDIALOGColorLightMode),
+                                                                                              color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs) ? crypterchatDIALOGColorDarkMode : crypterchatDIALOGColorLightMode),
                                                                                             ),
                                                                                           )
                                                                                         ],
@@ -6004,7 +6004,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                             //----
                                                                           }).catchError((err) {
                                                                             showModalBottomSheet(
-                                                                                backgroundColor: Thm.isDarktheme(widget.prefs) ? fiberchatDIALOGColorDarkMode : fiberchatDIALOGColorLightMode,
+                                                                                backgroundColor: Thm.isDarktheme(widget.prefs) ? crypterchatDIALOGColorDarkMode : crypterchatDIALOGColorLightMode,
                                                                                 isScrollControlled: true,
                                                                                 context: this.context,
                                                                                 shape: RoundedRectangleBorder(
@@ -6018,7 +6018,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                                       child: Column(
                                                                                         mainAxisAlignment: MainAxisAlignment.center,
                                                                                         children: [
-                                                                                          Icon(Icons.check, color: fiberchatGreenColor400, size: 40),
+                                                                                          Icon(Icons.check, color: crypterchatGreenColor400, size: 40),
                                                                                           SizedBox(
                                                                                             height: 30,
                                                                                           ),
@@ -6026,7 +6026,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                                             getTranslated(context, 'reportsuccess'),
                                                                                             textAlign: TextAlign.center,
                                                                                             style: TextStyle(
-                                                                                              color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs) ? fiberchatDIALOGColorDarkMode : fiberchatDIALOGColorLightMode),
+                                                                                              color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs) ? crypterchatDIALOGColorDarkMode : crypterchatDIALOGColorLightMode),
                                                                                             ),
                                                                                           )
                                                                                         ],
@@ -6052,7 +6052,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                   FirebaseFirestore.instance
                                                       .collection(DbPaths
                                                           .collectionmessages)
-                                                      .doc(Fiberchat.getChatId(
+                                                      .doc(Crypterchat.getChatId(
                                                           currentUserNo!,
                                                           peerNo!))
                                                       .update({
@@ -6069,7 +6069,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                   FirebaseFirestore.instance
                                                       .collection(DbPaths
                                                           .collectionmessages)
-                                                      .doc(Fiberchat.getChatId(
+                                                      .doc(Crypterchat.getChatId(
                                                           currentUserNo!,
                                                           peerNo!))
                                                       .update({
@@ -6130,7 +6130,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                   break;
                                                 case 'block':
                                                   // if (hasPeerBlockedMe == true) {
-                                                  //   Fiberchat.toast(
+                                                  //   Crypterchat.toast(
                                                   //     getTranslated(context,
                                                   //         'userhasblocked'),
                                                   //   );
@@ -6141,28 +6141,28 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                   break;
                                                 case 'unblock':
                                                   // if (hasPeerBlockedMe == true) {
-                                                  //   Fiberchat.toast(
+                                                  //   Crypterchat.toast(
                                                   //     getTranslated(context,
                                                   //         'userhasblocked'),
                                                   //   );
                                                   // } else {
                                                   ChatController.accept(
                                                       currentUserNo, peerNo);
-                                                  Fiberchat.toast(getTranslated(
+                                                  Crypterchat.toast(getTranslated(
                                                       this.context,
                                                       'unblocked'));
                                                   // }
 
                                                   break;
                                                 case 'tutorial':
-                                                  Fiberchat.toast(getTranslated(
+                                                  Crypterchat.toast(getTranslated(
                                                       this.context, 'vsmsg'));
 
                                                   break;
                                                 case 'remove_wallpaper':
                                                   _cachedModel
                                                       .removeWallpaper(peerNo!);
-                                                  // Fiberchat.toast('Wallpaper removed.');
+                                                  // Crypterchat.toast('Wallpaper removed.');
                                                   break;
                                                 case 'set_wallpaper':
                                                   Navigator.push(
@@ -6198,8 +6198,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                 .isDarktheme(
                                                                     widget
                                                                         .prefs)
-                                                            ? fiberchatDIALOGColorDarkMode
-                                                            : fiberchatDIALOGColorLightMode),
+                                                            ? crypterchatDIALOGColorDarkMode
+                                                            : crypterchatDIALOGColorLightMode),
                                                       ),
                                                     ),
                                                   ),
@@ -6213,8 +6213,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                 .isDarktheme(
                                                                     widget
                                                                         .prefs)
-                                                            ? fiberchatDIALOGColorDarkMode
-                                                            : fiberchatDIALOGColorLightMode),
+                                                            ? crypterchatDIALOGColorDarkMode
+                                                            : crypterchatDIALOGColorLightMode),
                                                       ),
                                                     ),
                                                   ),
@@ -6230,8 +6230,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                 .isDarktheme(
                                                                     widget
                                                                         .prefs)
-                                                            ? fiberchatDIALOGColorDarkMode
-                                                            : fiberchatDIALOGColorLightMode),
+                                                            ? crypterchatDIALOGColorDarkMode
+                                                            : crypterchatDIALOGColorLightMode),
                                                       ),
                                                     ),
                                                   ),
@@ -6246,8 +6246,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                 .isDarktheme(
                                                                     widget
                                                                         .prefs)
-                                                            ? fiberchatDIALOGColorDarkMode
-                                                            : fiberchatDIALOGColorLightMode),
+                                                            ? crypterchatDIALOGColorDarkMode
+                                                            : crypterchatDIALOGColorLightMode),
                                                       ),
                                                     ),
                                                   ),
@@ -6262,8 +6262,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                 .isDarktheme(
                                                                     widget
                                                                         .prefs)
-                                                            ? fiberchatDIALOGColorDarkMode
-                                                            : fiberchatDIALOGColorLightMode),
+                                                            ? crypterchatDIALOGColorDarkMode
+                                                            : crypterchatDIALOGColorLightMode),
                                                       ),
                                                     ),
                                                   ),
@@ -6281,8 +6281,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                       .isDarktheme(
                                                                           widget
                                                                               .prefs)
-                                                                  ? fiberchatDIALOGColorDarkMode
-                                                                  : fiberchatDIALOGColorLightMode),
+                                                                  ? crypterchatDIALOGColorDarkMode
+                                                                  : crypterchatDIALOGColorLightMode),
                                                             ),
                                                           ))
                                                       : PopupMenuItem<String>(
@@ -6297,8 +6297,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                       .isDarktheme(
                                                                           widget
                                                                               .prefs)
-                                                                  ? fiberchatDIALOGColorDarkMode
-                                                                  : fiberchatDIALOGColorLightMode),
+                                                                  ? crypterchatDIALOGColorDarkMode
+                                                                  : crypterchatDIALOGColorLightMode),
                                                             ),
                                                           )),
                                                   PopupMenuItem<String>(
@@ -6310,8 +6310,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                 .isDarktheme(
                                                                     widget
                                                                         .prefs)
-                                                            ? fiberchatDIALOGColorDarkMode
-                                                            : fiberchatDIALOGColorLightMode),
+                                                            ? crypterchatDIALOGColorDarkMode
+                                                            : crypterchatDIALOGColorLightMode),
                                                       ),
                                                     ),
                                                   ),
@@ -6325,8 +6325,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                       new Container(
                                         decoration: new BoxDecoration(
                                           color: Thm.isDarktheme(widget.prefs)
-                                              ? fiberchatCHATBACKGROUNDDarkMode
-                                              : fiberchatCHATBACKGROUNDLightMode,
+                                              ? crypterchatCHATBACKGROUNDDarkMode
+                                              : crypterchatCHATBACKGROUNDLightMode,
                                           image: new DecorationImage(
                                               image: peer![Dbkeys.wallpaper] ==
                                                       null
@@ -6355,7 +6355,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                             'chatdeleted'),
                                                         style: TextStyle(
                                                             color:
-                                                                fiberchatGrey)),
+                                                                crypterchatGrey)),
                                                   ),
                                                 )
                                               : Column(
@@ -6370,8 +6370,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                     .isDarktheme(
                                                                         widget
                                                                             .prefs)
-                                                                ? fiberchatDIALOGColorDarkMode
-                                                                : fiberchatDIALOGColorLightMode,
+                                                                ? crypterchatDIALOGColorDarkMode
+                                                                : crypterchatDIALOGColorLightMode,
                                                             elevation: 10.0,
                                                             title: Text(
                                                               getTranslated(
@@ -6382,8 +6382,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                 color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                                         .isDarktheme(
                                                                             widget.prefs)
-                                                                    ? fiberchatDIALOGColorDarkMode
-                                                                    : fiberchatDIALOGColorLightMode),
+                                                                    ? crypterchatDIALOGColorDarkMode
+                                                                    : crypterchatDIALOGColorLightMode),
                                                               ),
                                                             ),
                                                             actions: <Widget>[
@@ -6391,8 +6391,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                   color: Thm.isDarktheme(
                                                                           widget
                                                                               .prefs)
-                                                                      ? fiberchatDIALOGColorDarkMode
-                                                                      : fiberchatDIALOGColorLightMode,
+                                                                      ? crypterchatDIALOGColorDarkMode
+                                                                      : crypterchatDIALOGColorLightMode,
                                                                   child: Text(
                                                                     getTranslated(
                                                                         this.context,
@@ -6401,8 +6401,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                         TextStyle(
                                                                       color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(
                                                                               widget.prefs)
-                                                                          ? fiberchatDIALOGColorDarkMode
-                                                                          : fiberchatDIALOGColorLightMode),
+                                                                          ? crypterchatDIALOGColorDarkMode
+                                                                          : crypterchatDIALOGColorLightMode),
                                                                     ),
                                                                   ),
                                                                   onPressed:
@@ -6412,14 +6412,14 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                   }),
                                                               myElevatedButton(
                                                                   color:
-                                                                      fiberchatPRIMARYcolor,
+                                                                      crypterchatPRIMARYcolor,
                                                                   child: Text(
                                                                     getTranslated(
                                                                         this.context,
                                                                         'unblock'),
                                                                     style: TextStyle(
                                                                         color:
-                                                                            fiberchatWhite),
+                                                                            crypterchatWhite),
                                                                   ),
                                                                   onPressed:
                                                                       () {
@@ -6509,7 +6509,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
 
   deleteAllChats() async {
     if (messages.length > 0) {
-      Fiberchat.toast(getTranslated(this.context, 'deleting'));
+      Crypterchat.toast(getTranslated(this.context, 'deleting'));
       await FirebaseFirestore.instance
           .collection(DbPaths.collectionmessages)
           .doc(chatId)

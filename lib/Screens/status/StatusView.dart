@@ -1,16 +1,16 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/profile_settings/profile_view.dart';
-import 'package:fiberchat/Screens/status/components/formatStatusTime.dart';
-import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
-import 'package:fiberchat/widgets/story_view/controller/story_controller.dart';
-import 'package:fiberchat/widgets/story_view/widgets/story_view.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Screens/call_history/callhistory.dart';
+import 'package:crypterchat/Screens/profile_settings/profile_view.dart';
+import 'package:crypterchat/Screens/status/components/formatStatusTime.dart';
+import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+import 'package:crypterchat/widgets/story_view/controller/story_controller.dart';
+import 'package:crypterchat/widgets/story_view/widgets/story_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -256,7 +256,7 @@ class _StatusViewState extends State<StatusView> {
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 1,
                                   style: TextStyle(
-                                      color: fiberchatWhite,
+                                      color: crypterchatWhite,
                                       fontSize: 17.0,
                                       fontWeight: FontWeight.w500),
                                 ),
@@ -272,7 +272,7 @@ class _StatusViewState extends State<StatusView> {
                                             1][Dbkeys.statusItemID],
                                     this.context),
                                 style: TextStyle(
-                                    color: fiberchatWhite,
+                                    color: crypterchatWhite,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w400),
                               )

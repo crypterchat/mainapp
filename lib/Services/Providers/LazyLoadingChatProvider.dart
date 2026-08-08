@@ -1,8 +1,8 @@
 //  _________ Group Chat Messages ____________
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Services/Providers/FirebaseAPIProvider.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Services/Providers/FirebaseAPIProvider.dart';
 import 'package:flutter/foundation.dart';
 
 class FirestoreDataProviderMESSAGESforLAZYLOADINGCHAT extends ChangeNotifier {

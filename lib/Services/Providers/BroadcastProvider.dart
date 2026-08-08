@@ -1,17 +1,17 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
 import 'dart:async';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/aes_encryption.dart';
-import 'package:fiberchat/Services/Providers/FirebaseAPIProvider.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Screens/chat_screen/utils/aes_encryption.dart';
+import 'package:crypterchat/Services/Providers/FirebaseAPIProvider.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:fiberchat/Models/E2EE/e2ee.dart' as e2ee;
-import 'package:fiberchat/Configs/Enum.dart';
+import 'package:crypterchat/Models/E2EE/e2ee.dart' as e2ee;
+import 'package:crypterchat/Configs/Enum.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -83,7 +83,7 @@ class FirebaseBroadcastServices {
             if (encrypted is String) {
               int timestamp2 = DateTime.now().millisecondsSinceEpoch;
               if (content.trim() != '') {
-                var chatId = Fiberchat.getChatId(currentUserNo, peer);
+                var chatId = Crypterchat.getChatId(currentUserNo, peer);
                 await FirebaseFirestore.instance
                     .collection(DbPaths.collectionbroadcasts)
                     .doc(broadcastId)
@@ -139,17 +139,17 @@ class FirebaseBroadcastServices {
                 });
               }
             } else {
-              Fiberchat.toast('Nothing to send');
+              Crypterchat.toast('Nothing to send');
             }
           } catch (e) {
-            Fiberchat.toast('Failed to Send message. Error:$e');
+            Crypterchat.toast('Failed to Send message. Error:$e');
           }
         }).catchError(((e) {
-          Fiberchat.toast('Failed to Send message. Error:$e');
+          Crypterchat.toast('Failed to Send message. Error:$e');
         }));
       });
     } else {
-      Fiberchat.toast('Nothing to Send !');
+      Crypterchat.toast('Nothing to Send !');
     }
   }
 }

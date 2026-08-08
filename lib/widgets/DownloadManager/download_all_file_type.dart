@@ -1,12 +1,12 @@
 import 'dart:io';
 import 'package:better_open_file/better_open_file.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
 import 'package:path/path.dart' as p;
 import 'package:dio/dio.dart';
-import 'package:fiberchat/Services/Providers/DownloadInfoProvider.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Services/Providers/DownloadInfoProvider.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -62,7 +62,7 @@ class MobileDownloadService implements DownloadService {
         : "${dir!.path}/$fileName");
     bool fileExists = await outputFile.exists();
     if (fileExists == true) {
-      Fiberchat.toast(getTranslated(context, "folder"));
+      Crypterchat.toast(getTranslated(context, "folder"));
     } else {
       final downloadinfo =
           Provider.of<DownloadInfoprovider>(context, listen: false);
@@ -79,8 +79,8 @@ class MobileDownloadService implements DownloadService {
                       ),
                       key: keyloader,
                       backgroundColor: Thm.isDarktheme(prefs)
-                          ? fiberchatDIALOGColorDarkMode
-                          : fiberchatDIALOGColorLightMode,
+                          ? crypterchatDIALOGColorDarkMode
+                          : crypterchatDIALOGColorLightMode,
                       children: <Widget>[
                         Consumer<DownloadInfoprovider>(
                             builder: (context, classroomm, _child) => Center(
@@ -97,7 +97,7 @@ class MobileDownloadService implements DownloadService {
                                                 100,
                                         center: new Text(
                                             "${downloadinfo.downloadedpercentage.floor()}%"),
-                                        progressColor: fiberchatGreenColor400,
+                                        progressColor: crypterchatGreenColor400,
                                       ),
                                       Container(
                                         width: 180,
@@ -139,7 +139,7 @@ class MobileDownloadService implements DownloadService {
         Navigator.of(keyloader!.currentContext!, rootNavigator: true).pop(); //
         downloadinfo.calculatedownloaded(0.00, 0);
         if (isOpenAfterDownload == true) {
-          Fiberchat.toast(getTranslated(context, "folder"));
+          Crypterchat.toast(getTranslated(context, "folder"));
           if (getDocumentType(fileName) != "") {
             Future.delayed(const Duration(milliseconds: 700), () {
               OpenFile.open(
@@ -150,13 +150,13 @@ class MobileDownloadService implements DownloadService {
             });
           }
         } else {
-          Fiberchat.toast(getTranslated(context, "folder"));
+          Crypterchat.toast(getTranslated(context, "folder"));
         }
       }).onError((err, er) {
         downloadinfo.calculatedownloaded(0.00, 0);
         print('ERROR OCCURED WHILE DOWNLOADING MEDIA: ' + err.toString());
         Navigator.of(keyloader!.currentContext!, rootNavigator: true).pop(); //
-        Fiberchat.toast(getTranslated(context, 'eps'));
+        Crypterchat.toast(getTranslated(context, 'eps'));
       });
     }
   }

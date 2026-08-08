@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:fiberchat/widgets/PhotoView/photo_view.dart'
+import 'package:crypterchat/widgets/PhotoView/photo_view.dart'
     show
         PhotoViewScaleState,
         PhotoViewHeroAttributes,
@@ -7,12 +7,12 @@ import 'package:fiberchat/widgets/PhotoView/photo_view.dart'
         PhotoViewImageTapUpCallback,
         PhotoViewImageScaleEndCallback,
         ScaleStateCycle;
-import 'package:fiberchat/widgets/PhotoView/src/controller/photo_view_controller.dart';
-import 'package:fiberchat/widgets/PhotoView/src/controller/photo_view_controller_delegate.dart';
-import 'package:fiberchat/widgets/PhotoView/src/controller/photo_view_scalestate_controller.dart';
-import 'package:fiberchat/widgets/PhotoView/src/core/photo_view_gesture_detector.dart';
-import 'package:fiberchat/widgets/PhotoView/src/core/photo_view_hit_corners.dart';
-import 'package:fiberchat/widgets/PhotoView/src/utils/photo_view_utils.dart';
+import 'package:crypterchat/widgets/PhotoView/src/controller/photo_view_controller.dart';
+import 'package:crypterchat/widgets/PhotoView/src/controller/photo_view_controller_delegate.dart';
+import 'package:crypterchat/widgets/PhotoView/src/controller/photo_view_scalestate_controller.dart';
+import 'package:crypterchat/widgets/PhotoView/src/core/photo_view_gesture_detector.dart';
+import 'package:crypterchat/widgets/PhotoView/src/core/photo_view_hit_corners.dart';
+import 'package:crypterchat/widgets/PhotoView/src/utils/photo_view_utils.dart';
 
 const _defaultDecoration = const BoxDecoration(
   color: const Color.fromRGBO(0, 0, 0, 1.0),

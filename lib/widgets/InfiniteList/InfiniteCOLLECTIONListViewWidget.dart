@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/Providers/BroadcastProvider.dart';
-import 'package:fiberchat/Services/Providers/GroupChatProvider.dart';
-import 'package:fiberchat/Services/Providers/LazyLoadingChatProvider.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Services/Providers/BroadcastProvider.dart';
+import 'package:crypterchat/Services/Providers/GroupChatProvider.dart';
+import 'package:crypterchat/Services/Providers/LazyLoadingChatProvider.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -132,7 +132,7 @@ class _InfiniteCOLLECTIONListViewWidgetState
                             child: CircularProgressIndicator(
                               strokeWidth: 1.8,
                               valueColor: AlwaysStoppedAnimation<Color>(
-                                  fiberchatSECONDARYolor),
+                                  crypterchatSECONDARYolor),
                             ),
                           ),
                         ),
@@ -153,8 +153,8 @@ class _InfiniteCOLLECTIONListViewWidgetState
                                 size: 60,
                                 color: pickTextColorBasedOnBgColorAdvanced(
                                     Thm.isDarktheme(widget.prefs)
-                                        ? fiberchatBACKGROUNDcolorDarkMode
-                                        : fiberchatBACKGROUNDcolorLightMode),
+                                        ? crypterchatBACKGROUNDcolorDarkMode
+                                        : crypterchatBACKGROUNDcolorLightMode),
                               ),
                               SizedBox(
                                 height: 10,
@@ -164,8 +164,8 @@ class _InfiniteCOLLECTIONListViewWidgetState
                                   style: TextStyle(
                                       color: pickTextColorBasedOnBgColorAdvanced(
                                           Thm.isDarktheme(widget.prefs)
-                                              ? fiberchatBACKGROUNDcolorDarkMode
-                                              : fiberchatAPPBARcolorLightMode),
+                                              ? crypterchatBACKGROUNDcolorDarkMode
+                                              : crypterchatAPPBARcolorLightMode),
                                       fontSize: 18))
                             ],
                           ),
@@ -204,7 +204,7 @@ class _InfiniteCOLLECTIONListViewWidgetState
                                 child: CircularProgressIndicator(
                                   strokeWidth: 1.8,
                                   valueColor: AlwaysStoppedAnimation<Color>(
-                                      fiberchatSECONDARYolor),
+                                      crypterchatSECONDARYolor),
                                 ),
                               ),
                             ),
@@ -224,7 +224,7 @@ class _InfiniteCOLLECTIONListViewWidgetState
                                   Icon(
                                     Icons.message_rounded,
                                     size: 60,
-                                    color: fiberchatPRIMARYcolor,
+                                    color: crypterchatPRIMARYcolor,
                                   ),
                                   SizedBox(
                                     height: 10,
@@ -233,7 +233,7 @@ class _InfiniteCOLLECTIONListViewWidgetState
                                     getTranslated(context, 'norecentchats'),
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        color: fiberchatGrey, fontSize: 16),
+                                        color: crypterchatGrey, fontSize: 16),
                                   )
                                 ],
                               ),
@@ -269,7 +269,7 @@ class _InfiniteCOLLECTIONListViewWidgetState
                                 child: CircularProgressIndicator(
                                   strokeWidth: 1.8,
                                   valueColor: AlwaysStoppedAnimation<Color>(
-                                      fiberchatSECONDARYolor),
+                                      crypterchatSECONDARYolor),
                                 ),
                               ),
                             ),
@@ -289,7 +289,7 @@ class _InfiniteCOLLECTIONListViewWidgetState
                                   Icon(
                                     Icons.message_rounded,
                                     size: 60,
-                                    color: fiberchatPRIMARYcolor,
+                                    color: crypterchatPRIMARYcolor,
                                   ),
                                   SizedBox(
                                     height: 10,
@@ -298,7 +298,7 @@ class _InfiniteCOLLECTIONListViewWidgetState
                                     getTranslated(context, 'norecentchats'),
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        color: fiberchatGrey, fontSize: 16),
+                                        color: crypterchatGrey, fontSize: 16),
                                   )
                                 ],
                               ),

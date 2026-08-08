@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import 'package:fiberchat/widgets/PhotoView/src/controller/photo_view_controller_delegate.dart'
+import 'package:crypterchat/widgets/PhotoView/src/controller/photo_view_controller_delegate.dart'
     show PhotoViewControllerDelegate;
 
 mixin HitCornersDetector on PhotoViewControllerDelegate {

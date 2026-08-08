@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 
 // Unique Color for your App -----
 
-final fiberchatPRIMARYcolor = Color(0xff6842ed);
+final crypterchatPRIMARYcolor = Color(0xff6842ed);
 // you may change this as per your theme. This applies to large buttons, tabs, text heading etc.
-final fiberchatSECONDARYolor = Color(0xff5b36d0);
+final crypterchatSECONDARYolor = Color(0xff5b36d0);
 // you may change this as per your theme. This applies to small buttons, icons & highlights
 
 const SplashBackgroundSolidColor = Color(0xffffffff);
@@ -17,67 +17,67 @@ const SplashBackgroundSolidColor = Color(0xffffffff);
 const IsSplashOnlySolidColor = false;
 
 // light mode colors -----
-final fiberchatAPPBARcolorLightMode = Color(0xffffffff);
+final crypterchatAPPBARcolorLightMode = Color(0xffffffff);
 // you may change this as per your theme
-final fiberchatBACKGROUNDcolorLightMode = Color(0xfff4f5f6);
-final fiberchatCONTAINERboxColorLightMode = Color(0xffffffff);
-final fiberchatDIALOGColorLightMode = Color(0xffffffff);
-final fiberchatCHATBACKGROUNDLightMode = Color(0xffe8ded5);
+final crypterchatBACKGROUNDcolorLightMode = Color(0xfff4f5f6);
+final crypterchatCONTAINERboxColorLightMode = Color(0xffffffff);
+final crypterchatDIALOGColorLightMode = Color(0xffffffff);
+final crypterchatCHATBACKGROUNDLightMode = Color(0xffe8ded5);
 // dark mode colors -----
-final fiberchatAPPBARcolorDarkMode = Color(0xff1d2931);
-final fiberchatBACKGROUNDcolorDarkMode = Color(0xff0c151c);
-final fiberchatCONTAINERboxColorDarkMode = Color(0xff111920);
-final fiberchatDIALOGColorDarkMode = Color(0xff202e35);
-final fiberchatCHATBACKGROUNDDarkMode = Color(0xff0e1116);
+final crypterchatAPPBARcolorDarkMode = Color(0xff1d2931);
+final crypterchatBACKGROUNDcolorDarkMode = Color(0xff0c151c);
+final crypterchatCONTAINERboxColorDarkMode = Color(0xff111920);
+final crypterchatDIALOGColorDarkMode = Color(0xff202e35);
+final crypterchatCHATBACKGROUNDDarkMode = Color(0xff0e1116);
 // other universal colors -----
-final fiberchatWhite = Color(0xffffffff);
-final fiberchatBlack = Color(0xff1E1E1E);
-final fiberchatGrey = Color(0xff8596a0);
-final fiberchatREDbuttonColor = Color(0xffe90b41);
-final fiberchatCHATBUBBLEcolor = Color(0xffe9fedf);
-final fiberchatGreenColorAccent = Color(0xff69F0AE);
-final fiberchatGreenColor100 = Color(0xffC8E6C9);
-final fiberchatGreenColor200 = Color(0xffA5D6A7);
-final fiberchatGreenColor300 = Color(0xff81C784);
-final fiberchatGreenColor400 = Color(0xff66BB6A);
-final fiberchatGreenColor500 = Color(0xff4CAF50);
+final crypterchatWhite = Color(0xffffffff);
+final crypterchatBlack = Color(0xff1E1E1E);
+final crypterchatGrey = Color(0xff8596a0);
+final crypterchatREDbuttonColor = Color(0xffe90b41);
+final crypterchatCHATBUBBLEcolor = Color(0xffe9fedf);
+final crypterchatGreenColorAccent = Color(0xff69F0AE);
+final crypterchatGreenColor100 = Color(0xffC8E6C9);
+final crypterchatGreenColor200 = Color(0xffA5D6A7);
+final crypterchatGreenColor300 = Color(0xff81C784);
+final crypterchatGreenColor400 = Color(0xff66BB6A);
+final crypterchatGreenColor500 = Color(0xff4CAF50);
 
 //-*********---------- MESSENGER Color Theme:  ----****************---------- Remove below comments & add comment above color values for Messenger theme //------------
 
 // // Unique Color for your App -----
-// final fiberchatPRIMARYcolor = Color(0xff009466);
+// final crypterchatPRIMARYcolor = Color(0xff009466);
 // // you may change this as per your theme. This applies to buttons, icons & highlights
-// final fiberchatSECONDARYolor = Color(0xff00c166);
+// final crypterchatSECONDARYolor = Color(0xff00c166);
 // // you may change this as per your theme. This applies to small buttons, icons & highlights
 // const SplashBackgroundSolidColor = Color(0xff00A980);
 // // you may change this as per your theme. Applies this colors to fill the areas around splash screen.  Color Code: 0xFF00A980 for Whatsapp theme & 0xFFFFFFFF for messenger theme.
 // const IsSplashOnlySolidColor = false;
 
 // // light mode colors -----
-// final fiberchatAPPBARcolorLightMode = Color(0xff00A980);
+// final crypterchatAPPBARcolorLightMode = Color(0xff00A980);
 // // you may change this as per your theme
-// final fiberchatBACKGROUNDcolorLightMode = Color(0xfff4f5f6);
-// final fiberchatCONTAINERboxColorLightMode = Color(0xffffffff);
-// final fiberchatDIALOGColorLightMode = Color(0xffffffff);
-// final fiberchatCHATBACKGROUNDLightMode = Color(0xffe8ded5);
+// final crypterchatBACKGROUNDcolorLightMode = Color(0xfff4f5f6);
+// final crypterchatCONTAINERboxColorLightMode = Color(0xffffffff);
+// final crypterchatDIALOGColorLightMode = Color(0xffffffff);
+// final crypterchatCHATBACKGROUNDLightMode = Color(0xffe8ded5);
 // // dark mode colors -----
-// final fiberchatAPPBARcolorDarkMode = Color(0xff1d2931);
-// final fiberchatBACKGROUNDcolorDarkMode = Color(0xff0c151c);
-// final fiberchatCONTAINERboxColorDarkMode = Color(0xff111920);
-// final fiberchatDIALOGColorDarkMode = Color(0xff202e35);
-// final fiberchatCHATBACKGROUNDDarkMode = Color(0xff0e1116);
+// final crypterchatAPPBARcolorDarkMode = Color(0xff1d2931);
+// final crypterchatBACKGROUNDcolorDarkMode = Color(0xff0c151c);
+// final crypterchatCONTAINERboxColorDarkMode = Color(0xff111920);
+// final crypterchatDIALOGColorDarkMode = Color(0xff202e35);
+// final crypterchatCHATBACKGROUNDDarkMode = Color(0xff0e1116);
 // // other universal colors -----
-// final fiberchatWhite = Color(0xffffffff);
-// final fiberchatBlack = Color(0xff1E1E1E);
-// final fiberchatGrey = Color(0xff8596a0);
-// final fiberchatREDbuttonColor = Color(0xffe90b41);
-// final fiberchatCHATBUBBLEcolor = Color(0xffe9fedf);
-// final fiberchatGreenColorAccent = Color(0xff69F0AE);
-// final fiberchatGreenColor100 = Color(0xffC8E6C9);
-// final fiberchatGreenColor200 = Color(0xffA5D6A7);
-// final fiberchatGreenColor300 = Color(0xff81C784);
-// final fiberchatGreenColor400 = Color(0xff66BB6A);
-// final fiberchatGreenColor500 = Color(0xff4CAF50);
+// final crypterchatWhite = Color(0xffffffff);
+// final crypterchatBlack = Color(0xff1E1E1E);
+// final crypterchatGrey = Color(0xff8596a0);
+// final crypterchatREDbuttonColor = Color(0xffe90b41);
+// final crypterchatCHATBUBBLEcolor = Color(0xffe9fedf);
+// final crypterchatGreenColorAccent = Color(0xff69F0AE);
+// final crypterchatGreenColor100 = Color(0xffC8E6C9);
+// final crypterchatGreenColor200 = Color(0xffA5D6A7);
+// final crypterchatGreenColor300 = Color(0xff81C784);
+// final crypterchatGreenColor400 = Color(0xff66BB6A);
+// final crypterchatGreenColor500 = Color(0xff4CAF50);
 
 //*--Admob Configurations- (By default Test Ad Units pasted)----------
 const IsBannerAdShow = false;
@@ -98,7 +98,7 @@ const RewardedAdUnit_Android = 'ca-app-pub-3940256099942544/5224354917';
 // Test Id: 'ca-app-pub-3940256099942544/5224354917'
 const RewardedAdUnit_IOS = 'ca-app-pub-3940256099942544/1712485313';
 // Test Id: 'ca-app-pub-3940256099942544/1712485313'
-//Also don't forget to Change the Admob App Id in "fiberchat/android/app/src/main/AndroidManifest.xml" & "fiberchat/ios/Runner/Info.plist"
+//Also don't forget to Change the Admob App Id in "crypterchat/android/app/src/main/AndroidManifest.xml" & "crypterchat/ios/Runner/Info.plist"
 
 //*--Agora Configurations---
 const Agora_APP_ID = 'PASTE_AGORA_APP_ID';

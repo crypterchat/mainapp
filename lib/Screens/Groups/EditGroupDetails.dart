@@ -1,16 +1,16 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Services/Admob/admob.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_layout.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
@@ -58,7 +58,7 @@ class EditGroupDetailsState extends State<EditGroupDetails> {
   @override
   void initState() {
     super.initState();
-    Fiberchat.internetLookUp();
+    Crypterchat.internetLookUp();
     groupDesc = widget.groupDesc;
     groupTitle = widget.groupName;
     groupType = widget.groupType;
@@ -118,7 +118,7 @@ class EditGroupDetailsState extends State<EditGroupDetails> {
         isLoading = false;
       });
 
-      Fiberchat.toast(err.toString());
+      Crypterchat.toast(err.toString());
     });
   }
 
@@ -141,10 +141,10 @@ class EditGroupDetailsState extends State<EditGroupDetails> {
     final observer = Provider.of<Observer>(this.context, listen: false);
     return PickupLayout(
         prefs: widget.prefs,
-        scaffold: Fiberchat.getNTPWrappedWidget(Scaffold(
+        scaffold: Crypterchat.getNTPWrappedWidget(Scaffold(
             backgroundColor: Thm.isDarktheme(widget.prefs)
-                ? fiberchatCONTAINERboxColorDarkMode
-                : fiberchatCONTAINERboxColorLightMode,
+                ? crypterchatCONTAINERboxColorDarkMode
+                : crypterchatCONTAINERboxColorLightMode,
             appBar: new AppBar(
               elevation: 0.4,
               leading: IconButton(
@@ -156,22 +156,22 @@ class EditGroupDetailsState extends State<EditGroupDetails> {
                   size: 24,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode),
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode),
                 ),
               ),
               titleSpacing: 0,
               backgroundColor: Thm.isDarktheme(widget.prefs)
-                  ? fiberchatAPPBARcolorDarkMode
-                  : fiberchatAPPBARcolorLightMode,
+                  ? crypterchatAPPBARcolorDarkMode
+                  : crypterchatAPPBARcolorLightMode,
               title: new Text(
                 getTranslated(this.context, 'editgroup'),
                 style: TextStyle(
                   fontSize: 20.0,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode),
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode),
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -183,9 +183,9 @@ class EditGroupDetailsState extends State<EditGroupDetails> {
                     style: TextStyle(
                       fontSize: 16,
                       color: Thm.isDarktheme(widget.prefs)
-                          ? fiberchatPRIMARYcolor
+                          ? crypterchatPRIMARYcolor
                           : pickTextColorBasedOnBgColorAdvanced(
-                              fiberchatAPPBARcolorLightMode),
+                              crypterchatAPPBARcolorLightMode),
                     ),
                   ),
                 )
@@ -204,8 +204,8 @@ class EditGroupDetailsState extends State<EditGroupDetails> {
                         style: TextStyle(
                           color: pickTextColorBasedOnBgColorAdvanced(
                               Thm.isDarktheme(widget.prefs)
-                                  ? fiberchatCONTAINERboxColorDarkMode
-                                  : fiberchatCONTAINERboxColorLightMode),
+                                  ? crypterchatCONTAINERboxColorDarkMode
+                                  : crypterchatCONTAINERboxColorLightMode),
                         ),
                         autovalidateMode: AutovalidateMode.always,
                         controller: controllerName,
@@ -218,7 +218,7 @@ class EditGroupDetailsState extends State<EditGroupDetails> {
                           contentPadding: EdgeInsets.all(6),
                           labelStyle: TextStyle(
                             height: 0.8,
-                            color: fiberchatPRIMARYcolor,
+                            color: crypterchatPRIMARYcolor,
                           ),
                           labelText: getTranslated(this.context, 'groupname'),
                         ),
@@ -233,14 +233,14 @@ class EditGroupDetailsState extends State<EditGroupDetails> {
                         style: TextStyle(
                           color: pickTextColorBasedOnBgColorAdvanced(
                               Thm.isDarktheme(widget.prefs)
-                                  ? fiberchatCONTAINERboxColorDarkMode
-                                  : fiberchatCONTAINERboxColorLightMode),
+                                  ? crypterchatCONTAINERboxColorDarkMode
+                                  : crypterchatCONTAINERboxColorLightMode),
                         ),
                         controller: controllerDesc,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(6),
                           labelStyle: TextStyle(
-                              height: 0.8, color: fiberchatPRIMARYcolor),
+                              height: 0.8, color: crypterchatPRIMARYcolor),
                           labelText: getTranslated(this.context, 'groupdesc'),
                         ),
                       )),
@@ -261,8 +261,8 @@ class EditGroupDetailsState extends State<EditGroupDetails> {
                                   style: TextStyle(
                                       color: pickTextColorBasedOnBgColorAdvanced(Thm
                                               .isDarktheme(widget.prefs)
-                                          ? fiberchatCONTAINERboxColorDarkMode
-                                          : fiberchatCONTAINERboxColorLightMode),
+                                          ? crypterchatCONTAINERboxColorDarkMode
+                                          : crypterchatCONTAINERboxColorLightMode),
                                       fontWeight: FontWeight.w600,
                                       fontSize: 16),
                                 ),
@@ -334,12 +334,12 @@ class EditGroupDetailsState extends State<EditGroupDetails> {
                           child: Center(
                             child: CircularProgressIndicator(
                                 valueColor: AlwaysStoppedAnimation<Color>(
-                                    fiberchatSECONDARYolor)),
+                                    crypterchatSECONDARYolor)),
                           ),
                           color: pickTextColorBasedOnBgColorAdvanced(
                                   !Thm.isDarktheme(widget.prefs)
-                                      ? fiberchatCONTAINERboxColorDarkMode
-                                      : fiberchatCONTAINERboxColorLightMode)
+                                      ? crypterchatCONTAINERboxColorDarkMode
+                                      : crypterchatCONTAINERboxColorLightMode)
                               .withOpacity(0.6))
                       : Container(),
                 ),

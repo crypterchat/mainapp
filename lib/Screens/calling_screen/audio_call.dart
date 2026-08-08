@@ -6,20 +6,20 @@ import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Screens/homepage/homepage.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/Providers/call_history_provider.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Models/call.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/setStatusBarColor.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/Common/cached_image.dart';
-import 'package:fiberchat/Utils/call_utilities.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Screens/homepage/homepage.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/Providers/call_history_provider.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Models/call.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/setStatusBarColor.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/widgets/Common/cached_image.dart';
+import 'package:crypterchat/Utils/call_utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:logger/logger.dart';
@@ -141,7 +141,7 @@ class _AudioCallState extends State<AudioCall> {
           _mPlayer = null;
         }
       } catch (e) {
-        Fiberchat.toast("Failed to stop calling sound.  Error $e");
+        Crypterchat.toast("Failed to stop calling sound.  Error $e");
       }
     }
   }
@@ -164,7 +164,7 @@ class _AudioCallState extends State<AudioCall> {
     _engine.registerEventHandler(
       RtcEngineEventHandler(
         onError: (err, mssg) {
-          Fiberchat.toast('$err- $mssg');
+          Crypterchat.toast('$err- $mssg');
           debugPrint('$err- $mssg');
         },
         onJoinChannelSuccess: (RtcConnection conn, int elapsed) async {
@@ -216,7 +216,7 @@ class _AudioCallState extends State<AudioCall> {
                 WakelockPlus.enable();
                 flutterLocalNotificationsPlugin.cancelAll();
               }).catchError((e) {
-                Fiberchat.toast(e.toString());
+                Crypterchat.toast(e.toString());
               });
             });
           }
@@ -281,7 +281,7 @@ class _AudioCallState extends State<AudioCall> {
               setState(() {});
             });
           }
-          // Fiberchat.toast('joined - ${connection.localUid}');
+          // Crypterchat.toast('joined - ${connection.localUid}');
           WakelockPlus.enable();
           flutterLocalNotificationsPlugin.cancelAll();
         },
@@ -316,7 +316,7 @@ class _AudioCallState extends State<AudioCall> {
         onTokenPrivilegeWillExpire: (RtcConnection connection, String token) {
           debugPrint(
               '[onTokenPrivilegeWillExpire] connection: ${connection.toJson()}, token: $token');
-          Fiberchat.toast("Failed to Call. Please try calling again !");
+          Crypterchat.toast("Failed to Call. Please try calling again !");
           flutterLocalNotificationsPlugin.cancelAll();
         },
       ),
@@ -447,8 +447,8 @@ class _AudioCallState extends State<AudioCall> {
             alignment: Alignment.center,
             margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
             color: Thm.isDarktheme(widget.prefs)
-                ? fiberchatAPPBARcolorDarkMode
-                : fiberchatAPPBARcolorLightMode,
+                ? crypterchatAPPBARcolorDarkMode
+                : crypterchatAPPBARcolorLightMode,
             height: h / 4,
             width: w,
             child: Column(
@@ -493,8 +493,8 @@ class _AudioCallState extends State<AudioCall> {
                             fontWeight: FontWeight.w500,
                             color: pickTextColorBasedOnBgColorAdvanced(
                                 Thm.isDarktheme(widget.prefs)
-                                    ? fiberchatAPPBARcolorDarkMode
-                                    : fiberchatAPPBARcolorLightMode),
+                                    ? crypterchatAPPBARcolorDarkMode
+                                    : crypterchatAPPBARcolorLightMode),
                             fontSize: 27,
                           ),
                         ),
@@ -510,8 +510,8 @@ class _AudioCallState extends State<AudioCall> {
                           fontWeight: FontWeight.normal,
                           color: pickTextColorBasedOnBgColorAdvanced(
                                   Thm.isDarktheme(widget.prefs)
-                                      ? fiberchatAPPBARcolorDarkMode
-                                      : fiberchatAPPBARcolorLightMode)
+                                      ? crypterchatAPPBARcolorDarkMode
+                                      : crypterchatAPPBARcolorLightMode)
                               .withOpacity(0.34),
                           fontSize: 15,
                         ),
@@ -525,7 +525,7 @@ class _AudioCallState extends State<AudioCall> {
                         "$hoursStr:$minutesStr:$secondsStr",
                         style: TextStyle(
                             fontSize: 20.0,
-                            color: fiberchatGreenColor300,
+                            color: crypterchatGreenColor300,
                             fontWeight: FontWeight.w600),
                       )
                     : Text(
@@ -555,11 +555,11 @@ class _AudioCallState extends State<AudioCall> {
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           color: status == 'pickedup'
-                              ? fiberchatPRIMARYcolor
+                              ? crypterchatPRIMARYcolor
                               : pickTextColorBasedOnBgColorAdvanced(
                                       Thm.isDarktheme(widget.prefs)
-                                          ? fiberchatAPPBARcolorDarkMode
-                                          : fiberchatAPPBARcolorLightMode)
+                                          ? crypterchatAPPBARcolorDarkMode
+                                          : crypterchatAPPBARcolorLightMode)
                                   .withOpacity(0.6),
                           fontSize: 18,
                         ),
@@ -587,8 +587,8 @@ class _AudioCallState extends State<AudioCall> {
                                     : Icons.person,
                             size: 140,
                             color: Thm.isDarktheme(widget.prefs)
-                                ? fiberchatAPPBARcolorDarkMode
-                                : fiberchatAPPBARcolorLightMode,
+                                ? crypterchatAPPBARcolorDarkMode
+                                : crypterchatAPPBARcolorLightMode,
                           ),
                         )
                       : Stack(
@@ -618,8 +618,8 @@ class _AudioCallState extends State<AudioCall> {
                                               : Icons.person,
                                       size: 140,
                                       color: Thm.isDarktheme(widget.prefs)
-                                          ? fiberchatAPPBARcolorDarkMode
-                                          : fiberchatAPPBARcolorLightMode,
+                                          ? crypterchatAPPBARcolorDarkMode
+                                          : crypterchatAPPBARcolorLightMode,
                                     ),
                                   )),
                                   errorWidget: (context, url, error) =>
@@ -635,8 +635,8 @@ class _AudioCallState extends State<AudioCall> {
                                               : Icons.person,
                                       size: 140,
                                       color: Thm.isDarktheme(widget.prefs)
-                                          ? fiberchatAPPBARcolorDarkMode
-                                          : fiberchatAPPBARcolorLightMode,
+                                          ? crypterchatAPPBARcolorDarkMode
+                                          : crypterchatAPPBARcolorLightMode,
                                     ),
                                   ),
                                 )),
@@ -663,8 +663,8 @@ class _AudioCallState extends State<AudioCall> {
                                     : Icons.person,
                             size: 140,
                             color: Thm.isDarktheme(widget.prefs)
-                                ? fiberchatAPPBARcolorDarkMode
-                                : fiberchatAPPBARcolorLightMode,
+                                ? crypterchatAPPBARcolorDarkMode
+                                : crypterchatAPPBARcolorLightMode,
                           ),
                         )
                       : Stack(
@@ -673,8 +673,8 @@ class _AudioCallState extends State<AudioCall> {
                                 height: w + (w / 11),
                                 width: w,
                                 color: Thm.isDarktheme(widget.prefs)
-                                    ? fiberchatAPPBARcolorDarkMode
-                                    : fiberchatAPPBARcolorLightMode,
+                                    ? crypterchatAPPBARcolorDarkMode
+                                    : crypterchatAPPBARcolorLightMode,
                                 child: CachedNetworkImage(
                                   imageUrl: widget.call.callerId ==
                                           widget.currentuseruid
@@ -696,8 +696,8 @@ class _AudioCallState extends State<AudioCall> {
                                               : Icons.person,
                                       size: 140,
                                       color: Thm.isDarktheme(widget.prefs)
-                                          ? fiberchatAPPBARcolorDarkMode
-                                          : fiberchatAPPBARcolorLightMode,
+                                          ? crypterchatAPPBARcolorDarkMode
+                                          : crypterchatAPPBARcolorLightMode,
                                     ),
                                   )),
                                   errorWidget: (context, url, error) =>
@@ -713,8 +713,8 @@ class _AudioCallState extends State<AudioCall> {
                                               : Icons.person,
                                       size: 140,
                                       color: Thm.isDarktheme(widget.prefs)
-                                          ? fiberchatAPPBARcolorDarkMode
-                                          : fiberchatAPPBARcolorLightMode,
+                                          ? crypterchatAPPBARcolorDarkMode
+                                          : crypterchatAPPBARcolorLightMode,
                                     ),
                                   ),
                                 )),
@@ -812,11 +812,11 @@ class _AudioCallState extends State<AudioCall> {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: status == 'pickedup'
-                  ? fiberchatPRIMARYcolor
+                  ? crypterchatPRIMARYcolor
                   : pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode),
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode),
               fontSize: 25,
             ),
           ),
@@ -829,8 +829,8 @@ class _AudioCallState extends State<AudioCall> {
               style: TextStyle(
                 fontWeight: FontWeight.normal,
                 color: status == 'pickedup'
-                    ? fiberchatPRIMARYcolor
-                    : fiberchatPRIMARYcolor,
+                    ? crypterchatPRIMARYcolor
+                    : crypterchatPRIMARYcolor,
                 fontSize: 16,
               ),
             ),
@@ -886,8 +886,8 @@ class _AudioCallState extends State<AudioCall> {
                     size: w > h ? 60 : 140,
                     color: pickTextColorBasedOnBgColorAdvanced(
                             Thm.isDarktheme(widget.prefs)
-                                ? fiberchatAPPBARcolorDarkMode
-                                : fiberchatAPPBARcolorLightMode)
+                                ? crypterchatAPPBARcolorDarkMode
+                                : crypterchatAPPBARcolorLightMode)
                         .withOpacity(0.25),
                   ),
                 ),
@@ -900,8 +900,8 @@ class _AudioCallState extends State<AudioCall> {
               fontWeight: FontWeight.bold,
               color: pickTextColorBasedOnBgColorAdvanced(
                   Thm.isDarktheme(widget.prefs)
-                      ? fiberchatAPPBARcolorDarkMode
-                      : fiberchatAPPBARcolorLightMode),
+                      ? crypterchatAPPBARcolorDarkMode
+                      : crypterchatAPPBARcolorLightMode),
               fontSize: 22,
             ),
           ),
@@ -918,8 +918,8 @@ class _AudioCallState extends State<AudioCall> {
               fontWeight: FontWeight.bold,
               color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode)
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode)
                   .withOpacity(0.54),
               fontSize: 19,
             ),
@@ -1110,8 +1110,8 @@ class _AudioCallState extends State<AudioCall> {
             ? PIPView(builder: (context, isFloating) {
                 return Scaffold(
                     backgroundColor: Thm.isDarktheme(widget.prefs)
-                        ? fiberchatAPPBARcolorDarkMode
-                        : fiberchatAPPBARcolorLightMode,
+                        ? crypterchatAPPBARcolorDarkMode
+                        : crypterchatAPPBARcolorLightMode,
                     body:
                         StreamBuilder<DocumentSnapshot<Map<String, dynamic>?>?>(
                       stream: stream
@@ -1201,8 +1201,8 @@ class _AudioCallState extends State<AudioCall> {
             : PIPView(builder: (context, isFloating) {
                 return Scaffold(
                     backgroundColor: Thm.isDarktheme(widget.prefs)
-                        ? fiberchatAPPBARcolorDarkMode
-                        : fiberchatAPPBARcolorLightMode,
+                        ? crypterchatAPPBARcolorDarkMode
+                        : crypterchatAPPBARcolorLightMode,
                     body:
                         StreamBuilder<DocumentSnapshot<Map<String, dynamic>?>?>(
                       stream: stream

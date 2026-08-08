@@ -2,8 +2,8 @@
 
 import 'dart:async';
 import 'dart:typed_data';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:intl/intl.dart' show DateFormat;
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
@@ -72,7 +72,7 @@ class _MultiPlaybackState extends State<MultiPlayback> {
       setState(() {
         showPlayingLoader = false;
       });
-      Fiberchat.toast('This message is deleted by sender');
+      Crypterchat.toast('This message is deleted by sender');
     }
   }
 
@@ -135,7 +135,7 @@ class _MultiPlaybackState extends State<MultiPlayback> {
       setState(() {
         showPlayingLoader = false;
       });
-      Fiberchat.toast('This message is deleted by sender');
+      Crypterchat.toast('This message is deleted by sender');
     }
   }
 
@@ -179,7 +179,7 @@ class _MultiPlaybackState extends State<MultiPlayback> {
                         child: CircularProgressIndicator(
                           strokeWidth: 1.7,
                           valueColor: AlwaysStoppedAnimation<Color>(
-                              fiberchatGreenColor500),
+                              crypterchatGreenColor500),
                         ),
                       ),
                     ),
@@ -206,7 +206,7 @@ class _MultiPlaybackState extends State<MultiPlayback> {
                 size: 40,
                 color: getPauseResumeFn1() == null
                     ? widget.isMe!
-                        ? fiberchatGreenColor100
+                        ? crypterchatGreenColor100
                         : Colors.blueGrey[100]
                     : Colors.blueGrey[800],
               ),
@@ -225,7 +225,7 @@ class _MultiPlaybackState extends State<MultiPlayback> {
                           },
                           icon: Icon(
                             Icons.mic_rounded,
-                            color: fiberchatGreenColor400,
+                            color: crypterchatGreenColor400,
                             size: 30,
                           ),
                         ),
@@ -235,7 +235,7 @@ class _MultiPlaybackState extends State<MultiPlayback> {
                             child: Icon(
                               Icons.download,
                               size: 16,
-                              color: fiberchatGreenColor200,
+                              color: crypterchatGreenColor200,
                             ))
                       ],
                     ),

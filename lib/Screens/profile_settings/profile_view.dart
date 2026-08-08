@@ -5,23 +5,23 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Screens/status/components/formatStatusTime.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/call_utilities.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/permissions.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_layout.dart';
+import 'package:crypterchat/Screens/chat_screen/chat.dart';
+import 'package:crypterchat/Screens/status/components/formatStatusTime.dart';
+import 'package:crypterchat/Services/Admob/admob.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/call_utilities.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/open_settings.dart';
+import 'package:crypterchat/Utils/permissions.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
@@ -119,8 +119,8 @@ class _ProfileViewState extends State<ProfileView> {
       children: [
         Container(
           color: Thm.isDarktheme(widget.prefs)
-              ? fiberchatCONTAINERboxColorDarkMode
-              : fiberchatCONTAINERboxColorLightMode,
+              ? crypterchatCONTAINERboxColorDarkMode
+              : crypterchatCONTAINERboxColorLightMode,
           padding: EdgeInsets.all(12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -134,7 +134,7 @@ class _ProfileViewState extends State<ProfileView> {
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: fiberchatPRIMARYcolor,
+                        color: crypterchatPRIMARYcolor,
                         fontSize: 16),
                   ),
                 ],
@@ -153,8 +153,8 @@ class _ProfileViewState extends State<ProfileView> {
                         fontWeight: FontWeight.normal,
                         color: pickTextColorBasedOnBgColorAdvanced(
                             Thm.isDarktheme(widget.prefs)
-                                ? fiberchatCONTAINERboxColorDarkMode
-                                : fiberchatCONTAINERboxColorLightMode),
+                                ? crypterchatCONTAINERboxColorDarkMode
+                                : crypterchatCONTAINERboxColorLightMode),
                         fontSize: 15.3),
                   ),
                   Container(
@@ -167,12 +167,12 @@ class _ProfileViewState extends State<ProfileView> {
                               : IconButton(
                                   onPressed: observer.iscallsallowed == false
                                       ? () {
-                                          Fiberchat.showRationale(getTranslated(
+                                          Crypterchat.showRationale(getTranslated(
                                               context, 'callnotallowed'));
                                         }
                                       : hasPeerBlockedMe == true
                                           ? () {
-                                              Fiberchat.toast(
+                                              Crypterchat.toast(
                                                 getTranslated(
                                                     context, 'userhasblocked'),
                                               );
@@ -184,7 +184,7 @@ class _ProfileViewState extends State<ProfileView> {
                                                 if (isgranted == true) {
                                                   call(context, false);
                                                 } else {
-                                                  Fiberchat.showRationale(
+                                                  Crypterchat.showRationale(
                                                       getTranslated(
                                                           context, 'pmc'));
                                                   Navigator.push(
@@ -199,7 +199,7 @@ class _ProfileViewState extends State<ProfileView> {
                                                               )));
                                                 }
                                               }).catchError((onError) {
-                                                Fiberchat.showRationale(
+                                                Crypterchat.showRationale(
                                                     getTranslated(
                                                         context, 'pmc'));
                                                 Navigator.push(
@@ -216,7 +216,7 @@ class _ProfileViewState extends State<ProfileView> {
                                             },
                                   icon: Icon(
                                     Icons.phone,
-                                    color: fiberchatPRIMARYcolor,
+                                    color: crypterchatPRIMARYcolor,
                                   )),
                         if (widget.currentUserNo != widget.user[Dbkeys.phone])
                           observer.isCallFeatureTotallyHide == true ||
@@ -225,12 +225,12 @@ class _ProfileViewState extends State<ProfileView> {
                               : IconButton(
                                   onPressed: observer.iscallsallowed == false
                                       ? () {
-                                          Fiberchat.showRationale(getTranslated(
+                                          Crypterchat.showRationale(getTranslated(
                                               context, 'callnotallowed'));
                                         }
                                       : hasPeerBlockedMe == true
                                           ? () {
-                                              Fiberchat.toast(
+                                              Crypterchat.toast(
                                                 getTranslated(
                                                     context, 'userhasblocked'),
                                               );
@@ -242,7 +242,7 @@ class _ProfileViewState extends State<ProfileView> {
                                                 if (isgranted == true) {
                                                   call(context, true);
                                                 } else {
-                                                  Fiberchat.showRationale(
+                                                  Crypterchat.showRationale(
                                                       getTranslated(
                                                           context, 'pmc'));
                                                   Navigator.push(
@@ -257,7 +257,7 @@ class _ProfileViewState extends State<ProfileView> {
                                                               )));
                                                 }
                                               }).catchError((onError) {
-                                                Fiberchat.showRationale(
+                                                Crypterchat.showRationale(
                                                     getTranslated(
                                                         context, 'pmc'));
                                                 Navigator.push(
@@ -275,7 +275,7 @@ class _ProfileViewState extends State<ProfileView> {
                                   icon: Icon(
                                     Icons.videocam_rounded,
                                     size: 26,
-                                    color: fiberchatPRIMARYcolor,
+                                    color: crypterchatPRIMARYcolor,
                                   )),
                         if (widget.currentUserNo != widget.user[Dbkeys.phone])
                           IconButton(
@@ -299,7 +299,7 @@ class _ProfileViewState extends State<ProfileView> {
                               },
                               icon: Icon(
                                 Icons.message,
-                                color: fiberchatPRIMARYcolor,
+                                color: crypterchatPRIMARYcolor,
                               )),
                       ],
                     ),
@@ -318,8 +318,8 @@ class _ProfileViewState extends State<ProfileView> {
         Container(
           padding: EdgeInsets.only(bottom: 18, top: 8),
           color: Thm.isDarktheme(widget.prefs)
-              ? fiberchatCONTAINERboxColorDarkMode
-              : fiberchatCONTAINERboxColorLightMode,
+              ? crypterchatCONTAINERboxColorDarkMode
+              : crypterchatCONTAINERboxColorLightMode,
           // height: 30,
           child: ListTile(
             title: Padding(
@@ -331,21 +331,21 @@ class _ProfileViewState extends State<ProfileView> {
                   height: 2,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatCONTAINERboxColorDarkMode
-                          : fiberchatCONTAINERboxColorLightMode),
+                          ? crypterchatCONTAINERboxColorDarkMode
+                          : crypterchatCONTAINERboxColorLightMode),
                 ),
               ),
             ),
             dense: false,
             subtitle: Text(
               getTranslated(context, 'encryptionshort'),
-              style: TextStyle(color: fiberchatGrey, height: 1.3, fontSize: 15),
+              style: TextStyle(color: crypterchatGrey, height: 1.3, fontSize: 15),
             ),
             trailing: Padding(
               padding: const EdgeInsets.only(top: 32),
               child: Icon(
                 Icons.lock,
-                color: fiberchatPRIMARYcolor,
+                color: crypterchatPRIMARYcolor,
               ),
             ),
           ),
@@ -361,17 +361,17 @@ class _ProfileViewState extends State<ProfileView> {
     var w = MediaQuery.of(context).size.width;
     return PickupLayout(
         prefs: widget.prefs,
-        scaffold: Fiberchat.getNTPWrappedWidget(widget
+        scaffold: Crypterchat.getNTPWrappedWidget(widget
                     .user[Dbkeys.accountstatus] ==
                 Dbkeys.sTATUSdeleted
             ? Scaffold(
                 backgroundColor: Thm.isDarktheme(widget.prefs)
-                    ? fiberchatBACKGROUNDcolorDarkMode
-                    : fiberchatBACKGROUNDcolorLightMode,
+                    ? crypterchatBACKGROUNDcolorDarkMode
+                    : crypterchatBACKGROUNDcolorLightMode,
                 appBar: AppBar(
                   backgroundColor: Thm.isDarktheme(widget.prefs)
-                      ? fiberchatAPPBARcolorDarkMode
-                      : fiberchatAPPBARcolorLightMode,
+                      ? crypterchatAPPBARcolorDarkMode
+                      : crypterchatAPPBARcolorLightMode,
                   elevation: 0,
                 ),
                 body: Center(
@@ -395,8 +395,8 @@ class _ProfileViewState extends State<ProfileView> {
               )
             : Scaffold(
                 backgroundColor: Thm.isDarktheme(widget.prefs)
-                    ? fiberchatBACKGROUNDcolorDarkMode
-                    : fiberchatBACKGROUNDcolorLightMode,
+                    ? crypterchatBACKGROUNDcolorDarkMode
+                    : crypterchatBACKGROUNDcolorLightMode,
                 bottomSheet: IsBannerAdShow == true &&
                         observer.isadmobshow == true &&
                         adWidget != null
@@ -409,7 +409,7 @@ class _ProfileViewState extends State<ProfileView> {
                     : SizedBox(
                         height: 0,
                       ),
-                // backgroundColor: fiberchatWhite,
+                // backgroundColor: crypterchatWhite,
                 body: ListView(
                   children: [
                     Stack(
@@ -433,7 +433,7 @@ class _ProfileViewState extends State<ProfileView> {
                               shape: BoxShape.rectangle,
                             ),
                             child: Icon(Icons.person,
-                                color: fiberchatGrey.withOpacity(0.5),
+                                color: crypterchatGrey.withOpacity(0.5),
                                 size: 95),
                           ),
                           errorWidget: (context, url, error) => Container(
@@ -444,7 +444,7 @@ class _ProfileViewState extends State<ProfileView> {
                               shape: BoxShape.rectangle,
                             ),
                             child: Icon(Icons.person,
-                                color: fiberchatGrey.withOpacity(0.5),
+                                color: crypterchatGrey.withOpacity(0.5),
                                 size: 95),
                           ),
                         ),
@@ -484,7 +484,7 @@ class _ProfileViewState extends State<ProfileView> {
                             icon: Icon(
                               Icons.arrow_back_sharp,
                               size: 25,
-                              color: fiberchatWhite,
+                              color: crypterchatWhite,
                             ),
                             onPressed: () {
                               Navigator.of(context).pop();
@@ -495,8 +495,8 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                     Container(
                       color: Thm.isDarktheme(widget.prefs)
-                          ? fiberchatCONTAINERboxColorDarkMode
-                          : fiberchatCONTAINERboxColorLightMode,
+                          ? crypterchatCONTAINERboxColorDarkMode
+                          : crypterchatCONTAINERboxColorLightMode,
                       padding: EdgeInsets.all(12),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -510,7 +510,7 @@ class _ProfileViewState extends State<ProfileView> {
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    color: fiberchatPRIMARYcolor,
+                                    color: crypterchatPRIMARYcolor,
                                     fontSize: 16),
                               ),
                             ],
@@ -529,8 +529,8 @@ class _ProfileViewState extends State<ProfileView> {
                                 fontWeight: FontWeight.normal,
                                 color: pickTextColorBasedOnBgColorAdvanced(
                                     Thm.isDarktheme(widget.prefs)
-                                        ? fiberchatCONTAINERboxColorDarkMode
-                                        : fiberchatCONTAINERboxColorLightMode),
+                                        ? crypterchatCONTAINERboxColorDarkMode
+                                        : crypterchatCONTAINERboxColorLightMode),
                                 fontSize: 15.9),
                           ),
                           SizedBox(
@@ -541,7 +541,7 @@ class _ProfileViewState extends State<ProfileView> {
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 fontWeight: FontWeight.normal,
-                                color: fiberchatGrey,
+                                color: crypterchatGrey,
                                 fontSize: 13.3),
                           ),
                           SizedBox(

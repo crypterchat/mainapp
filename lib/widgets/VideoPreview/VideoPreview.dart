@@ -2,8 +2,8 @@
 
 import 'dart:io';
 import 'package:chewie/chewie.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/widgets/DownloadManager/save_image_videos_in_gallery.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/widgets/DownloadManager/save_image_videos_in_gallery.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video_player/video_player.dart';
@@ -47,12 +47,12 @@ class _PreviewVideoState extends State<PreviewVideo> {
 
     _chewieController = ChewieController(
       cupertinoProgressColors:
-          ChewieProgressColors(bufferedColor: fiberchatPRIMARYcolor),
+          ChewieProgressColors(bufferedColor: crypterchatPRIMARYcolor),
       videoPlayerController: _videoPlayerController1,
       allowFullScreen: true,
       showControlsOnInitialize: false,
       materialProgressColors:
-          ChewieProgressColors(bufferedColor: fiberchatPRIMARYcolor),
+          ChewieProgressColors(bufferedColor: crypterchatPRIMARYcolor),
       aspectRatio: thisaspectratio,
       autoPlay: true,
       looping: true,
@@ -115,7 +115,7 @@ class _PreviewVideoState extends State<PreviewVideo> {
             Center(
               child: CircularProgressIndicator(
                 valueColor:
-                    AlwaysStoppedAnimation<Color>(fiberchatSECONDARYolor),
+                    AlwaysStoppedAnimation<Color>(crypterchatSECONDARYolor),
               ),
             ),
             Chewie(

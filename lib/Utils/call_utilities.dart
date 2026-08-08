@@ -2,13 +2,13 @@
 
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:cloud_functions/cloud_functions.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/calling_screen/audio_call.dart';
-import 'package:fiberchat/Screens/calling_screen/video_call.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Screens/calling_screen/audio_call.dart';
+import 'package:crypterchat/Screens/calling_screen/video_call.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:fiberchat/Models/call.dart';
-import 'package:fiberchat/Models/call_methods.dart';
+import 'package:crypterchat/Models/call.dart';
+import 'package:crypterchat/Models/call_methods.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CallUtils {
@@ -28,7 +28,7 @@ class CallUtils {
     int timeepoch = DateTime.now().millisecondsSinceEpoch;
     Map<String, dynamic>? res = await FunctionCall().makeCloudCall();
     if (res == null) {
-      Fiberchat.toast("Failed to Dial Call. Please try again !");
+      Crypterchat.toast("Failed to Dial Call. Please try again !");
     } else {
       Call call = Call(
           token: res['token'],

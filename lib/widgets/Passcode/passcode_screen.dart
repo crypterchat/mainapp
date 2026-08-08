@@ -3,16 +3,16 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:math' as math;
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/MyElevatedButton/MyElevatedButton.dart';
-import 'package:fiberchat/widgets/Passcode/circle.dart';
-import 'package:fiberchat/widgets/Passcode/keyboard.dart';
-import 'package:fiberchat/widgets/Passcode/shake_curve.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/widgets/MyElevatedButton/MyElevatedButton.dart';
+import 'package:crypterchat/widgets/Passcode/circle.dart';
+import 'package:crypterchat/widgets/Passcode/keyboard.dart';
+import 'package:crypterchat/widgets/Passcode/shake_curve.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -119,7 +119,7 @@ class _PasscodeScreenState extends State<PasscodeScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Fiberchat.getNTPWrappedWidget(Scaffold(
+    return Crypterchat.getNTPWrappedWidget(Scaffold(
       appBar: widget.wait
           ? AppBar(
               leading: IconButton(
@@ -131,21 +131,21 @@ class _PasscodeScreenState extends State<PasscodeScreen>
                   size: 30,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode),
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode),
                 ),
               ),
               elevation: 0,
               backgroundColor: Thm.isDarktheme(widget.prefs)
-                  ? fiberchatAPPBARcolorDarkMode
-                  : fiberchatAPPBARcolorLightMode,
+                  ? crypterchatAPPBARcolorDarkMode
+                  : crypterchatAPPBARcolorLightMode,
               title: Text(
                 widget.title!,
                 style: TextStyle(
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode),
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode),
                 ),
               ),
               actions: <Widget>[
@@ -172,7 +172,7 @@ class _PasscodeScreenState extends State<PasscodeScreen>
                 //     child: Center(
                 //       child: Icon(
                 //         Icons.check,
-                //         color: fiberchatWhite,
+                //         color: crypterchatWhite,
                 //       ),
                 //     ),
                 //   ),
@@ -181,7 +181,7 @@ class _PasscodeScreenState extends State<PasscodeScreen>
                 //   color: Colors.green,
                 //   icon: Icon(
                 //     Icons.check,
-                //     color: fiberchatWhite,
+                //     color: crypterchatWhite,
                 //   ),
                 //   onPressed: _isValid
                 //       ? () {
@@ -195,8 +195,8 @@ class _PasscodeScreenState extends State<PasscodeScreen>
             )
           : null,
       backgroundColor: Thm.isDarktheme(widget.prefs)
-          ? fiberchatAPPBARcolorDarkMode
-          : fiberchatAPPBARcolorLightMode,
+          ? crypterchatAPPBARcolorDarkMode
+          : crypterchatAPPBARcolorLightMode,
       body: Center(
           child: SingleChildScrollView(
         child: Column(
@@ -209,8 +209,8 @@ class _PasscodeScreenState extends State<PasscodeScreen>
                 fontSize: 16,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(widget.prefs)
-                        ? fiberchatAPPBARcolorDarkMode
-                        : fiberchatAPPBARcolorLightMode),
+                        ? crypterchatAPPBARcolorDarkMode
+                        : crypterchatAPPBARcolorLightMode),
               ),
             ),
             Container(
@@ -235,14 +235,14 @@ class _PasscodeScreenState extends State<PasscodeScreen>
                       : KeyboardUIConfig(
                           primaryColor: pickTextColorBasedOnBgColorAdvanced(
                               Thm.isDarktheme(widget.prefs)
-                                  ? fiberchatAPPBARcolorDarkMode
-                                  : fiberchatAPPBARcolorLightMode),
+                                  ? crypterchatAPPBARcolorDarkMode
+                                  : crypterchatAPPBARcolorLightMode),
                           digitTextStyle: TextStyle(
                               fontSize: 30,
                               color: pickTextColorBasedOnBgColorAdvanced(
                                   Thm.isDarktheme(widget.prefs)
-                                      ? fiberchatAPPBARcolorDarkMode
-                                      : fiberchatAPPBARcolorLightMode))),
+                                      ? crypterchatAPPBARcolorDarkMode
+                                      : crypterchatAPPBARcolorLightMode))),
                 ),
               ),
             ),
@@ -254,7 +254,7 @@ class _PasscodeScreenState extends State<PasscodeScreen>
                     child: Padding(
                         padding: const EdgeInsets.fromLTRB(28, 39, 28, 10),
                         child: myElevatedButton(
-                          color: fiberchatGreenColor500,
+                          color: crypterchatGreenColor500,
                           child: Text(
                             getTranslated(this.context, 'done'),
                             style: TextStyle(color: Colors.white),
@@ -294,12 +294,12 @@ class _PasscodeScreenState extends State<PasscodeScreen>
         : CircleUIConfig(
             fillColor: pickTextColorBasedOnBgColorAdvanced(
                 Thm.isDarktheme(widget.prefs)
-                    ? fiberchatAPPBARcolorDarkMode
-                    : fiberchatAPPBARcolorLightMode),
+                    ? crypterchatAPPBARcolorDarkMode
+                    : crypterchatAPPBARcolorLightMode),
             borderColor: pickTextColorBasedOnBgColorAdvanced(
                 Thm.isDarktheme(widget.prefs)
-                    ? fiberchatAPPBARcolorDarkMode
-                    : fiberchatAPPBARcolorLightMode),
+                    ? crypterchatAPPBARcolorDarkMode
+                    : crypterchatAPPBARcolorLightMode),
           );
     config.extraSize = animation.value;
     for (int i = 0; i < widget.passwordDigits; i++) {

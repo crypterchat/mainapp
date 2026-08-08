@@ -1,7 +1,7 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Services/localization/demo_localization.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Services/localization/demo_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

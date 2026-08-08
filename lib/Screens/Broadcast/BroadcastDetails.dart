@@ -3,25 +3,25 @@
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Screens/Broadcast/AddContactsToBroadcast.dart';
-import 'package:fiberchat/Screens/Broadcast/EditBroadcastDetails.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Screens/profile_settings/profile_view.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/BroadcastProvider.dart';
-import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/CameraGalleryImagePicker/camera_image_gallery_picker.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Screens/Broadcast/AddContactsToBroadcast.dart';
+import 'package:crypterchat/Screens/Broadcast/EditBroadcastDetails.dart';
+import 'package:crypterchat/Screens/call_history/callhistory.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_layout.dart';
+import 'package:crypterchat/Screens/profile_settings/profile_view.dart';
+import 'package:crypterchat/Services/Admob/admob.dart';
+import 'package:crypterchat/Services/Providers/BroadcastProvider.dart';
+import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/widgets/CameraGalleryImagePicker/camera_image_gallery_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
@@ -130,15 +130,15 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
         builder: (BuildContext context) {
           return AlertDialog(
             backgroundColor: Thm.isDarktheme(widget.prefs)
-                ? fiberchatDIALOGColorDarkMode
-                : fiberchatDIALOGColorLightMode,
+                ? crypterchatDIALOGColorDarkMode
+                : crypterchatDIALOGColorLightMode,
             title: new Text(
               getTranslated(context, 'removefromlist'),
               style: TextStyle(
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(widget.prefs)
-                        ? fiberchatDIALOGColorDarkMode
-                        : fiberchatDIALOGColorLightMode),
+                        ? crypterchatDIALOGColorDarkMode
+                        : crypterchatDIALOGColorLightMode),
               ),
             ),
             actions: [
@@ -150,7 +150,7 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                   child: Text(
                     getTranslated(context, 'cancel'),
                     style:
-                        TextStyle(color: fiberchatSECONDARYolor, fontSize: 18),
+                        TextStyle(color: crypterchatSECONDARYolor, fontSize: 18),
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -163,7 +163,7 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                 child: Text(
                   getTranslated(context, 'remove'),
                   style:
-                      TextStyle(color: fiberchatREDbuttonColor, fontSize: 18),
+                      TextStyle(color: crypterchatREDbuttonColor, fontSize: 18),
                 ),
                 onPressed: () async {
                   Navigator.of(context).pop();
@@ -204,7 +204,7 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                     setStateIfMounted(() {
                       isloading = false;
                     });
-                    // Fiberchat.toast(
+                    // Crypterchat.toast(
                     //     'Failed to remove ! \nError occured -$onError');
                   });
                 },
@@ -232,7 +232,7 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
 
     return PickupLayout(
         prefs: widget.prefs,
-        scaffold: Fiberchat.getNTPWrappedWidget(Consumer<List<BroadcastModel>>(
+        scaffold: Crypterchat.getNTPWrappedWidget(Consumer<List<BroadcastModel>>(
             builder: (context, broadcastList, _child) {
           final observer = Provider.of<Observer>(context, listen: false);
           Map<dynamic, dynamic> broadcastDoc = broadcastList.indexWhere(
@@ -261,8 +261,8 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                             height: 0,
                           ),
                     backgroundColor: Thm.isDarktheme(widget.prefs)
-                        ? fiberchatBACKGROUNDcolorDarkMode
-                        : fiberchatBACKGROUNDcolorLightMode,
+                        ? crypterchatBACKGROUNDcolorDarkMode
+                        : crypterchatBACKGROUNDcolorLightMode,
                     appBar: AppBar(
                       elevation: 0.4,
                       titleSpacing: -5,
@@ -275,8 +275,8 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                             size: 24,
                             color: pickTextColorBasedOnBgColorAdvanced(
                                 Thm.isDarktheme(widget.prefs)
-                                    ? fiberchatAPPBARcolorDarkMode
-                                    : fiberchatAPPBARcolorLightMode),
+                                    ? crypterchatAPPBARcolorDarkMode
+                                    : crypterchatAPPBARcolorLightMode),
                           ),
                           onPressed: () {
                             Navigator.of(context).pop();
@@ -306,13 +306,13 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                               size: 21,
                               color: pickTextColorBasedOnBgColorAdvanced(
                                   Thm.isDarktheme(widget.prefs)
-                                      ? fiberchatAPPBARcolorDarkMode
-                                      : fiberchatAPPBARcolorLightMode),
+                                      ? crypterchatAPPBARcolorDarkMode
+                                      : crypterchatAPPBARcolorLightMode),
                             ))
                       ],
                       backgroundColor: Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode,
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode,
                       title: InkWell(
                         onTap: () {},
                         child: Column(
@@ -325,8 +325,8 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                               style: TextStyle(
                                   color: pickTextColorBasedOnBgColorAdvanced(
                                       Thm.isDarktheme(widget.prefs)
-                                          ? fiberchatAPPBARcolorDarkMode
-                                          : fiberchatAPPBARcolorLightMode),
+                                          ? crypterchatAPPBARcolorDarkMode
+                                          : crypterchatAPPBARcolorLightMode),
                                   fontSize: 17.0,
                                   fontWeight: FontWeight.w500),
                             ),
@@ -338,8 +338,8 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                               style: TextStyle(
                                   color: pickTextColorBasedOnBgColorAdvanced(
                                           Thm.isDarktheme(widget.prefs)
-                                              ? fiberchatAPPBARcolorDarkMode
-                                              : fiberchatAPPBARcolorLightMode)
+                                              ? crypterchatAPPBARcolorDarkMode
+                                              : crypterchatAPPBARcolorLightMode)
                                       .withOpacity(0.9),
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400),
@@ -383,7 +383,7 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                         shape: BoxShape.rectangle,
                                       ),
                                       child: Icon(Icons.campaign,
-                                          color: fiberchatGrey.withOpacity(0.5),
+                                          color: crypterchatGrey.withOpacity(0.5),
                                           size: 75),
                                     ),
                                     errorWidget: (context, url, error) =>
@@ -395,7 +395,7 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                         shape: BoxShape.rectangle,
                                       ),
                                       child: Icon(Icons.campaign,
-                                          color: fiberchatGrey.withOpacity(0.5),
+                                          color: crypterchatGrey.withOpacity(0.5),
                                           size: 75),
                                     ),
                                   ),
@@ -495,7 +495,7 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                               });
                                             },
                                             icon: Icon(Icons.camera_alt_rounded,
-                                                color: fiberchatWhite,
+                                                color: crypterchatWhite,
                                                 size: 35),
                                           ),
                                           broadcastDoc[Dbkeys
@@ -504,7 +504,7 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                               ? SizedBox()
                                               : IconButton(
                                                   onPressed: () async {
-                                                    Fiberchat.toast(
+                                                    Crypterchat.toast(
                                                       getTranslated(
                                                           context, 'plswait'),
                                                     );
@@ -591,7 +591,7 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                                   icon: Icon(
                                                       Icons
                                                           .delete_outline_rounded,
-                                                      color: fiberchatWhite,
+                                                      color: crypterchatWhite,
                                                       size: 35),
                                                 ),
                                         ],
@@ -602,8 +602,8 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                               ),
                               Container(
                                 color: Thm.isDarktheme(widget.prefs)
-                                    ? fiberchatCONTAINERboxColorDarkMode
-                                    : fiberchatCONTAINERboxColorLightMode,
+                                    ? crypterchatCONTAINERboxColorDarkMode
+                                    : crypterchatCONTAINERboxColorLightMode,
                                 padding: EdgeInsets.all(12),
                                 child: Column(
                                   crossAxisAlignment:
@@ -619,7 +619,7 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              color: fiberchatPRIMARYcolor,
+                                              color: crypterchatPRIMARYcolor,
                                               fontSize: 16),
                                         ),
                                         IconButton(
@@ -645,7 +645,7 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                             },
                                             icon: Icon(
                                               Icons.edit,
-                                              color: fiberchatGrey,
+                                              color: crypterchatGrey,
                                             ))
                                       ],
                                     ),
@@ -671,8 +671,8 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                           fontWeight: FontWeight.normal,
                                           color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                   .isDarktheme(widget.prefs)
-                                              ? fiberchatCONTAINERboxColorDarkMode
-                                              : fiberchatCONTAINERboxColorLightMode),
+                                              ? crypterchatCONTAINERboxColorDarkMode
+                                              : crypterchatCONTAINERboxColorLightMode),
                                           fontSize: 15.3),
                                     ),
                                     SizedBox(
@@ -686,8 +686,8 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                               ),
                               Container(
                                 color: Thm.isDarktheme(widget.prefs)
-                                    ? fiberchatCONTAINERboxColorDarkMode
-                                    : fiberchatCONTAINERboxColorLightMode,
+                                    ? crypterchatCONTAINERboxColorDarkMode
+                                    : crypterchatCONTAINERboxColorLightMode,
                                 padding: EdgeInsets.all(12),
                                 child: Column(
                                   crossAxisAlignment:
@@ -711,7 +711,7 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     color:
-                                                        fiberchatSECONDARYolor,
+                                                        crypterchatSECONDARYolor,
                                                     fontSize: 16),
                                               ),
                                               // Text(
@@ -778,7 +778,7 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                                         child: Icon(Icons.add,
                                                             size: 19,
                                                             color:
-                                                                fiberchatSECONDARYolor),
+                                                                crypterchatSECONDARYolor),
                                                       ),
                                                       // Text(
                                                       //   'ADD ',
@@ -786,7 +786,7 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                                       //       fontWeight:
                                                       //           FontWeight.bold,
                                                       //       color:
-                                                      //           fiberchatLightGreen),
+                                                      //           crypterchatLightGreen),
                                                       // ),
                                                     ],
                                                   ),
@@ -808,8 +808,8 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                             return AlertDialog(
                                               backgroundColor: Thm.isDarktheme(
                                                       widget.prefs)
-                                                  ? fiberchatDIALOGColorDarkMode
-                                                  : fiberchatDIALOGColorLightMode,
+                                                  ? crypterchatDIALOGColorDarkMode
+                                                  : crypterchatDIALOGColorLightMode,
                                               title: new Text(
                                                 getTranslated(
                                                     context, 'deletebroadcast'),
@@ -817,8 +817,8 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                                   color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                           .isDarktheme(
                                                               widget.prefs)
-                                                      ? fiberchatDIALOGColorDarkMode
-                                                      : fiberchatDIALOGColorLightMode),
+                                                      ? crypterchatDIALOGColorDarkMode
+                                                      : crypterchatDIALOGColorLightMode),
                                                 ),
                                               ),
                                               actions: [
@@ -834,7 +834,7 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                                         context, 'cancel'),
                                                     style: TextStyle(
                                                         color:
-                                                            fiberchatPRIMARYcolor,
+                                                            crypterchatPRIMARYcolor,
                                                         fontSize: 18),
                                                   ),
                                                   onPressed: () {
@@ -853,7 +853,7 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                                         context, 'delete'),
                                                     style: TextStyle(
                                                         color:
-                                                            fiberchatREDbuttonColor,
+                                                            crypterchatREDbuttonColor,
                                                         fontSize: 18),
                                                   ),
                                                   onPressed: () async {
@@ -894,7 +894,7 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                               MediaQuery.of(context).size.width,
                                           height: 48.0,
                                           decoration: new BoxDecoration(
-                                            color: fiberchatREDbuttonColor,
+                                            color: crypterchatREDbuttonColor,
                                             borderRadius:
                                                 new BorderRadius.circular(5.0),
                                           ),
@@ -917,12 +917,12 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                       child: CircularProgressIndicator(
                                           valueColor:
                                               AlwaysStoppedAnimation<Color>(
-                                                  fiberchatSECONDARYolor)),
+                                                  crypterchatSECONDARYolor)),
                                     ),
                                     color: pickTextColorBasedOnBgColorAdvanced(!Thm
                                                 .isDarktheme(widget.prefs)
-                                            ? fiberchatCONTAINERboxColorDarkMode
-                                            : fiberchatCONTAINERboxColorLightMode)
+                                            ? crypterchatCONTAINERboxColorDarkMode
+                                            : crypterchatCONTAINERboxColorLightMode)
                                         .withOpacity(0.6))
                                 : Container(),
                           )
@@ -975,8 +975,8 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                   width: 30,
                                   child: PopupMenuButton<String>(
                                       color: Thm.isDarktheme(widget.prefs)
-                                          ? fiberchatDIALOGColorDarkMode
-                                          : fiberchatDIALOGColorLightMode,
+                                          ? crypterchatDIALOGColorDarkMode
+                                          : crypterchatDIALOGColorLightMode,
                                       itemBuilder: (BuildContext context) =>
                                           <PopupMenuEntry<String>>[
                                             PopupMenuItem<String>(
@@ -988,8 +988,8 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                                     color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                             .isDarktheme(
                                                                 widget.prefs)
-                                                        ? fiberchatDIALOGColorDarkMode
-                                                        : fiberchatDIALOGColorLightMode)),
+                                                        ? crypterchatDIALOGColorDarkMode
+                                                        : crypterchatDIALOGColorLightMode)),
                                               ),
                                             ),
                                           ],
@@ -1004,8 +1004,8 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                         size: 20,
                                         color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                 .isDarktheme(widget.prefs)
-                                            ? fiberchatCONTAINERboxColorDarkMode
-                                            : fiberchatCONTAINERboxColorLightMode),
+                                            ? crypterchatCONTAINERboxColorDarkMode
+                                            : crypterchatCONTAINERboxColorLightMode),
                                       )),
                                 ),
                                 isThreeLine: false,
@@ -1081,8 +1081,8 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                     fontWeight: FontWeight.normal,
                                     color: pickTextColorBasedOnBgColorAdvanced(Thm
                                             .isDarktheme(widget.prefs)
-                                        ? fiberchatCONTAINERboxColorDarkMode
-                                        : fiberchatCONTAINERboxColorLightMode),
+                                        ? crypterchatCONTAINERboxColorDarkMode
+                                        : crypterchatCONTAINERboxColorLightMode),
                                   ),
                                 ),
                                 subtitle: Text(
@@ -1091,7 +1091,7 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                      height: 1.4, color: fiberchatGrey),
+                                      height: 1.4, color: crypterchatGrey),
                                 ),
                                 onTap: widget.currentUserno == snapshot.data!.id
                                     ? () {}
@@ -1189,8 +1189,8 @@ class _BroadcastDetailsState extends State<BroadcastDetails> {
                                   fontWeight: FontWeight.normal,
                                   color: pickTextColorBasedOnBgColorAdvanced(Thm
                                           .isDarktheme(widget.prefs)
-                                      ? fiberchatCONTAINERboxColorDarkMode
-                                      : fiberchatCONTAINERboxColorLightMode),
+                                      ? crypterchatCONTAINERboxColorDarkMode
+                                      : crypterchatCONTAINERboxColorLightMode),
                                 ),
                               ),
                               subtitle: Text(

@@ -1,8 +1,8 @@
 import 'dart:math' as math;
 import 'dart:ui' show Size;
 
-import 'package:fiberchat/widgets/PhotoView/src/photo_view_computed_scale.dart';
-import 'package:fiberchat/widgets/PhotoView/src/photo_view_scale_state.dart';
+import 'package:crypterchat/widgets/PhotoView/src/photo_view_computed_scale.dart';
+import 'package:crypterchat/widgets/PhotoView/src/photo_view_scale_state.dart';
 
 /// Given a [PhotoViewScaleState], returns a scale value considering [scaleBoundaries].
 double getScaleForScaleState(

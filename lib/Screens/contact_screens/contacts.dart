@@ -1,20 +1,20 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:contacts_service/contacts_service.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Screens/chat_screen/pre_chat.dart';
-import 'package:fiberchat/Screens/contact_screens/AddunsavedContact.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Utils/chat_controller.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_layout.dart';
+import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Screens/chat_screen/chat.dart';
+import 'package:crypterchat/Screens/chat_screen/pre_chat.dart';
+import 'package:crypterchat/Screens/contact_screens/AddunsavedContact.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Utils/chat_controller.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/open_settings.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:localstorage/localstorage.dart';
@@ -83,7 +83,7 @@ class _ContactsState extends State<Contacts>
       Container(
         child: Center(
             child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(fiberchatSECONDARYolor),
+          valueColor: AlwaysStoppedAnimation<Color>(crypterchatSECONDARYolor),
         )),
       )
     ]);
@@ -101,15 +101,15 @@ class _ContactsState extends State<Contacts>
           fontWeight: FontWeight.w600,
           color: pickTextColorBasedOnBgColorAdvanced(
               Thm.isDarktheme(widget.prefs)
-                  ? fiberchatAPPBARcolorDarkMode
-                  : fiberchatAPPBARcolorLightMode),
+                  ? crypterchatAPPBARcolorDarkMode
+                  : crypterchatAPPBARcolorLightMode),
         ),
       );
       _searchIcon = new Icon(
         Icons.search,
         color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs)
-            ? fiberchatAPPBARcolorDarkMode
-            : fiberchatAPPBARcolorLightMode),
+            ? crypterchatAPPBARcolorDarkMode
+            : crypterchatAPPBARcolorLightMode),
       );
       _searchPressed();
     });
@@ -146,7 +146,7 @@ class _ContactsState extends State<Contacts>
       }
     });
 
-    Fiberchat.checkAndRequestPermission(Permission.contacts).then((res) {
+    Crypterchat.checkAndRequestPermission(Permission.contacts).then((res) {
       if (res) {
         storage.ready.then((ready) async {
           if (ready) {
@@ -184,7 +184,7 @@ class _ContactsState extends State<Contacts>
           // }
         });
       } else {
-        Fiberchat.showRationale(getTranslated(context, 'perm_contact'));
+        Crypterchat.showRationale(getTranslated(context, 'perm_contact'));
         Navigator.pushReplacement(
             context,
             new MaterialPageRoute(
@@ -194,7 +194,7 @@ class _ContactsState extends State<Contacts>
                     )));
       }
     }).catchError((onError) {
-      Fiberchat.showRationale('Error occured: $onError');
+      Crypterchat.showRationale('Error occured: $onError');
     });
 
     return completer.future;
@@ -211,8 +211,8 @@ class _ContactsState extends State<Contacts>
           Icons.close,
           color: pickTextColorBasedOnBgColorAdvanced(
               Thm.isDarktheme(widget.prefs)
-                  ? fiberchatAPPBARcolorDarkMode
-                  : fiberchatAPPBARcolorLightMode),
+                  ? crypterchatAPPBARcolorDarkMode
+                  : crypterchatAPPBARcolorLightMode),
         );
         this._appBarTitle = new TextField(
           textCapitalization: TextCapitalization.sentences,
@@ -220,8 +220,8 @@ class _ContactsState extends State<Contacts>
           style: TextStyle(
             color: pickTextColorBasedOnBgColorAdvanced(
                 Thm.isDarktheme(widget.prefs)
-                    ? fiberchatAPPBARcolorDarkMode
-                    : fiberchatAPPBARcolorLightMode),
+                    ? crypterchatAPPBARcolorDarkMode
+                    : crypterchatAPPBARcolorLightMode),
             fontSize: 18.5,
             fontWeight: FontWeight.w600,
           ),
@@ -230,16 +230,16 @@ class _ContactsState extends State<Contacts>
               labelStyle: TextStyle(
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(widget.prefs)
-                        ? fiberchatAPPBARcolorDarkMode
-                        : fiberchatAPPBARcolorLightMode),
+                        ? crypterchatAPPBARcolorDarkMode
+                        : crypterchatAPPBARcolorLightMode),
               ),
               hintText: getTranslated(context, 'search'),
               hintStyle: TextStyle(
                 fontSize: 18.5,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(widget.prefs)
-                        ? fiberchatAPPBARcolorDarkMode
-                        : fiberchatAPPBARcolorLightMode),
+                        ? crypterchatAPPBARcolorDarkMode
+                        : crypterchatAPPBARcolorLightMode),
               )),
         );
       } else {
@@ -247,8 +247,8 @@ class _ContactsState extends State<Contacts>
           Icons.search,
           color: pickTextColorBasedOnBgColorAdvanced(
               Thm.isDarktheme(widget.prefs)
-                  ? fiberchatAPPBARcolorDarkMode
-                  : fiberchatAPPBARcolorLightMode),
+                  ? crypterchatAPPBARcolorDarkMode
+                  : crypterchatAPPBARcolorLightMode),
         );
         this._appBarTitle = new Text(
           getTranslated(context, 'searchcontact'),
@@ -256,8 +256,8 @@ class _ContactsState extends State<Contacts>
             fontSize: 18.5,
             color: pickTextColorBasedOnBgColorAdvanced(
                 Thm.isDarktheme(widget.prefs)
-                    ? fiberchatAPPBARcolorDarkMode
-                    : fiberchatAPPBARcolorLightMode),
+                    ? crypterchatAPPBARcolorDarkMode
+                    : crypterchatAPPBARcolorLightMode),
           ),
         );
 
@@ -273,15 +273,15 @@ class _ContactsState extends State<Contacts>
 
     return PickupLayout(
         prefs: widget.prefs,
-        scaffold: Fiberchat.getNTPWrappedWidget(ScopedModel<DataModel>(
+        scaffold: Crypterchat.getNTPWrappedWidget(ScopedModel<DataModel>(
             model: widget.model!,
             child: ScopedModelDescendant<DataModel>(
                 builder: (context, child, model) {
               return Consumer<SmartContactProviderWithLocalStoreData>(
                   builder: (context, contactsProvider, _child) => Scaffold(
                       backgroundColor: Thm.isDarktheme(widget.prefs)
-                          ? fiberchatBACKGROUNDcolorDarkMode
-                          : fiberchatBACKGROUNDcolorLightMode,
+                          ? crypterchatBACKGROUNDcolorDarkMode
+                          : crypterchatBACKGROUNDcolorLightMode,
                       appBar: AppBar(
                         elevation: 0.4,
                         titleSpacing: 5,
@@ -294,13 +294,13 @@ class _ContactsState extends State<Contacts>
                             size: 24,
                             color: pickTextColorBasedOnBgColorAdvanced(
                                 Thm.isDarktheme(widget.prefs)
-                                    ? fiberchatAPPBARcolorDarkMode
-                                    : fiberchatAPPBARcolorLightMode),
+                                    ? crypterchatAPPBARcolorDarkMode
+                                    : crypterchatAPPBARcolorLightMode),
                           ),
                         ),
                         backgroundColor: Thm.isDarktheme(widget.prefs)
-                            ? fiberchatAPPBARcolorDarkMode
-                            : fiberchatAPPBARcolorLightMode,
+                            ? crypterchatAPPBARcolorDarkMode
+                            : crypterchatAPPBARcolorLightMode,
                         centerTitle: false,
                         title: _appBarTitle,
                         actions: <Widget>[
@@ -309,8 +309,8 @@ class _ContactsState extends State<Contacts>
                               Icons.add_call,
                               color: pickTextColorBasedOnBgColorAdvanced(
                                   Thm.isDarktheme(widget.prefs)
-                                      ? fiberchatAPPBARcolorDarkMode
-                                      : fiberchatAPPBARcolorLightMode),
+                                      ? crypterchatAPPBARcolorDarkMode
+                                      : crypterchatAPPBARcolorLightMode),
                             ),
                             onPressed: () {
                               Navigator.pushReplacement(context,
@@ -349,7 +349,7 @@ class _ContactsState extends State<Contacts>
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   fontSize: 18,
-                                                  color: fiberchatBlack,
+                                                  color: crypterchatBlack,
                                                 )),
                                           ))
                                     ])
@@ -385,16 +385,16 @@ class _ContactsState extends State<Contacts>
                                                             leading:
                                                                 CircleAvatar(
                                                                     backgroundColor:
-                                                                        fiberchatSECONDARYolor,
+                                                                        crypterchatSECONDARYolor,
                                                                     radius:
                                                                         22.5,
                                                                     child: Text(
-                                                                      Fiberchat.getInitials(
+                                                                      Crypterchat.getInitials(
                                                                           userDoc
                                                                               .name),
                                                                       style: TextStyle(
                                                                           color:
-                                                                              fiberchatWhite),
+                                                                              crypterchatWhite),
                                                                     )),
                                                             title: Text(
                                                                 userDoc.name,
@@ -403,14 +403,14 @@ class _ContactsState extends State<Contacts>
                                                                   color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(
                                                                           widget
                                                                               .prefs)
-                                                                      ? fiberchatBACKGROUNDcolorDarkMode
-                                                                      : fiberchatBACKGROUNDcolorLightMode),
+                                                                      ? crypterchatBACKGROUNDcolorDarkMode
+                                                                      : crypterchatBACKGROUNDcolorLightMode),
                                                                 )),
                                                             subtitle: Text(
                                                                 phone,
                                                                 style: TextStyle(
                                                                     color:
-                                                                        fiberchatGrey)),
+                                                                        crypterchatGrey)),
                                                             contentPadding:
                                                                 EdgeInsets.symmetric(
                                                                     horizontal:
@@ -447,7 +447,7 @@ class _ContactsState extends State<Contacts>
                                                                           false,
                                                                       state: Navigator.of(
                                                                           context),
-                                                                      type: Fiberchat.getAuthenticationType(
+                                                                      type: Crypterchat.getAuthenticationType(
                                                                           widget
                                                                               .biometricEnabled,
                                                                           model),
@@ -503,15 +503,15 @@ class _ContactsState extends State<Contacts>
                                                         return ListTile(
                                                           leading: CircleAvatar(
                                                               backgroundColor:
-                                                                  fiberchatSECONDARYolor,
+                                                                  crypterchatSECONDARYolor,
                                                               radius: 22.5,
                                                               child: Text(
-                                                                Fiberchat
+                                                                Crypterchat
                                                                     .getInitials(
                                                                         user.value),
                                                                 style: TextStyle(
                                                                     color:
-                                                                        fiberchatWhite),
+                                                                        crypterchatWhite),
                                                               )),
                                                           title:
                                                               Text(user.value,
@@ -519,13 +519,13 @@ class _ContactsState extends State<Contacts>
                                                                       TextStyle(
                                                                     color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(
                                                                             widget.prefs)
-                                                                        ? fiberchatBACKGROUNDcolorDarkMode
-                                                                        : fiberchatBACKGROUNDcolorLightMode),
+                                                                        ? crypterchatBACKGROUNDcolorDarkMode
+                                                                        : crypterchatBACKGROUNDcolorLightMode),
                                                                   )),
                                                           subtitle: Text(phone,
                                                               style: TextStyle(
                                                                   color:
-                                                                      fiberchatGrey)),
+                                                                      crypterchatGrey)),
                                                           contentPadding:
                                                               EdgeInsets
                                                                   .symmetric(
@@ -564,7 +564,7 @@ class _ContactsState extends State<Contacts>
                                                                         false,
                                                                     state: Navigator.of(
                                                                         context),
-                                                                    type: Fiberchat.getAuthenticationType(
+                                                                    type: Crypterchat.getAuthenticationType(
                                                                         widget
                                                                             .biometricEnabled,
                                                                         model),

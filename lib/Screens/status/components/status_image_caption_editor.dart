@@ -1,13 +1,13 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:io';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Screens/status/components/status_video_caption_editor.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Screens/status/components/status_video_caption_editor.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -47,7 +47,7 @@ class _StatusImageCaptionEditorState extends State<StatusImageCaptionEditor> {
 
   @override
   Widget build(BuildContext context) {
-    return Fiberchat.getNTPWrappedWidget(PopScope(
+    return Crypterchat.getNTPWrappedWidget(PopScope(
       onPopInvoked: (v) => Future.value(!isLoading),
       child: Scaffold(
         backgroundColor: Colors.black,
@@ -62,8 +62,8 @@ class _StatusImageCaptionEditorState extends State<StatusImageCaptionEditor> {
                 size: 30,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(widget.prefs)
-                        ? fiberchatAPPBARcolorDarkMode
-                        : fiberchatAPPBARcolorLightMode),
+                        ? crypterchatAPPBARcolorDarkMode
+                        : crypterchatAPPBARcolorLightMode),
               ),
             ),
             title: new Text(
@@ -72,21 +72,21 @@ class _StatusImageCaptionEditorState extends State<StatusImageCaptionEditor> {
                 fontSize: 18,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(widget.prefs)
-                        ? fiberchatAPPBARcolorDarkMode
-                        : fiberchatAPPBARcolorLightMode),
+                        ? crypterchatAPPBARcolorDarkMode
+                        : crypterchatAPPBARcolorLightMode),
               ),
             ),
             backgroundColor: Thm.isDarktheme(widget.prefs)
-                ? fiberchatAPPBARcolorDarkMode
-                : fiberchatAPPBARcolorLightMode,
+                ? crypterchatAPPBARcolorDarkMode
+                : crypterchatAPPBARcolorLightMode,
             actions: <Widget>[
               IconButton(
                   icon: Icon(
                     Icons.check,
                     color: pickTextColorBasedOnBgColorAdvanced(
                         Thm.isDarktheme(widget.prefs)
-                            ? fiberchatAPPBARcolorDarkMode
-                            : fiberchatAPPBARcolorLightMode),
+                            ? crypterchatAPPBARcolorDarkMode
+                            : crypterchatAPPBARcolorLightMode),
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -119,7 +119,7 @@ class _StatusImageCaptionEditorState extends State<StatusImageCaptionEditor> {
                         int.tryParse((MaxTextlettersInStatus / 1.7).toString()),
                     maxLines: null,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18.0, color: fiberchatWhite),
+                    style: TextStyle(fontSize: 18.0, color: crypterchatWhite),
                     controller: textEditingController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -153,11 +153,11 @@ class _StatusImageCaptionEditorState extends State<StatusImageCaptionEditor> {
                     child: Center(
                         child: CircularProgressIndicator(
                             valueColor: AlwaysStoppedAnimation<Color>(
-                                fiberchatSECONDARYolor))),
+                                crypterchatSECONDARYolor))),
                     color: pickTextColorBasedOnBgColorAdvanced(
                             !Thm.isDarktheme(widget.prefs)
-                                ? fiberchatCONTAINERboxColorDarkMode
-                                : fiberchatCONTAINERboxColorLightMode)
+                                ? crypterchatCONTAINERboxColorDarkMode
+                                : crypterchatCONTAINERboxColorLightMode)
                         .withOpacity(0.6),
                   )
                 : Container(),

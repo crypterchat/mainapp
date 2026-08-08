@@ -3,22 +3,22 @@
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/homepage/homepage.dart';
-import 'package:fiberchat/Services/Providers/call_history_provider.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/calling_screen/audio_call.dart';
-import 'package:fiberchat/Screens/calling_screen/video_call.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/widgets/Common/cached_image.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Screens/homepage/homepage.dart';
+import 'package:crypterchat/Services/Providers/call_history_provider.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Screens/calling_screen/audio_call.dart';
+import 'package:crypterchat/Screens/calling_screen/video_call.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/widgets/Common/cached_image.dart';
+import 'package:crypterchat/Utils/open_settings.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:fiberchat/Models/call.dart';
-import 'package:fiberchat/Models/call_methods.dart';
-import 'package:fiberchat/Utils/permissions.dart';
+import 'package:crypterchat/Models/call.dart';
+import 'package:crypterchat/Models/call_methods.dart';
+import 'package:crypterchat/Utils/permissions.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -45,8 +45,8 @@ class PickupScreen extends StatelessWidget {
                 ((h / w) > 1.5)
             ? Scaffold(
                 backgroundColor: Thm.isDarktheme(prefs)
-                    ? fiberchatAPPBARcolorDarkMode
-                    : fiberchatAPPBARcolorLightMode,
+                    ? crypterchatAPPBARcolorDarkMode
+                    : crypterchatAPPBARcolorLightMode,
                 body: Container(
                   alignment: Alignment.center,
                   child: Column(
@@ -58,8 +58,8 @@ class PickupScreen extends StatelessWidget {
                         margin: EdgeInsets.only(
                             top: MediaQuery.of(context).padding.top),
                         color: Thm.isDarktheme(prefs)
-                            ? fiberchatAPPBARcolorDarkMode
-                            : fiberchatAPPBARcolorLightMode,
+                            ? crypterchatAPPBARcolorDarkMode
+                            : crypterchatAPPBARcolorLightMode,
                         height: h / 4,
                         width: w,
                         child: Column(
@@ -78,9 +78,9 @@ class PickupScreen extends StatelessWidget {
                                       : Icons.mic_rounded,
                                   size: 40,
                                   color: Thm.isDarktheme(prefs)
-                                      ? fiberchatPRIMARYcolor
+                                      ? crypterchatPRIMARYcolor
                                       : pickTextColorBasedOnBgColorAdvanced(
-                                              fiberchatAPPBARcolorLightMode)
+                                              crypterchatAPPBARcolorLightMode)
                                           .withOpacity(0.7),
                                 ),
                                 SizedBox(
@@ -93,9 +93,9 @@ class PickupScreen extends StatelessWidget {
                                   style: TextStyle(
                                       fontSize: 18.0,
                                       color: Thm.isDarktheme(prefs)
-                                          ? fiberchatPRIMARYcolor
+                                          ? crypterchatPRIMARYcolor
                                           : pickTextColorBasedOnBgColorAdvanced(
-                                                  fiberchatAPPBARcolorLightMode)
+                                                  crypterchatAPPBARcolorLightMode)
                                               .withOpacity(0.7),
                                       fontWeight: FontWeight.w400),
                                 ),
@@ -119,8 +119,8 @@ class PickupScreen extends StatelessWidget {
                                         fontWeight: FontWeight.w500,
                                         color: pickTextColorBasedOnBgColorAdvanced(
                                             Thm.isDarktheme(prefs)
-                                                ? fiberchatAPPBARcolorDarkMode
-                                                : fiberchatAPPBARcolorLightMode),
+                                                ? crypterchatAPPBARcolorDarkMode
+                                                : crypterchatAPPBARcolorLightMode),
                                         fontSize: 27,
                                       ),
                                     ),
@@ -132,8 +132,8 @@ class PickupScreen extends StatelessWidget {
                                       fontWeight: FontWeight.normal,
                                       color: pickTextColorBasedOnBgColorAdvanced(
                                               Thm.isDarktheme(prefs)
-                                                  ? fiberchatAPPBARcolorDarkMode
-                                                  : fiberchatAPPBARcolorLightMode)
+                                                  ? crypterchatAPPBARcolorDarkMode
+                                                  : crypterchatAPPBARcolorLightMode)
                                           .withOpacity(0.34),
                                       fontSize: 15,
                                     ),
@@ -158,8 +158,8 @@ class PickupScreen extends StatelessWidget {
                                 Icons.person,
                                 size: 140,
                                 color: Thm.isDarktheme(prefs)
-                                    ? fiberchatAPPBARcolorDarkMode
-                                    : fiberchatAPPBARcolorLightMode,
+                                    ? crypterchatAPPBARcolorDarkMode
+                                    : crypterchatAPPBARcolorLightMode,
                               ),
                             )
                           : Stack(
@@ -182,8 +182,8 @@ class PickupScreen extends StatelessWidget {
                                           Icons.person,
                                           size: 140,
                                           color: Thm.isDarktheme(prefs)
-                                              ? fiberchatAPPBARcolorDarkMode
-                                              : fiberchatAPPBARcolorLightMode,
+                                              ? crypterchatAPPBARcolorDarkMode
+                                              : crypterchatAPPBARcolorLightMode,
                                         ),
                                       )),
                                       errorWidget: (context, url, error) =>
@@ -195,8 +195,8 @@ class PickupScreen extends StatelessWidget {
                                           Icons.person,
                                           size: 140,
                                           color: Thm.isDarktheme(prefs)
-                                              ? fiberchatAPPBARcolorDarkMode
-                                              : fiberchatAPPBARcolorLightMode,
+                                              ? crypterchatAPPBARcolorDarkMode
+                                              : crypterchatAPPBARcolorLightMode,
                                         ),
                                       ),
                                     )),
@@ -325,7 +325,7 @@ class PickupScreen extends StatelessWidget {
                                       ),
                                     );
                                   } else {
-                                    Fiberchat.showRationale(
+                                    Crypterchat.showRationale(
                                         getTranslated(context, 'pmc'));
                                     Navigator.push(
                                         context,
@@ -336,7 +336,7 @@ class PickupScreen extends StatelessWidget {
                                                 )));
                                   }
                                 }).catchError((onError) {
-                                  Fiberchat.showRationale(
+                                  Crypterchat.showRationale(
                                       getTranslated(context, 'pmc'));
                                   Navigator.push(
                                       context,
@@ -354,7 +354,7 @@ class PickupScreen extends StatelessWidget {
                               ),
                               shape: CircleBorder(),
                               elevation: 2.0,
-                              fillColor: fiberchatGreenColor400,
+                              fillColor: crypterchatGreenColor400,
                               padding: const EdgeInsets.all(15.0),
                             )
                           ],
@@ -365,8 +365,8 @@ class PickupScreen extends StatelessWidget {
                 ))
             : Scaffold(
                 backgroundColor: Thm.isDarktheme(prefs)
-                    ? fiberchatAPPBARcolorDarkMode
-                    : fiberchatAPPBARcolorLightMode,
+                    ? crypterchatAPPBARcolorDarkMode
+                    : crypterchatAPPBARcolorLightMode,
                 body: SingleChildScrollView(
                   child: Container(
                     alignment: Alignment.center,
@@ -385,8 +385,8 @@ class PickupScreen extends StatelessWidget {
                                 size: 80,
                                 color: pickTextColorBasedOnBgColorAdvanced(
                                         Thm.isDarktheme(prefs)
-                                            ? fiberchatAPPBARcolorDarkMode
-                                            : fiberchatAPPBARcolorLightMode)
+                                            ? crypterchatAPPBARcolorDarkMode
+                                            : crypterchatAPPBARcolorLightMode)
                                     .withOpacity(0.3),
                               ),
                         w > h
@@ -403,9 +403,9 @@ class PickupScreen extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 19,
                             color: Thm.isDarktheme(prefs)
-                                ? fiberchatPRIMARYcolor
+                                ? crypterchatPRIMARYcolor
                                 : pickTextColorBasedOnBgColorAdvanced(
-                                        fiberchatAPPBARcolorLightMode)
+                                        crypterchatAPPBARcolorLightMode)
                                     .withOpacity(0.7),
                           ),
                         ),
@@ -424,8 +424,8 @@ class PickupScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             color: pickTextColorBasedOnBgColorAdvanced(
                                 Thm.isDarktheme(prefs)
-                                    ? fiberchatAPPBARcolorDarkMode
-                                    : fiberchatAPPBARcolorLightMode),
+                                    ? crypterchatAPPBARcolorDarkMode
+                                    : crypterchatAPPBARcolorLightMode),
                             fontSize: 22,
                           ),
                         ),
@@ -530,7 +530,7 @@ class PickupScreen extends StatelessWidget {
                                       ),
                                     );
                                   } else {
-                                    Fiberchat.showRationale(
+                                    Crypterchat.showRationale(
                                         getTranslated(context, 'pmc'));
                                     Navigator.push(
                                         context,
@@ -541,7 +541,7 @@ class PickupScreen extends StatelessWidget {
                                                 )));
                                   }
                                 }).catchError((onError) {
-                                  Fiberchat.showRationale(
+                                  Crypterchat.showRationale(
                                       getTranslated(context, 'pmc'));
                                   Navigator.push(
                                       context,
@@ -559,7 +559,7 @@ class PickupScreen extends StatelessWidget {
                               ),
                               shape: CircleBorder(),
                               elevation: 2.0,
-                              fillColor: fiberchatPRIMARYcolor,
+                              fillColor: crypterchatPRIMARYcolor,
                               padding: const EdgeInsets.all(15.0),
                             )
                           ],

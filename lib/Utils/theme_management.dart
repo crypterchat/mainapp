@@ -1,5 +1,5 @@
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -73,14 +73,14 @@ class Styles {
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
     return ThemeData(
       useMaterial3: false,
-      splashColor: fiberchatGrey.withOpacity(0.2),
+      splashColor: crypterchatGrey.withOpacity(0.2),
       highlightColor: Colors.transparent,
       //
       fontFamily: FONTFAMILY_NAME == '' ? null : FONTFAMILY_NAME,
-      primaryColor: fiberchatPRIMARYcolor,
-      primaryColorLight: fiberchatPRIMARYcolor,
-      indicatorColor: fiberchatPRIMARYcolor,
-      primarySwatch: getMaterialColor(fiberchatPRIMARYcolor),
+      primaryColor: crypterchatPRIMARYcolor,
+      primaryColorLight: crypterchatPRIMARYcolor,
+      indicatorColor: crypterchatPRIMARYcolor,
+      primarySwatch: getMaterialColor(crypterchatPRIMARYcolor),
       switchTheme: SwitchThemeData(
         thumbColor: MaterialStateProperty.resolveWith<Color?>(
             (Set<MaterialState> states) {
@@ -88,7 +88,7 @@ class Styles {
             return null;
           }
           if (states.contains(MaterialState.selected)) {
-            return fiberchatPRIMARYcolor;
+            return crypterchatPRIMARYcolor;
           }
           return null;
         }),
@@ -98,7 +98,7 @@ class Styles {
             return null;
           }
           if (states.contains(MaterialState.selected)) {
-            return fiberchatPRIMARYcolor;
+            return crypterchatPRIMARYcolor;
           }
           return null;
         }),
@@ -110,7 +110,7 @@ class Styles {
             return null;
           }
           if (states.contains(MaterialState.selected)) {
-            return fiberchatPRIMARYcolor;
+            return crypterchatPRIMARYcolor;
           }
           return null;
         }),
@@ -122,7 +122,7 @@ class Styles {
             return null;
           }
           if (states.contains(MaterialState.selected)) {
-            return fiberchatPRIMARYcolor;
+            return crypterchatPRIMARYcolor;
           }
           return null;
         }),
@@ -130,15 +130,15 @@ class Styles {
       colorScheme: ColorScheme.fromSwatch(
           brightness: isDarkTheme ? Brightness.dark : Brightness.light,
           backgroundColor: isDarkTheme
-              ? fiberchatBACKGROUNDcolorDarkMode
-              : fiberchatBACKGROUNDcolorLightMode),
+              ? crypterchatBACKGROUNDcolorDarkMode
+              : crypterchatBACKGROUNDcolorLightMode),
       disabledColor: Colors.grey,
       cardColor: isDarkTheme
-          ? fiberchatBACKGROUNDcolorDarkMode
-          : fiberchatBACKGROUNDcolorLightMode,
+          ? crypterchatBACKGROUNDcolorDarkMode
+          : crypterchatBACKGROUNDcolorLightMode,
       canvasColor: isDarkTheme
-          ? fiberchatBACKGROUNDcolorDarkMode
-          : fiberchatBACKGROUNDcolorLightMode,
+          ? crypterchatBACKGROUNDcolorDarkMode
+          : crypterchatBACKGROUNDcolorLightMode,
       brightness: isDarkTheme ? Brightness.dark : Brightness.light,
       buttonTheme: Theme.of(context).buttonTheme.copyWith(
           colorScheme: isDarkTheme ? ColorScheme.dark() : ColorScheme.light()),

@@ -1,2 +1,3 @@
-# Crypterchat
+# CrypterChat
 
+CrypterChat User App

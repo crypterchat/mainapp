@@ -4,18 +4,18 @@ import 'dart:async';
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/CameraGalleryImagePicker/camera_image_gallery_picker.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Services/Admob/admob.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_layout.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/widgets/CameraGalleryImagePicker/camera_image_gallery_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,7 +24,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:fiberchat/Configs/Enum.dart';
+import 'package:crypterchat/Configs/Enum.dart';
 
 class ProfileSetting extends StatefulWidget {
   final bool? biometricEnabled;
@@ -61,7 +61,7 @@ class ProfileSettingState extends State<ProfileSetting> {
   @override
   void initState() {
     super.initState();
-    Fiberchat.internetLookUp();
+    Crypterchat.internetLookUp();
     readLocal();
     _type = widget.type;
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -146,7 +146,7 @@ class ProfileSettingState extends State<ProfileSetting> {
       setState(() {
         isLoading = false;
       });
-      Fiberchat.toast(getTranslated(this.context, 'saved'));
+      Crypterchat.toast(getTranslated(this.context, 'saved'));
       Navigator.of(this.context).pop();
       Navigator.of(this.context).pop();
     }).catchError((err) {
@@ -154,7 +154,7 @@ class ProfileSettingState extends State<ProfileSetting> {
         isLoading = false;
       });
 
-      Fiberchat.toast(err.toString());
+      Crypterchat.toast(err.toString());
     });
   }
 
@@ -172,10 +172,10 @@ class ProfileSettingState extends State<ProfileSetting> {
     final observer = Provider.of<Observer>(context, listen: false);
     return PickupLayout(
         prefs: widget.prefs,
-        scaffold: Fiberchat.getNTPWrappedWidget(Scaffold(
+        scaffold: Crypterchat.getNTPWrappedWidget(Scaffold(
             backgroundColor: Thm.isDarktheme(widget.prefs)
-                ? fiberchatBACKGROUNDcolorDarkMode
-                : fiberchatBACKGROUNDcolorLightMode,
+                ? crypterchatBACKGROUNDcolorDarkMode
+                : crypterchatBACKGROUNDcolorLightMode,
             appBar: new AppBar(
               elevation: 0.4,
               leading: IconButton(
@@ -187,22 +187,22 @@ class ProfileSettingState extends State<ProfileSetting> {
                   size: 24,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode),
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode),
                 ),
               ),
               titleSpacing: 0,
               backgroundColor: Thm.isDarktheme(widget.prefs)
-                  ? fiberchatAPPBARcolorDarkMode
-                  : fiberchatAPPBARcolorLightMode,
+                  ? crypterchatAPPBARcolorDarkMode
+                  : crypterchatAPPBARcolorLightMode,
               title: new Text(
                 getTranslated(this.context, 'editprofile'),
                 style: TextStyle(
                   fontSize: 20.0,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode),
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode),
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -214,9 +214,9 @@ class ProfileSettingState extends State<ProfileSetting> {
                     style: TextStyle(
                       fontSize: 16,
                       color: Thm.isDarktheme(widget.prefs)
-                          ? fiberchatPRIMARYcolor
+                          ? crypterchatPRIMARYcolor
                           : pickTextColorBasedOnBgColorAdvanced(
-                              fiberchatAPPBARcolorLightMode),
+                              crypterchatAPPBARcolorLightMode),
                     ),
                   ),
                 )
@@ -246,7 +246,7 @@ class ProfileSettingState extends State<ProfileSetting> {
                                                           valueColor:
                                                               AlwaysStoppedAnimation<
                                                                       Color>(
-                                                                  fiberchatSECONDARYolor),
+                                                                  crypterchatSECONDARYolor),
                                                         )),
                                                     width: 150.0,
                                                     height: 150.0),
@@ -280,9 +280,9 @@ class ProfileSettingState extends State<ProfileSetting> {
                                   right: 0,
                                   child: FloatingActionButton(
                                       heroTag: "112233e8t4yt834",
-                                      backgroundColor: fiberchatSECONDARYolor,
+                                      backgroundColor: crypterchatSECONDARYolor,
                                       child: Icon(Icons.camera_alt,
-                                          color: fiberchatWhite),
+                                          color: crypterchatWhite),
                                       onPressed: () {
                                         Navigator.push(
                                             context,
@@ -317,7 +317,7 @@ class ProfileSettingState extends State<ProfileSetting> {
                                                                 isLoading =
                                                                     false;
                                                               });
-                                                              // Fiberchat.toast(
+                                                              // Crypterchat.toast(
                                                               //     "Profile Picture Changed!");
                                                             }).catchError(
                                                                     (err) {
@@ -326,7 +326,7 @@ class ProfileSettingState extends State<ProfileSetting> {
                                                                     false;
                                                               });
 
-                                                              Fiberchat.toast(err
+                                                              Crypterchat.toast(err
                                                                   .toString());
                                                             });
                                                           }
@@ -359,14 +359,14 @@ class ProfileSettingState extends State<ProfileSetting> {
                                         //       setState(() {
                                         //         isLoading = false;
                                         //       });
-                                        //       // Fiberchat.toast(
+                                        //       // Crypterchat.toast(
                                         //       //     "Profile Picture Changed!");
                                         //     }).catchError((err) {
                                         //       setState(() {
                                         //         isLoading = false;
                                         //       });
 
-                                        //       Fiberchat.toast(err.toString());
+                                        //       Crypterchat.toast(err.toString());
                                         //     });
                                         //   }
                                         // });
@@ -382,8 +382,8 @@ class ProfileSettingState extends State<ProfileSetting> {
                         style: TextStyle(
                             color: pickTextColorBasedOnBgColorAdvanced(
                                 Thm.isDarktheme(widget.prefs)
-                                    ? fiberchatBACKGROUNDcolorDarkMode
-                                    : fiberchatBACKGROUNDcolorLightMode)),
+                                    ? crypterchatBACKGROUNDcolorDarkMode
+                                    : crypterchatBACKGROUNDcolorLightMode)),
                         textCapitalization: TextCapitalization.sentences,
                         autovalidateMode: AutovalidateMode.always,
                         controller: controllerNickname,
@@ -398,7 +398,7 @@ class ProfileSettingState extends State<ProfileSetting> {
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(6),
                             labelStyle:
-                                TextStyle(height: 0.8, color: fiberchatGrey),
+                                TextStyle(height: 0.8, color: crypterchatGrey),
                             labelText:
                                 getTranslated(this.context, 'enter_fullname')),
                       )),
@@ -410,14 +410,14 @@ class ProfileSettingState extends State<ProfileSetting> {
                         style: TextStyle(
                             color: pickTextColorBasedOnBgColorAdvanced(
                                 Thm.isDarktheme(widget.prefs)
-                                    ? fiberchatBACKGROUNDcolorDarkMode
-                                    : fiberchatBACKGROUNDcolorLightMode)),
+                                    ? crypterchatBACKGROUNDcolorDarkMode
+                                    : crypterchatBACKGROUNDcolorLightMode)),
                         textCapitalization: TextCapitalization.sentences,
                         controller: controllerAboutMe,
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(6),
                             labelStyle:
-                                TextStyle(height: 0.8, color: fiberchatGrey),
+                                TextStyle(height: 0.8, color: crypterchatGrey),
                             labelText: getTranslated(this.context, 'status')),
                       )),
                       SizedBox(
@@ -425,14 +425,14 @@ class ProfileSettingState extends State<ProfileSetting> {
                       ),
                       ListTile(
                           title: TextFormField(
-                        style: TextStyle(color: fiberchatGrey),
+                        style: TextStyle(color: crypterchatGrey),
                         textCapitalization: TextCapitalization.sentences,
                         readOnly: true,
                         controller: controllerMobilenumber,
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(6),
                             labelStyle:
-                                TextStyle(height: 0.8, color: fiberchatGrey),
+                                TextStyle(height: 0.8, color: crypterchatGrey),
                             labelText: getTranslated(
                                 this.context, 'enter_mobilenumber')),
                       )),
@@ -461,12 +461,12 @@ class ProfileSettingState extends State<ProfileSetting> {
                           child: Center(
                             child: CircularProgressIndicator(
                                 valueColor: AlwaysStoppedAnimation<Color>(
-                                    fiberchatSECONDARYolor)),
+                                    crypterchatSECONDARYolor)),
                           ),
                           color: pickTextColorBasedOnBgColorAdvanced(
                                   !Thm.isDarktheme(widget.prefs)
-                                      ? fiberchatCONTAINERboxColorDarkMode
-                                      : fiberchatCONTAINERboxColorLightMode)
+                                      ? crypterchatCONTAINERboxColorDarkMode
+                                      : crypterchatCONTAINERboxColorLightMode)
                               .withOpacity(0.6))
                       : Container(),
                 ),

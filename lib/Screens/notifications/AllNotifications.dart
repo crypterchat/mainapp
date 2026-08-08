@@ -1,15 +1,15 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Screens/notifications/NotificationViewer.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_layout.dart';
+import 'package:crypterchat/Screens/notifications/NotificationViewer.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -62,7 +62,7 @@ class _AllNotificationsState extends State<AllNotifications> {
   Widget build(BuildContext context) {
     return PickupLayout(
         prefs: widget.prefs,
-        scaffold: Fiberchat.getNTPWrappedWidget(Scaffold(
+        scaffold: Crypterchat.getNTPWrappedWidget(Scaffold(
             appBar: AppBar(
               elevation: 0.4,
               leading: IconButton(
@@ -71,24 +71,24 @@ class _AllNotificationsState extends State<AllNotifications> {
                   size: 24,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode),
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode),
                 ),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
               ),
               backgroundColor: Thm.isDarktheme(widget.prefs)
-                  ? fiberchatAPPBARcolorDarkMode
-                  : fiberchatAPPBARcolorLightMode,
+                  ? crypterchatAPPBARcolorDarkMode
+                  : crypterchatAPPBARcolorLightMode,
               title: Text(
                 getTranslated(context, 'allnotifications'),
                 style: TextStyle(
                   fontSize: 18,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode),
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode),
                 ),
               ),
             ),
@@ -105,7 +105,7 @@ class _AllNotificationsState extends State<AllNotifications> {
                     ? Center(
                         child: CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation<Color>(
-                            fiberchatSECONDARYolor),
+                            crypterchatSECONDARYolor),
                       ))
                     : notificationList.length < 1
                         ? Center(
@@ -115,7 +115,7 @@ class _AllNotificationsState extends State<AllNotifications> {
                               getTranslated(context, 'nonotifications'),
                               textAlign: TextAlign.center,
                               style:
-                                  TextStyle(fontSize: 19, color: fiberchatGrey),
+                                  TextStyle(fontSize: 19, color: crypterchatGrey),
                             ),
                           ))
                         : ListView.builder(
@@ -151,8 +151,8 @@ class _AllNotificationsState extends State<AllNotifications> {
                   decoration: boxDecoration(
                       showShadow: true,
                       bgColor: Thm.isDarktheme(widget.prefs)
-                          ? fiberchatCONTAINERboxColorDarkMode
-                          : fiberchatCONTAINERboxColorLightMode),
+                          ? crypterchatCONTAINERboxColorDarkMode
+                          : crypterchatCONTAINERboxColorLightMode),
                   width: double.infinity,
                   padding: EdgeInsets.fromLTRB(10, 13, 10, 13),
                   child: Container(
@@ -177,8 +177,8 @@ class _AllNotificationsState extends State<AllNotifications> {
                                   fontSize: 15.9,
                                   color: pickTextColorBasedOnBgColorAdvanced(Thm
                                           .isDarktheme(widget.prefs)
-                                      ? fiberchatCONTAINERboxColorDarkMode
-                                      : fiberchatCONTAINERboxColorLightMode),
+                                      ? crypterchatCONTAINERboxColorDarkMode
+                                      : crypterchatCONTAINERboxColorLightMode),
                                 ),
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -192,7 +192,7 @@ class _AllNotificationsState extends State<AllNotifications> {
                                 style: TextStyle(
                                   height: 1.35,
                                   fontSize: 14,
-                                  color: fiberchatGrey,
+                                  color: crypterchatGrey,
                                 ),
                                 overflow: TextOverflow.ellipsis,
                               ),

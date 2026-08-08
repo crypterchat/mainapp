@@ -5,32 +5,32 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Screens/Broadcast/BroadcastDetails.dart';
-import 'package:fiberchat/Screens/Groups/widget/groupChatBubble.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/BroadcastProvider.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/uploadMediaWithProgress.dart';
-import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/custom_url_launcher.dart';
-import 'package:fiberchat/Utils/emoji_detect.dart';
-import 'package:fiberchat/Utils/mime_type.dart';
-import 'package:fiberchat/Utils/setStatusBarColor.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/AllinOneCameraGalleryImageVideoPicker/AllinOneCameraGalleryImageVideoPicker.dart';
-import 'package:fiberchat/widgets/CameraGalleryImagePicker/camera_image_gallery_picker.dart';
-import 'package:fiberchat/widgets/CameraGalleryImagePicker/multiMediaPicker.dart';
-import 'package:fiberchat/widgets/CustomLoader/custom_loader.dart';
-import 'package:fiberchat/widgets/DownloadManager/download_all_file_type.dart';
-import 'package:fiberchat/widgets/InfiniteList/InfiniteCOLLECTIONListViewWidget.dart';
-import 'package:fiberchat/widgets/VideoEditor/video_editor.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Screens/Broadcast/BroadcastDetails.dart';
+import 'package:crypterchat/Screens/Groups/widget/groupChatBubble.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_layout.dart';
+import 'package:crypterchat/Screens/chat_screen/chat.dart';
+import 'package:crypterchat/Services/Admob/admob.dart';
+import 'package:crypterchat/Services/Providers/BroadcastProvider.dart';
+import 'package:crypterchat/Screens/chat_screen/utils/uploadMediaWithProgress.dart';
+import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/custom_url_launcher.dart';
+import 'package:crypterchat/Utils/emoji_detect.dart';
+import 'package:crypterchat/Utils/mime_type.dart';
+import 'package:crypterchat/Utils/setStatusBarColor.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/widgets/AllinOneCameraGalleryImageVideoPicker/AllinOneCameraGalleryImageVideoPicker.dart';
+import 'package:crypterchat/widgets/CameraGalleryImagePicker/camera_image_gallery_picker.dart';
+import 'package:crypterchat/widgets/CameraGalleryImagePicker/multiMediaPicker.dart';
+import 'package:crypterchat/widgets/CustomLoader/custom_loader.dart';
+import 'package:crypterchat/widgets/DownloadManager/download_all_file_type.dart';
+import 'package:crypterchat/widgets/InfiniteList/InfiniteCOLLECTIONListViewWidget.dart';
+import 'package:crypterchat/widgets/VideoEditor/video_editor.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
@@ -41,27 +41,27 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
-import 'package:fiberchat/Configs/Enum.dart';
+import 'package:crypterchat/Configs/Enum.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart' as emojipic;
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Screens/privacypolicy&TnC/PdfViewFromCachedUrl.dart';
-import 'package:fiberchat/widgets/SoundPlayer/SoundPlayerPro.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/contact_screens/ContactsSelect.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/photo_view.dart';
-import 'package:fiberchat/Utils/save.dart';
-import 'package:fiberchat/widgets/AudioRecorder/Audiorecord.dart';
-import 'package:fiberchat/widgets/DocumentPicker/documentPicker.dart';
-import 'package:fiberchat/widgets/VideoPreview/VideoPreview.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Screens/privacypolicy&TnC/PdfViewFromCachedUrl.dart';
+import 'package:crypterchat/widgets/SoundPlayer/SoundPlayerPro.dart';
+import 'package:crypterchat/Screens/call_history/callhistory.dart';
+import 'package:crypterchat/Screens/contact_screens/ContactsSelect.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Screens/chat_screen/utils/photo_view.dart';
+import 'package:crypterchat/Utils/save.dart';
+import 'package:crypterchat/widgets/AudioRecorder/Audiorecord.dart';
+import 'package:crypterchat/widgets/DocumentPicker/documentPicker.dart';
+import 'package:crypterchat/widgets/VideoPreview/VideoPreview.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:giphy_get/giphy_get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
-import 'package:fiberchat/Utils/unawaited.dart';
+import 'package:crypterchat/Utils/unawaited.dart';
 import 'package:video_compress/video_compress.dart' as compress;
 import 'package:path/path.dart' as p;
 
@@ -331,7 +331,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
           }).toString();
         });
       }).catchError((onError) {
-        Fiberchat.toast('Sending failed !');
+        Crypterchat.toast('Sending failed !');
         debugPrint('ERROR Sending File: $onError');
       });
     } else {
@@ -418,8 +418,8 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                   ),
                   key: _keyLoader,
                   backgroundColor: Thm.isDarktheme(widget.prefs)
-                      ? fiberchatDIALOGColorDarkMode
-                      : fiberchatDIALOGColorLightMode,
+                      ? crypterchatDIALOGColorDarkMode
+                      : crypterchatDIALOGColorLightMode,
                   children: <Widget>[
                     Center(
                       child: StreamBuilder(
@@ -484,7 +484,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
           }).toString();
         });
       }).catchError((onError) {
-        Fiberchat.toast('Sending failed !');
+        Crypterchat.toast('Sending failed !');
         debugPrint('ERROR SENDING FILE: $onError');
       });
     } else {
@@ -524,7 +524,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
 
     unawaited(realtime.animateTo(0.0,
         duration: Duration(milliseconds: 300), curve: Curves.easeOut));
-    Fiberchat.toast(
+    Crypterchat.toast(
         '${getTranslated(context, 'senttorecp')} ${recipientList.length}');
     setStatusBarColor(widget.prefs);
     if (type == MessageType.doc ||
@@ -606,8 +606,8 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                   // side: BorderSide(width: 5, color: Colors.green)),
                   key: _keyLoader,
                   backgroundColor: Thm.isDarktheme(widget.prefs)
-                      ? fiberchatDIALOGColorDarkMode
-                      : fiberchatDIALOGColorLightMode,
+                      ? crypterchatDIALOGColorDarkMode
+                      : crypterchatDIALOGColorLightMode,
                   children: <Widget>[
                     Center(
                       child: StreamBuilder(
@@ -668,7 +668,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
           }).toString();
         });
       }).catchError((onError) {
-        Fiberchat.toast('Sending failed !');
+        Crypterchat.toast('Sending failed !');
         debugPrint('ERROR SENDING FILE: $onError');
       });
     } else {
@@ -838,7 +838,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                       left: 10,
                     ),
                     decoration: BoxDecoration(
-                        color: fiberchatWhite,
+                        color: crypterchatWhite,
                         borderRadius: BorderRadius.all(Radius.circular(30))),
                     child: Row(
                       children: [
@@ -851,7 +851,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                             icon: Icon(
                               Icons.emoji_emotions,
                               size: 23,
-                              color: fiberchatGrey,
+                              color: crypterchatGrey,
                             ),
                           ),
                         ),
@@ -877,7 +877,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                             maxLines: null,
                             textCapitalization: TextCapitalization.sentences,
                             style: TextStyle(
-                                fontSize: 16.0, color: fiberchatBlack),
+                                fontSize: 16.0, color: crypterchatBlack),
                             controller: textEditingController,
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
@@ -921,14 +921,14 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                                         child: IconButton(
                                           icon: new Icon(
                                             Icons.attachment_outlined,
-                                            color: fiberchatGrey,
+                                            color: crypterchatGrey,
                                           ),
                                           padding: EdgeInsets.all(0.0),
                                           onPressed: observer
                                                       .ismediamessagingallowed ==
                                                   false
                                               ? () {
-                                                  Fiberchat.showRationale(
+                                                  Crypterchat.showRationale(
                                                       getTranslated(
                                                           this.context,
                                                           'mediamssgnotallowed'));
@@ -938,7 +938,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                                                   shareMedia(
                                                       context, broadcastList);
                                                 },
-                                          color: fiberchatWhite,
+                                          color: crypterchatWhite,
                                         ),
                                       ),
                                 textEditingController.text.isNotEmpty
@@ -949,14 +949,14 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                                           icon: new Icon(
                                             Icons.camera_alt_rounded,
                                             size: 20,
-                                            color: fiberchatGrey,
+                                            color: crypterchatGrey,
                                           ),
                                           padding: EdgeInsets.all(0.0),
                                           onPressed:
                                               observer.ismediamessagingallowed ==
                                                       false
                                                   ? () {
-                                                      Fiberchat.showRationale(
+                                                      Crypterchat.showRationale(
                                                           getTranslated(
                                                               this.context,
                                                               'mediamssgnotallowed'));
@@ -1069,7 +1069,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                                                       //   }
                                                       // });
                                                     },
-                                          color: fiberchatWhite,
+                                          color: crypterchatWhite,
                                         ),
                                       ),
                                 textEditingController.text.length != 0 ||
@@ -1083,18 +1083,18 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                                         alignment: Alignment.topLeft,
                                         width: 40,
                                         child: IconButton(
-                                            color: fiberchatWhite,
+                                            color: crypterchatWhite,
                                             padding: EdgeInsets.all(0.0),
                                             icon: Icon(
                                               Icons.gif_rounded,
                                               size: 40,
-                                              color: fiberchatGrey,
+                                              color: crypterchatGrey,
                                             ),
                                             onPressed: observer
                                                         .ismediamessagingallowed ==
                                                     false
                                                 ? () {
-                                                    Fiberchat.showRationale(
+                                                    Crypterchat.showRationale(
                                                         getTranslated(
                                                             this.context,
                                                             'mediamssgnotallowed'));
@@ -1103,7 +1103,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                                                     GiphyGif? gif =
                                                         await GiphyGet.getGif(
                                                       tabColor:
-                                                          fiberchatPRIMARYcolor,
+                                                          crypterchatPRIMARYcolor,
                                                       context: context,
                                                       apiKey:
                                                           GiphyAPIKey, //YOUR API KEY HERE
@@ -1143,7 +1143,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                   width: 47,
                   margin: EdgeInsets.only(left: 6, right: 10),
                   decoration: BoxDecoration(
-                      color: fiberchatSECONDARYolor,
+                      color: crypterchatSECONDARYolor,
                       borderRadius: BorderRadius.all(Radius.circular(30))),
                   child: Padding(
                     padding: const EdgeInsets.all(2.0),
@@ -1153,12 +1153,12 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                               textEditingController.text.length == 0
                                   ? Icons.mic
                                   : Icons.send,
-                              color: fiberchatWhite.withOpacity(0.99),
+                              color: crypterchatWhite.withOpacity(0.99),
                             )
                           : textEditingController.text.length == 0
                               ? new Icon(
                                   Icons.mic,
-                                  color: fiberchatWhite.withOpacity(0.99),
+                                  color: crypterchatWhite.withOpacity(0.99),
                                 )
                               : Text(
                                   textInSendButton,
@@ -1203,7 +1203,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                                 }
                               : observer.istextmessagingallowed == false
                                   ? () {
-                                      Fiberchat.showRationale(getTranslated(
+                                      Crypterchat.showRationale(getTranslated(
                                           this.context, 'textmssgnotallowed'));
                                     }
                                   : () => onSendMessage(
@@ -1219,10 +1219,10 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                                               widget.broadcastID)
                                           .docmap[Dbkeys.broadcastMEMBERSLIST])
                           : () {
-                              Fiberchat.showRationale(getTranslated(
+                              Crypterchat.showRationale(getTranslated(
                                   this.context, 'mediamssgnotallowed'));
                             },
-                      color: fiberchatWhite,
+                      color: crypterchatWhite,
                     ),
                   ),
                 ),
@@ -1422,7 +1422,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                     .doc(
                         '${doc[Dbkeys.broadcastmsgTIME]}--${doc[Dbkeys.broadcastmsgSENDBY]}')
                     .delete();
-                Fiberchat.toast(getTranslated(this.context, 'deleted'));
+                Crypterchat.toast(getTranslated(this.context, 'deleted'));
               })));
     }
 
@@ -1937,12 +1937,12 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
               child: Center(
                 child: CircularProgressIndicator(
                     valueColor:
-                        AlwaysStoppedAnimation<Color>(fiberchatSECONDARYolor)),
+                        AlwaysStoppedAnimation<Color>(crypterchatSECONDARYolor)),
               ),
               color: pickTextColorBasedOnBgColorAdvanced(
                       !Thm.isDarktheme(widget.prefs)
-                          ? fiberchatCONTAINERboxColorDarkMode
-                          : fiberchatCONTAINERboxColorLightMode)
+                          ? crypterchatCONTAINERboxColorDarkMode
+                          : crypterchatCONTAINERboxColorLightMode)
                   .withOpacity(0.6),
             )
           : Container(),
@@ -1954,8 +1954,8 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
   shareMedia(BuildContext context, List<BroadcastModel> broadcastList) {
     showModalBottomSheet(
         backgroundColor: Thm.isDarktheme(widget.prefs)
-            ? fiberchatDIALOGColorDarkMode
-            : fiberchatDIALOGColorLightMode,
+            ? crypterchatDIALOGColorDarkMode
+            : crypterchatDIALOGColorLightMode,
         context: context,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
@@ -1994,7 +1994,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                                           callback: getFileData,
                                         ))).then((url) async {
                               if (url != null) {
-                                Fiberchat.toast(
+                                Crypterchat.toast(
                                   getTranslated(this.context, 'plswait'),
                                 );
 
@@ -2011,7 +2011,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                                                 .docmap[Dbkeys.broadcastID] ==
                                             widget.broadcastID)
                                         .docmap[Dbkeys.broadcastMEMBERSLIST]);
-                                // Fiberchat.toast(
+                                // Crypterchat.toast(
                                 //     getTranslated(this.context, 'sent'));
                               } else {}
                             });
@@ -2034,7 +2034,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: fiberchatGrey, fontSize: 14),
+                          style: TextStyle(color: crypterchatGrey, fontSize: 14),
                         )
                       ],
                     ),
@@ -2053,7 +2053,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                             File? selectedMedia =
                                 await pickVideoFromgallery(context)
                                     .catchError((err) {
-                              Fiberchat.toast(
+                              Crypterchat.toast(
                                   getTranslated(context, "invalidfile"));
                               return null;
                             });
@@ -2129,7 +2129,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                                                               widget
                                                                   .broadcastID)
                                                           .docmap[Dbkeys.broadcastMEMBERSLIST]);
-                                                  Fiberchat.toast(getTranslated(
+                                                  Crypterchat.toast(getTranslated(
                                                       this.context, 'sent'));
                                                   file.delete();
                                                   thumnailFile.delete();
@@ -2138,7 +2138,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                                             },
                                             file: File(file.path))));
                               } else {
-                                Fiberchat.toast(
+                                Crypterchat.toast(
                                     "File type not supported. Please choose a valid .mp4, .mov file. \n\nSelected file was $fileExtension ");
                               }
                             }
@@ -2161,7 +2161,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: fiberchatGrey, fontSize: 14),
+                          style: TextStyle(color: crypterchatGrey, fontSize: 14),
                         )
                       ],
                     ),
@@ -2232,7 +2232,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: fiberchatGrey, fontSize: 14),
+                          style: TextStyle(color: crypterchatGrey, fontSize: 14),
                         )
                       ],
                     ),
@@ -2302,7 +2302,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: fiberchatGrey),
+                          style: TextStyle(color: crypterchatGrey),
                         )
                       ],
                     ),
@@ -2321,7 +2321,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
 
                             await checkIfLocationEnabled().then((value) async {
                               if (value == true) {
-                                Fiberchat.toast(getTranslated(
+                                Crypterchat.toast(getTranslated(
                                     this.context, 'detectingloc'));
                                 await _determinePosition().then(
                                   (location) async {
@@ -2340,13 +2340,13 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                                                 .docmap[
                                             Dbkeys.broadcastMEMBERSLIST]);
                                     setStateIfMounted(() {});
-                                    Fiberchat.toast(
+                                    Crypterchat.toast(
                                       getTranslated(this.context, 'sent'),
                                     );
                                   },
                                 );
                               } else {
-                                Fiberchat.toast(getTranslated(
+                                Crypterchat.toast(getTranslated(
                                     this.context, 'locationdenied'));
                                 openAppSettings();
                               }
@@ -2370,7 +2370,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: fiberchatGrey),
+                          style: TextStyle(color: crypterchatGrey),
                         )
                       ],
                     ),
@@ -2427,7 +2427,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: fiberchatGrey),
+                          style: TextStyle(color: crypterchatGrey),
                         )
                       ],
                     ),
@@ -2470,7 +2470,7 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
     var _keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
     return PickupLayout(
         prefs: widget.prefs,
-        scaffold: Fiberchat.getNTPWrappedWidget(Consumer<List<BroadcastModel>>(
+        scaffold: Crypterchat.getNTPWrappedWidget(Consumer<List<BroadcastModel>>(
             builder: (context, broadcastList, _child) => PopScope(
                   onPopInvoked: isgeneratingThumbnail == true
                       ? (v) async {
@@ -2496,8 +2496,8 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                       Scaffold(
                           key: _scaffold,
                           backgroundColor: Thm.isDarktheme(widget.prefs)
-                              ? fiberchatCHATBACKGROUNDDarkMode
-                              : fiberchatCHATBACKGROUNDLightMode,
+                              ? crypterchatCHATBACKGROUNDDarkMode
+                              : crypterchatCHATBACKGROUNDLightMode,
                           appBar: AppBar(
                             elevation: 0.4,
                             titleSpacing: 0,
@@ -2510,15 +2510,15 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                                   size: 24,
                                   color: pickTextColorBasedOnBgColorAdvanced(
                                       Thm.isDarktheme(widget.prefs)
-                                          ? fiberchatAPPBARcolorDarkMode
-                                          : fiberchatAPPBARcolorLightMode),
+                                          ? crypterchatAPPBARcolorDarkMode
+                                          : crypterchatAPPBARcolorLightMode),
                                 ),
                                 onPressed: onWillPop,
                               ),
                             ),
                             backgroundColor: Thm.isDarktheme(widget.prefs)
-                                ? fiberchatAPPBARcolorDarkMode
-                                : fiberchatAPPBARcolorLightMode,
+                                ? crypterchatAPPBARcolorDarkMode
+                                : crypterchatAPPBARcolorLightMode,
                             title: InkWell(
                               onTap: () {
                                 Navigator.push(
@@ -2565,8 +2565,8 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                                           style: TextStyle(
                                               color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                       .isDarktheme(widget.prefs)
-                                                  ? fiberchatAPPBARcolorDarkMode
-                                                  : fiberchatAPPBARcolorLightMode),
+                                                  ? crypterchatAPPBARcolorDarkMode
+                                                  : crypterchatAPPBARcolorLightMode),
                                               fontSize: 17.0,
                                               fontWeight: FontWeight.w500),
                                         ),
@@ -2587,8 +2587,8 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                                                 color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                             .isDarktheme(
                                                                 widget.prefs)
-                                                        ? fiberchatAPPBARcolorDarkMode
-                                                        : fiberchatAPPBARcolorLightMode)
+                                                        ? crypterchatAPPBARcolorDarkMode
+                                                        : crypterchatAPPBARcolorLightMode)
                                                     .withOpacity(0.9),
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.w400),
@@ -2606,8 +2606,8 @@ class _BroadcastChatPageState extends State<BroadcastChatPage>
                               decoration: new BoxDecoration(
                                 color: pickTextColorBasedOnBgColorAdvanced(
                                     Thm.isDarktheme(widget.prefs)
-                                        ? fiberchatAPPBARcolorDarkMode
-                                        : fiberchatAPPBARcolorLightMode),
+                                        ? crypterchatAPPBARcolorDarkMode
+                                        : crypterchatAPPBARcolorLightMode),
                                 image: new DecorationImage(
                                     image: AssetImage(Thm.isDarktheme(
                                             widget.prefs)

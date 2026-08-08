@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:collection/collection.dart' show IterableExtension;
-import 'package:fiberchat/Utils/custom_url_launcher.dart';
+import 'package:crypterchat/Utils/custom_url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 

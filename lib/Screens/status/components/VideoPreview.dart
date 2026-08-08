@@ -2,7 +2,7 @@
 
 import 'dart:io';
 import 'package:chewie/chewie.dart';
-import 'package:fiberchat/widgets/DownloadManager/save_image_videos_in_gallery.dart';
+import 'package:crypterchat/widgets/DownloadManager/save_image_videos_in_gallery.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video_player/video_player.dart';

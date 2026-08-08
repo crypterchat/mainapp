@@ -2,13 +2,13 @@
 
 import 'dart:async';
 import 'dart:math' as math;
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/Passcode/passcode_screen.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Enum.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/widgets/Passcode/passcode_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -59,7 +59,7 @@ class _AuthenticateState extends State<Authenticate> {
     Widget child;
     if (!passcodeVisible())
       child = Material(
-          color: fiberchatBlack,
+          color: crypterchatBlack,
           child: Center(
               child: Padding(
             padding: const EdgeInsets.all(28.0),
@@ -67,13 +67,13 @@ class _AuthenticateState extends State<Authenticate> {
               getTranslated(this.context, 'trylater'),
               textAlign: TextAlign.center,
               style:
-                  TextStyle(color: fiberchatWhite, fontSize: 18, height: 1.5),
+                  TextStyle(color: crypterchatWhite, fontSize: 18, height: 1.5),
             ),
           )));
     else {
       child = Container();
     }
-    return Fiberchat.getNTPWrappedWidget(child);
+    return Crypterchat.getNTPWrappedWidget(child);
   }
 
   bool passcodeVisible() {
@@ -91,7 +91,7 @@ class _AuthenticateState extends State<Authenticate> {
   _onPasscodeEntered(String enteredPasscode) {
     if (enteredPasscode.length == 4) {
       bool isValid =
-          Fiberchat.getHashedAnswer(enteredPasscode) == widget.passcode;
+          Crypterchat.getHashedAnswer(enteredPasscode) == widget.passcode;
       _verificationNotifier.add(isValid);
       if (isValid) {
         widget.prefs.setInt(Dbkeys.passcodeTries, 0); // reset tries
@@ -102,9 +102,9 @@ class _AuthenticateState extends State<Authenticate> {
         widget.prefs
             .setInt(Dbkeys.lastAttempt, DateTime.now().millisecondsSinceEpoch);
         if (passcodeTries > 3) {
-          Fiberchat.toast(
+          Crypterchat.toast(
               'Try after ${math.pow(2, passcodeTries - 3)} minutes');
-          Fiberchat.toast(getTranslated(this.context, 'authfailed'));
+          Crypterchat.toast(getTranslated(this.context, 'authfailed'));
           widget.state.pop();
         }
       }
@@ -141,7 +141,7 @@ class _AuthenticateState extends State<Authenticate> {
         if (widget.shouldPop) widget.state.pop();
         widget.onSuccess();
       } else
-        Fiberchat.toast(getTranslated(this.context, 'authfailed'));
+        Crypterchat.toast(getTranslated(this.context, 'authfailed'));
     }).catchError((e) {
       return Future.value(null);
     });

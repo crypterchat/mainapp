@@ -1,8 +1,8 @@
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,14 +21,14 @@ class GalleryDownloader {
       if (success == true) {
         Navigator.of(keyloader.currentContext!, rootNavigator: true).pop();
 
-        Fiberchat.toast("$fileName  " + getTranslated(context, "folder"));
+        Crypterchat.toast("$fileName  " + getTranslated(context, "folder"));
       } else {
         Navigator.of(keyloader.currentContext!, rootNavigator: true).pop();
-        Fiberchat.toast(getTranslated(context, 'failedtodownload'));
+        Crypterchat.toast(getTranslated(context, 'failedtodownload'));
       }
     }).catchError((err) {
       Navigator.of(keyloader.currentContext!, rootNavigator: true).pop();
-      Fiberchat.toast(err.toString());
+      Crypterchat.toast(err.toString());
     });
   }
 
@@ -47,16 +47,16 @@ class GalleryDownloader {
     GallerySaver.saveImage(path, toDcim: true).then((success) async {
       if (success == true) {
         Navigator.of(keyloader.currentContext!, rootNavigator: true).pop();
-        Fiberchat.toast(fileName == ""
+        Crypterchat.toast(fileName == ""
             ? getTranslated(context, "folder")
             : "$fileName  " + getTranslated(context, "folder"));
       } else {
-        Fiberchat.toast(getTranslated(context, 'failedtodownload'));
+        Crypterchat.toast(getTranslated(context, 'failedtodownload'));
         Navigator.of(keyloader.currentContext!, rootNavigator: true).pop();
       }
     }).catchError((err) {
       Navigator.of(keyloader.currentContext!, rootNavigator: true).pop();
-      Fiberchat.toast(err.toString());
+      Crypterchat.toast(err.toString());
     });
   }
 }
@@ -73,8 +73,8 @@ class Dialogs {
               child: SimpleDialog(
                   key: key,
                   backgroundColor: Thm.isDarktheme(prefs)
-                      ? fiberchatDIALOGColorDarkMode
-                      : fiberchatDIALOGColorLightMode,
+                      ? crypterchatDIALOGColorDarkMode
+                      : crypterchatDIALOGColorLightMode,
                   children: <Widget>[
                     Center(
                       child: Padding(
@@ -87,7 +87,7 @@ class Dialogs {
                               ),
                               CircularProgressIndicator(
                                 valueColor: AlwaysStoppedAnimation<Color>(
-                                    fiberchatSECONDARYolor),
+                                    crypterchatSECONDARYolor),
                               ),
                               SizedBox(
                                 width: 23,
@@ -97,8 +97,8 @@ class Dialogs {
                                 style: TextStyle(
                                   color: pickTextColorBasedOnBgColorAdvanced(
                                       Thm.isDarktheme(prefs)
-                                          ? fiberchatDIALOGColorDarkMode
-                                          : fiberchatDIALOGColorLightMode),
+                                          ? crypterchatDIALOGColorDarkMode
+                                          : crypterchatDIALOGColorLightMode),
                                 ),
                               )
                             ]),

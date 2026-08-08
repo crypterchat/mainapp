@@ -1,17 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Screens/Broadcast/BroadcastChatPage.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/recent_chats/RecentsChats.dart';
-import 'package:fiberchat/Screens/recent_chats/widgets/getLastMessageTime.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/unawaited.dart';
-import 'package:fiberchat/Utils/late_load.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Screens/Broadcast/BroadcastChatPage.dart';
+import 'package:crypterchat/Screens/call_history/callhistory.dart';
+import 'package:crypterchat/Screens/recent_chats/RecentsChats.dart';
+import 'package:crypterchat/Screens/recent_chats/widgets/getLastMessageTime.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/unawaited.dart';
+import 'package:crypterchat/Utils/late_load.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -39,8 +39,8 @@ Widget broadcastMessageTile(
                 fontWeight: FontWeight.bold,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(prefs)
-                        ? fiberchatDIALOGColorDarkMode
-                        : fiberchatDIALOGColorLightMode),
+                        ? crypterchatDIALOGColorDarkMode
+                        : crypterchatDIALOGColorLightMode),
               ),
             ),
             onTap: () async {
@@ -50,15 +50,15 @@ Widget broadcastMessageTile(
                   return Builder(
                       builder: (BuildContext dialogcontext) => AlertDialog(
                             backgroundColor: Thm.isDarktheme(prefs)
-                                ? fiberchatDIALOGColorDarkMode
-                                : fiberchatDIALOGColorLightMode,
+                                ? crypterchatDIALOGColorDarkMode
+                                : crypterchatDIALOGColorLightMode,
                             title: new Text(
                               getTranslated(dialogcontext, 'deletebroadcast'),
                               style: TextStyle(
                                 color: pickTextColorBasedOnBgColorAdvanced(
                                     Thm.isDarktheme(prefs)
-                                        ? fiberchatDIALOGColorDarkMode
-                                        : fiberchatDIALOGColorLightMode),
+                                        ? crypterchatDIALOGColorDarkMode
+                                        : crypterchatDIALOGColorLightMode),
                               ),
                             ),
                             actions: [
@@ -70,7 +70,7 @@ Widget broadcastMessageTile(
                                 child: Text(
                                   getTranslated(dialogcontext, 'cancel'),
                                   style: TextStyle(
-                                      color: fiberchatPRIMARYcolor,
+                                      color: crypterchatPRIMARYcolor,
                                       fontSize: 18),
                                 ),
                                 onPressed: () {
@@ -85,7 +85,7 @@ Widget broadcastMessageTile(
                                 child: Text(
                                   getTranslated(dialogcontext, 'delete'),
                                   style: TextStyle(
-                                      color: fiberchatREDbuttonColor,
+                                      color: crypterchatREDbuttonColor,
                                       fontSize: 18),
                                 ),
                                 onPressed: () async {
@@ -120,8 +120,8 @@ Widget broadcastMessageTile(
         builder: (contextForDialog) {
           return SimpleDialog(
               backgroundColor: Thm.isDarktheme(prefs)
-                  ? fiberchatDIALOGColorDarkMode
-                  : fiberchatDIALOGColorLightMode,
+                  ? crypterchatDIALOGColorDarkMode
+                  : crypterchatDIALOGColorLightMode,
               children: tiles);
         });
   }
@@ -151,8 +151,8 @@ Widget broadcastMessageTile(
               style: TextStyle(
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(prefs)
-                        ? fiberchatBACKGROUNDcolorDarkMode
-                        : fiberchatBACKGROUNDcolorLightMode),
+                        ? crypterchatBACKGROUNDcolorDarkMode
+                        : crypterchatBACKGROUNDcolorLightMode),
                 fontWeight: FontWeight.w500,
                 fontSize: 16.4,
               ),
@@ -160,7 +160,7 @@ Widget broadcastMessageTile(
             subtitle: Text(
               '${streamDocSnap[index][Dbkeys.broadcastMEMBERSLIST].length} ${getTranslated(context, 'recipients')}',
               style: TextStyle(
-                color: fiberchatGrey,
+                color: crypterchatGrey,
                 fontSize: 14,
               ),
             ),
@@ -196,8 +196,8 @@ Widget broadcastMessageTile(
               style: TextStyle(
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(prefs)
-                        ? fiberchatBACKGROUNDcolorDarkMode
-                        : fiberchatBACKGROUNDcolorLightMode),
+                        ? crypterchatBACKGROUNDcolorDarkMode
+                        : crypterchatBACKGROUNDcolorLightMode),
                 fontWeight: FontWeight.bold,
                 fontSize: 16.4,
               ),
@@ -205,7 +205,7 @@ Widget broadcastMessageTile(
             subtitle: Text(
               '${streamDocSnap[index][Dbkeys.broadcastMEMBERSLIST].length} ${getTranslated(context, 'recipients')}',
               style: TextStyle(
-                color: fiberchatGrey,
+                color: crypterchatGrey,
                 fontSize: 14,
               ),
             ),
@@ -242,8 +242,8 @@ Widget broadcastMessageTile(
                 style: TextStyle(
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(prefs)
-                          ? fiberchatBACKGROUNDcolorDarkMode
-                          : fiberchatBACKGROUNDcolorLightMode),
+                          ? crypterchatBACKGROUNDcolorDarkMode
+                          : crypterchatBACKGROUNDcolorLightMode),
                   fontWeight: FontWeight.w500,
                   fontSize: 16.4,
                 ),

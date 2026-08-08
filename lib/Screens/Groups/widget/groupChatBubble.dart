@@ -1,14 +1,14 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Screens/profile_settings/profile_view.dart';
-import 'package:fiberchat/Screens/status/components/formatStatusTime.dart';
-import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Screens/chat_screen/chat.dart';
+import 'package:crypterchat/Screens/profile_settings/profile_view.dart';
+import 'package:crypterchat/Screens/status/components/formatStatusTime.dart';
+import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:fiberchat/Configs/Enum.dart';
+import 'package:crypterchat/Configs/Enum.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -46,12 +46,12 @@ class GroupChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bg = isMe ? fiberchatCHATBUBBLEcolor : fiberchatWhite;
+    final bg = isMe ? crypterchatCHATBUBBLEcolor : crypterchatWhite;
     final align = isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start;
     dynamic icon = Icons.done_all;
     final color = isMe
-        ? fiberchatBlack.withOpacity(0.5)
-        : fiberchatBlack.withOpacity(0.5);
+        ? crypterchatBlack.withOpacity(0.5)
+        : crypterchatBlack.withOpacity(0.5);
     icon = Icon(icon, size: 14.0, color: color);
     if (delivered is Future) {
       icon = FutureBuilder(
@@ -274,7 +274,7 @@ class GroupChatBubble extends StatelessWidget {
         }
       case 4:
         {
-          return fiberchatGreenColor500;
+          return crypterchatGreenColor500;
         }
       case 5:
         {

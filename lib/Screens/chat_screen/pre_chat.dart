@@ -1,18 +1,18 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:core';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/widgets/CountryPicker/CountryCode.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/MyElevatedButton/MyElevatedButton.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/widgets/CountryPicker/CountryCode.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Screens/chat_screen/chat.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/widgets/MyElevatedButton/MyElevatedButton.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -131,12 +131,12 @@ class _PreChatState extends State<PreChat> {
               }
             } else {
               Navigator.of(context).pop();
-              Fiberchat.toast(
+              Crypterchat.toast(
                   "This User is private. You are not in User Contact List");
             }
           } else {
             Navigator.of(context).pop();
-            Fiberchat.toast(
+            Crypterchat.toast(
                 "This User is private. You are not in User Contact List");
           }
         } else {
@@ -201,12 +201,12 @@ class _PreChatState extends State<PreChat> {
                   }
                 } else {
                   Navigator.of(context).pop();
-                  Fiberchat.toast(
+                  Crypterchat.toast(
                       "This User is private. You are not in User Contact List");
                 }
               } else {
                 Navigator.of(context).pop();
-                Fiberchat.toast(
+                Crypterchat.toast(
                     "This User is private. You are not in User Contact List");
               }
             } else {
@@ -239,12 +239,12 @@ class _PreChatState extends State<PreChat> {
               child: Center(
                 child: CircularProgressIndicator(
                     valueColor:
-                        AlwaysStoppedAnimation<Color>(fiberchatSECONDARYolor)),
+                        AlwaysStoppedAnimation<Color>(crypterchatSECONDARYolor)),
               ),
               color: pickTextColorBasedOnBgColorAdvanced(
                       !Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode)
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode)
                   .withOpacity(0.6))
           : Container(),
     );
@@ -252,7 +252,7 @@ class _PreChatState extends State<PreChat> {
 
   @override
   Widget build(BuildContext context) {
-    return Fiberchat.getNTPWrappedWidget(Scaffold(
+    return Crypterchat.getNTPWrappedWidget(Scaffold(
       appBar: AppBar(
           elevation: 0.4,
           leading: IconButton(
@@ -264,26 +264,26 @@ class _PreChatState extends State<PreChat> {
               size: 30,
               color: pickTextColorBasedOnBgColorAdvanced(
                   Thm.isDarktheme(widget.prefs)
-                      ? fiberchatAPPBARcolorDarkMode
-                      : fiberchatAPPBARcolorLightMode),
+                      ? crypterchatAPPBARcolorDarkMode
+                      : crypterchatAPPBARcolorLightMode),
             ),
           ),
           backgroundColor: Thm.isDarktheme(widget.prefs)
-              ? fiberchatAPPBARcolorDarkMode
-              : fiberchatAPPBARcolorLightMode,
+              ? crypterchatAPPBARcolorDarkMode
+              : crypterchatAPPBARcolorLightMode,
           title: Text(
             widget.name!,
             style: TextStyle(
               color: pickTextColorBasedOnBgColorAdvanced(
                   Thm.isDarktheme(widget.prefs)
-                      ? fiberchatAPPBARcolorDarkMode
-                      : fiberchatAPPBARcolorLightMode),
+                      ? crypterchatAPPBARcolorDarkMode
+                      : crypterchatAPPBARcolorLightMode),
             ),
           )),
       body: isLoading == true
           ? Center(
               child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(fiberchatSECONDARYolor),
+              valueColor: AlwaysStoppedAnimation<Color>(crypterchatSECONDARYolor),
             ))
           : Stack(children: <Widget>[
               Container(
@@ -303,8 +303,8 @@ class _PreChatState extends State<PreChat> {
                                   style: TextStyle(
                                       color: pickTextColorBasedOnBgColorAdvanced(
                                           Thm.isDarktheme(widget.prefs)
-                                              ? fiberchatBACKGROUNDcolorDarkMode
-                                              : fiberchatBACKGROUNDcolorLightMode),
+                                              ? crypterchatBACKGROUNDcolorDarkMode
+                                              : crypterchatBACKGROUNDcolorLightMode),
                                       fontWeight: FontWeight.w500,
                                       fontSize: 20.0)),
                             ),
@@ -312,18 +312,18 @@ class _PreChatState extends State<PreChat> {
                               height: 20.0,
                             ),
                             myElevatedButton(
-                              color: fiberchatSECONDARYolor,
+                              color: crypterchatSECONDARYolor,
                               child: Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(10, 3, 10, 3),
                                 child: Text(
                                   getTranslated(context, 'invite') +
                                       ' ${widget.name}',
-                                  style: TextStyle(color: fiberchatWhite),
+                                  style: TextStyle(color: crypterchatWhite),
                                 ),
                               ),
                               onPressed: () {
-                                Fiberchat.invite(context);
+                                Crypterchat.invite(context);
                               },
                             )
                           ])
@@ -333,8 +333,8 @@ class _PreChatState extends State<PreChat> {
               buildLoading()
             ]),
       backgroundColor: Thm.isDarktheme(widget.prefs)
-          ? fiberchatBACKGROUNDcolorDarkMode
-          : fiberchatBACKGROUNDcolorLightMode,
+          ? crypterchatBACKGROUNDcolorDarkMode
+          : crypterchatBACKGROUNDcolorLightMode,
     ));
   }
 }

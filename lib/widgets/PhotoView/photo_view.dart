@@ -2,13 +2,13 @@ library photo_view;
 
 import 'package:flutter/material.dart';
 
-import 'package:fiberchat/widgets/PhotoView/src/controller/photo_view_controller.dart';
-import 'package:fiberchat/widgets/PhotoView/src/controller/photo_view_scalestate_controller.dart';
-import 'package:fiberchat/widgets/PhotoView/src/core/photo_view_core.dart';
-import 'package:fiberchat/widgets/PhotoView/src/photo_view_computed_scale.dart';
-import 'package:fiberchat/widgets/PhotoView/src/photo_view_scale_state.dart';
-import 'package:fiberchat/widgets/PhotoView/src/photo_view_wrappers.dart';
-import 'package:fiberchat/widgets/PhotoView/src/utils/photo_view_hero_attributes.dart';
+import 'package:crypterchat/widgets/PhotoView/src/controller/photo_view_controller.dart';
+import 'package:crypterchat/widgets/PhotoView/src/controller/photo_view_scalestate_controller.dart';
+import 'package:crypterchat/widgets/PhotoView/src/core/photo_view_core.dart';
+import 'package:crypterchat/widgets/PhotoView/src/photo_view_computed_scale.dart';
+import 'package:crypterchat/widgets/PhotoView/src/photo_view_scale_state.dart';
+import 'package:crypterchat/widgets/PhotoView/src/photo_view_wrappers.dart';
+import 'package:crypterchat/widgets/PhotoView/src/utils/photo_view_hero_attributes.dart';
 
 export 'src/controller/photo_view_controller.dart';
 export 'src/controller/photo_view_scalestate_controller.dart';

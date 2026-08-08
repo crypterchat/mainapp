@@ -1,20 +1,20 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/Groups/GroupChatPage.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
-import 'package:fiberchat/Services/Providers/GroupChatProvider.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Screens/Groups/GroupChatPage.dart';
+import 'package:crypterchat/Screens/call_history/callhistory.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_layout.dart';
+import 'package:crypterchat/Screens/chat_screen/chat.dart';
+import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+import 'package:crypterchat/Services/Providers/GroupChatProvider.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:receive_sharing_intent_plus/receive_sharing_intent_plus.dart';
@@ -90,7 +90,7 @@ class _SelectContactToShareState extends State<SelectContactToShare>
       Container(
         child: Center(
             child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(fiberchatSECONDARYolor),
+          valueColor: AlwaysStoppedAnimation<Color>(crypterchatSECONDARYolor),
         )),
       )
     ]);
@@ -104,7 +104,7 @@ class _SelectContactToShareState extends State<SelectContactToShare>
 
     return PickupLayout(
         prefs: widget.prefs,
-        scaffold: Fiberchat.getNTPWrappedWidget(ScopedModel<DataModel>(
+        scaffold: Crypterchat.getNTPWrappedWidget(ScopedModel<DataModel>(
             model: widget.model,
             child: ScopedModelDescendant<DataModel>(
                 builder: (context, child, model) {
@@ -114,8 +114,8 @@ class _SelectContactToShareState extends State<SelectContactToShare>
                       builder: (context, groupList, _child) => Scaffold(
                           key: _scaffold,
                           backgroundColor: Thm.isDarktheme(widget.prefs)
-                              ? fiberchatBACKGROUNDcolorDarkMode
-                              : fiberchatBACKGROUNDcolorLightMode,
+                              ? crypterchatBACKGROUNDcolorDarkMode
+                              : crypterchatBACKGROUNDcolorLightMode,
                           appBar: AppBar(
                             elevation: 0.4,
                             titleSpacing: -5,
@@ -128,13 +128,13 @@ class _SelectContactToShareState extends State<SelectContactToShare>
                                 size: 24,
                                 color: pickTextColorBasedOnBgColorAdvanced(
                                     Thm.isDarktheme(widget.prefs)
-                                        ? fiberchatAPPBARcolorDarkMode
-                                        : fiberchatAPPBARcolorLightMode),
+                                        ? crypterchatAPPBARcolorDarkMode
+                                        : crypterchatAPPBARcolorLightMode),
                               ),
                             ),
                             backgroundColor: Thm.isDarktheme(widget.prefs)
-                                ? fiberchatAPPBARcolorDarkMode
-                                : fiberchatAPPBARcolorLightMode,
+                                ? crypterchatAPPBARcolorDarkMode
+                                : crypterchatAPPBARcolorLightMode,
                             centerTitle: false,
                             // leadingWidth: 40,
                             title: Text(
@@ -144,8 +144,8 @@ class _SelectContactToShareState extends State<SelectContactToShare>
                                 fontSize: 18,
                                 color: pickTextColorBasedOnBgColorAdvanced(
                                     Thm.isDarktheme(widget.prefs)
-                                        ? fiberchatAPPBARcolorDarkMode
-                                        : fiberchatAPPBARcolorLightMode),
+                                        ? crypterchatAPPBARcolorDarkMode
+                                        : crypterchatAPPBARcolorLightMode),
                               ),
                             ),
                           ),
@@ -188,7 +188,7 @@ class _SelectContactToShareState extends State<SelectContactToShare>
                                                           TextAlign.center,
                                                       style: TextStyle(
                                                         fontSize: 18,
-                                                        color: fiberchatGrey,
+                                                        color: crypterchatGrey,
                                                       )),
                                                   SizedBox(
                                                     height: 40,
@@ -222,7 +222,7 @@ class _SelectContactToShareState extends State<SelectContactToShare>
                                                         Icons.refresh_rounded,
                                                         size: 40,
                                                         color:
-                                                            fiberchatPRIMARYcolor,
+                                                            crypterchatPRIMARYcolor,
                                                       ))
                                                 ],
                                               ),
@@ -265,15 +265,15 @@ class _SelectContactToShareState extends State<SelectContactToShare>
                                                                 .isDarktheme(
                                                                     widget
                                                                         .prefs)
-                                                            ? fiberchatBACKGROUNDcolorDarkMode
-                                                            : fiberchatBACKGROUNDcolorLightMode),
+                                                            ? crypterchatBACKGROUNDcolorDarkMode
+                                                            : crypterchatBACKGROUNDcolorLightMode),
                                                         fontSize: 16,
                                                       ),
                                                     ),
                                                     subtitle: Text(
                                                       '${joinedGroupsList[i][Dbkeys.groupMEMBERSLIST].length} ${getTranslated(context, 'participants')}',
                                                       style: TextStyle(
-                                                        color: fiberchatGrey,
+                                                        color: crypterchatGrey,
                                                         fontSize: 14,
                                                       ),
                                                     ),
@@ -357,13 +357,13 @@ class _SelectContactToShareState extends State<SelectContactToShare>
                                                                     user.name,
                                                                     style: TextStyle(
                                                                         color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs)
-                                                                            ? fiberchatBACKGROUNDcolorDarkMode
-                                                                            : fiberchatBACKGROUNDcolorLightMode))),
+                                                                            ? crypterchatBACKGROUNDcolorDarkMode
+                                                                            : crypterchatBACKGROUNDcolorLightMode))),
                                                                 subtitle: Text(
                                                                     phone,
                                                                     style: TextStyle(
                                                                         color:
-                                                                            fiberchatGrey)),
+                                                                            crypterchatGrey)),
                                                                 contentPadding:
                                                                     EdgeInsets.symmetric(
                                                                         horizontal:
@@ -387,7 +387,7 @@ class _SelectContactToShareState extends State<SelectContactToShare>
                                                                               .accountstatus] ==
                                                                           Dbkeys
                                                                               .sTATUSdeleted) {
-                                                                        Fiberchat.toast(
+                                                                        Crypterchat.toast(
                                                                             "User Not Available. Account Deleted !");
                                                                       } else {
                                                                         widget
@@ -398,7 +398,7 @@ class _SelectContactToShareState extends State<SelectContactToShare>
                                                                             new MaterialPageRoute(builder: (context) => ChatScreen(sharedText: widget.sharedText, sharedFiles: widget.sharedFiles, isSharingIntentForwarded: true, prefs: widget.prefs, unread: 0, model: widget.model, currentUserNo: widget.currentUserNo, peerNo: user.id)));
                                                                       }
                                                                     } else {
-                                                                      Fiberchat
+                                                                      Crypterchat
                                                                           .toast(
                                                                               "User Not Available !");
                                                                     }

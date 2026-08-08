@@ -1,20 +1,20 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:core';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/auth_screens/login.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/MyElevatedButton/MyElevatedButton.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Screens/auth_screens/login.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_layout.dart';
+import 'package:crypterchat/Services/Admob/admob.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Screens/chat_screen/chat.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/widgets/MyElevatedButton/MyElevatedButton.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -56,7 +56,7 @@ class _AddunsavedNumberState extends State<AddunsavedNumber> {
   }
 
   getUser(String searchphone) {
-    // Fiberchat.toast(searchphone);
+    // Crypterchat.toast(searchphone);
     FirebaseFirestore.instance
         .collection(DbPaths.collectionusers)
         .where(Dbkeys.phonenumbervariants, arrayContains: searchphone)
@@ -112,8 +112,8 @@ class _AddunsavedNumberState extends State<AddunsavedNumber> {
             child: Form(
               // key: _enterNumberFormKey,
               child: MobileInputWithOutline(
-                buttonhintTextColor: fiberchatGrey,
-                borderColor: fiberchatGrey.withOpacity(0.2),
+                buttonhintTextColor: crypterchatGrey,
+                borderColor: crypterchatGrey.withOpacity(0.2),
                 controller: _phoneNo,
                 initialCountryCode: DEFAULT_COUNTTRYCODE_ISO,
                 onSaved: (phone) {
@@ -132,10 +132,10 @@ class _AddunsavedNumberState extends State<AddunsavedNumber> {
               ? Center(
                   child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
-                          fiberchatSECONDARYolor)),
+                          crypterchatSECONDARYolor)),
                 )
               : MySimpleButton(
-                  buttoncolor: fiberchatPRIMARYcolor.withOpacity(0.99),
+                  buttoncolor: crypterchatPRIMARYcolor.withOpacity(0.99),
                   buttontext: getTranslated(context, 'searchuser'),
                   onpressed: () {
                     // RegExp e164 = new RegExp(r'^\+[1-9]\d{1,14}$');
@@ -152,7 +152,7 @@ class _AddunsavedNumberState extends State<AddunsavedNumber> {
 
                       getUser(phoneCode! + _phone);
                     } else {
-                      Fiberchat.toast(
+                      Crypterchat.toast(
                           widget.currentUserNo != phoneCode! + _phone
                               ? getTranslated(context, 'validnum')
                               : getTranslated(context, 'validnum'));
@@ -194,7 +194,7 @@ class _AddunsavedNumberState extends State<AddunsavedNumber> {
   Widget build(BuildContext context) {
     return PickupLayout(
         prefs: widget.prefs,
-        scaffold: Fiberchat.getNTPWrappedWidget(Scaffold(
+        scaffold: Crypterchat.getNTPWrappedWidget(Scaffold(
           appBar: AppBar(
               elevation: 0.4,
               leading: IconButton(
@@ -206,13 +206,13 @@ class _AddunsavedNumberState extends State<AddunsavedNumber> {
                   size: 24,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode),
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode),
                 ),
               ),
               backgroundColor: Thm.isDarktheme(widget.prefs)
-                  ? fiberchatAPPBARcolorDarkMode
-                  : fiberchatAPPBARcolorLightMode,
+                  ? crypterchatAPPBARcolorDarkMode
+                  : crypterchatAPPBARcolorLightMode,
               title: Text(
                 getTranslated(
                   context,
@@ -222,8 +222,8 @@ class _AddunsavedNumberState extends State<AddunsavedNumber> {
                   fontSize: 17,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode),
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode),
                 ),
               )),
           body: Stack(children: <Widget>[
@@ -251,8 +251,8 @@ class _AddunsavedNumberState extends State<AddunsavedNumber> {
                                     style: TextStyle(
                                         color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                 .isDarktheme(widget.prefs)
-                                            ? fiberchatBACKGROUNDcolorDarkMode
-                                            : fiberchatBACKGROUNDcolorLightMode),
+                                            ? crypterchatBACKGROUNDcolorDarkMode
+                                            : crypterchatBACKGROUNDcolorLightMode),
                                         fontWeight: FontWeight.w500,
                                         fontSize: 20.0)),
                               ),
@@ -260,13 +260,13 @@ class _AddunsavedNumberState extends State<AddunsavedNumber> {
                                 height: 10.0,
                               ),
                               myElevatedButton(
-                                color: fiberchatPRIMARYcolor,
+                                color: crypterchatPRIMARYcolor,
                                 child: Text(
                                   getTranslated(context, 'invite'),
-                                  style: TextStyle(color: fiberchatWhite),
+                                  style: TextStyle(color: crypterchatWhite),
                                 ),
                                 onPressed: () {
-                                  Fiberchat.invite(context);
+                                  Crypterchat.invite(context);
                                 },
                               ),
                             ])
@@ -276,8 +276,8 @@ class _AddunsavedNumberState extends State<AddunsavedNumber> {
             buildWidget()
           ]),
           backgroundColor: Thm.isDarktheme(widget.prefs)
-              ? fiberchatBACKGROUNDcolorDarkMode
-              : fiberchatBACKGROUNDcolorLightMode,
+              ? crypterchatBACKGROUNDcolorDarkMode
+              : crypterchatBACKGROUNDcolorLightMode,
         )));
   }
 }

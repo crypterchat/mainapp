@@ -1,6 +1,6 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
-import 'package:fiberchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
 import 'package:flutter/material.dart';
 
 showDynamicModalBottomSheet({
@@ -47,8 +47,8 @@ showDynamicModalBottomSheet({
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                 color: isdark
-                                                    ? fiberchatWhite
-                                                    : fiberchatBlack,
+                                                    ? crypterchatWhite
+                                                    : crypterchatBlack,
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 16,
                                               ),
@@ -113,8 +113,8 @@ showDynamicModalBottomSheet({
                                     isextraMargin == true ? 20 : 0),
                                 decoration: BoxDecoration(
                                   color: isdark
-                                      ? fiberchatBACKGROUNDcolorDarkMode
-                                      : fiberchatBACKGROUNDcolorLightMode,
+                                      ? crypterchatBACKGROUNDcolorDarkMode
+                                      : crypterchatBACKGROUNDcolorLightMode,
                                   borderRadius: BorderRadius.only(
                                     topLeft: const Radius.circular(25.0),
                                     topRight: const Radius.circular(25.0),
@@ -125,7 +125,7 @@ showDynamicModalBottomSheet({
                                   children: [
                                     Icon(
                                       Icons.remove,
-                                      color: fiberchatGrey,
+                                      color: crypterchatGrey,
                                     ),
                                     title == "" || title == null
                                         ? SizedBox()
@@ -136,8 +136,8 @@ showDynamicModalBottomSheet({
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                 color: isdark
-                                                    ? fiberchatWhite
-                                                    : fiberchatBlack,
+                                                    ? crypterchatWhite
+                                                    : crypterchatBlack,
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 16,
                                               ),

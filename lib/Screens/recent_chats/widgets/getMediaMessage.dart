@@ -1,7 +1,7 @@
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Screens/recent_chats/RecentsChats.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Enum.dart';
+import 'package:crypterchat/Screens/recent_chats/RecentsChats.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
 import 'package:flutter/material.dart';
 
 Widget getMediaMessage(BuildContext context, bool isBold, var lastMessage) {

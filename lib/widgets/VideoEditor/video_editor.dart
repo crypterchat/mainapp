@@ -1,13 +1,13 @@
 import 'dart:io';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Services/helpers/size.dart';
-import 'package:fiberchat/Services/helpers/transition.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Services/helpers/size.dart';
+import 'package:crypterchat/Services/helpers/transition.dart';
 
-import 'package:fiberchat/Services/helpers/widgets/widgets.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/VideoEditor/export_service.dart';
+import 'package:crypterchat/Services/helpers/widgets/widgets.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/widgets/VideoEditor/export_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
@@ -72,13 +72,13 @@ class _VideoEditorState extends State<VideoEditor> {
     final config = CoverFFmpegVideoEditorConfig(_controller);
     final execute = await config.getExecuteConfig();
     if (execute == null) {
-      Fiberchat.toast("Error on cover exportation initialization.");
+      Crypterchat.toast("Error on cover exportation initialization.");
       return;
     }
 
     await ExportService.runFFmpegCommand(
       execute,
-      onError: (e, s) => Fiberchat.toast("Error on cover exportation :("),
+      onError: (e, s) => Crypterchat.toast("Error on cover exportation :("),
       onCompleted: (cover) {
         if (!mounted) return;
 
@@ -109,7 +109,7 @@ class _VideoEditorState extends State<VideoEditor> {
             config.getFFmpegProgress(stats.getTime().round());
       },
       onError: (e, s) {
-        Fiberchat.toast("Failed to export");
+        Crypterchat.toast("Failed to export");
       },
       onCompleted: (file) async {
         _isExporting.value = false;
@@ -136,7 +136,7 @@ class _VideoEditorState extends State<VideoEditor> {
             //     .catchError((err) {
             //   _exportText = "Error on export video :( \n\nERROR: $err";
             //   Navigator.of(context).pop();
-            //   Fiberchat.toast(_exportText);
+            //   Crypterchat.toast(_exportText);
             // });
           } else if (_controller.selectedCoverVal!.timeMs == 0) {
             _exportCover(
@@ -179,7 +179,7 @@ class _VideoEditorState extends State<VideoEditor> {
         } else {
           _exportText = "Error on export video :(";
           Navigator.of(context).pop();
-          Fiberchat.toast(_exportText);
+          Crypterchat.toast(_exportText);
         }
       },
     );
@@ -235,7 +235,7 @@ class _VideoEditorState extends State<VideoEditor> {
     DateTime now = DateTime.now();
     if (now.difference(currentBackPressTime!) > Duration(seconds: 3)) {
       currentBackPressTime = now;
-      Fiberchat.toast(getTranslated(this.context, 'doubletaptogoback'));
+      Crypterchat.toast(getTranslated(this.context, 'doubletaptogoback'));
       return Future.value(false);
     } else {
       return Future.value(true);
@@ -386,7 +386,7 @@ class _VideoEditorState extends State<VideoEditor> {
                                                           (value * 100).ceil() /
                                                               100,
                                                       progressColor:
-                                                          fiberchatSECONDARYolor),
+                                                          crypterchatSECONDARYolor),
                                             ))),
                               )
                             ])))
@@ -457,7 +457,7 @@ class _VideoEditorState extends State<VideoEditor> {
                   Icons.done,
                   color: _isExporting.value
                       ? Colors.transparent
-                      : fiberchatSECONDARYolor,
+                      : crypterchatSECONDARYolor,
                 ),
               ),
             ),

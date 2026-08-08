@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:fiberchat/widgets/PhotoView/src/utils/ignorable_change_notifier.dart';
+import 'package:crypterchat/widgets/PhotoView/src/utils/ignorable_change_notifier.dart';
 
 /// The interface in which controllers will be implemented.
 ///

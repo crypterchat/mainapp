@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/DownloadManager/save_image_videos_in_gallery.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/widgets/DownloadManager/save_image_videos_in_gallery.dart';
 import 'package:flutter/material.dart';
-import 'package:fiberchat/widgets/PhotoView/photo_view.dart';
+import 'package:crypterchat/widgets/PhotoView/photo_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PhotoViewWrapper extends StatelessWidget {
@@ -34,7 +34,7 @@ class PhotoViewWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Fiberchat.getNTPWrappedWidget(Scaffold(
+    return Crypterchat.getNTPWrappedWidget(Scaffold(
         backgroundColor: Colors.black,
         key: _scaffoldd,
         appBar: AppBar(
@@ -46,14 +46,14 @@ class PhotoViewWrapper extends StatelessWidget {
             icon: Icon(
               Icons.arrow_back,
               size: 24,
-              color: fiberchatWhite,
+              color: crypterchatWhite,
             ),
           ),
           backgroundColor: Colors.transparent,
         ),
         floatingActionButton: FloatingActionButton(
           heroTag: "dfs32231t834",
-          backgroundColor: fiberchatSECONDARYolor,
+          backgroundColor: crypterchatSECONDARYolor,
           onPressed: () async {
             GalleryDownloader.saveNetworkImage(
                 context, imageUrl, false, "", keyloader, prefs);
@@ -75,7 +75,7 @@ class PhotoViewWrapper extends StatelessWidget {
                         alignment: Alignment.center,
                         child: CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(
-                              fiberchatSECONDARYolor),
+                              crypterchatSECONDARYolor),
                         ),
                       ),
                     );

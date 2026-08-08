@@ -3,11 +3,11 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/main.dart';
-import 'package:fiberchat/widgets/CameraGalleryImagePicker/image_pick.dart';
-import 'package:fiberchat/widgets/PhotoEditor/photoeditor.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/main.dart';
+import 'package:crypterchat/widgets/CameraGalleryImagePicker/image_pick.dart';
+import 'package:crypterchat/widgets/PhotoEditor/photoeditor.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -235,7 +235,7 @@ class _CameraImageGalleryPickerState extends State<CameraImageGalleryPicker>
                                 shape: BoxShape.circle,
                                 border:
                                     Border.all(color: Colors.white, width: 3.8),
-                                color: fiberchatGreenColor500,
+                                color: crypterchatGreenColor500,
                               ),
                             ),
                           )
@@ -294,7 +294,7 @@ class _CameraImageGalleryPickerState extends State<CameraImageGalleryPicker>
                             // Navigator.of(context).pop();
                             File? selectedMedia = await pickSingleImage(context)
                                 .catchError((err) {
-                              Fiberchat.toast(
+                              Crypterchat.toast(
                                   "Invalid file. Cannot Select this file !");
                               return null;
                             });
@@ -331,7 +331,7 @@ class _CameraImageGalleryPickerState extends State<CameraImageGalleryPicker>
                                                   File(file.path),
                                             )));
                               } else {
-                                Fiberchat.toast(
+                                Crypterchat.toast(
                                     "File type not supported. Please choose a .jpg, .jpeg, .png file. \n\nSelected file was $fileExtension ");
                               }
                             }
@@ -851,7 +851,7 @@ class _CameraImageGalleryPickerState extends State<CameraImageGalleryPicker>
   String timestamp() => DateTime.now().millisecondsSinceEpoch.toString();
 
   void showInSnackBar(String message) {
-    Fiberchat.toast(message);
+    Crypterchat.toast(message);
   }
 
   void onViewFinderTap(TapDownDetails details, BoxConstraints constraints) {

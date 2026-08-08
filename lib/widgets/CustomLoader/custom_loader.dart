@@ -1,4 +1,4 @@
-import 'package:fiberchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class ShowLoading {
@@ -47,7 +47,7 @@ class ShowLoading {
                             new CircularProgressIndicator(
                               strokeWidth: 3.5,
                               valueColor: AlwaysStoppedAnimation(
-                                  fiberchatSECONDARYolor),
+                                  crypterchatSECONDARYolor),
                             ),
                           ],
                         ),

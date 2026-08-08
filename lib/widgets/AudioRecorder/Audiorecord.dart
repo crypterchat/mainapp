@@ -3,15 +3,15 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:audio_session/audio_session.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/permissions.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/AudioRecorder/playButton.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/permissions.dart';
+import 'package:crypterchat/Utils/open_settings.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/widgets/AudioRecorder/playButton.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
@@ -87,7 +87,7 @@ class _AudioRecordState extends State<AudioRecord> {
       var status = await Permissions.getMicrophonePermission();
 
       if (status != PermissionStatus.granted) {
-        Fiberchat.showRationale(getTranslated(this.context, 'pm'));
+        Crypterchat.showRationale(getTranslated(this.context, 'pm'));
         Navigator.push(
             context,
             new MaterialPageRoute(
@@ -226,7 +226,7 @@ class _AudioRecordState extends State<AudioRecord> {
         child: isLoading == true
             ? CircularProgressIndicator(
                 valueColor:
-                    AlwaysStoppedAnimation<Color>(fiberchatSECONDARYolor))
+                    AlwaysStoppedAnimation<Color>(crypterchatSECONDARYolor))
             : Column(
                 children: [
                   SizedBox(
@@ -264,8 +264,8 @@ class _AudioRecordState extends State<AudioRecord> {
                                 fontWeight: FontWeight.w700,
                                 color: pickTextColorBasedOnBgColorAdvanced(
                                     Thm.isDarktheme(widget.prefs)
-                                        ? fiberchatAPPBARcolorDarkMode
-                                        : fiberchatAPPBARcolorLightMode),
+                                        ? crypterchatAPPBARcolorDarkMode
+                                        : crypterchatAPPBARcolorLightMode),
                               ),
                             ),
                             SizedBox(
@@ -274,18 +274,18 @@ class _AudioRecordState extends State<AudioRecord> {
                             PlayButton(
                               pauseIcon: Icon(
                                 Icons.stop,
-                                color: fiberchatREDbuttonColor,
+                                color: crypterchatREDbuttonColor,
                                 size: 60,
                               ),
                               playIcon: Icon(Icons.mic,
-                                  color: fiberchatREDbuttonColor, size: 70),
+                                  color: crypterchatREDbuttonColor, size: 70),
                               onPressed: getRecorderFn(),
                             ),
                             // RawMaterialButton(
                             //   onPressed: getRecorderFn(),
                             //   elevation: 2.0,
                             //   fillColor:
-                            //       _mRecorder!.isRecording ? fiberchatREDbuttonColor : Colors.white,
+                            //       _mRecorder!.isRecording ? crypterchatREDbuttonColor : Colors.white,
                             //   child: Icon(
                             //     _mRecorder!.isRecording
                             //         ? Icons.stop
@@ -293,7 +293,7 @@ class _AudioRecordState extends State<AudioRecord> {
                             //     size: 75.0,
                             //     color: _mRecorder!.isRecording
                             //         ? Colors.white
-                            //         : fiberchatREDbuttonColor,
+                            //         : crypterchatREDbuttonColor,
                             //   ),
                             //   padding: EdgeInsets.all(15.0),
                             //   shape: CircleBorder(),
@@ -317,8 +317,8 @@ class _AudioRecordState extends State<AudioRecord> {
                                 fontSize: 16,
                                 color: pickTextColorBasedOnBgColorAdvanced(
                                     Thm.isDarktheme(widget.prefs)
-                                        ? fiberchatAPPBARcolorDarkMode
-                                        : fiberchatAPPBARcolorLightMode),
+                                        ? crypterchatAPPBARcolorDarkMode
+                                        : crypterchatAPPBARcolorLightMode),
                               ),
                             ),
                             SizedBox(
@@ -329,7 +329,7 @@ class _AudioRecordState extends State<AudioRecord> {
                               elevation: 2.0,
                               fillColor: _mPlayer!.isPlaying
                                   ? Colors.white
-                                  : fiberchatPRIMARYcolor,
+                                  : crypterchatPRIMARYcolor,
                               child: Icon(
                                 _mPlayer!.isPlaying
                                     ? Icons.stop
@@ -365,13 +365,13 @@ class _AudioRecordState extends State<AudioRecord> {
                                     listen: false);
                                 if (recordedfile!.lengthSync() / 1000000 >
                                     observer.maxFileSizeAllowedInMB) {
-                                  Fiberchat.toast(
+                                  Crypterchat.toast(
                                       '${getTranslated(this.context, 'maxfilesize')} ${observer.maxFileSizeAllowedInMB}MB\n\n${getTranslated(this.context, 'selectedfilesize')} ${(recordedfile!.lengthSync() / 1000000).round()}MB');
                                 } else {
                                   setStateIfMounted(() {
                                     isLoading = true;
                                   });
-                                  Fiberchat.toast(getTranslated(
+                                  Crypterchat.toast(getTranslated(
                                       this.context, 'sendingrecord'));
                                   widget
                                       .callback(recordedfile)
@@ -384,9 +384,9 @@ class _AudioRecordState extends State<AudioRecord> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20.0),
                                       side: BorderSide(
-                                          color: fiberchatPRIMARYcolor)),
+                                          color: crypterchatPRIMARYcolor)),
                                   elevation: 0.2,
-                                  backgroundColor: fiberchatPRIMARYcolor,
+                                  backgroundColor: crypterchatPRIMARYcolor,
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 20, vertical: 10),
                                   textStyle: TextStyle(
@@ -403,8 +403,8 @@ class _AudioRecordState extends State<AudioRecord> {
         onPopInvoked: (v) => onWillPopNEw,
         child: Scaffold(
           backgroundColor: Thm.isDarktheme(widget.prefs)
-              ? fiberchatAPPBARcolorDarkMode
-              : fiberchatAPPBARcolorLightMode,
+              ? crypterchatAPPBARcolorDarkMode
+              : crypterchatAPPBARcolorLightMode,
           appBar: AppBar(
             leading: IconButton(
               onPressed: () {
@@ -415,22 +415,22 @@ class _AudioRecordState extends State<AudioRecord> {
                 size: 30,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(widget.prefs)
-                        ? fiberchatAPPBARcolorDarkMode
-                        : fiberchatAPPBARcolorLightMode),
+                        ? crypterchatAPPBARcolorDarkMode
+                        : crypterchatAPPBARcolorLightMode),
               ),
             ),
             centerTitle: true,
             elevation: 0,
             backgroundColor: Thm.isDarktheme(widget.prefs)
-                ? fiberchatAPPBARcolorDarkMode
-                : fiberchatAPPBARcolorLightMode,
+                ? crypterchatAPPBARcolorDarkMode
+                : crypterchatAPPBARcolorLightMode,
             title: Text(
               widget.title,
               style: TextStyle(
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(widget.prefs)
-                        ? fiberchatAPPBARcolorDarkMode
-                        : fiberchatAPPBARcolorLightMode),
+                        ? crypterchatAPPBARcolorDarkMode
+                        : crypterchatAPPBARcolorLightMode),
               ),
             ),
           ),

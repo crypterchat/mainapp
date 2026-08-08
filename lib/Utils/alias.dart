@@ -1,13 +1,13 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:io';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -30,7 +30,7 @@ class _AliasFormState extends State<AliasForm> {
   void initState() {
     super.initState();
     _alias =
-        new TextEditingController(text: Fiberchat.getNickname(widget.user));
+        new TextEditingController(text: Crypterchat.getNickname(widget.user));
   }
 
   Future getImage(File image) {
@@ -42,11 +42,11 @@ class _AliasFormState extends State<AliasForm> {
 
   @override
   Widget build(BuildContext context) {
-    String? name = Fiberchat.getNickname(widget.user);
+    String? name = Crypterchat.getNickname(widget.user);
     return AlertDialog(
       backgroundColor: Thm.isDarktheme(widget.prefs)
-          ? fiberchatDIALOGColorDarkMode
-          : fiberchatDIALOGColorLightMode,
+          ? crypterchatDIALOGColorDarkMode
+          : crypterchatDIALOGColorLightMode,
       actions: <Widget>[
         ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -59,8 +59,8 @@ class _AliasFormState extends State<AliasForm> {
                 fontWeight: FontWeight.bold,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(widget.prefs)
-                        ? fiberchatDIALOGColorDarkMode
-                        : fiberchatDIALOGColorLightMode),
+                        ? crypterchatDIALOGColorDarkMode
+                        : crypterchatDIALOGColorLightMode),
               ),
             ),
             onPressed: widget.user[Dbkeys.aliasName] != null ||
@@ -78,7 +78,7 @@ class _AliasFormState extends State<AliasForm> {
             child: Text(
               getTranslated(context, 'setalias'),
               style: TextStyle(
-                  fontWeight: FontWeight.bold, color: fiberchatPRIMARYcolor),
+                  fontWeight: FontWeight.bold, color: crypterchatPRIMARYcolor),
             ),
             onPressed: () {
               if (_alias!.text.isNotEmpty) {
@@ -98,7 +98,7 @@ class _AliasFormState extends State<AliasForm> {
               height: 120,
               child: Stack(children: [
                 Center(
-                    child: Fiberchat.avatar(widget.user,
+                    child: Crypterchat.avatar(widget.user,
                         image: _imageFile, radius: 50)),
               ])),
           TextFormField(
@@ -107,15 +107,15 @@ class _AliasFormState extends State<AliasForm> {
             style: TextStyle(
               color: pickTextColorBasedOnBgColorAdvanced(
                   Thm.isDarktheme(widget.prefs)
-                      ? fiberchatDIALOGColorDarkMode
-                      : fiberchatDIALOGColorLightMode),
+                      ? crypterchatDIALOGColorDarkMode
+                      : crypterchatDIALOGColorLightMode),
             ),
             decoration: InputDecoration(
               hintStyle: TextStyle(
                 color: pickTextColorBasedOnBgColorAdvanced(
                         Thm.isDarktheme(widget.prefs)
-                            ? fiberchatDIALOGColorDarkMode
-                            : fiberchatDIALOGColorLightMode)
+                            ? crypterchatDIALOGColorDarkMode
+                            : crypterchatDIALOGColorLightMode)
                     .withOpacity(0.6),
               ),
               hintText: getTranslated(context, 'aliasname'),

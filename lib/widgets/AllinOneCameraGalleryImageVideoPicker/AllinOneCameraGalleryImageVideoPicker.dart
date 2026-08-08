@@ -3,13 +3,13 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/main.dart';
-import 'package:fiberchat/widgets/CameraGalleryImagePicker/multiMediaPicker.dart';
-import 'package:fiberchat/widgets/PhotoEditor/photoeditor.dart';
-import 'package:fiberchat/widgets/VideoEditor/video_editor.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/main.dart';
+import 'package:crypterchat/widgets/CameraGalleryImagePicker/multiMediaPicker.dart';
+import 'package:crypterchat/widgets/PhotoEditor/photoeditor.dart';
+import 'package:crypterchat/widgets/VideoEditor/video_editor.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -319,7 +319,7 @@ class _AllinOneCameraGalleryImageVideoPickerState
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                             color: Colors.white, width: 3.8),
-                                        color: fiberchatGreenColor500,
+                                        color: crypterchatGreenColor500,
                                       ),
                                       child: CircularCountDownTimer(
                                         duration: widget.maxDurationInSeconds!,
@@ -328,9 +328,9 @@ class _AllinOneCameraGalleryImageVideoPickerState
                                         width: 32,
                                         height: 32,
                                         ringColor: Colors.grey[300]!,
-                                        fillColor: fiberchatGreenColor100,
+                                        fillColor: crypterchatGreenColor100,
                                         fillGradient: null,
-                                        backgroundColor: fiberchatGreenColor500
+                                        backgroundColor: crypterchatGreenColor500
                                             .withOpacity(0.3),
                                         backgroundGradient: null,
                                         strokeWidth: 4.0,
@@ -369,7 +369,7 @@ class _AllinOneCameraGalleryImageVideoPickerState
                           onPressed: () async {
                             File? selectedMedia =
                                 await pickMultiMedia(context).catchError((err) {
-                              Fiberchat.toast(
+                              Crypterchat.toast(
                                   getTranslated(context, "invalidfile"));
                               return null;
                             });
@@ -430,7 +430,7 @@ class _AllinOneCameraGalleryImageVideoPickerState
                                               videoQuality: 60,
                                             )));
                               } else {
-                                Fiberchat.toast(
+                                Crypterchat.toast(
                                     "File type not supported. Please choose a valid .mp4, .mov, .jpg, .jpeg, .png file. \n\nSelected file was $fileExtension ");
                               }
                             }
@@ -908,7 +908,7 @@ class _AllinOneCameraGalleryImageVideoPickerState
   String timestamp() => DateTime.now().millisecondsSinceEpoch.toString();
 
   void showInSnackBar(String message) {
-    Fiberchat.toast(message);
+    Crypterchat.toast(message);
   }
 
   void onViewFinderTap(TapDownDetails details, BoxConstraints constraints) {

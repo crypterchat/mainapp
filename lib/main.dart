@@ -3,26 +3,26 @@
 import 'dart:core';
 import 'dart:io';
 import 'package:camera/camera.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/homepage/homepage.dart';
-import 'package:fiberchat/Screens/homepage/initialize.dart';
-import 'package:fiberchat/Screens/splash_screen/splash_screen.dart';
-import 'package:fiberchat/Services/Providers/BroadcastProvider.dart';
-import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
-import 'package:fiberchat/Services/Providers/GroupChatProvider.dart';
-import 'package:fiberchat/Services/Providers/LazyLoadingChatProvider.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/Providers/StatusProvider.dart';
-import 'package:fiberchat/Services/Providers/TimerProvider.dart';
-import 'package:fiberchat/Services/Providers/currentchat_peer.dart';
-import 'package:fiberchat/Services/Providers/seen_provider.dart';
-import 'package:fiberchat/Services/localization/demo_localization.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Services/Providers/DownloadInfoProvider.dart';
-import 'package:fiberchat/Services/Providers/call_history_provider.dart';
-import 'package:fiberchat/Services/Providers/user_provider.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Screens/homepage/homepage.dart';
+import 'package:crypterchat/Screens/homepage/initialize.dart';
+import 'package:crypterchat/Screens/splash_screen/splash_screen.dart';
+import 'package:crypterchat/Services/Providers/BroadcastProvider.dart';
+import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+import 'package:crypterchat/Services/Providers/GroupChatProvider.dart';
+import 'package:crypterchat/Services/Providers/LazyLoadingChatProvider.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/Providers/StatusProvider.dart';
+import 'package:crypterchat/Services/Providers/TimerProvider.dart';
+import 'package:crypterchat/Services/Providers/currentchat_peer.dart';
+import 'package:crypterchat/Services/Providers/seen_provider.dart';
+import 'package:crypterchat/Services/localization/demo_localization.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Services/Providers/DownloadInfoProvider.dart';
+import 'package:crypterchat/Services/Providers/call_history_provider.dart';
+import 'package:crypterchat/Services/Providers/user_provider.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -98,23 +98,23 @@ void main() async {
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
-    runApp(OverlaySupport(child: FiberchatWrapper()));
+    runApp(OverlaySupport(child: CrypterchatWrapper()));
   });
 }
 
-class FiberchatWrapper extends StatefulWidget {
-  const FiberchatWrapper({Key? key}) : super(key: key);
+class CrypterchatWrapper extends StatefulWidget {
+  const CrypterchatWrapper({Key? key}) : super(key: key);
   static void setLocale(BuildContext context, Locale newLocale) {
-    _FiberchatWrapperState state =
-        context.findAncestorStateOfType<_FiberchatWrapperState>()!;
+    _CrypterchatWrapperState state =
+        context.findAncestorStateOfType<_CrypterchatWrapperState>()!;
     state.setLocale(newLocale);
   }
 
   @override
-  _FiberchatWrapperState createState() => _FiberchatWrapperState();
+  _CrypterchatWrapperState createState() => _CrypterchatWrapperState();
 }
 
-class _FiberchatWrapperState extends State<FiberchatWrapper> {
+class _CrypterchatWrapperState extends State<CrypterchatWrapper> {
   DarkThemeProvider themeChangeProvider = new DarkThemeProvider();
 
   void getCurrentAppTheme() async {
@@ -283,9 +283,9 @@ class _FiberchatWrapperState extends State<FiberchatWrapper> {
                               fontFamily: FONTFAMILY_NAME == ''
                                   ? null
                                   : FONTFAMILY_NAME,
-                              primaryColor: fiberchatPRIMARYcolor,
-                              primaryColorLight: fiberchatPRIMARYcolor,
-                              indicatorColor: fiberchatPRIMARYcolor),
+                              primaryColor: crypterchatPRIMARYcolor,
+                              primaryColorLight: crypterchatPRIMARYcolor,
+                              indicatorColor: crypterchatPRIMARYcolor),
                           debugShowCheckedModeBanner: false,
                           home: Splashscreen()),
                     );

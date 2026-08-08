@@ -3,12 +3,12 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Models/DataModel.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto/crypto.dart';
 import 'package:google_translate/extensions/string_extension.dart';
@@ -17,11 +17,11 @@ import 'package:oktoast/oktoast.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert';
-import 'package:fiberchat/Configs/Enum.dart';
+import 'package:crypterchat/Configs/Enum.dart';
 import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Fiberchat {
+class Crypterchat {
   static String? getNickname(Map<String, dynamic> user) =>
       user[Dbkeys.aliasName] ?? user[Dbkeys.nickname];
 
@@ -33,11 +33,11 @@ class Fiberchat {
     try {
       // ignore: body_might_complete_normally_catch_error
       await InternetAddress.lookup('google.com').catchError((e) {
-        Fiberchat.toast(
+        Crypterchat.toast(
             'No internet connection. Please check your Internet Connection.');
       });
     } catch (err) {
-      Fiberchat.toast(
+      Crypterchat.toast(
           'No internet connection. Please check your Internet Connection.');
     }
   }
@@ -71,10 +71,10 @@ class Fiberchat {
                     CachedNetworkImageProvider(user[Dbkeys.photoUrl]),
                 radius: radius)
             : CircleAvatar(
-                backgroundColor: fiberchatPRIMARYcolor,
+                backgroundColor: crypterchatPRIMARYcolor,
                 foregroundColor: Colors.white,
                 child: Text(predefinedinitials ??
-                    getInitials(Fiberchat.getNickname(user)!)),
+                    getInitials(Crypterchat.getNickname(user)!)),
                 radius: radius,
               );
       return CircleAvatar(
@@ -99,14 +99,14 @@ class Fiberchat {
             if (snapshot.data! > Duration(minutes: 1).inMilliseconds ||
                 snapshot.data! < -Duration(minutes: 1).inMilliseconds)
               return Material(
-                  color: fiberchatBlack,
+                  color: crypterchatBlack,
                   child: Center(
                       child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 30.0),
                           child: Text(
                             getTranslated(context, 'clocktime'),
                             style:
-                                TextStyle(color: fiberchatWhite, fontSize: 18),
+                                TextStyle(color: crypterchatWhite, fontSize: 18),
                           ))));
           }
           return child;
@@ -114,9 +114,9 @@ class Fiberchat {
   }
 
   static void showRationale(rationale) async {
-    Fiberchat.toast(rationale);
+    Crypterchat.toast(rationale);
     // await Future.delayed(Duration(seconds: 2));
-    // Fiberchat.toast(
+    // Crypterchat.toast(
     //     'If you change your mind, you can grant the permission through App Settings > Permissions');
   }
 

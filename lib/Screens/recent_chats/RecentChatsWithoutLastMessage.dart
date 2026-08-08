@@ -2,40 +2,40 @@
 
 import 'dart:async';
 import 'dart:core';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Screens/Broadcast/AddContactsToBroadcast.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/setStatusBarColor.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/main.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Screens/Broadcast/AddContactsToBroadcast.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/setStatusBarColor.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/Broadcast/BroadcastChatPage.dart';
-import 'package:fiberchat/Screens/Groups/AddContactsToGroup.dart';
-import 'package:fiberchat/Screens/Groups/GroupChatPage.dart';
-import 'package:fiberchat/Screens/contact_screens/SmartContactsPage.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/BroadcastProvider.dart';
-import 'package:fiberchat/Services/Providers/GroupChatProvider.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/messagedata.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Services/Providers/user_provider.dart';
-import 'package:fiberchat/Utils/alias.dart';
-import 'package:fiberchat/Utils/chat_controller.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Screens/Broadcast/BroadcastChatPage.dart';
+import 'package:crypterchat/Screens/Groups/AddContactsToGroup.dart';
+import 'package:crypterchat/Screens/Groups/GroupChatPage.dart';
+import 'package:crypterchat/Screens/contact_screens/SmartContactsPage.dart';
+import 'package:crypterchat/Services/Admob/admob.dart';
+import 'package:crypterchat/Services/Providers/BroadcastProvider.dart';
+import 'package:crypterchat/Services/Providers/GroupChatProvider.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Screens/chat_screen/utils/messagedata.dart';
+import 'package:crypterchat/Screens/call_history/callhistory.dart';
+import 'package:crypterchat/Screens/chat_screen/chat.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Services/Providers/user_provider.dart';
+import 'package:crypterchat/Utils/alias.dart';
+import 'package:crypterchat/Utils/chat_controller.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:fiberchat/Utils/unawaited.dart';
+import 'package:crypterchat/Utils/unawaited.dart';
 
 class RecentChatsWithoutLastMessage extends StatefulWidget {
   RecentChatsWithoutLastMessage(
@@ -77,7 +77,7 @@ class RecentChatsWithoutLastMessageState
   @override
   void initState() {
     super.initState();
-    Fiberchat.internetLookUp();
+    Crypterchat.internetLookUp();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       final observer = Provider.of<Observer>(this.context, listen: false);
       if (IsBannerAdShow == true && observer.isadmobshow == true) {
@@ -124,8 +124,8 @@ class RecentChatsWithoutLastMessageState
             fontWeight: FontWeight.bold,
             color: pickTextColorBasedOnBgColorAdvanced(
                 Thm.isDarktheme(widget.prefs)
-                    ? fiberchatDIALOGColorDarkMode
-                    : fiberchatDIALOGColorLightMode),
+                    ? crypterchatDIALOGColorDarkMode
+                    : crypterchatDIALOGColorLightMode),
           ),
         ),
         onTap: () async {
@@ -148,8 +148,8 @@ class RecentChatsWithoutLastMessageState
               fontWeight: FontWeight.bold,
               color: pickTextColorBasedOnBgColorAdvanced(
                   Thm.isDarktheme(widget.prefs)
-                      ? fiberchatDIALOGColorDarkMode
-                      : fiberchatDIALOGColorLightMode),
+                      ? crypterchatDIALOGColorDarkMode
+                      : crypterchatDIALOGColorLightMode),
             ),
           ),
           onTap: () async {
@@ -158,15 +158,15 @@ class RecentChatsWithoutLastMessageState
               builder: (BuildContext context) {
                 return AlertDialog(
                   backgroundColor: Thm.isDarktheme(widget.prefs)
-                      ? fiberchatDIALOGColorDarkMode
-                      : fiberchatDIALOGColorLightMode,
+                      ? crypterchatDIALOGColorDarkMode
+                      : crypterchatDIALOGColorLightMode,
                   title: new Text(
                     getTranslated(context, 'deletethischat'),
                     style: TextStyle(
                       color: pickTextColorBasedOnBgColorAdvanced(
                           Thm.isDarktheme(widget.prefs)
-                              ? fiberchatDIALOGColorDarkMode
-                              : fiberchatDIALOGColorLightMode),
+                              ? crypterchatDIALOGColorDarkMode
+                              : crypterchatDIALOGColorLightMode),
                     ),
                   ),
                   content: new Text(
@@ -174,8 +174,8 @@ class RecentChatsWithoutLastMessageState
                     style: TextStyle(
                       color: pickTextColorBasedOnBgColorAdvanced(
                               Thm.isDarktheme(widget.prefs)
-                                  ? fiberchatDIALOGColorDarkMode
-                                  : fiberchatDIALOGColorLightMode)
+                                  ? crypterchatDIALOGColorDarkMode
+                                  : crypterchatDIALOGColorLightMode)
                           .withOpacity(0.6),
                     ),
                   ),
@@ -188,7 +188,7 @@ class RecentChatsWithoutLastMessageState
                       child: Text(
                         getTranslated(context, 'cancel'),
                         style: TextStyle(
-                            color: fiberchatPRIMARYcolor, fontSize: 18),
+                            color: crypterchatPRIMARYcolor, fontSize: 18),
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -202,15 +202,15 @@ class RecentChatsWithoutLastMessageState
                       child: Text(
                         getTranslated(context, 'delete'),
                         style: TextStyle(
-                            color: fiberchatREDbuttonColor, fontSize: 18),
+                            color: crypterchatREDbuttonColor, fontSize: 18),
                       ),
                       onPressed: () async {
-                        String chatId = Fiberchat.getChatId(
+                        String chatId = Crypterchat.getChatId(
                             currentUserNo!, targetUser[Dbkeys.phone]);
 
                         if (currentUserNo != null &&
                             targetUser[Dbkeys.phone] != null) {
-                          // Fiberchat.toast(
+                          // Crypterchat.toast(
                           //     getTranslated(context, 'plswait'));
                           await FirebaseFirestore.instance
                               .collection(DbPaths.collectionmessages)
@@ -240,7 +240,7 @@ class RecentChatsWithoutLastMessageState
                               // the new route
                               MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    FiberchatWrapper(),
+                                    CrypterchatWrapper(),
                               ),
 
                               (Route route) => false,
@@ -257,7 +257,7 @@ class RecentChatsWithoutLastMessageState
                             //             ))));
                           });
                         } else {
-                          Fiberchat.toast('Error Occured. Could not delete !');
+                          Crypterchat.toast('Error Occured. Could not delete !');
                         }
                       },
                     )
@@ -273,8 +273,8 @@ class RecentChatsWithoutLastMessageState
         builder: (contextForDialog) {
           return SimpleDialog(
               backgroundColor: Thm.isDarktheme(widget.prefs)
-                  ? fiberchatDIALOGColorDarkMode
-                  : fiberchatDIALOGColorLightMode,
+                  ? crypterchatDIALOGColorDarkMode
+                  : crypterchatDIALOGColorLightMode,
               children: tiles);
         });
   }
@@ -295,8 +295,8 @@ class RecentChatsWithoutLastMessageState
             fontWeight: FontWeight.bold,
             color: pickTextColorBasedOnBgColorAdvanced(
                 Thm.isDarktheme(widget.prefs)
-                    ? fiberchatDIALOGColorDarkMode
-                    : fiberchatDIALOGColorLightMode),
+                    ? crypterchatDIALOGColorDarkMode
+                    : crypterchatDIALOGColorLightMode),
           ),
         ),
         onTap: () async {
@@ -305,15 +305,15 @@ class RecentChatsWithoutLastMessageState
             builder: (BuildContext context) {
               return AlertDialog(
                 backgroundColor: Thm.isDarktheme(widget.prefs)
-                    ? fiberchatDIALOGColorDarkMode
-                    : fiberchatDIALOGColorLightMode,
+                    ? crypterchatDIALOGColorDarkMode
+                    : crypterchatDIALOGColorLightMode,
                 title: new Text(
                   getTranslated(context, 'deletebroadcast'),
                   style: TextStyle(
                     color: pickTextColorBasedOnBgColorAdvanced(
                         Thm.isDarktheme(widget.prefs)
-                            ? fiberchatDIALOGColorDarkMode
-                            : fiberchatDIALOGColorLightMode),
+                            ? crypterchatDIALOGColorDarkMode
+                            : crypterchatDIALOGColorLightMode),
                   ),
                 ),
                 actions: [
@@ -325,7 +325,7 @@ class RecentChatsWithoutLastMessageState
                     child: Text(
                       getTranslated(context, 'cancel'),
                       style:
-                          TextStyle(color: fiberchatPRIMARYcolor, fontSize: 18),
+                          TextStyle(color: crypterchatPRIMARYcolor, fontSize: 18),
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -339,7 +339,7 @@ class RecentChatsWithoutLastMessageState
                     child: Text(
                       getTranslated(context, 'delete'),
                       style: TextStyle(
-                          color: fiberchatREDbuttonColor, fontSize: 18),
+                          color: crypterchatREDbuttonColor, fontSize: 18),
                     ),
                     onPressed: () async {
                       Navigator.of(context).pop();
@@ -369,8 +369,8 @@ class RecentChatsWithoutLastMessageState
         builder: (contextForDialog) {
           return SimpleDialog(
               backgroundColor: Thm.isDarktheme(widget.prefs)
-                  ? fiberchatDIALOGColorDarkMode
-                  : fiberchatDIALOGColorLightMode,
+                  ? crypterchatDIALOGColorDarkMode
+                  : crypterchatDIALOGColorLightMode,
               children: tiles);
         });
   }
@@ -389,8 +389,8 @@ class RecentChatsWithoutLastMessageState
               fontWeight: FontWeight.bold,
               color: pickTextColorBasedOnBgColorAdvanced(
                   Thm.isDarktheme(widget.prefs)
-                      ? fiberchatDIALOGColorDarkMode
-                      : fiberchatDIALOGColorLightMode),
+                      ? crypterchatDIALOGColorDarkMode
+                      : crypterchatDIALOGColorLightMode),
             ),
           ),
           onTap: () async {
@@ -399,15 +399,15 @@ class RecentChatsWithoutLastMessageState
               builder: (BuildContext context) {
                 return AlertDialog(
                   backgroundColor: Thm.isDarktheme(widget.prefs)
-                      ? fiberchatDIALOGColorDarkMode
-                      : fiberchatDIALOGColorLightMode,
+                      ? crypterchatDIALOGColorDarkMode
+                      : crypterchatDIALOGColorLightMode,
                   title: new Text(
                     getTranslated(context, 'deletegroup'),
                     style: TextStyle(
                       color: pickTextColorBasedOnBgColorAdvanced(
                           Thm.isDarktheme(widget.prefs)
-                              ? fiberchatDIALOGColorDarkMode
-                              : fiberchatDIALOGColorLightMode),
+                              ? crypterchatDIALOGColorDarkMode
+                              : crypterchatDIALOGColorLightMode),
                     ),
                   ),
                   actions: [
@@ -419,7 +419,7 @@ class RecentChatsWithoutLastMessageState
                       child: Text(
                         getTranslated(context, 'cancel'),
                         style: TextStyle(
-                            color: fiberchatPRIMARYcolor, fontSize: 18),
+                            color: crypterchatPRIMARYcolor, fontSize: 18),
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -433,7 +433,7 @@ class RecentChatsWithoutLastMessageState
                       child: Text(
                         getTranslated(context, 'delete'),
                         style: TextStyle(
-                            color: fiberchatREDbuttonColor, fontSize: 18),
+                            color: crypterchatREDbuttonColor, fontSize: 18),
                       ),
                       onPressed: () async {
                         Navigator.of(context).pop();
@@ -474,8 +474,8 @@ class RecentChatsWithoutLastMessageState
               fontWeight: FontWeight.bold,
               color: pickTextColorBasedOnBgColorAdvanced(
                   Thm.isDarktheme(widget.prefs)
-                      ? fiberchatDIALOGColorDarkMode
-                      : fiberchatDIALOGColorLightMode),
+                      ? crypterchatDIALOGColorDarkMode
+                      : crypterchatDIALOGColorLightMode),
             ),
           ),
           onTap: () async {
@@ -484,15 +484,15 @@ class RecentChatsWithoutLastMessageState
               builder: (BuildContext context) {
                 return AlertDialog(
                   backgroundColor: Thm.isDarktheme(widget.prefs)
-                      ? fiberchatDIALOGColorDarkMode
-                      : fiberchatDIALOGColorLightMode,
+                      ? crypterchatDIALOGColorDarkMode
+                      : crypterchatDIALOGColorLightMode,
                   title: new Text(
                     getTranslated(context, 'leavegroup'),
                     style: TextStyle(
                       color: pickTextColorBasedOnBgColorAdvanced(
                           Thm.isDarktheme(widget.prefs)
-                              ? fiberchatDIALOGColorDarkMode
-                              : fiberchatDIALOGColorLightMode),
+                              ? crypterchatDIALOGColorDarkMode
+                              : crypterchatDIALOGColorLightMode),
                     ),
                   ),
                   actions: [
@@ -504,7 +504,7 @@ class RecentChatsWithoutLastMessageState
                       child: Text(
                         getTranslated(context, 'cancel'),
                         style: TextStyle(
-                            color: fiberchatPRIMARYcolor, fontSize: 18),
+                            color: crypterchatPRIMARYcolor, fontSize: 18),
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -518,7 +518,7 @@ class RecentChatsWithoutLastMessageState
                       child: Text(
                         getTranslated(context, 'leave'),
                         style: TextStyle(
-                            color: fiberchatREDbuttonColor, fontSize: 18),
+                            color: crypterchatREDbuttonColor, fontSize: 18),
                       ),
                       onPressed: () async {
                         Navigator.of(context).pop();
@@ -597,7 +597,7 @@ class RecentChatsWithoutLastMessageState
                                   .delete();
                             } catch (err) {}
                           }).catchError((err) {
-                            // Fiberchat.toast(
+                            // Crypterchat.toast(
                             //     getTranslated(context,
                             //         'unabletoleavegrp'));
                           });
@@ -616,8 +616,8 @@ class RecentChatsWithoutLastMessageState
         builder: (contextForDialog) {
           return SimpleDialog(
               backgroundColor: Thm.isDarktheme(widget.prefs)
-                  ? fiberchatDIALOGColorDarkMode
-                  : fiberchatDIALOGColorLightMode,
+                  ? crypterchatDIALOGColorDarkMode
+                  : crypterchatDIALOGColorLightMode,
               children: tiles);
         });
   }
@@ -645,11 +645,11 @@ class RecentChatsWithoutLastMessageState
                   leading: customCircleAvatar(
                       url: user[Dbkeys.photoUrl], radius: 22),
                   title: Text(
-                    Fiberchat.getNickname(user)!,
+                    Crypterchat.getNickname(user)!,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: fiberchatBlack,
+                      color: crypterchatBlack,
                       fontSize: 16,
                     ),
                   ),
@@ -678,7 +678,7 @@ class RecentChatsWithoutLastMessageState
                             getTranslated(context, 'auth_neededchat'),
                             state: state,
                             shouldPop: false,
-                            type: Fiberchat.getAuthenticationType(
+                            type: Crypterchat.getAuthenticationType(
                                 biometricEnabled, _cachedModel),
                             prefs: widget.prefs, onSuccess: () {
                           state.pushReplacement(new MaterialPageRoute(
@@ -715,7 +715,7 @@ class RecentChatsWithoutLastMessageState
                           decoration: new BoxDecoration(
                             shape: BoxShape.circle,
                             color: user[Dbkeys.lastSeen] == true
-                                ? fiberchatGreenColor400
+                                ? crypterchatGreenColor400
                                 : Colors.blue[400],
                           ),
                         )
@@ -725,7 +725,7 @@ class RecentChatsWithoutLastMessageState
                               padding: const EdgeInsets.all(7.0),
                               decoration: new BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: fiberchatGreenColor400),
+                                  color: crypterchatGreenColor400),
                             )
                           : SizedBox(
                               height: 0,
@@ -743,7 +743,7 @@ class RecentChatsWithoutLastMessageState
   }
 
   Stream<MessageData> getUnread(Map<String, dynamic> user) {
-    String chatId = Fiberchat.getChatId(currentUserNo!, user[Dbkeys.phone]);
+    String chatId = Crypterchat.getChatId(currentUserNo!, user[Dbkeys.phone]);
     var controller = StreamController<MessageData>.broadcast();
     unreadSubscriptions.add(FirebaseFirestore.instance
         .collection(DbPaths.collectionmessages)
@@ -865,7 +865,7 @@ class RecentChatsWithoutLastMessageState
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontSize: 18,
-                                                      color: fiberchatGrey,
+                                                      color: crypterchatGrey,
                                                     )),
                                               ))
                                         ]);
@@ -897,14 +897,14 @@ class RecentChatsWithoutLastMessageState
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
-                                                color: fiberchatBlack,
+                                                color: crypterchatBlack,
                                                 fontSize: 16,
                                               ),
                                             ),
                                             subtitle: Text(
                                               '${_streamDocSnap[index][Dbkeys.groupMEMBERSLIST].length} ${getTranslated(context, 'participants')}',
                                               style: TextStyle(
-                                                color: fiberchatGrey,
+                                                color: crypterchatGrey,
                                                 fontSize: 14,
                                               ),
                                             ),
@@ -1019,14 +1019,14 @@ class RecentChatsWithoutLastMessageState
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
-                                                color: fiberchatBlack,
+                                                color: crypterchatBlack,
                                                 fontSize: 16,
                                               ),
                                             ),
                                             subtitle: Text(
                                               '${_streamDocSnap[index][Dbkeys.broadcastMEMBERSLIST].length} ${getTranslated(context, 'recipients')}',
                                               style: TextStyle(
-                                                color: fiberchatGrey,
+                                                color: crypterchatGrey,
                                                 fontSize: 14,
                                               ),
                                             ),
@@ -1086,7 +1086,7 @@ class RecentChatsWithoutLastMessageState
                                                 style: TextStyle(
                                                   fontSize: 16,
                                                   height: 1.59,
-                                                  color: fiberchatGrey,
+                                                  color: crypterchatGrey,
                                                 ))),
                                       ))
                                 ])),
@@ -1121,7 +1121,7 @@ class RecentChatsWithoutLastMessageState
   Widget build(BuildContext context) {
     final observer = Provider.of<Observer>(this.context, listen: false);
     setStatusBarColor(widget.prefs);
-    return Fiberchat.getNTPWrappedWidget(ScopedModel<DataModel>(
+    return Crypterchat.getNTPWrappedWidget(ScopedModel<DataModel>(
       model: getModel()!,
       child:
           ScopedModelDescendant<DataModel>(builder: (context, child, _model) {
@@ -1139,7 +1139,7 @@ class RecentChatsWithoutLastMessageState
           //     : SizedBox(
           //         height: 0,
           //       ),
-          backgroundColor: fiberchatWhite,
+          backgroundColor: crypterchatWhite,
           floatingActionButton: Padding(
             padding: EdgeInsets.only(bottom: 0
                 // bottom: IsBannerAdShow == true && observer.isadmobshow == true
@@ -1148,7 +1148,7 @@ class RecentChatsWithoutLastMessageState
                 ),
             child: FloatingActionButton(
                 heroTag: "sdfweewfwq123sdasfw",
-                backgroundColor: fiberchatSECONDARYolor,
+                backgroundColor: crypterchatSECONDARYolor,
                 child: Icon(
                   Icons.chat,
                   size: 30.0,
@@ -1161,7 +1161,7 @@ class RecentChatsWithoutLastMessageState
                               onTapCreateBroadcast: () {
                                 if (observer.isAllowCreatingBroadcasts ==
                                     false) {
-                                  Fiberchat.showRationale(
+                                  Crypterchat.showRationale(
                                       getTranslated(this.context, 'disabled'));
                                 } else {
                                   Navigator.pushReplacement(
@@ -1181,7 +1181,7 @@ class RecentChatsWithoutLastMessageState
                               },
                               onTapCreateGroup: () {
                                 if (observer.isAllowCreatingGroups == false) {
-                                  Fiberchat.showRationale(
+                                  Crypterchat.showRationale(
                                       getTranslated(this.context, 'disabled'));
                                 } else {
                                   Navigator.pushReplacement(

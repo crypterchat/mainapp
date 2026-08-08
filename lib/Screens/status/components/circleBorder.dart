@@ -1,7 +1,7 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:math';
-import 'package:fiberchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class CircularBorder extends StatelessWidget {
@@ -132,7 +132,7 @@ class MyPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = width;
     Paint unseen = new Paint()
-      ..color = fiberchatGreenColor500.withOpacity(0.8)
+      ..color = crypterchatGreenColor500.withOpacity(0.8)
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke
       ..strokeWidth = width;

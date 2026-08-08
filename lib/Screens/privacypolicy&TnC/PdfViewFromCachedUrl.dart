@@ -1,10 +1,10 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_layout.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,8 +37,8 @@ class PDFViewerCachedFromUrl extends StatelessWidget {
                   size: 30,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode),
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode),
                 ),
               ),
               title: Text(
@@ -46,13 +46,13 @@ class PDFViewerCachedFromUrl extends StatelessWidget {
                 style: TextStyle(
                     color: pickTextColorBasedOnBgColorAdvanced(
                         Thm.isDarktheme(prefs)
-                            ? fiberchatAPPBARcolorDarkMode
-                            : fiberchatAPPBARcolorLightMode),
+                            ? crypterchatAPPBARcolorDarkMode
+                            : crypterchatAPPBARcolorLightMode),
                     fontSize: 18),
               ),
               backgroundColor: Thm.isDarktheme(prefs)
-                  ? fiberchatAPPBARcolorDarkMode
-                  : fiberchatAPPBARcolorLightMode,
+                  ? crypterchatAPPBARcolorDarkMode
+                  : crypterchatAPPBARcolorLightMode,
             ),
             body: const PDF().cachedFromUrl(
               url!,
@@ -64,7 +64,7 @@ class PDFViewerCachedFromUrl extends StatelessWidget {
           )
         : PickupLayout(
             prefs: prefs,
-            scaffold: Fiberchat.getNTPWrappedWidget(Scaffold(
+            scaffold: Crypterchat.getNTPWrappedWidget(Scaffold(
               appBar: AppBar(
                 elevation: 0.4,
                 leading: IconButton(
@@ -76,8 +76,8 @@ class PDFViewerCachedFromUrl extends StatelessWidget {
                     size: 30,
                     color: pickTextColorBasedOnBgColorAdvanced(
                         Thm.isDarktheme(prefs)
-                            ? fiberchatAPPBARcolorDarkMode
-                            : fiberchatAPPBARcolorLightMode),
+                            ? crypterchatAPPBARcolorDarkMode
+                            : crypterchatAPPBARcolorLightMode),
                   ),
                 ),
                 title: Text(
@@ -85,13 +85,13 @@ class PDFViewerCachedFromUrl extends StatelessWidget {
                   style: TextStyle(
                       color: pickTextColorBasedOnBgColorAdvanced(
                           Thm.isDarktheme(prefs)
-                              ? fiberchatAPPBARcolorDarkMode
-                              : fiberchatAPPBARcolorLightMode),
+                              ? crypterchatAPPBARcolorDarkMode
+                              : crypterchatAPPBARcolorLightMode),
                       fontSize: 18),
                 ),
                 backgroundColor: Thm.isDarktheme(prefs)
-                    ? fiberchatAPPBARcolorDarkMode
-                    : fiberchatAPPBARcolorLightMode,
+                    ? crypterchatAPPBARcolorDarkMode
+                    : crypterchatAPPBARcolorLightMode,
               ),
               body: const PDF().cachedFromUrl(
                 url!,

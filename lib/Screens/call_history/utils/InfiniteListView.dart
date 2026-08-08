@@ -1,11 +1,11 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Services/Providers/call_history_provider.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Services/Providers/call_history_provider.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -99,7 +99,7 @@ class _InfiniteListViewState extends State<InfiniteListView> {
                             child: Center(
                               child: CircularProgressIndicator(
                                   valueColor: AlwaysStoppedAnimation<Color>(
-                                      fiberchatSECONDARYolor)),
+                                      crypterchatSECONDARYolor)),
                             ),
                           ),
                         ),
@@ -142,8 +142,8 @@ class _InfiniteListViewState extends State<InfiniteListView> {
                                       style: TextStyle(
                                           color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                   .isDarktheme(widget.prefs)
-                                              ? fiberchatBACKGROUNDcolorDarkMode
-                                              : fiberchatBACKGROUNDcolorLightMode),
+                                              ? crypterchatBACKGROUNDcolorDarkMode
+                                              : crypterchatBACKGROUNDcolorLightMode),
                                           fontSize: 17,
                                           fontWeight: FontWeight.w700),
                                     ),

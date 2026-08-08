@@ -1,20 +1,20 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/auth_screens/login.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Services/Providers/BroadcastProvider.dart';
-import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/MyElevatedButton/MyElevatedButton.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Screens/auth_screens/login.dart';
+import 'package:crypterchat/Screens/call_history/callhistory.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_layout.dart';
+import 'package:crypterchat/Services/Providers/BroadcastProvider.dart';
+import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/widgets/MyElevatedButton/MyElevatedButton.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -71,12 +71,12 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
       Container(
         color: pickTextColorBasedOnBgColorAdvanced(
                 !Thm.isDarktheme(widget.prefs)
-                    ? fiberchatAPPBARcolorDarkMode
-                    : fiberchatAPPBARcolorLightMode)
+                    ? crypterchatAPPBARcolorDarkMode
+                    : crypterchatAPPBARcolorLightMode)
             .withOpacity(0.8),
         child: Center(
             child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(fiberchatSECONDARYolor),
+          valueColor: AlwaysStoppedAnimation<Color>(crypterchatSECONDARYolor),
         )),
       )
     ]);
@@ -89,7 +89,7 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
 
     return PickupLayout(
         prefs: widget.prefs,
-        scaffold: Fiberchat.getNTPWrappedWidget(ScopedModel<DataModel>(
+        scaffold: Crypterchat.getNTPWrappedWidget(ScopedModel<DataModel>(
             model: widget.model!,
             child: ScopedModelDescendant<DataModel>(
                 builder: (context, child, model) {
@@ -102,8 +102,8 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                       key: _scaffold,
                                       backgroundColor: Thm.isDarktheme(
                                               widget.prefs)
-                                          ? fiberchatBACKGROUNDcolorDarkMode
-                                          : fiberchatBACKGROUNDcolorLightMode,
+                                          ? crypterchatBACKGROUNDcolorDarkMode
+                                          : crypterchatBACKGROUNDcolorLightMode,
                                       appBar: AppBar(
                                         elevation: 0.4,
                                         leading: IconButton(
@@ -115,14 +115,14 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                             size: 24,
                                             color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                     .isDarktheme(widget.prefs)
-                                                ? fiberchatAPPBARcolorDarkMode
-                                                : fiberchatAPPBARcolorLightMode),
+                                                ? crypterchatAPPBARcolorDarkMode
+                                                : crypterchatAPPBARcolorLightMode),
                                           ),
                                         ),
                                         backgroundColor:
                                             Thm.isDarktheme(widget.prefs)
-                                                ? fiberchatAPPBARcolorDarkMode
-                                                : fiberchatAPPBARcolorLightMode,
+                                                ? crypterchatAPPBARcolorDarkMode
+                                                : crypterchatAPPBARcolorLightMode,
                                         centerTitle: false,
                                         title: _selectedList.length == 0
                                             ? Text(
@@ -133,8 +133,8 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                                   color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                           .isDarktheme(
                                                               widget.prefs)
-                                                      ? fiberchatAPPBARcolorDarkMode
-                                                      : fiberchatAPPBARcolorLightMode),
+                                                      ? crypterchatAPPBARcolorDarkMode
+                                                      : crypterchatAPPBARcolorLightMode),
                                                 ),
                                                 textAlign: TextAlign.left,
                                               )
@@ -150,8 +150,8 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                                       color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                               .isDarktheme(
                                                                   widget.prefs)
-                                                          ? fiberchatAPPBARcolorDarkMode
-                                                          : fiberchatAPPBARcolorLightMode),
+                                                          ? crypterchatAPPBARcolorDarkMode
+                                                          : crypterchatAPPBARcolorLightMode),
                                                     ),
                                                     textAlign: TextAlign.left,
                                                   ),
@@ -168,8 +168,8 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                                       color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                               .isDarktheme(
                                                                   widget.prefs)
-                                                          ? fiberchatAPPBARcolorDarkMode
-                                                          : fiberchatAPPBARcolorLightMode),
+                                                          ? crypterchatAPPBARcolorDarkMode
+                                                          : crypterchatAPPBARcolorLightMode),
                                                     ),
                                                     textAlign: TextAlign.left,
                                                   ),
@@ -184,8 +184,8 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                                     color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                             .isDarktheme(
                                                                 widget.prefs)
-                                                        ? fiberchatAPPBARcolorDarkMode
-                                                        : fiberchatAPPBARcolorLightMode),
+                                                        ? crypterchatAPPBARcolorDarkMode
+                                                        : crypterchatAPPBARcolorLightMode),
                                                   ),
                                                   onPressed:
                                                       widget.isAddingWhileCreatingBroadcast ==
@@ -199,8 +199,8 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                                                   backgroundColor: Thm.isDarktheme(
                                                                           widget
                                                                               .prefs)
-                                                                      ? fiberchatDIALOGColorDarkMode
-                                                                      : fiberchatDIALOGColorLightMode,
+                                                                      ? crypterchatDIALOGColorDarkMode
+                                                                      : crypterchatDIALOGColorLightMode,
                                                                   isScrollControlled:
                                                                       true,
                                                                   context:
@@ -240,7 +240,7 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                                                               child: Text(
                                                                                 getTranslated(this.context, 'setbroadcastdetails'),
                                                                                 textAlign: TextAlign.left,
-                                                                                style: TextStyle(color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs) ? fiberchatDIALOGColorDarkMode : fiberchatDIALOGColorLightMode), fontWeight: FontWeight.bold, fontSize: 16.5),
+                                                                                style: TextStyle(color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs) ? crypterchatDIALOGColorDarkMode : crypterchatDIALOGColorLightMode), fontWeight: FontWeight.bold, fontSize: 16.5),
                                                                               ),
                                                                             ),
                                                                             SizedBox(
@@ -291,7 +291,7 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                                                               height: 6,
                                                                             ),
                                                                             myElevatedButton(
-                                                                                color: fiberchatSECONDARYolor,
+                                                                                color: crypterchatSECONDARYolor,
                                                                                 child: Padding(
                                                                                   padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
                                                                                   child: Text(
@@ -347,7 +347,7 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                                                                         iscreatingbroadcast = false;
                                                                                       });
 
-                                                                                      Fiberchat.toast('Error Creating Broadcast. $err');
+                                                                                      Crypterchat.toast('Error Creating Broadcast. $err');
                                                                                       print('Error Creating Broadcast. $err');
                                                                                     });
                                                                                   });
@@ -458,7 +458,7 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                                                         false;
                                                                   });
 
-                                                                  Fiberchat
+                                                                  Crypterchat
                                                                       .toast(
                                                                     getTranslated(
                                                                         context,
@@ -482,8 +482,8 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                           : Container(
                                               color: Thm.isDarktheme(
                                                       widget.prefs)
-                                                  ? fiberchatDIALOGColorDarkMode
-                                                  : fiberchatDIALOGColorLightMode,
+                                                  ? crypterchatDIALOGColorDarkMode
+                                                  : crypterchatDIALOGColorLightMode,
                                               padding: EdgeInsets.only(top: 6),
                                               width: MediaQuery.of(context)
                                                   .size
@@ -532,8 +532,8 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                                                   color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(
                                                                           widget
                                                                               .prefs)
-                                                                      ? fiberchatCONTAINERboxColorDarkMode
-                                                                      : fiberchatCONTAINERboxColorLightMode),
+                                                                      ? crypterchatCONTAINERboxColorDarkMode
+                                                                      : crypterchatCONTAINERboxColorLightMode),
                                                                 ),
                                                               ),
                                                             ],
@@ -629,7 +629,7 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                                                           fontSize:
                                                                               18,
                                                                           color:
-                                                                              fiberchatGrey,
+                                                                              crypterchatGrey,
                                                                         )),
                                                                     SizedBox(
                                                                       height:
@@ -666,7 +666,7 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                                                           size:
                                                                               40,
                                                                           color:
-                                                                              fiberchatPRIMARYcolor,
+                                                                              crypterchatPRIMARYcolor,
                                                                         ))
                                                                   ],
                                                                 ),
@@ -715,7 +715,7 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                                                                         padding: const EdgeInsets.only(bottom: 2.5, right: 4),
                                                                                         child: Icon(
                                                                                           Icons.contact_page,
-                                                                                          color: fiberchatPRIMARYcolor.withOpacity(0.7),
+                                                                                          color: crypterchatPRIMARYcolor.withOpacity(0.7),
                                                                                           size: 14,
                                                                                         ),
                                                                                       ),
@@ -724,7 +724,7 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                                                                         text: getTranslated(this.context, 'nosavedcontacts'),
                                                                                         // text:
                                                                                         //     'No Saved Contacts available for this task',
-                                                                                        style: TextStyle(color: fiberchatSECONDARYolor.withOpacity(0.7), height: 1.3, fontSize: 13, fontWeight: FontWeight.w400)),
+                                                                                        style: TextStyle(color: crypterchatSECONDARYolor.withOpacity(0.7), height: 1.3, fontSize: 13, fontWeight: FontWeight.w400)),
                                                                                   ],
                                                                                 ),
                                                                               )),
@@ -739,15 +739,15 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                                                           padding: EdgeInsets.all(30),
                                                                           child: CircularProgressIndicator(
                                                                             valueColor:
-                                                                                AlwaysStoppedAnimation<Color>(fiberchatSECONDARYolor),
+                                                                                AlwaysStoppedAnimation<Color>(crypterchatSECONDARYolor),
                                                                           )),
                                                                     )),
                                                           Container(
                                                             color: Thm.isDarktheme(
                                                                     widget
                                                                         .prefs)
-                                                                ? fiberchatCONTAINERboxColorDarkMode
-                                                                : fiberchatCONTAINERboxColorLightMode,
+                                                                ? crypterchatCONTAINERboxColorDarkMode
+                                                                : crypterchatCONTAINERboxColorLightMode,
                                                             child: ListView
                                                                 .builder(
                                                               physics:
@@ -796,7 +796,7 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                                                                 user =
                                                                                 snapshot.data!;
                                                                             return Container(
-                                                                              color: Thm.isDarktheme(widget.prefs) ? fiberchatCONTAINERboxColorDarkMode : fiberchatCONTAINERboxColorLightMode,
+                                                                              color: Thm.isDarktheme(widget.prefs) ? crypterchatCONTAINERboxColorDarkMode : crypterchatCONTAINERboxColorLightMode,
                                                                               child: Column(
                                                                                 children: [
                                                                                   ListTile(
@@ -806,14 +806,14 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                                                                     ),
                                                                                     trailing: Container(
                                                                                       decoration: BoxDecoration(
-                                                                                        border: Border.all(color: fiberchatGrey, width: 1),
+                                                                                        border: Border.all(color: crypterchatGrey, width: 1),
                                                                                         borderRadius: BorderRadius.circular(5),
                                                                                       ),
                                                                                       child: _selectedList.lastIndexWhere((element) => element.id == phone) >= 0
                                                                                           ? Icon(
                                                                                               Icons.check,
                                                                                               size: 19.0,
-                                                                                              color: fiberchatPRIMARYcolor,
+                                                                                              color: crypterchatPRIMARYcolor,
                                                                                             )
                                                                                           : Icon(
                                                                                               Icons.check,
@@ -823,9 +823,9 @@ class _AddContactsToBroadcastState extends State<AddContactsToBroadcast>
                                                                                     ),
                                                                                     title: Text(user.name,
                                                                                         style: TextStyle(
-                                                                                          color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs) ? fiberchatCONTAINERboxColorDarkMode : fiberchatCONTAINERboxColorLightMode),
+                                                                                          color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs) ? crypterchatCONTAINERboxColorDarkMode : crypterchatCONTAINERboxColorLightMode),
                                                                                         )),
-                                                                                    subtitle: Text(phone, style: TextStyle(color: fiberchatGrey)),
+                                                                                    subtitle: Text(phone, style: TextStyle(color: crypterchatGrey)),
                                                                                     contentPadding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 0.0),
                                                                                     onTap: () {
                                                                                       if (_selectedList.indexWhere((element) => element.id == phone) >= 0) {

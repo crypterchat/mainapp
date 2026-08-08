@@ -1,10 +1,10 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:io';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_video_info/flutter_video_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -85,21 +85,21 @@ class _StatusVideoCaptionEditorState extends State<StatusVideoCaptionEditor> {
             size: 30,
             color: pickTextColorBasedOnBgColorAdvanced(
                 Thm.isDarktheme(widget.prefs)
-                    ? fiberchatAPPBARcolorDarkMode
-                    : fiberchatAPPBARcolorLightMode),
+                    ? crypterchatAPPBARcolorDarkMode
+                    : crypterchatAPPBARcolorLightMode),
           ),
         ),
         backgroundColor: Thm.isDarktheme(widget.prefs)
-            ? fiberchatAPPBARcolorDarkMode
-            : fiberchatAPPBARcolorLightMode,
+            ? crypterchatAPPBARcolorDarkMode
+            : crypterchatAPPBARcolorLightMode,
         title: Text(
           widget.title,
           style: TextStyle(
             fontSize: 18,
             color: pickTextColorBasedOnBgColorAdvanced(
                 Thm.isDarktheme(widget.prefs)
-                    ? fiberchatAPPBARcolorDarkMode
-                    : fiberchatAPPBARcolorLightMode),
+                    ? crypterchatAPPBARcolorDarkMode
+                    : crypterchatAPPBARcolorLightMode),
           ),
         ),
         actions: info == null
@@ -110,8 +110,8 @@ class _StatusVideoCaptionEditorState extends State<StatusVideoCaptionEditor> {
                       Icons.check,
                       color: pickTextColorBasedOnBgColorAdvanced(
                           Thm.isDarktheme(widget.prefs)
-                              ? fiberchatAPPBARcolorDarkMode
-                              : fiberchatAPPBARcolorLightMode),
+                              ? crypterchatAPPBARcolorDarkMode
+                              : crypterchatAPPBARcolorLightMode),
                     ),
                     onPressed: () async {
                       await _videoPlayerController.pause();
@@ -137,7 +137,7 @@ class _StatusVideoCaptionEditorState extends State<StatusVideoCaptionEditor> {
                       : info == null
                           ? CircularProgressIndicator(
                               valueColor: AlwaysStoppedAnimation<Color>(
-                                  fiberchatSECONDARYolor))
+                                  crypterchatSECONDARYolor))
                           : _buildVideo(context))),
           Container(
             padding: EdgeInsets.all(12),
@@ -150,7 +150,7 @@ class _StatusVideoCaptionEditorState extends State<StatusVideoCaptionEditor> {
                   maxLength: 100,
                   maxLines: null,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 18.0, color: fiberchatWhite),
+                  style: TextStyle(fontSize: 18.0, color: crypterchatWhite),
                   controller: textEditingController,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
@@ -184,12 +184,12 @@ class _StatusVideoCaptionEditorState extends State<StatusVideoCaptionEditor> {
                   child: Center(
                     child: CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation<Color>(
-                            fiberchatSECONDARYolor)),
+                            crypterchatSECONDARYolor)),
                   ),
                   color: pickTextColorBasedOnBgColorAdvanced(
                           !Thm.isDarktheme(widget.prefs)
-                              ? fiberchatCONTAINERboxColorDarkMode
-                              : fiberchatCONTAINERboxColorLightMode)
+                              ? crypterchatCONTAINERboxColorDarkMode
+                              : crypterchatCONTAINERboxColorLightMode)
                       .withOpacity(0.6),
                 )
               : Container(),

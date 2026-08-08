@@ -1,14 +1,14 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:io';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/status/components/status_video_caption_editor.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Screens/status/components/status_video_caption_editor.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/open_settings.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
@@ -102,7 +102,7 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
         }
       }
     } catch (e) {
-      Fiberchat.toast('Cannot Send this Document type');
+      Crypterchat.toast('Cannot Send this Document type');
       Navigator.of(this.context).pop();
     }
   }
@@ -128,7 +128,7 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 16,
-                color: fiberchatGrey,
+                color: crypterchatGrey,
               ),
             ),
           )
@@ -138,7 +138,7 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
       return new Text(getTranslated(this.context, 'takefile'),
           style: new TextStyle(
             fontSize: 18.0,
-            color: fiberchatGrey,
+            color: crypterchatGrey,
           ));
     }
   }
@@ -155,7 +155,7 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
             style: TextStyle(
                 fontWeight: FontWeight.w800,
                 fontSize: 26,
-                color: fiberchatPRIMARYcolor),
+                color: crypterchatPRIMARYcolor),
           ),
           SizedBox(
             height: 20,
@@ -167,14 +167,14 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
                 fontSize: 17,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(widget.prefs)
-                        ? fiberchatAPPBARcolorDarkMode
-                        : fiberchatAPPBARcolorLightMode)),
+                        ? crypterchatAPPBARcolorDarkMode
+                        : crypterchatAPPBARcolorLightMode)),
           )
         ],
       )),
       color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(widget.prefs)
-              ? fiberchatAPPBARcolorDarkMode
-              : fiberchatAPPBARcolorLightMode)
+              ? crypterchatAPPBARcolorDarkMode
+              : crypterchatAPPBARcolorLightMode)
           .withOpacity(0.8),
     );
   }
@@ -217,7 +217,7 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
                             textAlign: TextAlign.center,
                             overflow: TextOverflow.ellipsis,
                             style:
-                                TextStyle(fontSize: 14, color: fiberchatBlack),
+                                TextStyle(fontSize: 14, color: crypterchatBlack),
                           ),
                         )
                       ],
@@ -236,7 +236,7 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
                                 '${getTranslated(this.context, 'maxfilesize')} ${observer.maxFileSizeAllowedInMB}MB\n${getTranslated(this.context, 'selectedfilesize')} ${(File(seletedFiles[i].path!).lengthSync() / 1000000).round()}MB',
                                 style: TextStyle(
                                     fontSize: 12,
-                                    color: fiberchatREDbuttonColor,
+                                    color: crypterchatREDbuttonColor,
                                     fontWeight: FontWeight.w700),
                                 textAlign: TextAlign.center,
                                 overflow: TextOverflow.ellipsis,
@@ -283,7 +283,7 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
       return new Text(getTranslated(this.context, 'takefile'),
           style: new TextStyle(
             fontSize: 18.0,
-            color: fiberchatGrey,
+            color: crypterchatGrey,
           ));
     }
   }
@@ -291,12 +291,12 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
   @override
   Widget build(BuildContext context) {
     final observer = Provider.of<Observer>(this.context, listen: false);
-    return Fiberchat.getNTPWrappedWidget(PopScope(
+    return Crypterchat.getNTPWrappedWidget(PopScope(
       onPopInvoked: (v) => Future.value(!isLoading),
       child: Scaffold(
         backgroundColor: Thm.isDarktheme(widget.prefs)
-            ? fiberchatBACKGROUNDcolorDarkMode
-            : fiberchatBACKGROUNDcolorLightMode,
+            ? crypterchatBACKGROUNDcolorDarkMode
+            : crypterchatBACKGROUNDcolorLightMode,
         appBar: new AppBar(
             elevation: 0.4,
             leading: IconButton(
@@ -310,8 +310,8 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
                 size: 30,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(widget.prefs)
-                        ? fiberchatAPPBARcolorDarkMode
-                        : fiberchatAPPBARcolorLightMode),
+                        ? crypterchatAPPBARcolorDarkMode
+                        : crypterchatAPPBARcolorLightMode),
               ),
             ),
             title: new Text(
@@ -322,13 +322,13 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
                 fontSize: 18,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(widget.prefs)
-                        ? fiberchatAPPBARcolorDarkMode
-                        : fiberchatAPPBARcolorLightMode),
+                        ? crypterchatAPPBARcolorDarkMode
+                        : crypterchatAPPBARcolorLightMode),
               ),
             ),
             backgroundColor: Thm.isDarktheme(widget.prefs)
-                ? fiberchatAPPBARcolorDarkMode
-                : fiberchatAPPBARcolorLightMode,
+                ? crypterchatAPPBARcolorDarkMode
+                : crypterchatAPPBARcolorLightMode,
             actions: seletedFiles.length != 0 && !isLoading
                 ? <Widget>[
                     IconButton(
@@ -336,8 +336,8 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
                           Icons.check,
                           color: pickTextColorBasedOnBgColorAdvanced(
                               Thm.isDarktheme(widget.prefs)
-                                  ? fiberchatAPPBARcolorDarkMode
-                                  : fiberchatAPPBARcolorLightMode),
+                                  ? crypterchatAPPBARcolorDarkMode
+                                  : crypterchatAPPBARcolorLightMode),
                         ),
                         onPressed: checkTotalNoOfFilesIfExceeded() == false
                             ? (checkIfAnyFileSizeExceeded() == false
@@ -352,12 +352,12 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
                                     final observer = Provider.of<Observer>(
                                         this.context,
                                         listen: false);
-                                    Fiberchat.toast(getTranslated(
+                                    Crypterchat.toast(getTranslated(
                                             context, 'filesizeexceeded') +
                                         ': ${observer.maxFileSizeAllowedInMB}MB');
                                   })
                             : () {
-                                Fiberchat.toast(
+                                Crypterchat.toast(
                                     '${getTranslated(this.context, 'maxnooffiles')}: ${observer.maxNoOfFilesInMultiSharing}');
                               }),
                     SizedBox(
@@ -387,12 +387,12 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
                         child: Center(
                           child: CircularProgressIndicator(
                               valueColor: AlwaysStoppedAnimation<Color>(
-                                  fiberchatSECONDARYolor)),
+                                  crypterchatSECONDARYolor)),
                         ),
                         color: pickTextColorBasedOnBgColorAdvanced(
                                 !Thm.isDarktheme(widget.prefs)
-                                    ? fiberchatAPPBARcolorDarkMode
-                                    : fiberchatAPPBARcolorLightMode)
+                                    ? crypterchatAPPBARcolorDarkMode
+                                    : crypterchatAPPBARcolorLightMode)
                             .withOpacity(0.6),
                       )
                 : Container(),
@@ -438,19 +438,19 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
                   Icons.add,
                   checkTotalNoOfFilesIfExceeded() == false
                       ? () {
-                          Fiberchat.checkAndRequestPermission(
+                          Crypterchat.checkAndRequestPermission(
                                   Permission.storage)
                               .then((res) {
                             if (res == true) {
                               captureMultiPageDoc(false);
                             } else if (res == false) {
-                              Fiberchat.checkAndRequestPermission(
+                              Crypterchat.checkAndRequestPermission(
                                       Permission.mediaLibrary)
                                   .then((res2) {
                                 if (res2 == true) {
                                   captureMultiPageDoc(false);
                                 } else if (res2 == false) {
-                                  Fiberchat.showRationale(
+                                  Crypterchat.showRationale(
                                       getTranslated(this.context, 'psac'));
                                   Navigator.pushReplacement(
                                       this.context,
@@ -460,7 +460,7 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
                                               )));
                                 } else {}
                               });
-                              // Fiberchat.showRationale(
+                              // Crypterchat.showRationale(
                               //     getTranslated(this.context, 'pgi'));
                               // Navigator.pushReplacement(
                               //     this.context,
@@ -472,7 +472,7 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
                           });
                         }
                       : () {
-                          Fiberchat.toast(
+                          Crypterchat.toast(
                               '${getTranslated(this.context, 'maxnooffiles')}: ${observer.maxNoOfFilesInMultiSharing}');
                         }),
             ]));
@@ -483,7 +483,7 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
       child: IconButton(
           key: key,
           icon: Icon(icon, size: 30.0),
-          color: fiberchatSECONDARYolor,
+          color: crypterchatSECONDARYolor,
           onPressed: onPressed as void Function()?),
     );
   }

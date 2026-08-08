@@ -1,8 +1,8 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -33,7 +33,7 @@ openUploadDialog(
           percent == null ? '0%' : "${(percent * 100).roundToDouble()}%",
           style: TextStyle(fontSize: 11),
         ),
-        progressColor: fiberchatGreenColor400,
+        progressColor: crypterchatGreenColor400,
       ),
       Container(
         width: 195,
@@ -48,14 +48,14 @@ openUploadDialog(
               fontWeight: FontWeight.w600,
               fontSize: 14,
               color: pickTextColorBasedOnBgColorAdvanced(Thm.isDarktheme(prefs)
-                  ? fiberchatDIALOGColorDarkMode
-                  : fiberchatDIALOGColorLightMode),
+                  ? crypterchatDIALOGColorDarkMode
+                  : crypterchatDIALOGColorLightMode),
             ),
           ),
           subtitle: Text(
             subtitle,
             textAlign: TextAlign.left,
-            style: TextStyle(height: 2.2, color: fiberchatGrey),
+            style: TextStyle(height: 2.2, color: crypterchatGrey),
           ),
         ),
       ),

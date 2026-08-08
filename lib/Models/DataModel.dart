@@ -3,9 +3,9 @@
 import 'dart:core';
 import 'dart:io';
 import 'package:async/async.dart' show StreamGroup;
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -113,7 +113,7 @@ class DataModel extends Model {
   getChatOrder(List<String> chatsWith, String currentUserNo) {
     List<Stream<QuerySnapshot>> messages = [];
     chatsWith.forEach((otherNo) {
-      String chatId = Fiberchat.getChatId(currentUserNo, otherNo);
+      String chatId = Crypterchat.getChatId(currentUserNo, otherNo);
       messages.add(FirebaseFirestore.instance
           .collection(DbPaths.collectionmessages)
           .doc(chatId)

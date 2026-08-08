@@ -4,30 +4,30 @@ import 'dart:io';
 import 'package:async/async.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Screens/status/StatusView.dart';
-import 'package:fiberchat/Screens/status/components/status_image_caption_editor.dart';
-import 'package:fiberchat/Screens/status/components/TextStatus/textStatus.dart';
-import 'package:fiberchat/Screens/status/components/status_video_caption_editor.dart';
-import 'package:fiberchat/Screens/status/components/circleBorder.dart';
-import 'package:fiberchat/Screens/status/components/formatStatusTime.dart';
-import 'package:fiberchat/Screens/status/components/showViewers.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
-import 'package:fiberchat/Services/Providers/StatusProvider.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/setStatusBarColor.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/AllinOneCameraGalleryImageVideoPicker/AllinOneCameraGalleryImageVideoPicker.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Screens/call_history/callhistory.dart';
+import 'package:crypterchat/Screens/chat_screen/chat.dart';
+import 'package:crypterchat/Screens/status/StatusView.dart';
+import 'package:crypterchat/Screens/status/components/status_image_caption_editor.dart';
+import 'package:crypterchat/Screens/status/components/TextStatus/textStatus.dart';
+import 'package:crypterchat/Screens/status/components/status_video_caption_editor.dart';
+import 'package:crypterchat/Screens/status/components/circleBorder.dart';
+import 'package:crypterchat/Screens/status/components/formatStatusTime.dart';
+import 'package:crypterchat/Screens/status/components/showViewers.dart';
+import 'package:crypterchat/Services/Admob/admob.dart';
+import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+import 'package:crypterchat/Services/Providers/StatusProvider.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Models/DataModel.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/setStatusBarColor.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/widgets/AllinOneCameraGalleryImageVideoPicker/AllinOneCameraGalleryImageVideoPicker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
@@ -72,7 +72,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
       Container(
         child: Center(
             child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(fiberchatSECONDARYolor),
+          valueColor: AlwaysStoppedAnimation<Color>(crypterchatSECONDARYolor),
         )),
       )
     ]);
@@ -271,14 +271,14 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
     final contactsProvider =
         Provider.of<SmartContactProviderWithLocalStoreData>(context,
             listen: true);
-    return Fiberchat.getNTPWrappedWidget(ScopedModel<DataModel>(
+    return Crypterchat.getNTPWrappedWidget(ScopedModel<DataModel>(
         model: widget.model!,
         child:
             ScopedModelDescendant<DataModel>(builder: (context, child, model) {
           return Scaffold(
             backgroundColor: Thm.isDarktheme(widget.prefs)
-                ? fiberchatBACKGROUNDcolorDarkMode
-                : fiberchatBACKGROUNDcolorLightMode,
+                ? crypterchatBACKGROUNDcolorDarkMode
+                : crypterchatBACKGROUNDcolorLightMode,
             floatingActionButton: Padding(
               padding: EdgeInsets.only(
                   bottom: IsBannerAdShow == true && observer.isadmobshow == true
@@ -298,7 +298,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                             size: 23.0, color: Colors.blueGrey[700]),
                         onPressed: observer.isAllowCreatingStatus == false
                             ? () {
-                                Fiberchat.showRationale(
+                                Crypterchat.showRationale(
                                     getTranslated(this.context, 'disabled'));
                               }
                             : () {
@@ -314,15 +314,15 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                   ),
                   FloatingActionButton(
                     heroTag: "frewrwr",
-                    backgroundColor: fiberchatSECONDARYolor,
+                    backgroundColor: crypterchatSECONDARYolor,
                     child: Icon(
                       Icons.image,
-                      color: fiberchatWhite,
+                      color: crypterchatWhite,
                       size: 25,
                     ),
                     onPressed: observer.isAllowCreatingStatus == false
                         ? () {
-                            Fiberchat.showRationale(
+                            Crypterchat.showRationale(
                                 getTranslated(this.context, 'disabled'));
                           }
                         : () async {
@@ -442,7 +442,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                           children: [
                             Container(
                               color: Thm.isDarktheme(widget.prefs)
-                                  ? fiberchatBACKGROUNDcolorDarkMode
+                                  ? crypterchatBACKGROUNDcolorDarkMode
                                   : Color(0xfff2f2f2),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -455,8 +455,8 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                             ConnectionState.waiting) {
                                           return Card(
                                             color: Thm.isDarktheme(widget.prefs)
-                                                ? fiberchatCONTAINERboxColorDarkMode
-                                                : fiberchatCONTAINERboxColorLightMode,
+                                                ? crypterchatCONTAINERboxColorDarkMode
+                                                : crypterchatCONTAINERboxColorLightMode,
                                             elevation: 0.0,
                                             child: Padding(
                                                 padding:
@@ -484,7 +484,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                             decoration:
                                                                 BoxDecoration(
                                                               color:
-                                                                  fiberchatSECONDARYolor,
+                                                                  crypterchatSECONDARYolor,
                                                               shape: BoxShape
                                                                   .circle,
                                                             ),
@@ -530,8 +530,8 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
 
                                           return Card(
                                             color: Thm.isDarktheme(widget.prefs)
-                                                ? fiberchatCONTAINERboxColorDarkMode
-                                                : fiberchatCONTAINERboxColorLightMode,
+                                                ? crypterchatCONTAINERboxColorDarkMode
+                                                : crypterchatCONTAINERboxColorLightMode,
                                             elevation: 0.0,
                                             child: Padding(
                                               padding:
@@ -585,7 +585,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                                               .statusITEMSLIST]
                                                                           .length >
                                                                       0
-                                                                  ? fiberchatGreenColor500
+                                                                  ? crypterchatGreenColor500
                                                                       .withOpacity(
                                                                           0.8)
                                                                   : Colors.grey
@@ -684,7 +684,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                             observer.isAllowCreatingStatus ==
                                                                     false
                                                                 ? () {
-                                                                    Fiberchat.showRationale(getTranslated(
+                                                                    Crypterchat.showRationale(getTranslated(
                                                                         this.context,
                                                                         'disabled'));
                                                                   }
@@ -744,7 +744,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                           decoration:
                                                               BoxDecoration(
                                                             color:
-                                                                fiberchatSECONDARYolor,
+                                                                crypterchatSECONDARYolor,
                                                             shape:
                                                                 BoxShape.circle,
                                                           ),
@@ -884,8 +884,8 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                             !snapshot.data.exists) {
                                           return Card(
                                             color: Thm.isDarktheme(widget.prefs)
-                                                ? fiberchatCONTAINERboxColorDarkMode
-                                                : fiberchatCONTAINERboxColorLightMode,
+                                                ? crypterchatCONTAINERboxColorDarkMode
+                                                : crypterchatCONTAINERboxColorLightMode,
                                             elevation: 0.0,
                                             child: Padding(
                                                 padding:
@@ -896,7 +896,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                       observer.isAllowCreatingStatus ==
                                                               false
                                                           ? () {
-                                                              Fiberchat.showRationale(
+                                                              Crypterchat.showRationale(
                                                                   getTranslated(
                                                                       this.context,
                                                                       'disabled'));
@@ -970,7 +970,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                             decoration:
                                                                 BoxDecoration(
                                                               color:
-                                                                  fiberchatSECONDARYolor,
+                                                                  crypterchatSECONDARYolor,
                                                               shape: BoxShape
                                                                   .circle,
                                                             ),
@@ -997,8 +997,8 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                         }
                                         return Card(
                                           color: Thm.isDarktheme(widget.prefs)
-                                              ? fiberchatCONTAINERboxColorDarkMode
-                                              : fiberchatCONTAINERboxColorLightMode,
+                                              ? crypterchatCONTAINERboxColorDarkMode
+                                              : crypterchatCONTAINERboxColorLightMode,
                                           elevation: 0.0,
                                           child: Padding(
                                               padding:
@@ -1025,7 +1025,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                           decoration:
                                                               BoxDecoration(
                                                             color:
-                                                                fiberchatSECONDARYolor,
+                                                                crypterchatSECONDARYolor,
                                                             shape:
                                                                 BoxShape.circle,
                                                           ),
@@ -1058,7 +1058,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                         Text(
                                           getTranslated(context, 'rcntupdates'),
                                           style: TextStyle(
-                                              color: fiberchatGrey,
+                                              color: crypterchatGrey,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         SizedBox(
@@ -1081,7 +1081,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                         valueColor:
                                                             AlwaysStoppedAnimation<
                                                                     Color>(
-                                                                fiberchatSECONDARYolor)),
+                                                                crypterchatSECONDARYolor)),
                                                   ),
                                                 ),
                                                 color: Colors.transparent)
@@ -1093,8 +1093,8 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                       ? Expanded(
                                           child: Container(
                                             color: Thm.isDarktheme(widget.prefs)
-                                                ? fiberchatCONTAINERboxColorDarkMode
-                                                : fiberchatCONTAINERboxColorLightMode,
+                                                ? crypterchatCONTAINERboxColorDarkMode
+                                                : crypterchatCONTAINERboxColorLightMode,
                                           ),
                                         )
                                       : statusProvider.contactsStatus.length ==
@@ -1115,7 +1115,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                           TextAlign.center,
                                                       style: TextStyle(
                                                           fontSize: 15.0,
-                                                          color: fiberchatGrey
+                                                          color: crypterchatGrey
                                                               .withOpacity(0.8),
                                                           fontWeight:
                                                               FontWeight.w400),
@@ -1123,8 +1123,8 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                               ),
                                               color: Thm.isDarktheme(
                                                       widget.prefs)
-                                                  ? fiberchatCONTAINERboxColorDarkMode
-                                                  : fiberchatCONTAINERboxColorLightMode,
+                                                  ? crypterchatCONTAINERboxColorDarkMode
+                                                  : crypterchatCONTAINERboxColorLightMode,
                                             ))
                                           : Expanded(
                                               child: Container(
@@ -1133,8 +1133,8 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                           0, 8, 8, 8),
                                                   color: Thm.isDarktheme(
                                                           widget.prefs)
-                                                      ? fiberchatCONTAINERboxColorDarkMode
-                                                      : fiberchatCONTAINERboxColorLightMode,
+                                                      ? crypterchatCONTAINERboxColorDarkMode
+                                                      : crypterchatCONTAINERboxColorLightMode,
                                                   child: ListView.builder(
                                                     padding: EdgeInsets.all(10),
                                                     itemCount: statusProvider
@@ -1247,7 +1247,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                                               size: 65,
                                                                               color: statusProvider.contactsStatus[idx].data().containsKey(widget.currentUserNo)
                                                                                   ? statusProvider.contactsStatus[idx][Dbkeys.statusITEMSLIST].length > 0
-                                                                                      ? fiberchatGreenColor500.withOpacity(0.8)
+                                                                                      ? crypterchatGreenColor500.withOpacity(0.8)
                                                                                       : Colors.grey.withOpacity(0.8)
                                                                                   : Colors.grey.withOpacity(0.8),
                                                                               icon: Padding(
@@ -1371,7 +1371,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                                                 65,
                                                                             color: statusProvider.contactsStatus[idx].data().containsKey(widget.currentUserNo)
                                                                                 ? statusProvider.contactsStatus[idx][Dbkeys.statusITEMSLIST].length > 0
-                                                                                    ? fiberchatGreenColor500.withOpacity(0.8)
+                                                                                    ? crypterchatGreenColor500.withOpacity(0.8)
                                                                                     : Colors.grey.withOpacity(0.8)
                                                                                 : Colors.grey.withOpacity(0.8),
                                                                             icon:
@@ -1461,12 +1461,12 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                         child: CircularProgressIndicator(
                                             valueColor:
                                                 AlwaysStoppedAnimation<Color>(
-                                                    fiberchatSECONDARYolor)),
+                                                    crypterchatSECONDARYolor)),
                                       ),
                                       color: pickTextColorBasedOnBgColorAdvanced(!Thm
                                                   .isDarktheme(widget.prefs)
-                                              ? fiberchatCONTAINERboxColorDarkMode
-                                              : fiberchatCONTAINERboxColorLightMode)
+                                              ? crypterchatCONTAINERboxColorDarkMode
+                                              : crypterchatCONTAINERboxColorLightMode)
                                           .withOpacity(0.6))
                                   : Container(),
                             )
@@ -1481,8 +1481,8 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
   deleteOptions(BuildContext context, DocumentSnapshot myStatusDoc) {
     showModalBottomSheet(
         backgroundColor: Thm.isDarktheme(widget.prefs)
-            ? fiberchatDIALOGColorDarkMode
-            : fiberchatDIALOGColorLightMode,
+            ? crypterchatDIALOGColorDarkMode
+            : crypterchatDIALOGColorLightMode,
         context: context,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
@@ -1506,8 +1506,8 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                             fontSize: 16,
                             color: pickTextColorBasedOnBgColorAdvanced(
                                 Thm.isDarktheme(widget.prefs)
-                                    ? fiberchatDIALOGColorDarkMode
-                                    : fiberchatDIALOGColorLightMode),
+                                    ? crypterchatDIALOGColorDarkMode
+                                    : crypterchatDIALOGColorLightMode),
                           ),
                         ),
                       ),
@@ -1605,8 +1605,8 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                 backgroundColor: Thm
                                                         .isDarktheme(
                                                             widget.prefs)
-                                                    ? fiberchatDIALOGColorDarkMode
-                                                    : fiberchatDIALOGColorLightMode,
+                                                    ? crypterchatDIALOGColorDarkMode
+                                                    : crypterchatDIALOGColorLightMode,
                                                 title: new Text(
                                                   getTranslated(this.context,
                                                       'dltstatus'),
@@ -1614,8 +1614,8 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                       color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                               .isDarktheme(
                                                                   widget.prefs)
-                                                          ? fiberchatDIALOGColorDarkMode
-                                                          : fiberchatDIALOGColorLightMode)),
+                                                          ? crypterchatDIALOGColorDarkMode
+                                                          : crypterchatDIALOGColorLightMode)),
                                                 ),
                                                 actions: [
                                                   ElevatedButton(
@@ -1630,7 +1630,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                           context, 'cancel'),
                                                       style: TextStyle(
                                                           color:
-                                                              fiberchatPRIMARYcolor,
+                                                              crypterchatPRIMARYcolor,
                                                           fontSize: 18),
                                                     ),
                                                     onPressed: () {
@@ -1650,7 +1650,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                           context, 'delete'),
                                                       style: TextStyle(
                                                           color:
-                                                              fiberchatREDbuttonColor,
+                                                              crypterchatREDbuttonColor,
                                                           fontSize: 18),
                                                     ),
                                                     onPressed: () async {
@@ -1809,7 +1809,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                             size: 15,
                                           ),
                                           decoration: BoxDecoration(
-                                            color: fiberchatREDbuttonColor,
+                                            color: crypterchatREDbuttonColor,
                                             shape: BoxShape.circle,
                                           ),
                                         ),

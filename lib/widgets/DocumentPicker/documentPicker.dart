@@ -1,14 +1,14 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:io';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/status/components/status_video_caption_editor.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Screens/status/components/status_video_caption_editor.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/open_settings.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
@@ -67,7 +67,7 @@ class _HybridDocumentPickerState extends State<HybridDocumentPicker> {
         } else {}
       }
     } catch (e) {
-      Fiberchat.toast('Cannot Send this Document type');
+      Crypterchat.toast('Cannot Send this Document type');
       Navigator.of(this.context).pop();
     }
   }
@@ -87,7 +87,7 @@ class _HybridDocumentPickerState extends State<HybridDocumentPicker> {
             child: Text(basename(_docFile!.path).toString(),
                 style: new TextStyle(
                   fontSize: 14.0,
-                  color: fiberchatGrey,
+                  color: crypterchatGrey,
                 )),
           ),
         ],
@@ -96,19 +96,19 @@ class _HybridDocumentPickerState extends State<HybridDocumentPicker> {
       return new Text(getTranslated(this.context, 'takefile'),
           style: new TextStyle(
             fontSize: 18.0,
-            color: fiberchatGrey,
+            color: crypterchatGrey,
           ));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Fiberchat.getNTPWrappedWidget(PopScope(
+    return Crypterchat.getNTPWrappedWidget(PopScope(
       onPopInvoked: (v) => Future.value(!isLoading),
       child: Scaffold(
         backgroundColor: Thm.isDarktheme(widget.prefs)
-            ? fiberchatBACKGROUNDcolorDarkMode
-            : fiberchatBACKGROUNDcolorLightMode,
+            ? crypterchatBACKGROUNDcolorDarkMode
+            : crypterchatBACKGROUNDcolorLightMode,
         appBar: new AppBar(
             elevation: 0.4,
             leading: IconButton(
@@ -120,8 +120,8 @@ class _HybridDocumentPickerState extends State<HybridDocumentPicker> {
                 size: 30,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(widget.prefs)
-                        ? fiberchatAPPBARcolorDarkMode
-                        : fiberchatAPPBARcolorLightMode),
+                        ? crypterchatAPPBARcolorDarkMode
+                        : crypterchatAPPBARcolorLightMode),
               ),
             ),
             title: new Text(
@@ -130,13 +130,13 @@ class _HybridDocumentPickerState extends State<HybridDocumentPicker> {
                 fontSize: 18,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(widget.prefs)
-                        ? fiberchatAPPBARcolorDarkMode
-                        : fiberchatAPPBARcolorLightMode),
+                        ? crypterchatAPPBARcolorDarkMode
+                        : crypterchatAPPBARcolorLightMode),
               ),
             ),
             backgroundColor: Thm.isDarktheme(widget.prefs)
-                ? fiberchatAPPBARcolorDarkMode
-                : fiberchatAPPBARcolorLightMode,
+                ? crypterchatAPPBARcolorDarkMode
+                : crypterchatAPPBARcolorLightMode,
             actions: _docFile != null
                 ? <Widget>[
                     IconButton(
@@ -144,8 +144,8 @@ class _HybridDocumentPickerState extends State<HybridDocumentPicker> {
                           Icons.check,
                           color: pickTextColorBasedOnBgColorAdvanced(
                               Thm.isDarktheme(widget.prefs)
-                                  ? fiberchatAPPBARcolorDarkMode
-                                  : fiberchatAPPBARcolorLightMode),
+                                  ? crypterchatAPPBARcolorDarkMode
+                                  : crypterchatAPPBARcolorLightMode),
                         ),
                         onPressed: () {
                           setState(() {
@@ -175,12 +175,12 @@ class _HybridDocumentPickerState extends State<HybridDocumentPicker> {
                     child: Center(
                       child: CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(
-                              fiberchatSECONDARYolor)),
+                              crypterchatSECONDARYolor)),
                     ),
                     color: pickTextColorBasedOnBgColorAdvanced(
                             !Thm.isDarktheme(widget.prefs)
-                                ? fiberchatCONTAINERboxColorDarkMode
-                                : fiberchatCONTAINERboxColorLightMode)
+                                ? crypterchatCONTAINERboxColorDarkMode
+                                : crypterchatCONTAINERboxColorLightMode)
                         .withOpacity(0.6))
                 : Container(),
           )
@@ -197,19 +197,19 @@ class _HybridDocumentPickerState extends State<HybridDocumentPicker> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               _buildActionButton(new Key('retake'), Icons.add, () {
-                Fiberchat.checkAndRequestPermission(Platform.isIOS
+                Crypterchat.checkAndRequestPermission(Platform.isIOS
                         ? Permission.mediaLibrary
                         : Permission.storage)
                     .then((res) {
                   if (res) {
                     captureFile();
                   } else {
-                    Fiberchat.checkAndRequestPermission(Permission.mediaLibrary)
+                    Crypterchat.checkAndRequestPermission(Permission.mediaLibrary)
                         .then((res2) {
                       if (res2) {
                         captureFile();
                       } else {
-                        Fiberchat.showRationale(
+                        Crypterchat.showRationale(
                           getTranslated(this.context, 'psac'),
                         );
                         Navigator.pushReplacement(
@@ -232,8 +232,8 @@ class _HybridDocumentPickerState extends State<HybridDocumentPicker> {
           key: key,
           icon: Icon(icon, size: 30.0),
           color: Thm.isDarktheme(widget.prefs)
-              ? fiberchatAPPBARcolorDarkMode
-              : fiberchatAPPBARcolorLightMode,
+              ? crypterchatAPPBARcolorDarkMode
+              : crypterchatAPPBARcolorLightMode,
           onPressed: onPressed as void Function()?),
     );
   }

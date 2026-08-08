@@ -2,11 +2,11 @@
 
 import 'package:async/async.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+import 'package:crypterchat/Utils/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -61,7 +61,7 @@ class StatusProvider with ChangeNotifier {
       searchingcontactsstatus = false;
       notifyListeners();
     } else {
-      List<List<String>> chunks = Fiberchat.divideIntoChuncks(
+      List<List<String>> chunks = Crypterchat.divideIntoChuncks(
           joinedUserPhoneStringAsInServer
               .map((e) => e.phone.toString())
               .toList(),
@@ -180,11 +180,11 @@ class StatusProvider with ChangeNotifier {
 }
 
 // import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:fiberchat/Configs/Dbkeys.dart';
-// import 'package:fiberchat/Configs/Dbpaths.dart';
-// import 'package:fiberchat/Configs/optional_constants.dart';
-// import 'package:fiberchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
-// import 'package:fiberchat/Utils/utils.dart';
+// import 'package:crypterchat/Configs/Dbkeys.dart';
+// import 'package:crypterchat/Configs/Dbpaths.dart';
+// import 'package:crypterchat/Configs/optional_constants.dart';
+// import 'package:crypterchat/Services/Providers/SmartContactProviderWithLocalStoreData.dart';
+// import 'package:crypterchat/Utils/utils.dart';
 // import 'package:flutter/foundation.dart';
 // import 'package:flutter/material.dart';
 

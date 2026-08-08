@@ -1,7 +1,7 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
-import 'package:fiberchat/Services/Providers/seen_state.dart';
-import 'package:fiberchat/Screens/chat_screen/Widget/bubble.dart';
+import 'package:crypterchat/Services/Providers/seen_state.dart';
+import 'package:crypterchat/Screens/chat_screen/Widget/bubble.dart';
 import 'package:flutter/widgets.dart';
 
 class SeenProvider extends StatefulWidget {

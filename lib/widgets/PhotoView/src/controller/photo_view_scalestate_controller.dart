@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/widgets.dart' show VoidCallback;
-import 'package:fiberchat/widgets/PhotoView/src/photo_view_scale_state.dart';
-import 'package:fiberchat/widgets/PhotoView/src/utils/ignorable_change_notifier.dart';
+import 'package:crypterchat/widgets/PhotoView/src/photo_view_scale_state.dart';
+import 'package:crypterchat/widgets/PhotoView/src/utils/ignorable_change_notifier.dart';
 
 typedef ScaleStateListener = void Function(double prevScale, double nextScale);
 

@@ -2,7 +2,7 @@
 
 import 'dart:async';
 
-import 'package:fiberchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
 import 'package:flutter/foundation.dart';
 
 class TimerProvider with ChangeNotifier {

@@ -1,12 +1,12 @@
 //*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/Providers/seen_provider.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Services/Providers/seen_provider.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:fiberchat/Configs/Enum.dart';
+import 'package:crypterchat/Configs/Enum.dart';
 
 class Bubble extends StatelessWidget {
   const Bubble({
@@ -46,14 +46,14 @@ class Bubble extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool seen =
         getSeenStatus(SeenProvider.of(context).value ?? 0.0) ?? false;
-    final bg = isMe ? fiberchatCHATBUBBLEcolor : fiberchatWhite;
+    final bg = isMe ? crypterchatCHATBUBBLEcolor : crypterchatWhite;
     final align = isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start;
     dynamic icon = delivered is bool && delivered
         ? (seen ? Icons.done_all : Icons.done_all)
         : Icons.access_time;
     final color = isMe
-        ? fiberchatBlack.withOpacity(0.5)
-        : fiberchatBlack.withOpacity(0.5);
+        ? crypterchatBlack.withOpacity(0.5)
+        : crypterchatBlack.withOpacity(0.5);
     icon = Icon(icon, size: 14.0, color: seen ? Colors.lightBlue : color);
     if (delivered is Future) {
       icon = FutureBuilder(

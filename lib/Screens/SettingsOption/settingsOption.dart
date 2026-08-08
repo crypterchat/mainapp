@@ -2,26 +2,26 @@
 
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Screens/homepage/Setupdata.dart';
-import 'package:fiberchat/Screens/notifications/AllNotifications.dart';
-import 'package:fiberchat/Screens/privacypolicy&TnC/PdfViewFromCachedUrl.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/custom_url_launcher.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/main.dart';
-import 'package:fiberchat/widgets/DynamicBottomSheet/dynamic_modal_bottomsheet.dart';
-import 'package:fiberchat/widgets/MyElevatedButton/MyElevatedButton.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/Enum.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Configs/optional_constants.dart';
+import 'package:crypterchat/Screens/call_history/callhistory.dart';
+import 'package:crypterchat/Screens/calling_screen/pickup_layout.dart';
+import 'package:crypterchat/Screens/homepage/Setupdata.dart';
+import 'package:crypterchat/Screens/notifications/AllNotifications.dart';
+import 'package:crypterchat/Screens/privacypolicy&TnC/PdfViewFromCachedUrl.dart';
+import 'package:crypterchat/Services/Providers/Observer.dart';
+import 'package:crypterchat/Services/localization/language.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/custom_url_launcher.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/main.dart';
+import 'package:crypterchat/widgets/DynamicBottomSheet/dynamic_modal_bottomsheet.dart';
+import 'package:crypterchat/widgets/MyElevatedButton/MyElevatedButton.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -63,7 +63,7 @@ class _SettingsOptionState extends State<SettingsOption> {
 
   void _changeLanguage(Language language) async {
     Locale _locale = await setLocale(language.languageCode);
-    FiberchatWrapper.setLocale(context, _locale);
+    CrypterchatWrapper.setLocale(context, _locale);
 
     Future.delayed(const Duration(milliseconds: 800), () {
       FirebaseFirestore.instance
@@ -88,10 +88,10 @@ class _SettingsOptionState extends State<SettingsOption> {
     final observer = Provider.of<Observer>(this.context, listen: false);
     return PickupLayout(
         prefs: widget.prefs,
-        scaffold: Fiberchat.getNTPWrappedWidget(Scaffold(
+        scaffold: Crypterchat.getNTPWrappedWidget(Scaffold(
           backgroundColor: Thm.isDarktheme(widget.prefs)
-              ? fiberchatBACKGROUNDcolorDarkMode
-              : fiberchatCONTAINERboxColorLightMode,
+              ? crypterchatBACKGROUNDcolorDarkMode
+              : crypterchatCONTAINERboxColorLightMode,
           appBar: AppBar(
             elevation: 0.4,
             leading: IconButton(
@@ -100,23 +100,23 @@ class _SettingsOptionState extends State<SettingsOption> {
                 size: 24,
                 color: pickTextColorBasedOnBgColorAdvanced(
                     Thm.isDarktheme(widget.prefs)
-                        ? fiberchatAPPBARcolorDarkMode
-                        : fiberchatAPPBARcolorLightMode),
+                        ? crypterchatAPPBARcolorDarkMode
+                        : crypterchatAPPBARcolorLightMode),
               ),
               onPressed: () {
                 Navigator.of(this.context).pop();
               },
             ),
             backgroundColor: Thm.isDarktheme(widget.prefs)
-                ? fiberchatAPPBARcolorDarkMode
-                : fiberchatAPPBARcolorLightMode,
+                ? crypterchatAPPBARcolorDarkMode
+                : crypterchatAPPBARcolorLightMode,
             title: Text(
               getTranslated(context, 'settingsoption'),
               style: TextStyle(
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode),
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode),
                   fontSize: 18.5),
             ),
             actions: [],
@@ -150,8 +150,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                                           fontSize: 16,
                                           color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                   .isDarktheme(widget.prefs)
-                                              ? fiberchatBACKGROUNDcolorDarkMode
-                                              : fiberchatBACKGROUNDcolorLightMode)),
+                                              ? crypterchatBACKGROUNDcolorDarkMode
+                                              : crypterchatBACKGROUNDcolorLightMode)),
                                     ),
                                     subtitle: Padding(
                                       padding: const EdgeInsets.only(top: 7),
@@ -163,7 +163,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
-                                            fontSize: 14, color: fiberchatGrey),
+                                            fontSize: 14, color: crypterchatGrey),
                                       ),
                                     ),
                                     trailing: IconButton(
@@ -172,7 +172,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                                         },
                                         icon: Icon(
                                           Icons.edit,
-                                          color: fiberchatPRIMARYcolor,
+                                          color: crypterchatPRIMARYcolor,
                                         )))),
                             ListTile(
                               trailing: SizedBox(
@@ -182,15 +182,15 @@ class _SettingsOptionState extends State<SettingsOption> {
                                         child: Padding(
                                         padding: const EdgeInsets.all(3.0),
                                         child: LinearProgressIndicator(
-                                          backgroundColor: fiberchatPRIMARYcolor
+                                          backgroundColor: crypterchatPRIMARYcolor
                                               .withOpacity(0.4),
                                           valueColor:
                                               AlwaysStoppedAnimation<Color>(
-                                                  fiberchatPRIMARYcolor),
+                                                  crypterchatPRIMARYcolor),
                                         ),
                                       ))
                                     : Switch(
-                                        activeColor: fiberchatPRIMARYcolor,
+                                        activeColor: crypterchatPRIMARYcolor,
                                         inactiveThumbColor: Colors.blueGrey,
                                         inactiveTrackColor: Colors.grey[300],
                                         onChanged: (b) async {
@@ -303,7 +303,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                                 child: Icon(
                                   Icons.notifications_on,
                                   color:
-                                      fiberchatPRIMARYcolor.withOpacity(0.85),
+                                      crypterchatPRIMARYcolor.withOpacity(0.85),
                                   size: 26,
                                 ),
                               ),
@@ -315,8 +315,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                                   fontSize: 16,
                                   color: pickTextColorBasedOnBgColorAdvanced(
                                       Thm.isDarktheme(widget.prefs)
-                                          ? fiberchatBACKGROUNDcolorDarkMode
-                                          : fiberchatBACKGROUNDcolorLightMode),
+                                          ? crypterchatBACKGROUNDcolorDarkMode
+                                          : crypterchatBACKGROUNDcolorLightMode),
                                 ),
                               ),
                               subtitle: Padding(
@@ -327,7 +327,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                      fontSize: 14, color: fiberchatGrey),
+                                      fontSize: 14, color: crypterchatGrey),
                                 ),
                               ),
                             ),
@@ -349,8 +349,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                                         fontSize: 16,
                                         color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                 .isDarktheme(widget.prefs)
-                                            ? fiberchatBACKGROUNDcolorDarkMode
-                                            : fiberchatBACKGROUNDcolorLightMode)),
+                                            ? crypterchatBACKGROUNDcolorDarkMode
+                                            : crypterchatBACKGROUNDcolorLightMode)),
                                   ),
                                   subtitle: Padding(
                                     padding: const EdgeInsets.only(top: 7),
@@ -359,7 +359,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
-                                          fontSize: 14, color: fiberchatGrey),
+                                          fontSize: 14, color: crypterchatGrey),
                                     ),
                                   ),
                                   trailing: IconButton(
@@ -368,7 +368,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                                       },
                                       icon: Icon(
                                         Icons.edit,
-                                        color: fiberchatPRIMARYcolor,
+                                        color: crypterchatPRIMARYcolor,
                                       )))),
                           ListTile(
                             trailing: SizedBox(
@@ -378,9 +378,9 @@ class _SettingsOptionState extends State<SettingsOption> {
                                   padding: const EdgeInsets.all(3.0),
                                   child: LinearProgressIndicator(
                                     backgroundColor:
-                                        fiberchatPRIMARYcolor.withOpacity(0.4),
+                                        crypterchatPRIMARYcolor.withOpacity(0.4),
                                     valueColor: AlwaysStoppedAnimation<Color>(
-                                        fiberchatPRIMARYcolor),
+                                        crypterchatPRIMARYcolor),
                                   ),
                                 ))),
                             onTap: () {
@@ -391,7 +391,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                               padding: const EdgeInsets.only(top: 6),
                               child: Icon(
                                 Icons.notifications_on,
-                                color: fiberchatPRIMARYcolor.withOpacity(0.85),
+                                color: crypterchatPRIMARYcolor.withOpacity(0.85),
                                 size: 26,
                               ),
                             ),
@@ -403,8 +403,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                                   fontSize: 16,
                                   color: pickTextColorBasedOnBgColorAdvanced(
                                       Thm.isDarktheme(widget.prefs)
-                                          ? fiberchatBACKGROUNDcolorDarkMode
-                                          : fiberchatBACKGROUNDcolorLightMode)),
+                                          ? crypterchatBACKGROUNDcolorDarkMode
+                                          : crypterchatBACKGROUNDcolorLightMode)),
                             ),
                             subtitle: Padding(
                               padding: const EdgeInsets.only(top: 4),
@@ -414,7 +414,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                    fontSize: 14, color: fiberchatGrey),
+                                    fontSize: 14, color: crypterchatGrey),
                               ),
                             ),
                           ),
@@ -434,7 +434,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                   padding: const EdgeInsets.only(top: 6),
                   child: Icon(
                     Icons.account_circle_rounded,
-                    color: fiberchatPRIMARYcolor.withOpacity(0.85),
+                    color: crypterchatPRIMARYcolor.withOpacity(0.85),
                     size: 26,
                   ),
                 ),
@@ -446,8 +446,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                       fontSize: 16,
                       color: pickTextColorBasedOnBgColorAdvanced(
                           Thm.isDarktheme(widget.prefs)
-                              ? fiberchatBACKGROUNDcolorDarkMode
-                              : fiberchatBACKGROUNDcolorLightMode)),
+                              ? crypterchatBACKGROUNDcolorDarkMode
+                              : crypterchatBACKGROUNDcolorLightMode)),
                 ),
                 subtitle: Padding(
                   padding: const EdgeInsets.only(top: 4),
@@ -455,7 +455,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                     getTranslated(context, 'changednp'),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 14, color: fiberchatGrey),
+                    style: TextStyle(fontSize: 14, color: crypterchatGrey),
                   ),
                 ),
               ),
@@ -477,7 +477,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                   padding: const EdgeInsets.only(top: 6),
                   child: Icon(
                     Icons.rate_review_outlined,
-                    color: fiberchatPRIMARYcolor.withOpacity(0.85),
+                    color: crypterchatPRIMARYcolor.withOpacity(0.85),
                     size: 26,
                   ),
                 ),
@@ -489,8 +489,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                       fontSize: 16,
                       color: pickTextColorBasedOnBgColorAdvanced(
                           Thm.isDarktheme(widget.prefs)
-                              ? fiberchatBACKGROUNDcolorDarkMode
-                              : fiberchatBACKGROUNDcolorLightMode)),
+                              ? crypterchatBACKGROUNDcolorDarkMode
+                              : crypterchatBACKGROUNDcolorLightMode)),
                 ),
                 subtitle: Padding(
                   padding: const EdgeInsets.only(top: 4),
@@ -498,7 +498,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                     getTranslated(context, 'givesuggestions'),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 14, color: fiberchatGrey),
+                    style: TextStyle(fontSize: 14, color: crypterchatGrey),
                   ),
                 ),
               ),
@@ -511,7 +511,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                   padding: const EdgeInsets.only(top: 3),
                   child: Icon(
                     Icons.star_outline_rounded,
-                    color: fiberchatPRIMARYcolor.withOpacity(0.85),
+                    color: crypterchatPRIMARYcolor.withOpacity(0.85),
                     size: 29,
                   ),
                 ),
@@ -523,8 +523,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                       fontSize: 16,
                       color: pickTextColorBasedOnBgColorAdvanced(
                           Thm.isDarktheme(widget.prefs)
-                              ? fiberchatBACKGROUNDcolorDarkMode
-                              : fiberchatBACKGROUNDcolorLightMode)),
+                              ? crypterchatBACKGROUNDcolorDarkMode
+                              : crypterchatBACKGROUNDcolorLightMode)),
                 ),
                 subtitle: Padding(
                   padding: const EdgeInsets.only(top: 4),
@@ -532,7 +532,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                     getTranslated(context, 'leavereview'),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 14, color: fiberchatGrey),
+                    style: TextStyle(fontSize: 14, color: crypterchatGrey),
                   ),
                 ),
               ),
@@ -572,8 +572,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                                               style: TextStyle(
                                                   color: Thm.isDarktheme(
                                                           widget.prefs)
-                                                      ? fiberchatWhite
-                                                      : fiberchatBlack,
+                                                      ? crypterchatWhite
+                                                      : crypterchatBlack,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 16),
                                             ),
@@ -585,7 +585,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                                                             widget.prefs
                                                                 .getString(
                                                                     LAGUAGE_CODE)
-                                                        ? fiberchatSECONDARYolor
+                                                        ? crypterchatSECONDARYolor
                                                         : Colors.transparent,
                                                   )
                                           ],
@@ -601,7 +601,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                     padding: const EdgeInsets.only(top: 3),
                     child: Icon(
                       Icons.language_outlined,
-                      color: fiberchatPRIMARYcolor.withOpacity(0.85),
+                      color: crypterchatPRIMARYcolor.withOpacity(0.85),
                       size: 29,
                     ),
                   ),
@@ -613,8 +613,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                         fontSize: 16,
                         color: pickTextColorBasedOnBgColorAdvanced(
                             Thm.isDarktheme(widget.prefs)
-                                ? fiberchatBACKGROUNDcolorDarkMode
-                                : fiberchatBACKGROUNDcolorLightMode)),
+                                ? crypterchatBACKGROUNDcolorDarkMode
+                                : crypterchatBACKGROUNDcolorLightMode)),
                   ),
                   subtitle: Padding(
                     padding: const EdgeInsets.only(top: 4),
@@ -627,7 +627,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                           .name,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontSize: 14, color: fiberchatGrey),
+                      style: TextStyle(fontSize: 14, color: crypterchatGrey),
                     ),
                   ),
                 ),
@@ -642,7 +642,7 @@ class _SettingsOptionState extends State<SettingsOption> {
 
                     Navigator.of(this.context).pushAndRemoveUntil(
                       MaterialPageRoute(
-                        builder: (BuildContext context) => FiberchatWrapper(),
+                        builder: (BuildContext context) => CrypterchatWrapper(),
                       ),
                       (Route route) => false,
                     );
@@ -654,7 +654,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                       Thm.isDarktheme(widget.prefs) == false
                           ? Icons.light_mode_outlined
                           : Icons.dark_mode_outlined,
-                      color: fiberchatPRIMARYcolor.withOpacity(0.85),
+                      color: crypterchatPRIMARYcolor.withOpacity(0.85),
                       size: 29,
                     ),
                   ),
@@ -666,8 +666,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                         fontSize: 16,
                         color: pickTextColorBasedOnBgColorAdvanced(
                             Thm.isDarktheme(widget.prefs)
-                                ? fiberchatBACKGROUNDcolorDarkMode
-                                : fiberchatBACKGROUNDcolorLightMode)),
+                                ? crypterchatBACKGROUNDcolorDarkMode
+                                : crypterchatBACKGROUNDcolorLightMode)),
                   ),
                   subtitle: Padding(
                     padding: const EdgeInsets.only(top: 4),
@@ -677,7 +677,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                           : getTranslated(this.context, 'light'),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontSize: 14, color: fiberchatGrey),
+                      style: TextStyle(fontSize: 14, color: crypterchatGrey),
                     ),
                   ),
                 ),
@@ -685,8 +685,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                 onTap: () {
                   showModalBottomSheet(
                       backgroundColor: Thm.isDarktheme(widget.prefs)
-                          ? fiberchatDIALOGColorDarkMode
-                          : fiberchatDIALOGColorLightMode,
+                          ? crypterchatDIALOGColorDarkMode
+                          : crypterchatDIALOGColorLightMode,
                       isScrollControlled: true,
                       context: context,
                       shape: RoundedRectangleBorder(
@@ -702,7 +702,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(Icons.check_circle_outline_rounded,
-                                    color: fiberchatGreenColor400, size: 45),
+                                    color: crypterchatGreenColor400, size: 45),
                                 SizedBox(
                                   height: 20,
                                 ),
@@ -710,7 +710,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                                   getTranslated(context, 'backupdesc'),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      height: 1.3, color: fiberchatGrey),
+                                      height: 1.3, color: crypterchatGrey),
                                 )
                               ],
                             ),
@@ -723,7 +723,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                   padding: const EdgeInsets.only(top: 3),
                   child: Icon(
                     Icons.cloud_upload_outlined,
-                    color: fiberchatPRIMARYcolor.withOpacity(0.85),
+                    color: crypterchatPRIMARYcolor.withOpacity(0.85),
                     size: 25,
                   ),
                 ),
@@ -735,8 +735,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                       fontSize: 16,
                       color: pickTextColorBasedOnBgColorAdvanced(
                           Thm.isDarktheme(widget.prefs)
-                              ? fiberchatBACKGROUNDcolorDarkMode
-                              : fiberchatBACKGROUNDcolorLightMode)),
+                              ? crypterchatBACKGROUNDcolorDarkMode
+                              : crypterchatBACKGROUNDcolorLightMode)),
                 ),
                 subtitle: Padding(
                   padding: const EdgeInsets.only(top: 4),
@@ -744,7 +744,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                     getTranslated(context, 'backupshort'),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 14, color: fiberchatGrey),
+                    style: TextStyle(fontSize: 14, color: crypterchatGrey),
                   ),
                 ),
               ),
@@ -762,7 +762,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                   padding: const EdgeInsets.only(top: 3),
                   child: Icon(
                     Icons.notifications_none,
-                    color: fiberchatPRIMARYcolor.withOpacity(0.85),
+                    color: crypterchatPRIMARYcolor.withOpacity(0.85),
                     size: 29,
                   ),
                 ),
@@ -774,8 +774,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                       fontSize: 16,
                       color: pickTextColorBasedOnBgColorAdvanced(
                           Thm.isDarktheme(widget.prefs)
-                              ? fiberchatBACKGROUNDcolorDarkMode
-                              : fiberchatBACKGROUNDcolorLightMode)),
+                              ? crypterchatBACKGROUNDcolorDarkMode
+                              : crypterchatBACKGROUNDcolorLightMode)),
                 ),
                 subtitle: Padding(
                   padding: const EdgeInsets.only(top: 4),
@@ -783,7 +783,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                     getTranslated(context, 'allnotifications'),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 14, color: fiberchatGrey),
+                    style: TextStyle(fontSize: 14, color: crypterchatGrey),
                   ),
                 ),
               ),
@@ -820,7 +820,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                   padding: const EdgeInsets.only(top: 6),
                   child: Icon(
                     Icons.help_outline,
-                    color: fiberchatPRIMARYcolor.withOpacity(0.85),
+                    color: crypterchatPRIMARYcolor.withOpacity(0.85),
                     size: 26,
                   ),
                 ),
@@ -832,8 +832,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                       fontSize: 16,
                       color: pickTextColorBasedOnBgColorAdvanced(
                           Thm.isDarktheme(widget.prefs)
-                              ? fiberchatBACKGROUNDcolorDarkMode
-                              : fiberchatBACKGROUNDcolorLightMode)),
+                              ? crypterchatBACKGROUNDcolorDarkMode
+                              : crypterchatBACKGROUNDcolorLightMode)),
                 ),
                 subtitle: Padding(
                   padding: const EdgeInsets.only(top: 4),
@@ -841,7 +841,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                     getTranslated(context, 'abiderules'),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 14, color: fiberchatGrey),
+                    style: TextStyle(fontSize: 14, color: crypterchatGrey),
                   ),
                 ),
               ),
@@ -878,7 +878,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                   padding: const EdgeInsets.only(top: 6),
                   child: Icon(
                     Icons.lock_outline_rounded,
-                    color: fiberchatPRIMARYcolor.withOpacity(0.85),
+                    color: crypterchatPRIMARYcolor.withOpacity(0.85),
                     size: 26,
                   ),
                 ),
@@ -890,8 +890,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                       fontSize: 16,
                       color: pickTextColorBasedOnBgColorAdvanced(
                           Thm.isDarktheme(widget.prefs)
-                              ? fiberchatBACKGROUNDcolorDarkMode
-                              : fiberchatBACKGROUNDcolorLightMode)),
+                              ? crypterchatBACKGROUNDcolorDarkMode
+                              : crypterchatBACKGROUNDcolorLightMode)),
                 ),
                 subtitle: Padding(
                   padding: const EdgeInsets.only(top: 4),
@@ -899,7 +899,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                     getTranslated(context, 'processdata'),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 14, color: fiberchatGrey),
+                    style: TextStyle(fontSize: 14, color: crypterchatGrey),
                   ),
                 ),
               ),
@@ -907,8 +907,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                 onTap: () {
                   showModalBottomSheet(
                       backgroundColor: Thm.isDarktheme(widget.prefs)
-                          ? fiberchatDIALOGColorDarkMode
-                          : fiberchatDIALOGColorLightMode,
+                          ? crypterchatDIALOGColorDarkMode
+                          : crypterchatDIALOGColorLightMode,
                       isScrollControlled: true,
                       context: context,
                       shape: RoundedRectangleBorder(
@@ -945,8 +945,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                                         style: TextStyle(
                                             color: pickTextColorBasedOnBgColorAdvanced(Thm
                                                     .isDarktheme(widget.prefs)
-                                                ? fiberchatDIALOGColorDarkMode
-                                                : fiberchatDIALOGColorLightMode),
+                                                ? crypterchatDIALOGColorDarkMode
+                                                : crypterchatDIALOGColorLightMode),
                                             fontWeight: FontWeight.normal,
                                             fontSize: 16.5),
                                       ),
@@ -958,7 +958,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                                       height: w / 10,
                                     ),
                                     myElevatedButton(
-                                        color: fiberchatPRIMARYcolor,
+                                        color: crypterchatPRIMARYcolor,
                                         child: Padding(
                                           padding: const EdgeInsets.fromLTRB(
                                               10, 15, 10, 15),
@@ -995,8 +995,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                                                 backgroundColor: Thm
                                                         .isDarktheme(
                                                             widget.prefs)
-                                                    ? fiberchatDIALOGColorDarkMode
-                                                    : fiberchatDIALOGColorLightMode,
+                                                    ? crypterchatDIALOGColorDarkMode
+                                                    : crypterchatDIALOGColorLightMode,
                                                 isScrollControlled: true,
                                                 context: context,
                                                 shape: RoundedRectangleBorder(
@@ -1036,8 +1036,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                                                                       .isDarktheme(
                                                                           widget
                                                                               .prefs)
-                                                                  ? fiberchatDIALOGColorDarkMode
-                                                                  : fiberchatDIALOGColorLightMode),
+                                                                  ? crypterchatDIALOGColorDarkMode
+                                                                  : crypterchatDIALOGColorLightMode),
                                                             ),
                                                           )
                                                         ],
@@ -1052,8 +1052,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                                                 backgroundColor: Thm
                                                         .isDarktheme(
                                                             widget.prefs)
-                                                    ? fiberchatDIALOGColorDarkMode
-                                                    : fiberchatDIALOGColorLightMode,
+                                                    ? crypterchatDIALOGColorDarkMode
+                                                    : crypterchatDIALOGColorLightMode,
                                                 isScrollControlled: true,
                                                 context: this.context,
                                                 shape: RoundedRectangleBorder(
@@ -1093,8 +1093,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                                                                       .isDarktheme(
                                                                           widget
                                                                               .prefs)
-                                                                  ? fiberchatDIALOGColorDarkMode
-                                                                  : fiberchatDIALOGColorLightMode),
+                                                                  ? crypterchatDIALOGColorDarkMode
+                                                                  : crypterchatDIALOGColorLightMode),
                                                             ),
                                                           )
                                                         ],
@@ -1113,7 +1113,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                   padding: const EdgeInsets.only(top: 6),
                   child: Icon(
                     Icons.delete_outlined,
-                    color: fiberchatPRIMARYcolor.withOpacity(0.85),
+                    color: crypterchatPRIMARYcolor.withOpacity(0.85),
                     size: 26,
                   ),
                 ),
@@ -1125,8 +1125,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                       fontSize: 16,
                       color: pickTextColorBasedOnBgColorAdvanced(
                           Thm.isDarktheme(widget.prefs)
-                              ? fiberchatBACKGROUNDcolorDarkMode
-                              : fiberchatBACKGROUNDcolorLightMode)),
+                              ? crypterchatBACKGROUNDcolorDarkMode
+                              : crypterchatBACKGROUNDcolorLightMode)),
                 ),
                 subtitle: Padding(
                   padding: const EdgeInsets.only(top: 4),
@@ -1134,18 +1134,18 @@ class _SettingsOptionState extends State<SettingsOption> {
                     getTranslated(context, 'raiserequest'),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 14, color: fiberchatGrey),
+                    style: TextStyle(fontSize: 14, color: crypterchatGrey),
                   ),
                 ),
               ),
               ListTile(
                 onTap: () {
-                  Fiberchat.invite(this.context);
+                  Crypterchat.invite(this.context);
                 },
                 contentPadding: EdgeInsets.fromLTRB(30, 3, 10, 3),
                 leading: Icon(
                   Icons.people_rounded,
-                  color: fiberchatPRIMARYcolor.withOpacity(0.85),
+                  color: crypterchatPRIMARYcolor.withOpacity(0.85),
                   size: 26,
                 ),
                 title: Text(
@@ -1156,8 +1156,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                       fontSize: 16,
                       color: pickTextColorBasedOnBgColorAdvanced(
                           Thm.isDarktheme(widget.prefs)
-                              ? fiberchatBACKGROUNDcolorDarkMode
-                              : fiberchatBACKGROUNDcolorLightMode)),
+                              ? crypterchatBACKGROUNDcolorDarkMode
+                              : crypterchatBACKGROUNDcolorLightMode)),
                 ),
               ),
               observer.isLogoutButtonShowInSettingsPage == true
@@ -1171,7 +1171,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                       contentPadding: EdgeInsets.fromLTRB(30, 0, 10, 6),
                       leading: Icon(
                         Icons.logout_rounded,
-                        color: fiberchatREDbuttonColor,
+                        color: crypterchatREDbuttonColor,
                         size: 26,
                       ),
                       title: Text(
@@ -1182,8 +1182,8 @@ class _SettingsOptionState extends State<SettingsOption> {
                             fontSize: 16,
                             color: pickTextColorBasedOnBgColorAdvanced(
                                 Thm.isDarktheme(widget.prefs)
-                                    ? fiberchatBACKGROUNDcolorDarkMode
-                                    : fiberchatBACKGROUNDcolorLightMode),
+                                    ? crypterchatBACKGROUNDcolorDarkMode
+                                    : crypterchatBACKGROUNDcolorLightMode),
                             fontWeight: FontWeight.w600),
                       ),
                     )
@@ -1194,7 +1194,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                 child: Text(
                   'v ${widget.prefs.getString('app_version') ?? ""}',
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: fiberchatGrey, fontSize: 12),
+                  style: TextStyle(color: crypterchatGrey, fontSize: 12),
                 ),
               ),
               Padding(
@@ -1203,7 +1203,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                   MadeByText,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: fiberchatGrey.withOpacity(0.8),
+                      color: crypterchatGrey.withOpacity(0.8),
                       fontSize: 12,
                       fontWeight: FontWeight.w500),
                 ),
@@ -1223,8 +1223,8 @@ class _SettingsOptionState extends State<SettingsOption> {
         builder: (context) {
           return SimpleDialog(
             backgroundColor: Thm.isDarktheme(widget.prefs)
-                ? fiberchatDIALOGColorDarkMode
-                : fiberchatDIALOGColorLightMode,
+                ? crypterchatDIALOGColorDarkMode
+                : crypterchatDIALOGColorLightMode,
             children: <Widget>[
               ListTile(
                   contentPadding: EdgeInsets.only(top: 20),
@@ -1235,27 +1235,27 @@ class _SettingsOptionState extends State<SettingsOption> {
                         Icon(
                           Icons.star,
                           size: 40,
-                          color: fiberchatGrey,
+                          color: crypterchatGrey,
                         ),
                         Icon(
                           Icons.star,
                           size: 40,
-                          color: fiberchatGrey,
+                          color: crypterchatGrey,
                         ),
                         Icon(
                           Icons.star,
                           size: 40,
-                          color: fiberchatGrey,
+                          color: crypterchatGrey,
                         ),
                         Icon(
                           Icons.star,
                           size: 40,
-                          color: fiberchatGrey,
+                          color: crypterchatGrey,
                         ),
                         Icon(
                           Icons.star,
                           size: 40,
-                          color: fiberchatGrey,
+                          color: crypterchatGrey,
                         ),
                       ]),
                   onTap: () {
@@ -1278,15 +1278,15 @@ class _SettingsOptionState extends State<SettingsOption> {
                       fontSize: 14,
                       color: pickTextColorBasedOnBgColorAdvanced(
                           Thm.isDarktheme(widget.prefs)
-                              ? fiberchatDIALOGColorDarkMode
-                              : fiberchatDIALOGColorLightMode),
+                              ? crypterchatDIALOGColorDarkMode
+                              : crypterchatDIALOGColorLightMode),
                     ),
                     textAlign: TextAlign.center,
                   ),
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
               Center(
                   child: myElevatedButton(
-                      color: fiberchatPRIMARYcolor,
+                      color: crypterchatPRIMARYcolor,
                       child: Text(
                         getTranslated(context, 'rate'),
                         style: TextStyle(color: Colors.white),

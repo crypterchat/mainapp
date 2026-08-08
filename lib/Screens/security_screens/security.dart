@@ -3,15 +3,15 @@
 import 'dart:async';
 import 'dart:core';
 import 'dart:io';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/color_detector.dart';
-import 'package:fiberchat/Utils/theme_management.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/MyElevatedButton/MyElevatedButton.dart';
-import 'package:fiberchat/widgets/Passcode/passcode_screen.dart';
+import 'package:crypterchat/Configs/Dbkeys.dart';
+import 'package:crypterchat/Configs/Dbpaths.dart';
+import 'package:crypterchat/Configs/app_constants.dart';
+import 'package:crypterchat/Services/localization/language_constants.dart';
+import 'package:crypterchat/Utils/color_detector.dart';
+import 'package:crypterchat/Utils/theme_management.dart';
+import 'package:crypterchat/Utils/utils.dart';
+import 'package:crypterchat/widgets/MyElevatedButton/MyElevatedButton.dart';
+import 'package:crypterchat/widgets/Passcode/passcode_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -46,11 +46,11 @@ class _SecurityState extends State<Security> {
 
   @override
   Widget build(BuildContext context) {
-    return Fiberchat.getNTPWrappedWidget(Stack(children: [
+    return Crypterchat.getNTPWrappedWidget(Stack(children: [
       Scaffold(
           backgroundColor: Thm.isDarktheme(widget.prefs)
-              ? fiberchatBACKGROUNDcolorDarkMode
-              : fiberchatBACKGROUNDcolorLightMode,
+              ? crypterchatBACKGROUNDcolorDarkMode
+              : crypterchatBACKGROUNDcolorLightMode,
           appBar: AppBar(
             leading: IconButton(
                 onPressed: () {
@@ -60,8 +60,8 @@ class _SecurityState extends State<Security> {
                   Icons.arrow_back,
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode),
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode),
                 )),
             elevation: 0.4,
             title: Text(
@@ -69,8 +69,8 @@ class _SecurityState extends State<Security> {
               style: TextStyle(
                   color: pickTextColorBasedOnBgColorAdvanced(
                       Thm.isDarktheme(widget.prefs)
-                          ? fiberchatAPPBARcolorDarkMode
-                          : fiberchatAPPBARcolorLightMode)),
+                          ? crypterchatAPPBARcolorDarkMode
+                          : crypterchatAPPBARcolorLightMode)),
             ),
           ),
           bottomSheet: Container(
@@ -80,7 +80,7 @@ class _SecurityState extends State<Security> {
             child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: myElevatedButton(
-                  color: fiberchatPRIMARYcolor,
+                  color: crypterchatPRIMARYcolor,
                   child: Text(
                     getTranslated(this.context, 'done'),
                     style: TextStyle(color: Colors.white),
@@ -88,7 +88,7 @@ class _SecurityState extends State<Security> {
                   onPressed: () {
                     if (widget.setPasscode) {
                       if (_passCode == null)
-                        Fiberchat.toast(
+                        Crypterchat.toast(
                             getTranslated(this.context, 'setpasscode'));
                       if (
                           // ignore: todo
@@ -101,8 +101,8 @@ class _SecurityState extends State<Security> {
                           //TODO://----REMOVE BELOW COMMENT TO ASK SECURITY QUESTION SET----
                           // QUESTION: _question.text,
                           // ANSWER:
-                          //     Fiberchat.getHashedAnswer(_answer.text),
-                          Dbkeys.passcode: Fiberchat.getHashedString(_passCode!)
+                          //     Crypterchat.getHashedAnswer(_answer.text),
+                          Dbkeys.passcode: Crypterchat.getHashedString(_passCode!)
                         };
                         setState(() {
                           isLoading = true;
@@ -114,7 +114,7 @@ class _SecurityState extends State<Security> {
                             .doc(widget.phoneNo)
                             .update(data)
                             .then((_) {
-                          // Fiberchat.toast(
+                          // Crypterchat.toast(
                           //     getTranslated(this.context, 'welcometo') +
                           //         ' $Appname!');
                           widget.onSuccess(this.context);
@@ -129,7 +129,7 @@ class _SecurityState extends State<Security> {
                           //TODO://----REMOVE BELOW COMMENT TO ASK SECURITY QUESTION SET----
                           // QUESTION: _question.text,
                           // ANSWER:
-                          //     Fiberchat.getHashedAnswer(_answer.text),
+                          //     Crypterchat.getHashedAnswer(_answer.text),
                         };
                         setState(() {
                           isLoading = true;
@@ -162,16 +162,16 @@ class _SecurityState extends State<Security> {
                       ? ListTile(
                           trailing: Icon(Icons.check_circle,
                               color: _passCode == null
-                                  ? fiberchatGrey
-                                  : fiberchatPRIMARYcolor,
+                                  ? crypterchatGrey
+                                  : crypterchatPRIMARYcolor,
                               size: 35),
                           title: myElevatedButton(
-                            color: fiberchatPRIMARYcolor,
+                            color: crypterchatPRIMARYcolor,
                             child: Text(
                               getTranslated(this.context, 'setpass'),
                               style: TextStyle(
                                 color: pickTextColorBasedOnBgColorAdvanced(
-                                    fiberchatPRIMARYcolor),
+                                    crypterchatPRIMARYcolor),
                               ),
                             ),
                             onPressed: _showLockScreen,
@@ -211,7 +211,7 @@ class _SecurityState extends State<Security> {
                   //       if (v.trim().isEmpty)
                   //         return getTranslated(
                   //             this.context, 'ansempty');
-                  //       if (Fiberchat.getHashedAnswer(v) ==
+                  //       if (Crypterchat.getHashedAnswer(v) ==
                   //           widget.answer)
                   //         return getTranslated(this.context, 'newans');
                   //       return null;
@@ -229,12 +229,12 @@ class _SecurityState extends State<Security> {
                 child: Center(
                   child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
-                          fiberchatSECONDARYolor)),
+                          crypterchatSECONDARYolor)),
                 ),
                 color: pickTextColorBasedOnBgColorAdvanced(
                         !Thm.isDarktheme(widget.prefs)
-                            ? fiberchatCONTAINERboxColorDarkMode
-                            : fiberchatCONTAINERboxColorLightMode)
+                            ? crypterchatCONTAINERboxColorDarkMode
+                            : crypterchatCONTAINERboxColorLightMode)
                     .withOpacity(0.6),
               )
             : Container(),
