@@ -155,17 +155,33 @@ docs/media/               Screenshots + demo video
 scripts/start-stack.sh    One-command local stack
 ```
 
-## Flutter mobile app
+## Flutter WhatsApp-style app (runnable demo)
 
-Phone authentication continues to use Firebase Auth (unchanged). Text 1:1 sends additionally call `ChatScanService.recordMessage`, which encrypts via the bridge and stores ChatScan fields (`csRef`, `csHash`, `csUrl`, `csStatus`) on the message document.
+The production Flutter tree under `lib/` still expects a real Firebase
+`google-services.json` (the checked-in file is a placeholder). To **run the
+WhatsApp-like UI against ChatScan today**, use the dedicated demo app:
 
 ```bash
-# configure Firebase as usual, then:
+./scripts/start-stack.sh
+cd flutter_demo
 flutter pub get
-flutter run
+flutter run -d chrome --web-renderer html \
+  --dart-define=MESSAGING_URL=http://127.0.0.1:8787
+# Android emulator:
+# flutter run -d android --dart-define=MESSAGING_URL=http://10.0.2.2:8787
 ```
 
-Point `ChatScanMessagingBaseUrl` at a reachable messaging bridge (use your machine LAN IP for a physical device).
+| Demo asset | What it shows |
+| --- | --- |
+| ![Chat list](docs/media/flutter-wa-01-chatlist.png) | WhatsApp-style chat list + live ChatScan banner |
+| ![Alice sent](docs/media/flutter-wa-03-alice-sent.png) | Green bubbles with on-chain `ref` / hash / `contentAvailable=false` |
+| ![Bob received](docs/media/flutter-wa-05-bob-received.png) | Recipient decrypts the same ChatScan-sealed messages |
+| [Flutter demo video](docs/media/flutter-whatsapp-chatscan-demo.mp4) | Full Alice → Bob walkthrough |
+
+Details: [`flutter_demo/README.md`](flutter_demo/README.md).
+
+The main app’s 1:1 send path also calls `ChatScanService.recordMessage` (fields
+`csRef` / `csHash` / `csUrl` / `csStatus`) once Firebase is configured.
 
 ## Production notes
 

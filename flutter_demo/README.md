@@ -1,0 +1,67 @@
+# CrypterChat Flutter demo (WhatsApp-style + ChatScan)
+
+Runnable Flutter client with a **WhatsApp-like** chat UI. Phone-number login and
+every text send go through the ChatScan messaging bridge — the X11 explorer only
+ever stores ciphertext hashes (`contentAvailable=false`).
+
+> The full production app under `/lib` still depends on Firebase
+> (`google-services.json` is a placeholder in this repo). This demo is the
+> supported way to run the Flutter WhatsApp UI against ChatScan locally.
+
+## Prerequisites
+
+* Flutter 3.24+ (`flutter` on `PATH`)
+* ChatScan + messaging bridge running (`../scripts/start-stack.sh`)
+* For Android: Android SDK + emulator/device
+* For web: Chrome
+
+## Run (web — fastest)
+
+```bash
+# terminal 1
+../scripts/start-stack.sh
+
+# terminal 2
+cd flutter_demo
+flutter pub get
+flutter run -d chrome \
+  --web-renderer html \
+  --dart-define=MESSAGING_URL=http://127.0.0.1:8787
+```
+
+Or headless web-server (good for CI / remote desktops):
+
+```bash
+flutter run -d web-server --web-hostname=0.0.0.0 --web-port=8080 \
+  --web-renderer html \
+  --dart-define=MESSAGING_URL=http://127.0.0.1:8787
+```
+
+## Run (Android)
+
+```bash
+flutter devices
+flutter run -d android \
+  --dart-define=MESSAGING_URL=http://10.0.2.2:8787   # emulator → host
+# physical device: use your machine LAN IP instead of 10.0.2.2
+```
+
+Build a debug APK:
+
+```bash
+flutter build apk --debug --dart-define=MESSAGING_URL=http://10.0.2.2:8787
+# → build/app/outputs/flutter-apk/app-debug.apk
+```
+
+## Try a chat
+
+1. Sign in with an E.164 number (e.g. `+15551110001`) — demo OTP **`123456`**
+2. Confirm the green **ChatScan x11:local · height N** banner
+3. Start / open a chat with another number (e.g. `+15551110002`)
+4. Send a message — the bubble shows `ref`, `hash`, and `private`
+5. Sign in as the recipient and read the same message
+6. Open the explorer (`http://127.0.0.1:3000/tx/{ref}`) — content is not viewable
+
+## Demo media
+
+See `../docs/media/flutter-wa-*.png` and `../docs/media/flutter-whatsapp-chatscan-demo.mp4`.
