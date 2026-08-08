@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="ChatScan">
+  <rect width="64" height="64" rx="14" fill="#25347b" />
+  <path d="M32 12l16 9v18l-16 9-16-9V21l16-9zm0 5.6L21 23.9v12.2l11 6.3 11-6.3V23.9l-11-6.3z" fill="#fff" />
+  <circle cx="32" cy="30" r="5" fill="#627dff" />
+</svg>

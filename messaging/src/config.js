@@ -1,0 +1,23 @@
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const here = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(here, '..');
+
+function env(name, fallback) {
+  const value = process.env[name];
+  return value === undefined || value === '' ? fallback : value;
+}
+
+export const config = {
+  host: env('MESSAGING_HOST', '0.0.0.0'),
+  port: Number(env('MESSAGING_PORT', '8787')),
+  dataDir: path.resolve(env('MESSAGING_DATA_DIR', path.join(root, 'data'))),
+  chatscanUrl: env('CHATSCAN_URL', 'http://127.0.0.1:3000').replace(/\/$/, ''),
+  chatscanIngestKey: env('CHATSCAN_INGEST_KEY', ''),
+  appVersion: env('APP_VERSION', 'crypterchat-1.0'),
+  /** Demo OTP accepted in local/dev so phone login works without SMS providers. */
+  demoOtp: env('DEMO_OTP', '123456'),
+  sessionTtlMs: Number(env('SESSION_TTL_MS', String(7 * 24 * 60 * 60 * 1000))),
+  publicDir: path.join(root, 'public'),
+};

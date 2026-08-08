@@ -49,3 +49,9 @@ coverage/
 
 # Firebase
 .firebase/
+
+# ChatScan / messaging runtime
+chatscan/data/
+messaging/data/
+logs/
+

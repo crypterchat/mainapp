@@ -1,0 +1,26 @@
+{
+  "name": "chatscan",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ChatScan Block Explorer - an explorer for end-to-end encrypted CrypterChat message records on the X11 blockchain.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test test/*.test.js sdk/test/*.test.js",
+    "seed": "node scripts/seed.js",
+    "send": "node scripts/send-message.js"
+  },
+  "keywords": [
+    "chatscan",
+    "crypterchat",
+    "block-explorer",
+    "x11",
+    "end-to-end-encryption"
+  ]
+}
