@@ -286,6 +286,17 @@ input:focus {
   border-bottom: 0;
   border-top: 1px solid var(--line);
   background: rgba(255,255,255,0.65);
+  align-items: center;
+}
+
+.composer select {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.65rem 0.55rem;
+  background: white;
+  color: var(--ink);
+  font: inherit;
+  max-width: 7.5rem;
 }
 
 .toast {

@@ -48,9 +48,11 @@ Open `http://YOUR_SERVER:8787` in a browser. That page is already served by your
 
 | Data | Where |
 | --- | --- |
-| Phone users, sessions, encrypted message envelopes | **Your chat server** (`messaging/data`) |
-| Ciphertext hash, size, channel metadata | **ChatScan** (public, immutable) |
-| Message plaintext | Only on clients / decrypted for conversation members — never on ChatScan |
+| Phone users, sessions, OpenPGP keys, encrypted envelopes | **Your chat server** (`messaging/data`) |
+| Ciphertext hash, size, channel metadata (`PGP` / `C7`) | **ChatScan** (public, immutable) |
+| Message plaintext | Only after OpenPGP decrypt for conversation members — never on ChatScan |
+
+Default crypto is OpenPGP (`DEFAULT_CRYPTO_TOOL=pgp`). See [PRIVACY_TOOLS.md](PRIVACY_TOOLS.md) for age / Tor / other compatible tools.
 
 ## 4. Production notes
 

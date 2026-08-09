@@ -50,16 +50,28 @@ async function refreshChainPill() {
     const health = await api('/api/health', { auth: false });
     const server = health.server || {};
     const cs = health.chatscan || {};
+    const tool = server.defaultCryptoTool || 'pgp';
     const banner = $('server-banner');
     if (banner) {
       banner.innerHTML =
-        `<strong>${escapeHtml(server.name || 'Chat server')}</strong> — chat data on this server · ` +
-        `ChatScan <code>${escapeHtml(cs.chainId || '')}</code> (hashes only)`;
+        `<strong>${escapeHtml(server.name || 'Chat server')}</strong> — ` +
+        `OpenPGP + ChatScan · chat data on this server · ` +
+        `<code>${escapeHtml(cs.chainId || '')}</code> (hashes only)`;
+    }
+    let pgpLine = '';
+    if (state.token) {
+      try {
+        const me = await api('/api/pgp/me');
+        pgpLine = `<br>PGP ···${escapeHtml((me.fingerprintShort || '').toUpperCase())} ${me.unlocked ? 'unlocked' : 'locked'}`;
+      } catch {
+        /* ignore */
+      }
     }
     $('chain-pill').innerHTML =
       `<strong>${escapeHtml(server.name || 'Chat server')}</strong><br>` +
-      `Chat data here · ChatScan ${escapeHtml(cs.chainId || '')} · h${escapeHtml(String(cs.height ?? ''))} · ` +
-      `<a href="${escapeHtml(cs.url || '/')}" target="_blank" rel="noopener">explorer</a>`;
+      `${escapeHtml(tool)} · ChatScan ${escapeHtml(cs.chainId || '')} · h${escapeHtml(String(cs.height ?? ''))} · ` +
+      `<a href="${escapeHtml(cs.url || '/')}" target="_blank" rel="noopener">explorer</a>` +
+      pgpLine;
   } catch (error) {
     $('chain-pill').textContent = `Server offline: ${error.message}`;
   }
@@ -95,7 +107,14 @@ async function openConversation(peer, conversationId) {
   $('empty-chat').classList.add('hidden');
   $('active-chat').classList.remove('hidden');
   $('peer-title').textContent = peer;
-  $('peer-sub').textContent = `Conversation ${state.activeId}`;
+  $('peer-sub').textContent = 'OpenPGP · sealed on ChatScan';
+  try {
+    const peerKey = await api(`/api/pgp/keys/${encodeURIComponent(peer)}`);
+    $('peer-sub').textContent =
+      `PGP ···${(peerKey.fingerprintShort || '').toUpperCase()} · sealed on ChatScan`;
+  } catch {
+    /* keep default */
+  }
   $('explorer-link').href = '/'; // updated after chain status
   try {
     const { explorer } = await api('/api/chain/status');
@@ -121,10 +140,14 @@ async function loadMessages({ scroll = false } = {}) {
     const explorerPath = msg.explorerUrl || '#';
     // Peer-to-peer: show the normal message text only. Hashes live on ChatScan.
     const when = msg.createdAt ? new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+    const tool = msg.tool === 'pgp' || msg.protocol === 'PGP' ? 'PGP' : (msg.tool || msg.protocol || '');
+    const body = msg.locked
+      ? '[PGP locked — unlock key]'
+      : (msg.plaintext ?? '[unable to decrypt]');
     el.innerHTML = `
-      <div class="bubble-text">${escapeHtml(msg.plaintext ?? '[unable to decrypt]')}</div>
+      <div class="bubble-text">${escapeHtml(body)}</div>
       <div class="bubble-foot">
-        <span>${escapeHtml(when)}</span>
+        <span>${escapeHtml(when)}${tool ? ` · ${escapeHtml(tool)}` : ''}</span>
         <a class="chain-link" href="${escapeHtml(explorerPath)}" target="_blank" rel="noopener" title="Open on ChatScan">✓</a>
       </div>`;
     list.appendChild(el);
@@ -219,15 +242,16 @@ $('send-form').addEventListener('submit', async (event) => {
   const button = event.submitter;
   button.disabled = true;
   try {
+    const tool = $('crypto-tool')?.value || 'pgp';
     const result = await api('/api/messages/send', {
       method: 'POST',
-      body: { to: state.peerPhone, text },
+      body: { to: state.peerPhone, text, tool },
     });
     $('message-input').value = '';
     state.activeId = result.message.conversationId;
     await refreshConversations();
     await loadMessages({ scroll: true });
-    toast('Sent');
+    toast(tool === 'pgp' ? 'Sent (OpenPGP)' : 'Sent');
   } catch (error) {
     toast(error.message);
   } finally {

@@ -26,6 +26,13 @@ export const config = {
   appVersion: env('APP_VERSION', 'crypterchat-1.0'),
   /** Demo OTP accepted in local/dev so phone login works without SMS providers. */
   demoOtp: env('DEMO_OTP', '123456'),
+  /**
+   * Passphrase used to protect per-user OpenPGP private keys in demo mode.
+   * Change in production; clients can unlock with the same passphrase.
+   */
+  pgpPassphrase: env('PGP_PASSPHRASE', 'crypterchat-demo'),
+  /** Default message crypto tool: pgp | aes */
+  defaultCryptoTool: env('DEFAULT_CRYPTO_TOOL', 'pgp'),
   sessionTtlMs: Number(env('SESSION_TTL_MS', String(7 * 24 * 60 * 60 * 1000))),
   publicDir: path.join(root, 'public'),
 };

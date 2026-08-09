@@ -1,8 +1,9 @@
 # CrypterChat Flutter demo (WhatsApp-style + ChatScan)
 
 Runnable Flutter client with a **WhatsApp-like** chat UI. Phone-number login and
-every text send go through the ChatScan messaging bridge — the X11 explorer only
-ever stores ciphertext hashes (`contentAvailable=false`).
+every text send use **OpenPGP** (default) through the ChatScan messaging bridge —
+the X11 explorer only ever stores ciphertext hashes (`contentAvailable=false`,
+protocol `PGP`).
 
 > The full production app under `/lib` still depends on Firebase
 > (`google-services.json` is a placeholder in this repo). This demo is the
@@ -23,7 +24,10 @@ ever stores ciphertext hashes (`contentAvailable=false`).
 3. Tap **Test connection** — you should see the server name and ChatScan status
 4. Sign in; chat data stays on that server, hashes still go to ChatScan
 
-Details: [../docs/SELF_HOST.md](../docs/SELF_HOST.md)
+Details: [../docs/SELF_HOST.md](../docs/SELF_HOST.md) · [../docs/PRIVACY_TOOLS.md](../docs/PRIVACY_TOOLS.md)
+
+In the app: shield icon → **Privacy tools** (OpenPGP, ChatScan, Tor/age-compatible).
+Chat lock menu switches `pgp` / `aes` per send.
 
 ## Run (web — fastest)
 

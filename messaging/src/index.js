@@ -4,6 +4,7 @@ import path from 'node:path';
 import { config } from './config.js';
 import { Store } from './store.js';
 import { ChatScanBridge } from './chatscan.js';
+import { PgpVault } from './pgp-vault.js';
 import { createApi } from './api.js';
 
 const store = new Store(config.dataDir);
@@ -12,8 +13,9 @@ const chatscan = new ChatScanBridge({
   ingestKey: config.chatscanIngestKey,
   appVersion: config.appVersion,
 });
+const pgpVault = new PgpVault();
 
-const handleApi = createApi({ store, chatscan });
+const handleApi = createApi({ store, chatscan, pgpVault });
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -85,6 +87,7 @@ async function main() {
     console.log(`ChatScan (hashes only) ${config.chatscanUrl}`);
     console.log(`Chain                  ${chain.chainId} (${chain.backend}) height=${chain.height}`);
     console.log(`Demo OTP               ${config.demoOtp}`);
+    console.log(`Default crypto         ${config.defaultCryptoTool} (OpenPGP + ChatScan)`);
   });
 }
 

@@ -135,6 +135,14 @@ class ApiClient {
     });
     token = data['token'] as String?;
     user = (data['user'] as Map?)?.cast<String, dynamic>();
+    final pgp = (data['pgp'] as Map?)?.cast<String, dynamic>();
+    if (pgp != null) {
+      user = {
+        ...?user,
+        'pgpFingerprint': pgp['fingerprint'],
+        'pgpUnlocked': pgp['unlocked'] == true,
+      };
+    }
   }
 
   Future<List<Map<String, dynamic>>> conversations() async {
@@ -144,8 +152,16 @@ class ApiClient {
         .toList();
   }
 
-  Future<Map<String, dynamic>> send(String to, String text) =>
-      _json('POST', '/api/messages/send', body: {'to': to, 'text': text});
+  Future<Map<String, dynamic>> send(
+    String to,
+    String text, {
+    String tool = 'pgp',
+  }) =>
+      _json('POST', '/api/messages/send', body: {
+        'to': to,
+        'text': text,
+        'tool': tool,
+      });
 
   Future<List<Map<String, dynamic>>> messages(String conversationId) async {
     final data = await _json('GET', '/api/messages', query: {
@@ -159,6 +175,17 @@ class ApiClient {
   Future<Map<String, dynamic>> chainStatus() => _json('GET', '/api/chain/status');
 
   Future<Map<String, dynamic>> serverInfo() => _json('GET', '/api/server', auth: false);
+
+  Future<Map<String, dynamic>> pgpMe() => _json('GET', '/api/pgp/me');
+
+  Future<Map<String, dynamic>> privacyTools() =>
+      _json('GET', '/api/privacy/tools', auth: false);
+
+  Future<void> unlockPgp([String? passphrase]) async {
+    await _json('POST', '/api/pgp/unlock', body: {
+      if (passphrase != null) 'passphrase': passphrase,
+    });
+  }
 }
 
 /// Persists the user's chosen chat-server base URL (their own server).
@@ -440,6 +467,99 @@ class _ServerSettingsScreenState extends State<ServerSettingsScreen> {
   }
 }
 
+/// Lists active + compatible privacy tools (OpenPGP, ChatScan, Tor, age…).
+class PrivacyToolsScreen extends StatefulWidget {
+  const PrivacyToolsScreen({super.key, required this.api});
+  final ApiClient api;
+
+  @override
+  State<PrivacyToolsScreen> createState() => _PrivacyToolsScreenState();
+}
+
+class _PrivacyToolsScreenState extends State<PrivacyToolsScreen> {
+  Map<String, dynamic>? _payload;
+  String? _error;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    try {
+      final data = await widget.api.privacyTools();
+      if (!mounted) return;
+      setState(() {
+        _payload = data;
+        _error = null;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _error = '$e');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final tools = ((_payload?['tools'] as List?) ?? [])
+        .map((e) => (e as Map).cast<String, dynamic>())
+        .toList();
+    final stack = ((_payload?['stack'] as List?) ?? []).map((e) => '$e').toList();
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(title: const Text('Privacy tools')),
+      body: ListView(
+        padding: const EdgeInsets.all(20),
+        children: [
+          const Text(
+            'CrypterChat stacks OpenPGP with ChatScan. Other private tools can plug in as bring-your-own ciphertext or hosting choices.',
+            style: TextStyle(height: 1.4, color: kMuted),
+          ),
+          const SizedBox(height: 12),
+          Text(
+            'Default tool: ${_payload?['defaultTool'] ?? '…'}',
+            style: const TextStyle(fontWeight: FontWeight.w700),
+          ),
+          if (_error != null) ...[
+            const SizedBox(height: 8),
+            Text(_error!, style: const TextStyle(color: Colors.red)),
+          ],
+          const SizedBox(height: 16),
+          for (final t in tools) ...[
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: Icon(
+                t['status'] == 'active' ? Icons.verified_user : Icons.link,
+                color: t['status'] == 'active' ? kPrimary : kMuted,
+              ),
+              title: Text('${t['name']} · ${t['status']}'),
+              subtitle: Text(
+                '${t['role']}\nWorks with: ${((t['worksWith'] as List?) ?? []).join(', ')}',
+                style: const TextStyle(height: 1.35),
+              ),
+              isThreeLine: true,
+            ),
+            const Divider(height: 1),
+          ],
+          if (stack.isNotEmpty) ...[
+            const SizedBox(height: 20),
+            const Text('How the stack works',
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+            const SizedBox(height: 8),
+            for (var i = 0; i < stack.length; i++)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 6),
+                child: Text('${i + 1}. ${stack[i]}',
+                    style: const TextStyle(height: 1.35, color: kInk)),
+              ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -655,6 +775,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List<Map<String, dynamic>> _conversations = [];
   String? _serverLabel;
+  String? _pgpLabel;
   Timer? _timer;
 
   @override
@@ -676,16 +797,30 @@ class _HomeScreenState extends State<HomeScreen> {
       final health = await widget.api.health();
       final server = health['server'] as Map<String, dynamic>?;
       final cs = health['chatscan'] as Map<String, dynamic>?;
+      String? pgpLabel;
+      try {
+        final pgp = await widget.api.pgpMe();
+        final short = '${pgp['fingerprintShort'] ?? ''}'.toUpperCase();
+        final unlocked = pgp['unlocked'] == true;
+        pgpLabel = 'OpenPGP ···$short · ${unlocked ? 'unlocked' : 'locked'}';
+      } catch (_) {}
       if (!mounted) return;
       setState(() {
         _conversations = list;
+        _pgpLabel = pgpLabel;
         _serverLabel =
-            '${server?['name'] ?? 'Chat server'} · ${widget.api.baseUrl}\n'
+            '${server?['name'] ?? 'Chat server'} · ${server?['defaultCryptoTool'] ?? 'pgp'}\n'
             'ChatScan ${cs?['chainId']} · h${cs?['height']} (hashes only)';
       });
     } catch (_) {
       /* keep last good state */
     }
+  }
+
+  Future<void> _openPrivacyTools() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => PrivacyToolsScreen(api: widget.api)),
+    );
   }
 
   Future<void> _openServerSettings() async {
@@ -754,6 +889,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           IconButton(
+            tooltip: 'Privacy tools',
+            onPressed: _openPrivacyTools,
+            icon: const Icon(Icons.shield_outlined),
+          ),
+          IconButton(
             tooltip: 'Server settings',
             onPressed: _openServerSettings,
             icon: const Icon(Icons.dns_outlined),
@@ -778,13 +918,16 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Column(
         children: [
-          if (_serverLabel != null)
+          if (_serverLabel != null || _pgpLabel != null)
             Container(
               width: double.infinity,
               color: const Color(0xFFF0EBFF),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Text(
-                _serverLabel!,
+                [
+                  if (_pgpLabel != null) _pgpLabel!,
+                  if (_serverLabel != null) _serverLabel!,
+                ].join('\n'),
                 style: const TextStyle(color: kSecondary, fontSize: 12, height: 1.35),
               ),
             ),
@@ -882,6 +1025,7 @@ class _ChatScreenState extends State<ChatScreen> {
   List<Map<String, dynamic>> _messages = [];
   late String _conversationId;
   bool _sending = false;
+  String _tool = 'pgp';
   Timer? _timer;
   String? _toast;
 
@@ -925,13 +1069,12 @@ class _ChatScreenState extends State<ChatScreen> {
     if (text.isEmpty || _sending) return;
     setState(() => _sending = true);
     try {
-      final result = await widget.api.send(widget.peerPhone, text);
+      final result = await widget.api.send(widget.peerPhone, text, tool: _tool);
       final message = result['message'] as Map<String, dynamic>?;
       _input.clear();
       if (message?['conversationId'] != null) {
         _conversationId = message!['conversationId'] as String;
       }
-      // Peer chat stays a normal messaging UI — no hash toast.
       setState(() => _toast = null);
       await _load();
     } catch (e) {
@@ -972,9 +1115,11 @@ class _ChatScreenState extends State<ChatScreen> {
               const Text('Sealed on ChatScan',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
               const SizedBox(height: 8),
-              const Text(
-                'Your chat shows the normal message. ChatScan’s public chain only stores the ciphertext hash — never the text.',
-                style: TextStyle(color: kMuted, height: 1.35),
+              Text(
+                'Tool: ${message['tool'] ?? message['protocol'] ?? '—'} · '
+                'protocol ${message['protocol'] ?? ''}. '
+                'Chat shows the decrypted message; ChatScan stores only the hash.',
+                style: const TextStyle(color: kMuted, height: 1.35),
               ),
               const SizedBox(height: 14),
               SelectableText('ref ${message['ref'] ?? ''}',
@@ -1022,13 +1167,28 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: [
                   Text(widget.peerPhone,
                       style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                  const Text('End-to-end encrypted',
-                      style: TextStyle(fontSize: 11, fontWeight: FontWeight.w400, color: kMuted)),
+                  Text(
+                    _tool == 'pgp' ? 'OpenPGP · ChatScan' : 'AES-GCM · ChatScan',
+                    style: const TextStyle(
+                        fontSize: 11, fontWeight: FontWeight.w400, color: kMuted),
+                  ),
                 ],
               ),
             ),
           ],
         ),
+        actions: [
+          PopupMenuButton<String>(
+            initialValue: _tool,
+            tooltip: 'Crypto tool',
+            onSelected: (v) => setState(() => _tool = v),
+            itemBuilder: (_) => const [
+              PopupMenuItem(value: 'pgp', child: Text('OpenPGP (default)')),
+              PopupMenuItem(value: 'aes', child: Text('AES-256-GCM')),
+            ],
+            icon: const Icon(Icons.lock_outline),
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -1042,7 +1202,10 @@ class _ChatScreenState extends State<ChatScreen> {
                 itemBuilder: (context, index) {
                   final m = _messages[index];
                   final mine = m['from'] == me;
-                  final text = m['plaintext']?.toString() ?? '';
+                  final locked = m['locked'] == true;
+                  final text = locked
+                      ? '🔒 PGP locked'
+                      : (m['plaintext']?.toString() ?? '');
                   return Align(
                     alignment: mine ? Alignment.centerRight : Alignment.centerLeft,
                     child: GestureDetector(

@@ -101,16 +101,43 @@ export class Store extends EventEmitter {
     return existing;
   }
 
+  /**
+   * Persist OpenPGP key material for a phone user.
+   * Private key is stored armored + passphrase-protected (from openpgp.generateKey).
+   */
+  savePgpKeys(phone, { publicArmored, privateArmored, fingerprint, createdAt }) {
+    const user = this.users[phone];
+    if (!user) {
+      throw Object.assign(new Error('User not found'), { status: 404, code: 'user_missing' });
+    }
+    user.pgp = {
+      publicArmored,
+      privateArmored,
+      fingerprint,
+      createdAt: createdAt || Date.now(),
+    };
+    this.users[phone] = user;
+    this.persist();
+    return user;
+  }
+
   getUser(phone) {
     return this.users[phone] || null;
   }
 
+  publicUserView(user) {
+    if (!user) return null;
+    return {
+      phone: user.phone,
+      displayName: user.displayName,
+      lastSeenAt: user.lastSeenAt,
+      pgpFingerprint: user.pgp?.fingerprint || null,
+      hasPgp: Boolean(user.pgp?.publicArmored),
+    };
+  }
+
   listUsers() {
-    return Object.values(this.users).map((u) => ({
-      phone: u.phone,
-      displayName: u.displayName,
-      lastSeenAt: u.lastSeenAt,
-    }));
+    return Object.values(this.users).map((u) => this.publicUserView(u));
   }
 
   createSession(phone, ttlMs) {
@@ -177,7 +204,8 @@ export class Store extends EventEmitter {
     from,
     to,
     envelopeHex,
-    keyHex,
+    keyHex = null,
+    armored = null,
     ciphertextHash,
     size,
     protocol,
@@ -188,6 +216,7 @@ export class Store extends EventEmitter {
     status,
     commitment,
     anchorTxid,
+    tool = null,
     createdAt = Date.now(),
   }) {
     const forbidden = ['content', 'body', 'text', 'message', 'plaintext', 'payload'];
@@ -207,6 +236,7 @@ export class Store extends EventEmitter {
       to,
       envelopeHex,
       keyHex,
+      armored,
       ciphertextHash,
       size,
       protocol,
@@ -217,6 +247,7 @@ export class Store extends EventEmitter {
       status,
       commitment,
       anchorTxid,
+      tool,
       createdAt,
     };
 

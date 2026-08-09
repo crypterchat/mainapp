@@ -11,6 +11,8 @@ export const PROTOCOLS = Object.freeze({
   C7G: { id: 'C7G', label: 'Protocol C7 Group', maxCiphertextBytes: 8 * 1024 * 1024 },
   ETH: { id: 'ETH', label: 'ETH Protocol', maxCiphertextBytes: 128 * 1024 },
   X11: { id: 'X11', label: 'X11 Native', maxCiphertextBytes: 4 * 1024 * 1024 },
+  /** OpenPGP-armored ciphertext hashed by CrypterChat (content never stored). */
+  PGP: { id: 'PGP', label: 'OpenPGP', maxCiphertextBytes: 4 * 1024 * 1024 },
 });
 
 export const DEFAULT_PROTOCOL = 'C7';

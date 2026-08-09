@@ -155,6 +155,17 @@ docs/media/               Screenshots + demo video
 scripts/start-stack.sh    One-command local stack
 ```
 
+## OpenPGP + privacy tools
+
+Messaging defaults to **OpenPGP** (encrypt + sign). ChatScan still only stores the ciphertext hash (`protocol: PGP`).
+
+```bash
+cd messaging && npm install && npm run test:pgp
+curl -s http://127.0.0.1:8787/api/privacy/tools | jq
+```
+
+Compatible private tools (age, Tor onion hosting, minisign) are listed in [docs/PRIVACY_TOOLS.md](docs/PRIVACY_TOOLS.md). In the Flutter demo, open the shield icon → **Privacy tools**.
+
 ## Host your own chat server
 
 Chat data can live on **your** server while ChatScan stays the shared hash chain.

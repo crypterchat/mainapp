@@ -11,6 +11,7 @@ const {
   openMessage,
   sealMessage,
   channelHash,
+  digestCiphertext,
 } = await import(sdkEntry);
 
 /**
@@ -118,6 +119,21 @@ export class ChatScanBridge {
   async sealLocal(plaintext) {
     return sealMessage(plaintext);
   }
+
+  /**
+   * Hash an already-encrypted payload (e.g. OpenPGP armor) and record on ChatScan.
+   */
+  async recordCiphertext(envelopeBytes, { conversationId, protocol, nonce }) {
+    const { ciphertextHash, size } = await digestCiphertext(envelopeBytes);
+    const sealed = await this.recordSealed({
+      ciphertextHash,
+      size,
+      protocol,
+      conversationId,
+      nonce,
+    });
+    return { ciphertextHash, size, ...sealed };
+  }
 }
 
-export { ChatScanClient, openMessage, sealMessage, channelHash };
+export { ChatScanClient, openMessage, sealMessage, channelHash, digestCiphertext };

@@ -16,7 +16,7 @@
     <div class="auth-panel">
       <p class="brand">CrypterChat</p>
       <h1>Message by phone.<br />Prove it on chain.</h1>
-      <p class="lede">Sign in with your number. Messages stay encrypted — ChatScan’s X11 chain only ever sees their hashes.</p>
+      <p class="lede">Sign in with your number. Messages use <strong>OpenPGP</strong>; ChatScan’s X11 chain only ever sees their hashes.</p>
 
       <p class="lede" id="server-banner" style="margin-top:-0.5rem"></p>
 
@@ -76,7 +76,7 @@
       <div id="empty-chat" class="empty-chat">
         <p class="brand-sm">CrypterChat</p>
         <h2>Pick a conversation</h2>
-        <p>Send a message to any E.164 number. Delivery uses encrypted envelopes; the public chain stores only the hash.</p>
+        <p>Send a message to any E.164 number. Default crypto is OpenPGP; ChatScan stores only the ciphertext hash.</p>
       </div>
 
       <div id="active-chat" class="active-chat hidden">
@@ -89,6 +89,10 @@
         </header>
         <div id="message-list" class="message-list"></div>
         <form id="send-form" class="composer">
+          <select id="crypto-tool" title="Crypto tool" aria-label="Crypto tool">
+            <option value="pgp" selected>OpenPGP</option>
+            <option value="aes">AES-GCM</option>
+          </select>
           <input id="message-input" type="text" placeholder="Write a private message…" autocomplete="off" required />
           <button type="submit" class="btn primary">Send</button>
         </form>

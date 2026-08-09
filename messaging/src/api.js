@@ -1,4 +1,14 @@
 import { config } from './config.js';
+import {
+  PGP_PROTOCOL,
+  generateUserKey,
+  unlockPrivateKey,
+  encryptAndSign,
+  decryptMessage,
+  readPublicKey,
+  fingerprintShort,
+} from './pgp.js';
+import { privacyToolsPayload } from './privacy-tools.js';
 
 function json(res, status, body) {
   const payload = JSON.stringify(body);
@@ -35,21 +45,94 @@ function readBody(req, limit = 1_000_000) {
   });
 }
 
-function authPhone(store, req) {
+function bearerToken(req) {
   const header = req.headers.authorization || '';
-  const token = header.startsWith('Bearer ') ? header.slice(7) : null;
+  return header.startsWith('Bearer ') ? header.slice(7) : null;
+}
+
+function authPhone(store, req) {
+  const token = bearerToken(req);
   const phone = store.sessionPhone(token);
   if (!phone) {
     throw Object.assign(new Error('Authentication required'), { status: 401, code: 'unauthorized' });
   }
-  return phone;
+  return { phone, token };
+}
+
+async function ensurePgp(store, user) {
+  if (user.pgp?.publicArmored && user.pgp?.privateArmored) return user;
+  const keys = await generateUserKey({
+    phone: user.phone,
+    displayName: user.displayName,
+    passphrase: config.pgpPassphrase,
+  });
+  return store.savePgpKeys(user.phone, keys);
+}
+
+async function unlockSession(store, vault, token, phone, passphrase) {
+  const user = store.getUser(phone);
+  if (!user?.pgp?.privateArmored) {
+    throw Object.assign(new Error('No OpenPGP key for this user'), {
+      status: 400,
+      code: 'pgp_missing',
+    });
+  }
+  try {
+    const privateKey = await unlockPrivateKey(user.pgp.privateArmored, passphrase);
+    vault.set(token, phone, privateKey);
+    return privateKey;
+  } catch {
+    throw Object.assign(new Error('Invalid PGP passphrase'), {
+      status: 401,
+      code: 'pgp_unlock_failed',
+    });
+  }
+}
+
+async function decryptRow(chatscan, vault, token, store, row) {
+  if (row.protocol === PGP_PROTOCOL || row.tool === 'pgp' || row.armored) {
+    const unlocked = vault.get(token);
+    if (!unlocked?.privateKey) {
+      return { plaintext: null, locked: true, signatures: [] };
+    }
+    const armored =
+      row.armored ||
+      (row.envelopeHex ? Buffer.from(row.envelopeHex, 'hex').toString('utf8') : null);
+    if (!armored) return { plaintext: null, locked: false, signatures: [] };
+    try {
+      const fromUser = store.getUser(row.from);
+      const verificationKeys = [];
+      if (fromUser?.pgp?.publicArmored) {
+        verificationKeys.push(await readPublicKey(fromUser.pgp.publicArmored));
+      }
+      const opened = await decryptMessage({
+        armoredMessage: armored,
+        decryptionKey: unlocked.privateKey,
+        verificationKeys,
+      });
+      return { plaintext: opened.text, locked: false, signatures: opened.signatures };
+    } catch {
+      return { plaintext: null, locked: false, signatures: [] };
+    }
+  }
+
+  if (row.envelopeHex && row.keyHex) {
+    try {
+      const plaintext = await chatscan.openLocal(row.envelopeHex, row.keyHex);
+      return { plaintext, locked: false, signatures: [] };
+    } catch {
+      return { plaintext: null, locked: false, signatures: [] };
+    }
+  }
+  return { plaintext: null, locked: false, signatures: [] };
 }
 
 /**
  * @param {import('./store.js').Store} store
  * @param {import('./chatscan.js').ChatScanBridge} chatscan
+ * @param {import('./pgp-vault.js').PgpVault} pgpVault
  */
-export function createApi({ store, chatscan }) {
+export function createApi({ store, chatscan, pgpVault }) {
   return async function handleApi(req, res, url) {
     try {
       if (req.method === 'GET' && url.pathname === '/api/health') {
@@ -60,10 +143,10 @@ export function createApi({ store, chatscan }) {
           server: {
             name: config.serverName,
             publicUrl: config.publicUrl || null,
-            // Chat data (users, encrypted envelopes) lives on THIS server.
             storesChatData: true,
-            // Hashes are sealed on the shared ChatScan chain below.
             usesSharedChatScan: true,
+            defaultCryptoTool: config.defaultCryptoTool,
+            pgp: true,
           },
           chatscan: {
             url: config.chatscanUrl,
@@ -72,6 +155,7 @@ export function createApi({ store, chatscan }) {
             height: chain.height,
             network: chain.network,
           },
+          privacy: privacyToolsPayload({ defaultTool: config.defaultCryptoTool }),
         });
       }
 
@@ -81,6 +165,8 @@ export function createApi({ store, chatscan }) {
           name: config.serverName,
           publicUrl: config.publicUrl || null,
           storesChatData: true,
+          defaultCryptoTool: config.defaultCryptoTool,
+          pgp: true,
           chatscan: {
             url: config.chatscanUrl,
             chainId: chain.chainId,
@@ -93,11 +179,14 @@ export function createApi({ store, chatscan }) {
         });
       }
 
+      if (req.method === 'GET' && url.pathname === '/api/privacy/tools') {
+        return json(res, 200, privacyToolsPayload({ defaultTool: config.defaultCryptoTool }));
+      }
+
       if (req.method === 'POST' && url.pathname === '/api/auth/request-otp') {
         const body = await readBody(req);
         const phone = store.normalizePhone(body.phone);
         const displayName = String(body.displayName || '').trim().slice(0, 64);
-        // Always issue a fresh demo OTP so phone login works without SMS.
         store.saveOtp(phone, config.demoOtp);
         store.upsertUser(phone, displayName || undefined);
         return json(res, 200, {
@@ -117,42 +206,112 @@ export function createApi({ store, chatscan }) {
         if (!accepted) {
           return json(res, 401, { error: 'Invalid or expired OTP', code: 'invalid_otp' });
         }
-        const user = store.upsertUser(phone, displayName || undefined);
+        let user = store.upsertUser(phone, displayName || undefined);
+        user = await ensurePgp(store, user);
         const token = store.createSession(phone, config.sessionTtlMs);
+        // Auto-unlock with server demo passphrase so PGP chat works immediately.
+        await unlockSession(store, pgpVault, token, phone, config.pgpPassphrase);
         return json(res, 200, {
           ok: true,
           token,
-          user: { phone: user.phone, displayName: user.displayName },
+          user: {
+            ...store.publicUserView(user),
+            pgpUnlocked: true,
+            pgpFingerprintShort: fingerprintShort(user.pgp?.fingerprint),
+          },
+          pgp: {
+            fingerprint: user.pgp.fingerprint,
+            publicArmored: user.pgp.publicArmored,
+            unlocked: true,
+            demoPassphrase: config.pgpPassphrase,
+          },
         });
       }
 
       if (req.method === 'GET' && url.pathname === '/api/me') {
-        const phone = authPhone(store, req);
-        const user = store.getUser(phone);
-        return json(res, 200, { user });
+        const { phone, token } = authPhone(store, req);
+        let user = store.getUser(phone);
+        user = await ensurePgp(store, user);
+        const unlocked = Boolean(pgpVault.get(token));
+        return json(res, 200, {
+          user: {
+            ...store.publicUserView(user),
+            pgpUnlocked: unlocked,
+            pgpFingerprintShort: fingerprintShort(user.pgp?.fingerprint),
+          },
+          pgp: {
+            fingerprint: user.pgp.fingerprint,
+            publicArmored: user.pgp.publicArmored,
+            unlocked,
+          },
+        });
+      }
+
+      if (req.method === 'GET' && url.pathname === '/api/pgp/me') {
+        const { phone, token } = authPhone(store, req);
+        let user = store.getUser(phone);
+        user = await ensurePgp(store, user);
+        return json(res, 200, {
+          fingerprint: user.pgp.fingerprint,
+          fingerprintShort: fingerprintShort(user.pgp.fingerprint),
+          publicArmored: user.pgp.publicArmored,
+          unlocked: Boolean(pgpVault.get(token)),
+          createdAt: user.pgp.createdAt,
+        });
+      }
+
+      if (req.method === 'POST' && url.pathname === '/api/pgp/unlock') {
+        const { phone, token } = authPhone(store, req);
+        const body = await readBody(req);
+        const passphrase = String(body.passphrase || config.pgpPassphrase);
+        await ensurePgp(store, store.getUser(phone));
+        await unlockSession(store, pgpVault, token, phone, passphrase);
+        return json(res, 200, { ok: true, unlocked: true });
+      }
+
+      if (req.method === 'POST' && url.pathname === '/api/pgp/lock') {
+        const { token } = authPhone(store, req);
+        pgpVault.clear(token);
+        return json(res, 200, { ok: true, unlocked: false });
+      }
+
+      if (req.method === 'GET' && url.pathname.startsWith('/api/pgp/keys/')) {
+        authPhone(store, req);
+        const phoneParam = decodeURIComponent(url.pathname.slice('/api/pgp/keys/'.length));
+        const phone = store.normalizePhone(phoneParam.startsWith('+') ? phoneParam : `+${phoneParam}`);
+        let user = store.getUser(phone);
+        if (!user) {
+          user = store.upsertUser(phone);
+        }
+        user = await ensurePgp(store, user);
+        return json(res, 200, {
+          phone: user.phone,
+          displayName: user.displayName,
+          fingerprint: user.pgp.fingerprint,
+          fingerprintShort: fingerprintShort(user.pgp.fingerprint),
+          publicArmored: user.pgp.publicArmored,
+        });
       }
 
       if (req.method === 'GET' && url.pathname === '/api/directory') {
-        const phone = authPhone(store, req);
+        const { phone } = authPhone(store, req);
         return json(res, 200, {
           users: store.listUsers().filter((u) => u.phone !== phone),
         });
       }
 
       if (req.method === 'GET' && url.pathname === '/api/conversations') {
-        const phone = authPhone(store, req);
+        const { phone, token } = authPhone(store, req);
         const conversations = [];
         for (const c of store.conversationsFor(phone)) {
-          // Decrypt the latest envelope for a normal chat-list preview (peers only).
           const rows = store.mailbox(phone, { conversationId: c.id });
           const last = rows[rows.length - 1];
           let lastText = c.lastPreview || '';
-          if (last?.envelopeHex && last?.keyHex) {
-            try {
-              lastText = await chatscan.openLocal(last.envelopeHex, last.keyHex);
-            } catch {
-              lastText = 'Message';
-            }
+          if (last) {
+            const opened = await decryptRow(chatscan, pgpVault, token, store, last);
+            if (opened.plaintext) lastText = opened.plaintext;
+            else if (opened.locked) lastText = '🔒 PGP locked';
+            else if (last.tool === 'pgp' || last.protocol === PGP_PROTOCOL) lastText = 'PGP message';
           }
           conversations.push({ ...c, lastPreview: lastText });
         }
@@ -160,10 +319,11 @@ export function createApi({ store, chatscan }) {
       }
 
       if (req.method === 'POST' && url.pathname === '/api/messages/send') {
-        const phone = authPhone(store, req);
+        const { phone, token } = authPhone(store, req);
         const body = await readBody(req);
         const to = store.normalizePhone(body.to);
         const text = typeof body.text === 'string' ? body.text : '';
+        const tool = String(body.tool || config.defaultCryptoTool || 'pgp').toLowerCase();
         if (!text.trim()) {
           return json(res, 400, { error: 'Message text is required', code: 'empty_message' });
         }
@@ -174,33 +334,82 @@ export function createApi({ store, chatscan }) {
           return json(res, 400, { error: 'Cannot message yourself', code: 'self_message' });
         }
 
-        // Ensure recipient exists (auto-provision so demos work with any E.164).
-        store.upsertUser(to);
+        let recipient = store.upsertUser(to);
+        recipient = await ensurePgp(store, recipient);
+        let sender = store.getUser(phone);
+        sender = await ensurePgp(store, sender);
         const conversation = store.ensureConversation(phone, to);
 
-        // Encrypt + commit on ChatScan. Plaintext never reaches the explorer.
-        const sent = await chatscan.sendEncrypted(text, conversation.id);
+        let delivered;
+        let sentMeta;
+        let onChain;
 
-        const delivered = store.deliverEnvelope({
-          conversationId: conversation.id,
-          from: phone,
-          to,
-          envelopeHex: sent.envelopeHex,
-          keyHex: sent.keyHex,
-          ciphertextHash: sent.ciphertextHash,
-          size: sent.size,
-          protocol: sent.protocol,
-          nonce: sent.nonce,
-          channelHash: sent.channelHash,
-          ref: sent.ref,
-          explorerUrl: sent.explorerUrl,
-          status: sent.status,
-          commitment: sent.commitment,
-          anchorTxid: sent.anchorTxid,
-        });
-
-        // Prove ChatScan has no content.
-        const onChain = await chatscan.getRecord(sent.ref);
+        if (tool === 'pgp' || tool === 'openpgp') {
+          let unlocked = pgpVault.get(token)?.privateKey;
+          if (!unlocked) {
+            unlocked = await unlockSession(
+              store,
+              pgpVault,
+              token,
+              phone,
+              String(body.passphrase || config.pgpPassphrase),
+            );
+          }
+          const armored = await encryptAndSign({
+            text,
+            recipientPublicKeys: [recipient.pgp.publicArmored, sender.pgp.publicArmored],
+            signingPrivateKey: unlocked,
+          });
+          const envelopeBytes = new TextEncoder().encode(armored);
+          sentMeta = await chatscan.recordCiphertext(envelopeBytes, {
+            conversationId: conversation.id,
+            protocol: PGP_PROTOCOL,
+          });
+          const record = await chatscan.getRecord(sentMeta.ref);
+          delivered = store.deliverEnvelope({
+            conversationId: conversation.id,
+            from: phone,
+            to,
+            envelopeHex: Buffer.from(armored, 'utf8').toString('hex'),
+            armored,
+            keyHex: null,
+            ciphertextHash: sentMeta.ciphertextHash,
+            size: sentMeta.size,
+            protocol: PGP_PROTOCOL,
+            tool: 'pgp',
+            nonce: null,
+            channelHash: sentMeta.channelHash,
+            ref: sentMeta.ref,
+            explorerUrl: sentMeta.explorerUrl,
+            status: sentMeta.status || record.status,
+            commitment: sentMeta.commitment ?? record.commitment,
+            anchorTxid: sentMeta.anchorTxid,
+          });
+          onChain = record;
+        } else {
+          // Legacy ChatScan SDK AES-256-GCM envelopes.
+          const sent = await chatscan.sendEncrypted(text, conversation.id);
+          delivered = store.deliverEnvelope({
+            conversationId: conversation.id,
+            from: phone,
+            to,
+            envelopeHex: sent.envelopeHex,
+            keyHex: sent.keyHex,
+            ciphertextHash: sent.ciphertextHash,
+            size: sent.size,
+            protocol: sent.protocol,
+            tool: 'aes',
+            nonce: sent.nonce,
+            channelHash: sent.channelHash,
+            ref: sent.ref,
+            explorerUrl: sent.explorerUrl,
+            status: sent.status,
+            commitment: sent.commitment,
+            anchorTxid: sent.anchorTxid,
+          });
+          sentMeta = sent;
+          onChain = await chatscan.getRecord(sent.ref);
+        }
 
         return json(res, 201, {
           ok: true,
@@ -210,15 +419,21 @@ export function createApi({ store, chatscan }) {
             from: phone,
             to,
             createdAt: delivered.createdAt,
-            // Local decrypt material for the sender UI (already known); recipients get it via mailbox.
             plaintext: text,
-            ref: sent.ref,
-            explorerUrl: sent.explorerUrl,
-            status: sent.status,
-            ciphertextHash: sent.ciphertextHash,
-            size: sent.size,
-            commitment: sent.commitment,
-            protocol: sent.protocol,
+            tool: delivered.tool,
+            protocol: delivered.protocol,
+            ref: delivered.ref,
+            explorerUrl: delivered.explorerUrl,
+            status: delivered.status,
+            ciphertextHash: delivered.ciphertextHash,
+            size: delivered.size,
+            commitment: delivered.commitment,
+            pgp: tool === 'pgp' || tool === 'openpgp'
+              ? {
+                  senderFingerprint: sender.pgp.fingerprint,
+                  recipientFingerprint: recipient.pgp.fingerprint,
+                }
+              : null,
           },
           chainRecord: {
             ref: onChain.ref,
@@ -233,36 +448,33 @@ export function createApi({ store, chatscan }) {
       }
 
       if (req.method === 'GET' && url.pathname === '/api/messages') {
-        const phone = authPhone(store, req);
+        const { phone, token } = authPhone(store, req);
         const conversationId = url.searchParams.get('conversationId') || undefined;
         const since = url.searchParams.get('since')
           ? Number(url.searchParams.get('since'))
           : undefined;
         const rows = store.mailbox(phone, { conversationId, since });
 
-        // Decrypt envelopes for authorized conversation members only.
         const messages = [];
         for (const row of rows) {
-          let plaintext = null;
-          try {
-            plaintext = await chatscan.openLocal(row.envelopeHex, row.keyHex);
-          } catch {
-            plaintext = null;
-          }
+          const opened = await decryptRow(chatscan, pgpVault, token, store, row);
           messages.push({
             id: row.id,
             conversationId: row.conversationId,
             from: row.from,
             to: row.to,
             createdAt: row.createdAt,
-            plaintext,
+            plaintext: opened.plaintext,
+            locked: opened.locked,
+            signatures: opened.signatures,
+            tool: row.tool || (row.protocol === PGP_PROTOCOL ? 'pgp' : 'aes'),
+            protocol: row.protocol,
             ref: row.ref,
             explorerUrl: row.explorerUrl,
             status: row.status,
             ciphertextHash: row.ciphertextHash,
             size: row.size,
             commitment: row.commitment,
-            protocol: row.protocol,
           });
         }
         return json(res, 200, { messages });
@@ -308,6 +520,7 @@ export function createApi({ store, chatscan }) {
             ciphertextHash: r.ciphertextHash,
             size: r.size,
             status: r.status,
+            protocol: r.protocol,
             contentAvailable: r.contentAvailable,
             explorerUrl: `${config.chatscanUrl}/tx/${r.ref}`,
           })),
