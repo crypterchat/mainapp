@@ -8,12 +8,22 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// WhatsApp-style CrypterChat demo wired to the ChatScan X11 messaging bridge.
+/// CrypterChat Flutter demo — peer-to-peer chat with ChatScan under the hood.
 ///
-/// Phone login + chat UI mirror the main app experience. Every send goes through
-/// ChatScan — only ciphertext hashes are public on the explorer.
+/// Chat UI matches the main CrypterChat app style: users see normal readable
+/// messages. Ciphertext hashes / refs appear only on the ChatScan explorer.
 const String kMessagingBaseUrlFromEnv = String.fromEnvironment('MESSAGING_URL');
 const String kDemoOtp = '123456';
+
+// Colors aligned with lib/Configs/app_constants.dart (main CrypterChat app).
+const Color kPrimary = Color(0xFF6842ED);
+const Color kSecondary = Color(0xFF5B36D0);
+const Color kChatBackground = Color(0xFFE8DED5);
+const Color kBubbleMine = Color(0xFFE9FEDF);
+const Color kBubblePeer = Color(0xFFFFFFFF);
+const Color kAppBar = Color(0xFFFFFFFF);
+const Color kInk = Color(0xFF1E1E1E);
+const Color kMuted = Color(0xFF8596A0);
 
 /// Android emulator reaches the host via 10.0.2.2; web/desktop use loopback.
 String defaultMessagingBaseUrl() {
@@ -25,13 +35,13 @@ String defaultMessagingBaseUrl() {
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   // Expose DOM semantics on web so automated demos / assistive tech can drive
-  // the WhatsApp-style UI (inputs + buttons) without a manual a11y tap.
+  // the UI (inputs + buttons) without a manual a11y tap.
   if (kIsWeb) {
     SemanticsBinding.instance.ensureSemantics();
   }
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Color(0xFF075E54),
-    statusBarIconBrightness: Brightness.light,
+    statusBarColor: kAppBar,
+    statusBarIconBrightness: Brightness.dark,
   ));
   runApp(const CrypterChatDemoApp());
 }
@@ -46,20 +56,27 @@ class CrypterChatDemoApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: false,
-        primaryColor: const Color(0xFF075E54),
+        primaryColor: kPrimary,
         colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: const Color(0xFF075E54),
-          secondary: const Color(0xFF25D366),
+          primary: kPrimary,
+          secondary: kSecondary,
         ),
-        scaffoldBackgroundColor: const Color(0xFFECE5DD),
+        scaffoldBackgroundColor: const Color(0xFFF4F5F6),
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFF075E54),
-          foregroundColor: Colors.white,
-          elevation: 0,
+          backgroundColor: kAppBar,
+          foregroundColor: kInk,
+          elevation: 0.5,
+          centerTitle: false,
         ),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Color(0xFF25D366),
+          backgroundColor: kPrimary,
           foregroundColor: Colors.white,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kPrimary,
+            foregroundColor: Colors.white,
+          ),
         ),
       ),
       home: const GateScreen(),
@@ -210,23 +227,23 @@ class _GateScreenState extends State<GateScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Color(0xFF075E54),
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.lock_rounded, color: Colors.white, size: 64),
+            Icon(Icons.lock_rounded, color: kPrimary, size: 64),
             SizedBox(height: 16),
             Text(
               'CrypterChat',
               style: TextStyle(
-                color: Colors.white,
+                color: kInk,
                 fontSize: 32,
                 fontWeight: FontWeight.w700,
               ),
             ),
             SizedBox(height: 8),
-            Text('Connecting…', style: TextStyle(color: Colors.white70)),
+            Text('Connecting…', style: TextStyle(color: kMuted)),
           ],
         ),
       ),
@@ -511,11 +528,11 @@ class _HomeScreenState extends State<HomeScreen> {
           if (_chainLabel != null)
             Container(
               width: double.infinity,
-              color: const Color(0xFFDCF8C6),
+              color: const Color(0xFFF0EBFF),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Text(
                 _chainLabel!,
-                style: const TextStyle(color: Color(0xFF075E54), fontSize: 12),
+                style: const TextStyle(color: kSecondary, fontSize: 12),
               ),
             ),
           Expanded(
@@ -543,10 +560,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         label: 'Open chat with $peerName $peerPhone',
                         child: ListTile(
                           leading: CircleAvatar(
-                            backgroundColor: const Color(0xFFDFE5E7),
+                            backgroundColor: const Color(0xFFEDE7FF),
                             child: Text(
                               peerName.isEmpty ? '?' : peerName[0].toUpperCase(),
-                              style: const TextStyle(color: Color(0xFF54656F)),
+                              style: const TextStyle(color: kPrimary),
                             ),
                           ),
                           title: Text(
@@ -554,10 +571,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             style: const TextStyle(fontWeight: FontWeight.w600),
                           ),
                           subtitle: Text(
-                            c['lastPreview']?.toString() ?? 'Encrypted chat',
+                            c['lastPreview']?.toString() ?? 'No messages yet',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(color: Color(0xFF667781)),
+                            style: const TextStyle(color: kMuted),
                           ),
                           onTap: () async {
                             await Navigator.of(context).push(
@@ -657,24 +674,79 @@ class _ChatScreenState extends State<ChatScreen> {
     try {
       final result = await widget.api.send(widget.peerPhone, text);
       final message = result['message'] as Map<String, dynamic>?;
-      final chain = result['chainRecord'] as Map<String, dynamic>?;
       _input.clear();
       if (message?['conversationId'] != null) {
         _conversationId = message!['conversationId'] as String;
       }
-      setState(() {
-        _toast =
-            'On chain ${message?['ref']} · contentAvailable=${chain?['contentAvailable']}';
-      });
+      // Peer chat stays a normal messaging UI — no hash toast.
+      setState(() => _toast = null);
       await _load();
     } catch (e) {
       setState(() => _toast = 'Send failed: $e');
-    } finally {
-      setState(() => _sending = false);
-      Future.delayed(const Duration(seconds: 4), () {
+      Future.delayed(const Duration(seconds: 3), () {
         if (mounted) setState(() => _toast = null);
       });
+    } finally {
+      setState(() => _sending = false);
     }
+  }
+
+  String _formatTime(dynamic createdAt) {
+    if (createdAt == null) return '';
+    final dt = DateTime.fromMillisecondsSinceEpoch(
+      createdAt is int ? createdAt : int.tryParse('$createdAt') ?? 0,
+      isUtc: false,
+    );
+    final h = dt.hour.toString().padLeft(2, '0');
+    final m = dt.minute.toString().padLeft(2, '0');
+    return '$h:$m';
+  }
+
+  void _showChainDetails(Map<String, dynamic> message) {
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (ctx) {
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 28),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Sealed on ChatScan',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
+              const SizedBox(height: 8),
+              const Text(
+                'Your chat shows the normal message. ChatScan’s public chain only stores the ciphertext hash — never the text.',
+                style: TextStyle(color: kMuted, height: 1.35),
+              ),
+              const SizedBox(height: 14),
+              SelectableText('ref ${message['ref'] ?? ''}',
+                  style: const TextStyle(fontSize: 12, fontFamily: 'monospace')),
+              const SizedBox(height: 6),
+              SelectableText('hash ${message['ciphertextHash'] ?? ''}',
+                  style: const TextStyle(fontSize: 12, fontFamily: 'monospace')),
+              const SizedBox(height: 6),
+              Text(
+                'status ${message['status'] ?? ''} · content not public',
+                style: const TextStyle(fontSize: 12, color: kMuted),
+              ),
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () => Navigator.pop(ctx),
+                  child: const Text('Done'),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -687,8 +759,8 @@ class _ChatScreenState extends State<ChatScreen> {
           children: [
             const CircleAvatar(
               radius: 18,
-              backgroundColor: Color(0xFFDFE5E7),
-              child: Icon(Icons.person, color: Color(0xFF54656F), size: 20),
+              backgroundColor: Color(0xFFEDE7FF),
+              child: Icon(Icons.person, color: kPrimary, size: 20),
             ),
             const SizedBox(width: 10),
             Expanded(
@@ -697,8 +769,8 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: [
                   Text(widget.peerPhone,
                       style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                  const Text('ChatScan sealed · end-to-end encrypted',
-                      style: TextStyle(fontSize: 11, fontWeight: FontWeight.w400)),
+                  const Text('End-to-end encrypted',
+                      style: TextStyle(fontSize: 11, fontWeight: FontWeight.w400, color: kMuted)),
                 ],
               ),
             ),
@@ -709,15 +781,7 @@ class _ChatScreenState extends State<ChatScreen> {
         children: [
           Expanded(
             child: Container(
-              decoration: const BoxDecoration(
-                color: Color(0xFFECE5DD),
-                // subtle paper pattern via gradient — WhatsApp-like chat canvas
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Color(0xFFECE5DD), Color(0xFFE5DDD3)],
-                ),
-              ),
+              color: kChatBackground,
               child: ListView.builder(
                 controller: _scroll,
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
@@ -725,50 +789,67 @@ class _ChatScreenState extends State<ChatScreen> {
                 itemBuilder: (context, index) {
                   final m = _messages[index];
                   final mine = m['from'] == me;
+                  final text = m['plaintext']?.toString() ?? '';
                   return Align(
                     alignment: mine ? Alignment.centerRight : Alignment.centerLeft,
-                    child: Container(
-                      constraints: BoxConstraints(
-                        maxWidth: MediaQuery.of(context).size.width * 0.78,
-                      ),
-                      margin: const EdgeInsets.symmetric(vertical: 4),
-                      padding: const EdgeInsets.fromLTRB(10, 8, 10, 6),
-                      decoration: BoxDecoration(
-                        color: mine ? const Color(0xFFDCF8C6) : Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: const Radius.circular(10),
-                          topRight: const Radius.circular(10),
-                          bottomLeft: Radius.circular(mine ? 10 : 2),
-                          bottomRight: Radius.circular(mine ? 2 : 10),
+                    child: GestureDetector(
+                      onLongPress: () => _showChainDetails(m),
+                      child: Container(
+                        constraints: BoxConstraints(
+                          maxWidth: MediaQuery.of(context).size.width * 0.78,
                         ),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color(0x14000000),
-                            blurRadius: 2,
-                            offset: Offset(0, 1),
+                        margin: const EdgeInsets.symmetric(vertical: 3),
+                        padding: const EdgeInsets.fromLTRB(12, 8, 10, 6),
+                        decoration: BoxDecoration(
+                          // Main CrypterChat bubble colors: soft green mine, white peer.
+                          color: mine ? kBubbleMine : kBubblePeer,
+                          borderRadius: BorderRadius.only(
+                            topLeft: const Radius.circular(12),
+                            topRight: const Radius.circular(12),
+                            bottomLeft: Radius.circular(mine ? 12 : 3),
+                            bottomRight: Radius.circular(mine ? 3 : 12),
                           ),
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            m['plaintext']?.toString() ?? '[encrypted]',
-                            style: const TextStyle(fontSize: 16, height: 1.25),
-                          ),
-                          const SizedBox(height: 6),
-                          Text(
-                            'ref ${m['ref']}\n'
-                            'hash ${m['ciphertextHash']}\n'
-                            '${m['status']} · ${m['size']} B · private',
-                            style: TextStyle(
-                              fontSize: 10,
-                              height: 1.25,
-                              color: Colors.black.withOpacity(0.45),
-                              fontFamily: 'monospace',
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color(0x14000000),
+                              blurRadius: 2,
+                              offset: Offset(0, 1),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                text.isEmpty ? '…' : text,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  height: 1.3,
+                                  color: kInk,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  _formatTime(m['createdAt']),
+                                  style: const TextStyle(fontSize: 11, color: kMuted),
+                                ),
+                                const SizedBox(width: 4),
+                                // Subtle sealed tick — details on long-press; hashes stay on ChatScan.
+                                Icon(
+                                  Icons.done_all,
+                                  size: 14,
+                                  color: mine ? kPrimary.withOpacity(0.7) : kMuted,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
@@ -779,7 +860,7 @@ class _ChatScreenState extends State<ChatScreen> {
           if (_toast != null)
             Container(
               width: double.infinity,
-              color: const Color(0xFF075E54),
+              color: kPrimary,
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               child: Text(_toast!,
                   style: const TextStyle(color: Colors.white, fontSize: 12)),
@@ -787,14 +868,14 @@ class _ChatScreenState extends State<ChatScreen> {
           SafeArea(
             top: false,
             child: Container(
-              color: const Color(0xFFF0F2F5),
+              color: Colors.white,
               padding: const EdgeInsets.fromLTRB(8, 6, 8, 6),
               child: Row(
                 children: [
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: const Color(0xFFF4F5F6),
                         borderRadius: BorderRadius.circular(24),
                       ),
                       padding: const EdgeInsets.symmetric(horizontal: 14),
@@ -805,7 +886,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         textInputAction: TextInputAction.send,
                         onSubmitted: (_) => _send(),
                         decoration: const InputDecoration(
-                          hintText: 'Message',
+                          hintText: 'Type a message',
                           border: InputBorder.none,
                         ),
                       ),
@@ -816,7 +897,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     button: true,
                     label: 'Send',
                     child: CircleAvatar(
-                      backgroundColor: const Color(0xFF00A884),
+                      backgroundColor: kPrimary,
                       child: IconButton(
                         onPressed: _sending ? null : _send,
                         icon: Icon(

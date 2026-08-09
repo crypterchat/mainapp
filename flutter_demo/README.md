@@ -58,9 +58,10 @@ flutter build apk --debug --dart-define=MESSAGING_URL=http://10.0.2.2:8787
 1. Sign in with an E.164 number (e.g. `+15551110001`) — demo OTP **`123456`**
 2. Confirm the green **ChatScan x11:local · height N** banner
 3. Start / open a chat with another number (e.g. `+15551110002`)
-4. Send a message — the bubble shows `ref`, `hash`, and `private`
-5. Sign in as the recipient and read the same message
-6. Open the explorer (`http://127.0.0.1:3000/tx/{ref}`) — content is not viewable
+4. Send a message — the bubble shows **normal readable text** (CrypterChat style)
+5. Sign in as the recipient and read the same plain message
+6. Open ChatScan (`http://127.0.0.1:3000`) — only the ciphertext hash is public  
+   (optional: long-press a bubble in the app for seal details)
 
 ## Demo media
 

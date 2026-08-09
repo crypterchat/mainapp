@@ -228,8 +228,10 @@ export class Store extends EventEmitter {
     const conversation = this.conversations[conversationId];
     if (conversation) {
       conversation.updatedAt = createdAt;
-      conversation.lastPreview = `Encrypted · ${size} B · ${ref}`;
+      // Peer-to-peer UI shows decrypted text; never put hashes in the chat list.
+      conversation.lastPreview = 'Message';
       conversation.lastRef = ref;
+      conversation.lastMessageId = entry.id;
     }
 
     this.persist();

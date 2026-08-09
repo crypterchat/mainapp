@@ -173,10 +173,14 @@ flutter run -d chrome --web-renderer html \
 
 | Demo asset | What it shows |
 | --- | --- |
-| ![Chat list](docs/media/flutter-wa-01-chatlist.png) | WhatsApp-style chat list + live ChatScan banner |
-| ![Alice sent](docs/media/flutter-wa-03-alice-sent.png) | Green bubbles with on-chain `ref` / hash / `contentAvailable=false` |
-| ![Bob received](docs/media/flutter-wa-05-bob-received.png) | Recipient decrypts the same ChatScan-sealed messages |
+| ![Chat list](docs/media/flutter-wa-01-chatlist.png) | CrypterChat-style chat list + live ChatScan banner |
+| ![Alice sent](docs/media/flutter-wa-03-alice-sent.png) | Normal peer-to-peer bubbles (readable text only) |
+| ![Bob received](docs/media/flutter-wa-05-bob-received.png) | Recipient sees the same plain messages — not hashes |
+| ![ChatScan](docs/media/flutter-chatscan-hash-only.png) | Public chain still shows hash only (`contentAvailable=false`) |
 | [Flutter demo video](docs/media/flutter-whatsapp-chatscan-demo.mp4) | Full Alice → Bob walkthrough |
+
+Peer chat is a normal messaging UI (CrypterChat colors: white peer bubbles, soft-green mine).
+Long-press a bubble for optional seal details; **hashes stay on ChatScan**, not in the chat thread.
 
 Details: [`flutter_demo/README.md`](flutter_demo/README.md).
 

@@ -262,17 +262,23 @@ input:focus {
   align-self: flex-start;
   background: var(--theirs);
 }
-.bubble .meta {
-  margin-top: 0.45rem;
-  font-size: 0.75rem;
-  opacity: 0.8;
-  display: grid;
-  gap: 0.15rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  word-break: break-all;
+.bubble-text { font-size: 1rem; line-height: 1.35; white-space: pre-wrap; word-break: break-word; }
+.bubble-foot {
+  margin-top: 0.35rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  opacity: 0.65;
 }
-.bubble.mine .meta a { color: #d7f0e6; }
-.bubble.theirs .meta a { color: var(--accent-deep); }
+.bubble-foot .chain-link {
+  text-decoration: none;
+  font-weight: 700;
+  opacity: 0.85;
+}
+.bubble.mine .chain-link { color: #d7f0e6; }
+.bubble.theirs .chain-link { color: var(--accent-deep); }
 
 .composer {
   display: flex;

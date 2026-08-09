@@ -111,13 +111,13 @@ async function loadMessages({ scroll = false } = {}) {
     const el = document.createElement('article');
     el.className = `bubble ${mine ? 'mine' : 'theirs'}`;
     const explorerPath = msg.explorerUrl || '#';
+    // Peer-to-peer: show the normal message text only. Hashes live on ChatScan.
+    const when = msg.createdAt ? new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
     el.innerHTML = `
-      <div>${escapeHtml(msg.plaintext ?? '[unable to decrypt]')}</div>
-      <div class="meta">
-        <span>ref ${escapeHtml(msg.ref)}</span>
-        <span>hash ${escapeHtml(msg.ciphertextHash)}</span>
-        <span>status ${escapeHtml(msg.status)} · ${msg.size} B · contentAvailable=false</span>
-        <a href="${escapeHtml(explorerPath)}" target="_blank" rel="noopener">view on ChatScan</a>
+      <div class="bubble-text">${escapeHtml(msg.plaintext ?? '[unable to decrypt]')}</div>
+      <div class="bubble-foot">
+        <span>${escapeHtml(when)}</span>
+        <a class="chain-link" href="${escapeHtml(explorerPath)}" target="_blank" rel="noopener" title="Open on ChatScan">✓</a>
       </div>`;
     list.appendChild(el);
   }
@@ -219,7 +219,7 @@ $('send-form').addEventListener('submit', async (event) => {
     state.activeId = result.message.conversationId;
     await refreshConversations();
     await loadMessages({ scroll: true });
-    toast(`On chain as ${result.message.ref}`);
+    toast('Sent');
   } catch (error) {
     toast(error.message);
   } finally {

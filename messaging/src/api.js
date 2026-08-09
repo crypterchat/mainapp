@@ -115,7 +115,22 @@ export function createApi({ store, chatscan }) {
 
       if (req.method === 'GET' && url.pathname === '/api/conversations') {
         const phone = authPhone(store, req);
-        return json(res, 200, { conversations: store.conversationsFor(phone) });
+        const conversations = [];
+        for (const c of store.conversationsFor(phone)) {
+          // Decrypt the latest envelope for a normal chat-list preview (peers only).
+          const rows = store.mailbox(phone, { conversationId: c.id });
+          const last = rows[rows.length - 1];
+          let lastText = c.lastPreview || '';
+          if (last?.envelopeHex && last?.keyHex) {
+            try {
+              lastText = await chatscan.openLocal(last.envelopeHex, last.keyHex);
+            } catch {
+              lastText = 'Message';
+            }
+          }
+          conversations.push({ ...c, lastPreview: lastText });
+        }
+        return json(res, 200, { conversations });
       }
 
       if (req.method === 'POST' && url.pathname === '/api/messages/send') {
