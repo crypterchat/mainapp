@@ -77,8 +77,12 @@ async function main() {
   }
 
   server.listen(config.port, config.host, () => {
-    console.log(`CrypterChat messaging  http://${config.host}:${config.port}`);
-    console.log(`ChatScan explorer      ${config.chatscanUrl}`);
+    const publicBase = config.publicUrl || `http://127.0.0.1:${config.port}`;
+    console.log(`CrypterChat server     ${config.serverName}`);
+    console.log(`Base URL (paste in app) ${publicBase}`);
+    console.log(`Listen                 http://${config.host}:${config.port}`);
+    console.log(`Chat data directory    ${config.dataDir}`);
+    console.log(`ChatScan (hashes only) ${config.chatscanUrl}`);
     console.log(`Chain                  ${chain.chainId} (${chain.backend}) height=${chain.height}`);
     console.log(`Demo OTP               ${config.demoOtp}`);
   });

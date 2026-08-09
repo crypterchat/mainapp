@@ -157,25 +157,43 @@ class ApiClient {
   }
 
   Future<Map<String, dynamic>> chainStatus() => _json('GET', '/api/chain/status');
+
+  Future<Map<String, dynamic>> serverInfo() => _json('GET', '/api/server', auth: false);
+}
+
+/// Persists the user's chosen chat-server base URL (their own server).
+class ServerStore {
+  static const _baseKey = 'cc_server_base';
+
+  static Future<String> load() async {
+    final prefs = await SharedPreferences.getInstance();
+    final saved = prefs.getString(_baseKey);
+    if (saved != null && saved.trim().isNotEmpty) return saved.trim();
+    return defaultMessagingBaseUrl();
+  }
+
+  static Future<void> save(String baseUrl) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_baseKey, baseUrl.trim().replaceAll(RegExp(r'/+$'), ''));
+  }
 }
 
 class SessionStore {
   static const _tokenKey = 'cc_token';
   static const _userKey = 'cc_user';
-  static const _baseKey = 'cc_base';
 
   static Future<void> save(ApiClient api) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_tokenKey, api.token ?? '');
     await prefs.setString(_userKey, jsonEncode(api.user ?? {}));
-    await prefs.setString(_baseKey, api.baseUrl);
+    await ServerStore.save(api.baseUrl);
   }
 
   static Future<ApiClient?> restore() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(_tokenKey);
     final userRaw = prefs.getString(_userKey);
-    final base = prefs.getString(_baseKey) ?? defaultMessagingBaseUrl();
+    final base = await ServerStore.load();
     if (token == null || token.isEmpty || userRaw == null || userRaw.isEmpty) {
       return null;
     }
@@ -193,6 +211,7 @@ class SessionStore {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_tokenKey);
     await prefs.remove(_userKey);
+    // Keep ServerStore URL so the user stays on their own server after sign-out.
   }
 }
 
@@ -251,6 +270,176 @@ class _GateScreenState extends State<GateScreen> {
   }
 }
 
+/// Choose / switch the chat server URL. Chat data stays on that server;
+/// ChatScan remains the shared hash chain.
+class ServerSettingsScreen extends StatefulWidget {
+  const ServerSettingsScreen({super.key, this.currentUrl});
+
+  final String? currentUrl;
+
+  @override
+  State<ServerSettingsScreen> createState() => _ServerSettingsScreenState();
+}
+
+class _ServerSettingsScreenState extends State<ServerSettingsScreen> {
+  late final TextEditingController _url;
+  bool _busy = false;
+  String? _info;
+  String? _error;
+
+  @override
+  void initState() {
+    super.initState();
+    _url = TextEditingController(text: widget.currentUrl ?? '');
+    if (_url.text.isEmpty) {
+      ServerStore.load().then((v) {
+        _url.text = v;
+        _test();
+      });
+    } else {
+      _test();
+    }
+  }
+
+  @override
+  void dispose() {
+    _url.dispose();
+    super.dispose();
+  }
+
+  Future<void> _test() async {
+    final base = _url.text.trim().replaceAll(RegExp(r'/+$'), '');
+    if (base.isEmpty) return;
+    setState(() {
+      _busy = true;
+      _error = null;
+    });
+    try {
+      final api = ApiClient(baseUrl: base);
+      final info = await api.serverInfo();
+      final cs = info['chatscan'] as Map<String, dynamic>?;
+      setState(() {
+        _info =
+            '${info['name'] ?? 'Chat server'}\n'
+            'Chat data stored on this server\n'
+            'ChatScan ${cs?['chainId']} · height ${cs?['height']} (shared hashes)';
+        _error = null;
+      });
+    } catch (e) {
+      setState(() {
+        _info = null;
+        _error = 'Cannot reach server: $e';
+      });
+    } finally {
+      setState(() => _busy = false);
+    }
+  }
+
+  Future<void> _save() async {
+    final base = _url.text.trim().replaceAll(RegExp(r'/+$'), '');
+    if (base.isEmpty) {
+      setState(() => _error = 'Enter a server URL');
+      return;
+    }
+    await _test();
+    if (_error != null) return;
+    await ServerStore.save(base);
+    if (!mounted) return;
+    final switched = widget.currentUrl != null && widget.currentUrl != base;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(switched
+            ? 'Server saved. Sign in again on the new server.'
+            : 'Server saved.'),
+      ),
+    );
+    Navigator.of(context).pop(switched);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(title: const Text('Chat server')),
+      body: ListView(
+        padding: const EdgeInsets.all(20),
+        children: [
+          const Text(
+            'Run your own CrypterChat server and paste its URL here. '
+            'Your chats (encrypted) stay on that server. Message hashes still seal on ChatScan.',
+            style: TextStyle(height: 1.4, color: kMuted),
+          ),
+          const SizedBox(height: 16),
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: const Color(0xFFF4F5F6),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: const Text(
+              'On the machine that will host chat data:\n'
+              '  ./scripts/start-own-server.sh\n\n'
+              'Then paste the printed Base URL below (LAN IP works for phones on the same Wi‑Fi).',
+              style: TextStyle(height: 1.4, fontSize: 13, color: kInk),
+            ),
+          ),
+          const SizedBox(height: 16),
+          TextField(
+            controller: _url,
+            keyboardType: TextInputType.url,
+            decoration: const InputDecoration(
+              labelText: 'Chat server URL',
+              hintText: 'http://192.168.1.20:8787',
+              border: OutlineInputBorder(),
+              prefixIcon: Icon(Icons.dns_outlined),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              TextButton.icon(
+                onPressed: _busy ? null : _test,
+                icon: const Icon(Icons.wifi_tethering),
+                label: const Text('Test'),
+              ),
+              const SizedBox(width: 8),
+              TextButton(
+                onPressed: () {
+                  _url.text = defaultMessagingBaseUrl();
+                  _test();
+                },
+                child: const Text('Use default'),
+              ),
+            ],
+          ),
+          if (_info != null)
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: const Color(0xFFF0EBFF),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(_info!, style: const TextStyle(color: kSecondary, height: 1.35)),
+            ),
+          if (_error != null) ...[
+            const SizedBox(height: 8),
+            Text(_error!, style: const TextStyle(color: Colors.red)),
+          ],
+          const SizedBox(height: 24),
+          SizedBox(
+            height: 48,
+            child: ElevatedButton(
+              onPressed: _busy ? null : _save,
+              child: const Text('Save server'),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -262,32 +451,43 @@ class _LoginScreenState extends State<LoginScreen> {
   final _name = TextEditingController();
   final _phone = TextEditingController();
   final _otp = TextEditingController(text: kDemoOtp);
-  final _base = TextEditingController(text: defaultMessagingBaseUrl());
+  final _base = TextEditingController();
   bool _otpSent = false;
   bool _busy = false;
-  String? _chainHint;
+  String? _serverHint;
   String? _error;
 
   @override
   void initState() {
     super.initState();
-    _probe();
+    _loadServer();
+  }
+
+  Future<void> _loadServer() async {
+    final saved = await ServerStore.load();
+    _base.text = saved;
+    await _probe();
   }
 
   Future<void> _probe() async {
+    final url = _base.text.trim();
+    if (url.isEmpty) return;
     try {
-      final api = ApiClient(baseUrl: _base.text.trim());
+      final api = ApiClient(baseUrl: url);
       final health = await api.health();
+      final server = health['server'] as Map<String, dynamic>?;
       final cs = health['chatscan'] as Map<String, dynamic>?;
       setState(() {
-        _chainHint =
-            'ChatScan ${cs?['chainId']} · height ${cs?['height']} · ${cs?['backend']}';
+        _serverHint =
+            '${server?['name'] ?? 'Chat server'} · chat data on this server\n'
+            'ChatScan ${cs?['chainId']} · height ${cs?['height']} (hashes only)';
         _error = null;
       });
+      await ServerStore.save(url);
     } catch (e) {
       setState(() {
-        _chainHint = null;
-        _error = 'Bridge offline: $e';
+        _serverHint = null;
+        _error = 'Server unreachable: $e';
       });
     }
   }
@@ -298,6 +498,7 @@ class _LoginScreenState extends State<LoginScreen> {
       _error = null;
     });
     try {
+      await ServerStore.save(_base.text.trim());
       final api = ApiClient(baseUrl: _base.text.trim());
       await api.requestOtp(_phone.text.trim(), _name.text.trim());
       setState(() => _otpSent = true);
@@ -341,34 +542,63 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: const EdgeInsets.all(20),
         children: [
           const Text(
-            'CrypterChat needs your phone number so people can find you — just like a normal messaging app. Messages are sealed on ChatScan’s X11 chain; only hashes are public.',
-            style: TextStyle(height: 1.4, color: Color(0xFF54656F)),
+            'Use your phone number like a normal messaging app. '
+            'Chat data lives on the chat server you choose; only message hashes go to ChatScan.',
+            style: TextStyle(height: 1.4, color: kMuted),
           ),
           const SizedBox(height: 20),
+          const Text('Your chat server',
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+          const SizedBox(height: 6),
+          const Text(
+            'Paste the base URL of a server you host (or a friend’s). '
+            'Run ./scripts/start-own-server.sh to start one.',
+            style: TextStyle(height: 1.35, color: kMuted, fontSize: 13),
+          ),
+          const SizedBox(height: 10),
           TextField(
             controller: _base,
+            keyboardType: TextInputType.url,
             decoration: const InputDecoration(
-              labelText: 'Messaging bridge URL',
-              helperText: 'Android emulator default: http://10.0.2.2:8787',
+              labelText: 'Chat server URL',
+              hintText: 'http://192.168.1.20:8787',
+              helperText: 'Emulator → host: http://10.0.2.2:8787',
               border: OutlineInputBorder(),
+              prefixIcon: Icon(Icons.dns_outlined),
             ),
-            onChanged: (_) => _probe(),
+            onChanged: (_) {
+              _otpSent = false;
+              _probe();
+            },
           ),
-          const SizedBox(height: 12),
-          if (_chainHint != null)
+          const SizedBox(height: 10),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: TextButton.icon(
+              onPressed: _busy ? null : _probe,
+              icon: const Icon(Icons.wifi_tethering),
+              label: const Text('Test connection'),
+            ),
+          ),
+          if (_serverHint != null)
             Container(
+              width: double.infinity,
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: const Color(0xFFE7FCE3),
+                color: const Color(0xFFF0EBFF),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Text(_chainHint!, style: const TextStyle(color: Color(0xFF075E54))),
+              child: Text(_serverHint!,
+                  style: const TextStyle(color: kSecondary, height: 1.35)),
             ),
           if (_error != null) ...[
             const SizedBox(height: 12),
             Text(_error!, style: const TextStyle(color: Colors.red)),
           ],
-          const SizedBox(height: 16),
+          const SizedBox(height: 20),
+          const Text('Your phone',
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+          const SizedBox(height: 10),
           TextField(
             controller: _name,
             decoration: const InputDecoration(
@@ -424,7 +654,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Map<String, dynamic>> _conversations = [];
-  String? _chainLabel;
+  String? _serverLabel;
   Timer? _timer;
 
   @override
@@ -443,16 +673,34 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> _refresh() async {
     try {
       final list = await widget.api.conversations();
-      final chain = await widget.api.chainStatus();
-      final status = chain['status'] as Map<String, dynamic>?;
+      final health = await widget.api.health();
+      final server = health['server'] as Map<String, dynamic>?;
+      final cs = health['chatscan'] as Map<String, dynamic>?;
       if (!mounted) return;
       setState(() {
         _conversations = list;
-        _chainLabel =
-            'ChatScan ${status?['chainId']} · h${status?['height']} · ${status?['backend']}';
+        _serverLabel =
+            '${server?['name'] ?? 'Chat server'} · ${widget.api.baseUrl}\n'
+            'ChatScan ${cs?['chainId']} · h${cs?['height']} (hashes only)';
       });
     } catch (_) {
       /* keep last good state */
+    }
+  }
+
+  Future<void> _openServerSettings() async {
+    final changed = await Navigator.of(context).push<bool>(
+      MaterialPageRoute(
+        builder: (_) => ServerSettingsScreen(currentUrl: widget.api.baseUrl),
+      ),
+    );
+    if (changed == true && mounted) {
+      await SessionStore.clear();
+      if (!mounted) return;
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (_) => const LoginScreen()),
+        (_) => false,
+      );
     }
   }
 
@@ -506,6 +754,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           IconButton(
+            tooltip: 'Server settings',
+            onPressed: _openServerSettings,
+            icon: const Icon(Icons.dns_outlined),
+          ),
+          IconButton(
             tooltip: 'Refresh',
             onPressed: _refresh,
             icon: const Icon(Icons.refresh),
@@ -514,7 +767,7 @@ class _HomeScreenState extends State<HomeScreen> {
             tooltip: 'Sign out',
             onPressed: () async {
               await SessionStore.clear();
-              if (!mounted) return;
+              if (!context.mounted) return;
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (_) => const LoginScreen()),
               );
@@ -525,14 +778,14 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Column(
         children: [
-          if (_chainLabel != null)
+          if (_serverLabel != null)
             Container(
               width: double.infinity,
               color: const Color(0xFFF0EBFF),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Text(
-                _chainLabel!,
-                style: const TextStyle(color: kSecondary, fontSize: 12),
+                _serverLabel!,
+                style: const TextStyle(color: kSecondary, fontSize: 12, height: 1.35),
               ),
             ),
           Expanded(

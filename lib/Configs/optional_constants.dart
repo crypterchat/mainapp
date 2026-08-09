@@ -97,6 +97,9 @@ const bool EnableChatScanBlockchain = true;
 
 /// Base URL of the CrypterChat messaging bridge that talks to ChatScan.
 /// Local stack default from `scripts/start-stack.sh`.
+/// Base URL of the chat server that stores encrypted envelopes.
+/// Point this at your own host (see docs/SELF_HOST.md / scripts/start-own-server.sh).
+/// ChatScan remains the shared hash chain regardless of this URL.
 const String ChatScanMessagingBaseUrl = 'http://127.0.0.1:8787';
 
 /// Demo OTP accepted by the local messaging bridge (no SMS provider required).

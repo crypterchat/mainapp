@@ -57,6 +57,14 @@ export function createApi({ store, chatscan }) {
         return json(res, 200, {
           ok: true,
           service: 'crypterchat-messaging',
+          server: {
+            name: config.serverName,
+            publicUrl: config.publicUrl || null,
+            // Chat data (users, encrypted envelopes) lives on THIS server.
+            storesChatData: true,
+            // Hashes are sealed on the shared ChatScan chain below.
+            usesSharedChatScan: true,
+          },
           chatscan: {
             url: config.chatscanUrl,
             backend: chain.backend,
@@ -64,6 +72,24 @@ export function createApi({ store, chatscan }) {
             height: chain.height,
             network: chain.network,
           },
+        });
+      }
+
+      if (req.method === 'GET' && url.pathname === '/api/server') {
+        const chain = await chatscan.status();
+        return json(res, 200, {
+          name: config.serverName,
+          publicUrl: config.publicUrl || null,
+          storesChatData: true,
+          chatscan: {
+            url: config.chatscanUrl,
+            chainId: chain.chainId,
+            height: chain.height,
+            backend: chain.backend,
+            network: chain.network,
+          },
+          howToConnect:
+            'In CrypterChat, open Server settings and paste this server’s base URL, then sign in with your phone number.',
         });
       }
 

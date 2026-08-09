@@ -11,9 +11,19 @@ ever stores ciphertext hashes (`contentAvailable=false`).
 ## Prerequisites
 
 * Flutter 3.24+ (`flutter` on `PATH`)
-* ChatScan + messaging bridge running (`../scripts/start-stack.sh`)
+* A CrypterChat **chat server** (yours or shared) — see `../scripts/start-own-server.sh`
+* ChatScan for hashes (`CHATSCAN_URL` on that server)
 * For Android: Android SDK + emulator/device
 * For web: Chrome
+
+## Use your own server URL
+
+1. Start a server: `../scripts/start-own-server.sh` (prints a Base URL)
+2. In the app, set **Chat server URL** on login, or open **Server settings** (DNS icon)
+3. Tap **Test connection** — you should see the server name and ChatScan status
+4. Sign in; chat data stays on that server, hashes still go to ChatScan
+
+Details: [../docs/SELF_HOST.md](../docs/SELF_HOST.md)
 
 ## Run (web — fastest)
 

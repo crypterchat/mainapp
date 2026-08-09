@@ -18,6 +18,8 @@
       <h1>Message by phone.<br />Prove it on chain.</h1>
       <p class="lede">Sign in with your number. Messages stay encrypted — ChatScan’s X11 chain only ever sees their hashes.</p>
 
+      <p class="lede" id="server-banner" style="margin-top:-0.5rem"></p>
+
       <form id="otp-request-form" class="stack">
         <label>
           Display name
@@ -39,7 +41,7 @@
         <button type="submit" class="btn primary">Verify &amp; enter</button>
       </form>
 
-      <p class="foot">Demo OTP is always <code>123456</code>. Powered by the ChatScan X11 blockchain.</p>
+      <p class="foot">Demo OTP is always <code>123456</code>. This page is served by <strong>your chat server</strong>; ChatScan only stores hashes. To point the Flutter app at this server, paste its base URL in Server settings.</p>
     </div>
   </section>
 

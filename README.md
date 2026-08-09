@@ -75,9 +75,9 @@ Then open:
 1. Enter a display name and an E.164 phone number (e.g. `+15551110001`).
 2. Use demo OTP **`123456`** (local mode does not send SMS).
 3. Open a chat with another number (e.g. `+15551110002`).
-4. Send a message — the bubble shows the ChatScan `ref`, ciphertext hash, and `contentAvailable=false`.
+4. Send a message — peers see normal readable bubbles; ChatScan seals the hash only.
 5. Sign out, sign in as the recipient with OTP `123456`, and read the message.
-6. Open the explorer link — only the hash/metadata is public.
+6. Open the ChatScan explorer — only the hash/metadata is public (`contentAvailable=false`).
 
 ### Manual start (two terminals)
 
@@ -154,6 +154,26 @@ lib/Screens/chat_screen/  1:1 send path records ChatScan refs on messages
 docs/media/               Screenshots + demo video
 scripts/start-stack.sh    One-command local stack
 ```
+
+## Host your own chat server
+
+Chat data can live on **your** server while ChatScan stays the shared hash chain.
+
+```bash
+export SERVER_NAME="My Chat"
+export PUBLIC_URL="http://YOUR_LAN_IP:8787"
+./scripts/start-own-server.sh
+```
+
+Then in the CrypterChat app, paste that **Base URL** into **Chat server URL** (login screen or Server settings). Friends on the same Wi‑Fi use your LAN IP.
+
+See [docs/SELF_HOST.md](docs/SELF_HOST.md).
+
+| Layer | Who hosts it |
+| --- | --- |
+| CrypterChat app | Users’ phones / browsers |
+| Chat server (`messaging/`) | You (encrypted envelopes + phone accounts) |
+| ChatScan | Shared X11 explorer (hashes only) |
 
 ## Flutter WhatsApp-style app (runnable demo)
 

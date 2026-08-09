@@ -47,13 +47,21 @@ function showApp() {
 
 async function refreshChainPill() {
   try {
-    const { status, explorer } = await api('/api/chain/status');
+    const health = await api('/api/health', { auth: false });
+    const server = health.server || {};
+    const cs = health.chatscan || {};
+    const banner = $('server-banner');
+    if (banner) {
+      banner.innerHTML =
+        `<strong>${escapeHtml(server.name || 'Chat server')}</strong> — chat data on this server · ` +
+        `ChatScan <code>${escapeHtml(cs.chainId || '')}</code> (hashes only)`;
+    }
     $('chain-pill').innerHTML =
-      `<strong>ChatScan</strong> · ${status.chainId}<br>` +
-      `${status.backend} · height ${status.height} · ` +
-      `<a href="${explorer}" target="_blank" rel="noopener">explorer</a>`;
+      `<strong>${escapeHtml(server.name || 'Chat server')}</strong><br>` +
+      `Chat data here · ChatScan ${escapeHtml(cs.chainId || '')} · h${escapeHtml(String(cs.height ?? ''))} · ` +
+      `<a href="${escapeHtml(cs.url || '/')}" target="_blank" rel="noopener">explorer</a>`;
   } catch (error) {
-    $('chain-pill').textContent = `ChatScan offline: ${error.message}`;
+    $('chain-pill').textContent = `Server offline: ${error.message}`;
   }
 }
 
@@ -228,6 +236,7 @@ $('send-form').addEventListener('submit', async (event) => {
 });
 
 async function boot() {
+  await refreshChainPill().catch(() => {});
   if (!state.token || !state.user) {
     showAuth();
     return;
