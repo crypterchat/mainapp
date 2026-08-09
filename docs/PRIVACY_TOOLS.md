@@ -49,7 +49,12 @@ curl -s http://127.0.0.1:8787/api/privacy/tools | jq
 ```bash
 # Prove PGP send/receive + hash-only chain
 cd messaging && npm run test:pgp
+
+# Capture screenshots + demo video into docs/media/
+npm run demo:pgp
 ```
+
+Latest captured walkthrough: [crypterchat-pgp-chatscan-demo.mp4](media/crypterchat-pgp-chatscan-demo.mp4) · [pgp-demo-snapshot.json](media/pgp-demo-snapshot.json)
 
 ## Choosing a tool when sending
 

@@ -11,7 +11,8 @@
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
     "test:flow": "node scripts/e2e-send-receive.js",
-    "test:pgp": "node scripts/e2e-pgp.js"
+    "test:pgp": "node scripts/e2e-pgp.js",
+    "demo:pgp": "node scripts/ui-demo-pgp.mjs"
   },
   "dependencies": {
     "openpgp": "^6.3.1"

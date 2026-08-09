@@ -1,0 +1,27 @@
+{
+  "capturedAt": "2026-08-09T07:15:41.381Z",
+  "messaging": "http://127.0.0.1:8787",
+  "explorer": "http://127.0.0.1:3000",
+  "defaultTool": "pgp",
+  "alicePhone": "+15558001111",
+  "bobPhone": "+15558002222",
+  "messagePreview": "PGP hello Bob — 2026-08-09T07:15:31.941Z",
+  "record": {
+    "ref": "d19d1828d9bc5fbfe80817de1a9cd8eacc04585070b5e00e64fc0b0022fbe293/12",
+    "protocol": "PGP",
+    "contentAvailable": false,
+    "ciphertextHash": "04f5a7cdaccf40e0259a67c670cb30b5e2b9eef03b885b6dcf4ac2d666f09971"
+  },
+  "screenshots": [
+    "pgp-01-login.png",
+    "pgp-02-alice-home.png",
+    "pgp-03-privacy-tools.png",
+    "pgp-04-alice-composer.png",
+    "pgp-05-alice-sent.png",
+    "pgp-06-bob-list.png",
+    "pgp-07-bob-received.png",
+    "pgp-08-chatscan-dashboard.png",
+    "pgp-09-chatscan-pgp-record.png"
+  ],
+  "video": "crypterchat-pgp-chatscan-demo.mp4"
+}

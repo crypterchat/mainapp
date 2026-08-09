@@ -13,11 +13,48 @@ Users register and chat with normal E.164 phone numbers. When a message is sent 
 
 ## Demo media
 
-Short walkthrough (login → Alice sends → Bob receives → ChatScan shows hash only):
+### OpenPGP + ChatScan (latest)
+
+Live run: Alice encrypts with **OpenPGP**, Bob decrypts, ChatScan stores **hash only** (`protocol: PGP`, `contentAvailable: false`).
+
+<video src="docs/media/crypterchat-pgp-chatscan-demo.mp4" controls width="100%"></video>
+
+[Watch the OpenPGP demo video](docs/media/crypterchat-pgp-chatscan-demo.mp4) · [Machine-readable snapshot](docs/media/pgp-demo-snapshot.json)
+
+| Screenshot | What it shows |
+| --- | --- |
+| ![Login](docs/media/pgp-01-login.png) | Phone login — OpenPGP + your chat server |
+| ![Alice home](docs/media/pgp-02-alice-home.png) | Signed in with PGP fingerprint unlocked |
+| ![Privacy tools](docs/media/pgp-03-privacy-tools.png) | Active stack: OpenPGP, ChatScan, self-host (+ age/Tor compatible) |
+| ![Composer](docs/media/pgp-04-alice-composer.png) | OpenPGP selected in the composer |
+| ![Alice sent](docs/media/pgp-05-alice-sent.png) | Normal readable bubble tagged `PGP` |
+| ![Bob list](docs/media/pgp-06-bob-list.png) | Bob’s chat list preview (decrypted) |
+| ![Bob received](docs/media/pgp-07-bob-received.png) | Bob reads the same plaintext after OpenPGP decrypt |
+| ![Explorer](docs/media/pgp-08-chatscan-dashboard.png) | ChatScan indexing ciphertext digests |
+| ![Record](docs/media/pgp-09-chatscan-pgp-record.png) | Public record: **Content is not viewable** |
+
+Flutter app (server URL + OTP):
+
+| Screenshot | What it shows |
+| --- | --- |
+| ![Flutter login](docs/media/pgp-flutter-login.png) | Flutter demo — paste chat server URL, phone login |
+| ![Flutter OTP](docs/media/pgp-flutter-otp.png) | Demo OTP `123456` |
+
+Reproduce the capture:
+
+```bash
+./scripts/start-own-server.sh
+cd messaging && npm install
+npm run test:pgp
+node scripts/ui-demo-pgp.mjs
+# writes docs/media/pgp-*.png + crypterchat-pgp-chatscan-demo.mp4 + pgp-demo-snapshot.json
+```
+
+### Earlier ChatScan walkthrough
 
 <video src="docs/media/crypterchat-chatscan-demo.mp4" controls width="100%"></video>
 
-[Watch the demo video](docs/media/crypterchat-chatscan-demo.mp4)
+[Watch the earlier demo video](docs/media/crypterchat-chatscan-demo.mp4)
 
 | Screenshot | What it shows |
 | --- | --- |
@@ -31,11 +68,11 @@ Short walkthrough (login → Alice sends → Bob receives → ChatScan shows has
 ## How messaging works on ChatScan
 
 ```
-Alice encrypts locally
+Alice encrypts with OpenPGP (default)
         │
-        ├─ ciphertext envelope + key ──▶ private delivery (Bob only)
+        ├─ armored ciphertext ──▶ your chat server mailbox (Bob decrypts)
         │
-        └─ SHA-256(ciphertext) + metadata ──▶ ChatScan X11 chain (public)
+        └─ SHA-256(ciphertext) + metadata ──▶ ChatScan X11 (protocol PGP)
 ```
 
 * ChatScan **rejects** any ingest that includes `content`, `body`, `text`, `message`, `plaintext`, etc.
