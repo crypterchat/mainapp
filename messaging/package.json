@@ -1,0 +1,15 @@
+{
+  "name": "crypterchat-messaging",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CrypterChat messaging API — phone-number chat backed by ChatScan X11 blockchain",
+  "type": "module",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test:flow": "node scripts/e2e-send-receive.js"
+  }
+}

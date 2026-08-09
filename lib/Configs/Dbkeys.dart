@@ -343,6 +343,14 @@ class Dbkeys {
   static final String replyToMsgDoc = 'replyToMsgDoc';
   static final String isForward = 'isForward';
   static final String latestEncrypted = 'lE';
+  /// ChatScan X11 record reference (`{HASH}/{ID-number}`).
+  static final String chatscanRef = 'csRef';
+  /// Public ciphertext digest recorded on ChatScan (never the plaintext).
+  static final String chatscanCiphertextHash = 'csHash';
+  /// Explorer URL for the immutable on-chain record.
+  static final String chatscanExplorerUrl = 'csUrl';
+  /// Settlement status reported by ChatScan (`pending` / `confirmed` / …).
+  static final String chatscanStatus = 'csStatus';
   //--
   static final String maxNoOfFilesInMultiSharing = 'maxNoOfFilesInMultiSharing';
   static final String maxNoOfContactsSelectForForward =

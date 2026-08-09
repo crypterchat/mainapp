@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Local ChatScan node data (append-only chain log + block index)
+data/
+*.jsonl
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+
+# Build / coverage output
+coverage/
+dist/
+tmp/

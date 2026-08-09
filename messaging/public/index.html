@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CrypterChat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  <div class="atmosphere" aria-hidden="true"></div>
+
+  <section id="auth-view" class="auth-view">
+    <div class="auth-panel">
+      <p class="brand">CrypterChat</p>
+      <h1>Message by phone.<br />Prove it on chain.</h1>
+      <p class="lede">Sign in with your number. Messages stay encrypted — ChatScan’s X11 chain only ever sees their hashes.</p>
+
+      <form id="otp-request-form" class="stack">
+        <label>
+          Display name
+          <input id="display-name" name="displayName" autocomplete="nickname" placeholder="Alex" required />
+        </label>
+        <label>
+          Phone number
+          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+15551234567" required />
+        </label>
+        <button type="submit" class="btn primary">Send code</button>
+      </form>
+
+      <form id="otp-verify-form" class="stack hidden">
+        <label>
+          One-time code
+          <input id="otp" name="otp" inputmode="numeric" autocomplete="one-time-code" placeholder="123456" required />
+        </label>
+        <p class="hint" id="otp-hint"></p>
+        <button type="submit" class="btn primary">Verify &amp; enter</button>
+      </form>
+
+      <p class="foot">Demo OTP is always <code>123456</code>. Powered by the ChatScan X11 blockchain.</p>
+    </div>
+  </section>
+
+  <section id="app-view" class="app-view hidden">
+    <aside class="sidebar">
+      <header class="sidebar-head">
+        <div>
+          <p class="brand-sm">CrypterChat</p>
+          <p class="me" id="me-label"></p>
+        </div>
+        <button type="button" id="logout-btn" class="btn ghost">Sign out</button>
+      </header>
+
+      <form id="new-chat-form" class="new-chat">
+        <label>
+          Message a phone number
+          <div class="row">
+            <input id="peer-phone" type="tel" placeholder="+15559876543" required />
+            <button type="submit" class="btn primary">Open</button>
+          </div>
+        </label>
+      </form>
+
+      <div id="conversation-list" class="conversation-list"></div>
+
+      <footer class="chain-pill" id="chain-pill">
+        Connecting to ChatScan…
+      </footer>
+    </aside>
+
+    <main class="chat-pane">
+      <div id="empty-chat" class="empty-chat">
+        <p class="brand-sm">CrypterChat</p>
+        <h2>Pick a conversation</h2>
+        <p>Send a message to any E.164 number. Delivery uses encrypted envelopes; the public chain stores only the hash.</p>
+      </div>
+
+      <div id="active-chat" class="active-chat hidden">
+        <header class="chat-head">
+          <div>
+            <h2 id="peer-title"></h2>
+            <p id="peer-sub" class="muted"></p>
+          </div>
+          <a id="explorer-link" class="btn ghost" href="#" target="_blank" rel="noopener">Open ChatScan</a>
+        </header>
+        <div id="message-list" class="message-list"></div>
+        <form id="send-form" class="composer">
+          <input id="message-input" type="text" placeholder="Write a private message…" autocomplete="off" required />
+          <button type="submit" class="btn primary">Send</button>
+        </form>
+      </div>
+    </main>
+  </section>
+
+  <div id="toast" class="toast hidden" role="status"></div>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

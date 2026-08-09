@@ -24,6 +24,7 @@ import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:crypterchat/Configs/app_constants.dart';
 import 'package:crypterchat/Configs/optional_constants.dart';
 import 'package:crypterchat/Screens/auth_screens/login.dart';
+import 'package:crypterchat/Services/chatscan/chatscan_service.dart';
 import 'package:crypterchat/Screens/chat_screen/utils/aes_encryption.dart';
 import 'package:crypterchat/Screens/chat_screen/utils/uploadMediaWithProgress.dart';
 import 'package:crypterchat/Screens/contact_screens/SelectContactsToForward.dart';
@@ -880,6 +881,28 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
         textEditingController.clear();
         final encrypted = AESEncryptData.encryptAES(content, sharedSecret);
 
+        // Commit ciphertext digest to ChatScan X11 before / alongside delivery.
+        // ChatScan never receives plaintext — only the hash + metadata.
+        Map<String, dynamic> chatscanFields = {};
+        if (EnableChatScanBlockchain &&
+            type == MessageType.text &&
+            currentUserNo != null &&
+            peerNo != null) {
+          final chain = await chatScanService.recordMessage(
+            fromPhone: currentUserNo!,
+            toPhone: peerNo!,
+            plaintext: content,
+          );
+          if (chain != null) {
+            chatscanFields = {
+              Dbkeys.chatscanRef: chain.ref,
+              Dbkeys.chatscanCiphertextHash: chain.ciphertextHash,
+              Dbkeys.chatscanExplorerUrl: chain.explorerUrl,
+              Dbkeys.chatscanStatus: chain.status,
+            };
+          }
+        }
+
         // final encrypted = encryptWithCRC(content);
         if (encrypted is String) {
           Future messaging = FirebaseFirestore.instance
@@ -901,6 +924,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
             Dbkeys.replyToMsgDoc: replyDoc,
             Dbkeys.isForward: isForward,
             Dbkeys.latestEncrypted: true,
+            ...chatscanFields,
           }, SetOptions(merge: true));
 
           _cachedModel.addMessage(peerNo, timestamp, messaging);
@@ -919,6 +943,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
             Dbkeys.isForward: isForward,
             Dbkeys.latestEncrypted: true,
             Dbkeys.tempcontent: tempcontent,
+            ...chatscanFields,
           };
           setStatusBarColor(widget.prefs);
           setStateIfMounted(() {

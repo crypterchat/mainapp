@@ -49,3 +49,18 @@ coverage/
 
 # Firebase
 .firebase/
+
+# ChatScan / messaging runtime
+chatscan/data/
+messaging/data/
+logs/
+
+# Flutter demo build outputs
+flutter_demo/.dart_tool/
+flutter_demo/.flutter-plugins
+flutter_demo/.flutter-plugins-dependencies
+flutter_demo/.packages
+flutter_demo/build/
+flutter_demo/.pub-cache/
+flutter_demo/.pub/
+

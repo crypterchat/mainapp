@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ['20.x', '22.x']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # ChatScan has no runtime or dev dependencies, so there is nothing to install.
+      - name: Run tests
+        run: npm test
+
+      - name: Smoke test the explorer
+        run: |
+          CHATSCAN_PERSIST=false CHATSCAN_PORT=3000 node src/index.js &
+          server=$!
+          for _ in $(seq 1 20); do
+            curl -fsS http://127.0.0.1:3000/healthz > /dev/null && break
+            sleep 0.5
+          done
+          node scripts/seed.js 5 0
+          curl -fsS http://127.0.0.1:3000/ > /dev/null
+          curl -fsS http://127.0.0.1:3000/api/v1/status > /dev/null
+          kill "$server"

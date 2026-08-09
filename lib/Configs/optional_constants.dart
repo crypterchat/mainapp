@@ -90,3 +90,14 @@ const IsShowLanguageChangeButtonInLoginAndHome = true;
 
 const IsShowLanguageChangeButtonInSettings = false;
 //If 'true', shows change language button in settings page, and if 'false' show on homepage appbar.
+
+/// When true, each 1:1 text send is also committed to ChatScan (X11).
+/// The explorer stores only the ciphertext hash — never plaintext.
+const bool EnableChatScanBlockchain = true;
+
+/// Base URL of the CrypterChat messaging bridge that talks to ChatScan.
+/// Local stack default from `scripts/start-stack.sh`.
+const String ChatScanMessagingBaseUrl = 'http://127.0.0.1:8787';
+
+/// Demo OTP accepted by the local messaging bridge (no SMS provider required).
+const String ChatScanDemoOtp = '123456';

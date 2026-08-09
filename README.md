@@ -1,3 +1,194 @@
 # CrypterChat
 
-CrypterChat User App
+Phone-number messaging with **ChatScan X11 blockchain** message integrity.
+
+Users register and chat with normal E.164 phone numbers. When a message is sent it is encrypted and committed through [ChatScan](https://github.com/crypterchat/chatscan): the public chain stores only the **ciphertext hash** and metadata. Message content is never publicly readable.
+
+| Layer | Role |
+| --- | --- |
+| Phone login | Normal OTP-style identity (`+1555…`) |
+| Messaging bridge (`messaging/`) | Delivers encrypted envelopes between users |
+| ChatScan (`chatscan/`) | X11 chain + explorer — immutable hash records only |
+| Flutter app (`lib/`) | Mobile client; 1:1 sends also commit to ChatScan |
+
+## Demo media
+
+Short walkthrough (login → Alice sends → Bob receives → ChatScan shows hash only):
+
+<video src="docs/media/crypterchat-chatscan-demo.mp4" controls width="100%"></video>
+
+[Watch the demo video](docs/media/crypterchat-chatscan-demo.mp4)
+
+| Screenshot | What it shows |
+| --- | --- |
+| ![Login](docs/media/01-login.png) | Phone-number sign-in (CrypterChat) |
+| ![Alice sent](docs/media/05-alice-sent.png) | Alice’s message with on-chain `ref` / hash / `contentAvailable=false` |
+| ![Bob received](docs/media/06-bob-received.png) | Bob decrypts the same message |
+| ![Explorer](docs/media/07-chatscan-dashboard.png) | ChatScan dashboard indexing ciphertext digests |
+| ![Record](docs/media/08-chatscan-record-private.png) | Public record: **Content is not viewable** |
+| ![Privacy](docs/media/09-chatscan-privacy.png) | What ChatScan stores vs refuses |
+
+## How messaging works on ChatScan
+
+```
+Alice encrypts locally
+        │
+        ├─ ciphertext envelope + key ──▶ private delivery (Bob only)
+        │
+        └─ SHA-256(ciphertext) + metadata ──▶ ChatScan X11 chain (public)
+```
+
+* ChatScan **rejects** any ingest that includes `content`, `body`, `text`, `message`, `plaintext`, etc.
+* Explorer records always report `contentAvailable: false`.
+* Records are append-only / immutable once sealed into an X11 block.
+* The public address of a message is `{HASH}/{ID-number}` (e.g. `c45ac3d3…6706f/2`).
+
+The ChatScan component is vendored from upstream:
+
+```text
+https://github.com/crypterchat/chatscan.git  →  chatscan/
+```
+
+Do **not** replace ChatScan with a conventional database for message integrity. The messaging bridge only stores encrypted envelopes for delivery; the chain is the public, immutable ledger of digests.
+
+## Requirements
+
+* **Node.js 20.11+** (no npm dependencies for ChatScan or the messaging bridge)
+* Optional: Flutter 3.x + Firebase for the mobile app
+* Optional: a CDCI `centraldatabased` node for production anchors (local X11 sealer is used by default)
+
+## Quick start (fully functional web app)
+
+```bash
+git clone https://github.com/crypterchat/mainapp.git
+cd mainapp
+./scripts/start-stack.sh
+```
+
+Then open:
+
+* **CrypterChat UI** — http://127.0.0.1:8787  
+* **ChatScan explorer** — http://127.0.0.1:3000  
+
+### Sign in with a phone number
+
+1. Enter a display name and an E.164 phone number (e.g. `+15551110001`).
+2. Use demo OTP **`123456`** (local mode does not send SMS).
+3. Open a chat with another number (e.g. `+15551110002`).
+4. Send a message — the bubble shows the ChatScan `ref`, ciphertext hash, and `contentAvailable=false`.
+5. Sign out, sign in as the recipient with OTP `123456`, and read the message.
+6. Open the explorer link — only the hash/metadata is public.
+
+### Manual start (two terminals)
+
+```bash
+# Terminal 1 — ChatScan local X11 chain
+cd chatscan
+CHATSCAN_CHAIN_BACKEND=local CHATSCAN_BLOCK_INTERVAL_MS=5000 npm start
+# http://localhost:3000
+
+# Terminal 2 — messaging API + UI
+cd messaging
+CHATSCAN_URL=http://127.0.0.1:3000 DEMO_OTP=123456 npm start
+# http://localhost:8787
+```
+
+## Testing blockchain messaging
+
+Automated send/receive + chain privacy check:
+
+```bash
+# with the stack running
+cd messaging
+node scripts/e2e-send-receive.js
+```
+
+Expected:
+
+* Alice’s send returns a ChatScan `ref`
+* `chainRecord.contentAvailable === false`
+* Bob’s mailbox decrypts the original plaintext
+* ChatScan history lists the ciphertext hash only
+
+Headless UI demo (screenshots under `docs/media/`):
+
+```bash
+# requires puppeteer-core + Chrome (see messaging/scripts/ui-demo.mjs)
+node messaging/scripts/ui-demo.mjs
+```
+
+Prove ChatScan refuses plaintext:
+
+```bash
+curl -s -X POST http://127.0.0.1:3000/api/v1/records \
+  -H 'content-type: application/json' \
+  -d '{"ciphertextHash":"00","size":1,"content":"leak"}' | head
+# → HTTP 400, code: content_rejected
+```
+
+## Configuration
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `CHATSCAN_URL` | `http://127.0.0.1:3000` | Explorer / ingest base URL |
+| `CHATSCAN_CHAIN_BACKEND` | `local` | `local` sealer or `cdci` node |
+| `MESSAGING_PORT` | `8787` | CrypterChat web UI + API |
+| `DEMO_OTP` | `123456` | Local phone OTP (no SMS provider) |
+| `CHATSCAN_INGEST_KEY` | _(empty)_ | Optional bearer key for ingest |
+
+Flutter mobile bridge (see `lib/Configs/optional_constants.dart`):
+
+* `EnableChatScanBlockchain` — commit 1:1 text sends to ChatScan
+* `ChatScanMessagingBaseUrl` — messaging bridge URL (default `http://127.0.0.1:8787`)
+
+## Project layout
+
+```text
+chatscan/                 Vendored ChatScan explorer + X11 chain + SDK
+messaging/                Phone auth + encrypted delivery + ChatScan bridge
+  public/                 CrypterChat web UI
+  src/                    API server
+  scripts/                e2e + UI demo
+lib/Services/chatscan/    Flutter client for the messaging bridge
+lib/Screens/chat_screen/  1:1 send path records ChatScan refs on messages
+docs/media/               Screenshots + demo video
+scripts/start-stack.sh    One-command local stack
+```
+
+## Flutter WhatsApp-style app (runnable demo)
+
+The production Flutter tree under `lib/` still expects a real Firebase
+`google-services.json` (the checked-in file is a placeholder). To **run the
+WhatsApp-like UI against ChatScan today**, use the dedicated demo app:
+
+```bash
+./scripts/start-stack.sh
+cd flutter_demo
+flutter pub get
+flutter run -d chrome --web-renderer html \
+  --dart-define=MESSAGING_URL=http://127.0.0.1:8787
+# Android emulator:
+# flutter run -d android --dart-define=MESSAGING_URL=http://10.0.2.2:8787
+```
+
+| Demo asset | What it shows |
+| --- | --- |
+| ![Chat list](docs/media/flutter-wa-01-chatlist.png) | WhatsApp-style chat list + live ChatScan banner |
+| ![Alice sent](docs/media/flutter-wa-03-alice-sent.png) | Green bubbles with on-chain `ref` / hash / `contentAvailable=false` |
+| ![Bob received](docs/media/flutter-wa-05-bob-received.png) | Recipient decrypts the same ChatScan-sealed messages |
+| [Flutter demo video](docs/media/flutter-whatsapp-chatscan-demo.mp4) | Full Alice → Bob walkthrough |
+
+Details: [`flutter_demo/README.md`](flutter_demo/README.md).
+
+The main app’s 1:1 send path also calls `ChatScanService.recordMessage` (fields
+`csRef` / `csHash` / `csUrl` / `csStatus`) once Firebase is configured.
+
+## Production notes
+
+* Run ChatScan against a real CDCI node (`CHATSCAN_CHAIN_BACKEND=cdci`) so commitments anchor in `OP_RETURN` on the X11 chain. See `chatscan/docs/CDCI.md`.
+* Set `CHATSCAN_INGEST_KEYS` and never expose wallet RPC credentials to browsers.
+* Replace demo OTP with a real SMS provider for phone verification outside local demos.
+
+## License
+
+ChatScan is MIT-licensed (`chatscan/LICENSE`). The CrypterChat application code follows the repository’s existing license terms.
